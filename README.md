@@ -10,6 +10,8 @@ This application was generated using JHipster 7.9.4, you can find documentation 
 
 - Asa Bizanjo (axb1779@student.bham.ac.uk)
 
+- Ankita Dash (axd330@student.bham.ac.uk)
+
 ## changes for Teamproject
 
 Modified by Madasar Shah for Team Project
