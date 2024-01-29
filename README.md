@@ -12,6 +12,8 @@ This application was generated using JHipster 7.9.4, you can find documentation 
 
 - Ankita Dash (axd330@student.bham.ac.uk)
 
+- Prince Alexander John (pxx276@student.bham.ac.uk)
+
 ## changes for Teamproject
 
 Modified by Madasar Shah for Team Project
