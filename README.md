@@ -6,7 +6,9 @@ This application was generated using JHipster 7.9.4, you can find documentation 
 
 - Samuel Davies-Jelly (sxd279@student.bham.ac.uk)
 
-- Asa Bizanjo (axb1779@student.bham.ac.uk)
+- (insert the list of team mates)
+
+- Ankita Dash (axd330@student.bham.ac.uk)
 
 ## changes for Teamproject
 
