@@ -8,13 +8,13 @@ This application was generated using JHipster 7.9.4, you can find documentation 
 
 - Allen Jen Joseph (ajj223@student.bham.ac.uk)
 
-- Asa Bizanjo (axb1779@student.bham.ac.uk)
-
 - Ankita Dash (axd330@student.bham.ac.uk)
 
 - Prince Alexander John (pxx276@student.bham.ac.uk)
 
 - Adnaan Loonat (axl276@student.bham.ac.uk)
+
+- Asa Bizanjo (axb1779@student.bham.ac.uk)
 
 ## changes for Teamproject
 
