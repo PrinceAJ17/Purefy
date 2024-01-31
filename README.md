@@ -4,9 +4,9 @@ This application was generated using JHipster 7.9.4, you can find documentation 
 
 ## This repository belongs to team 13
 
-- Samuel Davies-Jelly (sxd279@student.bham.ac.uk)
-
 - Allen Jen Joseph (ajj223@student.bham.ac.uk)
+
+- Samuel Davies-Jelly (sxd279@student.bham.ac.uk)
 
 - Ankita Dash (axd330@student.bham.ac.uk)
 
