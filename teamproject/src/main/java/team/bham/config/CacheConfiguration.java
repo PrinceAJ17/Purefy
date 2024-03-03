@@ -97,6 +97,7 @@ public class CacheConfiguration {
             createCache(cm, team.bham.domain.MoodPicker.class.getName());
             createCache(cm, team.bham.domain.LandingPage.class.getName());
             createCache(cm, team.bham.domain.UserDB.class.getName());
+            createCache(cm, team.bham.domain.Feedback.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

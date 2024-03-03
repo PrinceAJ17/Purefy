@@ -50,14 +50,15 @@
       "EmotionPage",
       "MoodPicker",
       "LandingPage",
-      "UserDB"
+      "UserDB",
+      "Feedback"
     ],
     "entitySuffix": "",
     "jhiPrefix": "jhi",
     "jhipsterVersion": "7.9.4",
     "jwtSecretKey": "MDY4M2U1MjAwOGE1MGE3Yzk3MDhmZTI3ZTFjZDg5ZmQwYmFhNmVmOTZiNTAzM2NmNzQyMjI1OTNjYWI5NGYzMWQwMmRhMzY2YjYxYzk5ZDM1OTg1YWE2MzFhODg4YjVkYWEyZWY0OGM1ZGQxYWQ0MTYzMWQ1MWRjNmQ4OWI3ODU=",
     "languages": ["en", "fr"],
-    "lastLiquibaseTimestamp": 1709468616000,
+    "lastLiquibaseTimestamp": 1709504634000,
     "messageBroker": false,
     "microfrontend": false,
     "microfrontends": [],

@@ -159,6 +159,11 @@ import { RouterModule } from '@angular/router';
         data: { pageTitle: 'UserDBS' },
         loadChildren: () => import('./user-db/user-db.module').then(m => m.UserDBModule),
       },
+      {
+        path: 'feedback',
+        data: { pageTitle: 'Feedbacks' },
+        loadChildren: () => import('./feedback/feedback.module').then(m => m.FeedbackModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

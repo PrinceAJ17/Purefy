@@ -1,163 +1,368 @@
-<div>
-  <h2 id="page-heading" data-cy="ChallengesHeading">
-    <span>Challenges</span>
 
-    <div class="d-flex justify-content-end">
-      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
-        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span>Refresh list</span>
-      </button>
-
-      <button
-        id="jh-create-entity"
-        data-cy="entityCreateButton"
-        class="btn btn-primary jh-create-entity create-challenges"
-        [routerLink]="['/challenges/new']"
-      >
-        <fa-icon icon="plus"></fa-icon>
-        <span> Create a new Challenges </span>
-      </button>
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-card" id="myNavbar">
+    <a href="#home" class="w3-bar-item w3-button w3-wide">PUREFY</a>
+    <!-- Right-sided navbar links -->
+    <div class="w3-right w3-hide-small">
+      <a href="#about-website" class="w3-bar-item w3-button">ABOUT</a>
+      <a href="#team" class="w3-bar-item w3-button"><i class="fa fa-user"></i> TEAM</a>
+      <a href="#work" class="w3-bar-item w3-button"><i class="fa fa-th"></i> WORK</a>
+      <a href="#contact" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> CONTACT</a>
     </div>
-  </h2>
+    <!-- Hide right-floated links on small screens and replace them with a menu icon -->
 
-  <jhi-alert-error></jhi-alert-error>
-
-  <jhi-alert></jhi-alert>
-
-  <div class="alert alert-warning" id="no-result" *ngIf="challenges?.length === 0">
-    <span>No Challenges found</span>
-  </div>
-
-  <div class="table-responsive table-entities" id="entities" *ngIf="challenges && challenges.length > 0">
-    <table class="table table-striped" aria-describedby="page-heading">
-      <thead>
-        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
-          <th scope="col" jhiSortBy="id">
-            <div class="d-flex">
-              <span>ID</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="selectChallenge">
-            <div class="d-flex">
-              <span>Select Challenge</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="allChallenges">
-            <div class="d-flex">
-              <span>All Challenges</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="junkFood.id">
-            <div class="d-flex">
-              <span>Junk Food</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="screenTime.id">
-            <div class="d-flex">
-              <span>Screen Time</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="alcohol.id">
-            <div class="d-flex">
-              <span>Alcohol</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="smoking.id">
-            <div class="d-flex">
-              <span>Smoking</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="search.id">
-            <div class="d-flex">
-              <span>Search</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="filtered.id">
-            <div class="d-flex">
-              <span>Filtered</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let challenges of challenges; trackBy: trackId" data-cy="entityTable">
-          <td>
-            <a [routerLink]="['/challenges', challenges.id, 'view']">{{ challenges.id }}</a>
-          </td>
-          <td>{{ challenges.selectChallenge }}</td>
-          <td>{{ challenges.allChallenges }}</td>
-          <td>
-            <div *ngIf="challenges.junkFood">
-              <a [routerLink]="['/junk-food', challenges.junkFood.id, 'view']">{{ challenges.junkFood.id }}</a>
-            </div>
-          </td>
-          <td>
-            <div *ngIf="challenges.screenTime">
-              <a [routerLink]="['/screen-time', challenges.screenTime.id, 'view']">{{ challenges.screenTime.id }}</a>
-            </div>
-          </td>
-          <td>
-            <div *ngIf="challenges.alcohol">
-              <a [routerLink]="['/alcohol', challenges.alcohol.id, 'view']">{{ challenges.alcohol.id }}</a>
-            </div>
-          </td>
-          <td>
-            <div *ngIf="challenges.smoking">
-              <a [routerLink]="['/smoking', challenges.smoking.id, 'view']">{{ challenges.smoking.id }}</a>
-            </div>
-          </td>
-          <td>
-            <span *ngFor="let search of challenges.searches; let last = last">
-              <a class="form-control-static" [routerLink]="['/search', search.id, 'view']">{{ search.id }}</a
-              >{{ last ? '' : ', ' }}
-            </span>
-          </td>
-          <td>
-            <span *ngFor="let filtered of challenges.filtereds; let last = last">
-              <a class="form-control-static" [routerLink]="['/filtered', filtered.id, 'view']">{{ filtered.id }}</a
-              >{{ last ? '' : ', ' }}
-            </span>
-          </td>
-          <td class="text-end">
-            <div class="btn-group">
-              <button
-                type="submit"
-                [routerLink]="['/challenges', challenges.id, 'view']"
-                class="btn btn-info btn-sm"
-                data-cy="entityDetailsButton"
-              >
-                <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline">View</span>
-              </button>
-
-              <button
-                type="submit"
-                [routerLink]="['/challenges', challenges.id, 'edit']"
-                class="btn btn-primary btn-sm"
-                data-cy="entityEditButton"
-              >
-                <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline">Edit</span>
-              </button>
-
-              <button type="submit" (click)="delete(challenges)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
-                <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline">Delete</span>
-              </button>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+      <i class="fa fa-bars"></i>
+    </a>
   </div>
 </div>
+
+<!-- Sidebar on small screens when clicking the menu icon -->
+<nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
+  <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">ABOUT</a>
+  <a href="#team" onclick="w3_close()" class="w3-bar-item w3-button">TEAM</a>
+  <a href="#work" onclick="w3_close()" class="w3-bar-item w3-button">WORK</a>
+  <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button">CONTACT</a>
+</nav>
+
+<!-- Header with full-height image -->
+<header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
+  <div class="w3-display-left w3-text-white" style="padding:48px">
+    <span class="w3-jumbo w3-hide-small">Start something that matters</span><br>
+    <span class="w3-xxlarge w3-hide-large w3-hide-medium">Start something that matters</span><br>
+    <span class="w3-large">Stop wasting valuable time on things that don't make you better.</span>
+    <p><a href="#about" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">GET STARTED</a></p>
+  </div>
+  <div class="w3-display-bottomleft w3-text-grey w3-large" style="padding:24px 48px">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+  </div>
+</header>
+
+<!--Challenges-->
+<div class="w3-container" style="padding:90px 16px" id="about">
+  <h3 class="w3-center">CHALLENGES TO OVERCOME</h3>
+  <p class="w3-center w3-large">Our Goal</p>
+  <div class="w3-row-padding w3-center" style="margin-top:64px">
+    <div class="w3-quarter">
+      <a href="#smoking">
+        <a href="challenge1.html">
+          <img src="smoking.jpg" style="width:100px; height:100px;" alt="Smoking">
+        </a>
+      </a>
+      <p class="w3-large">Smoking</p>
+      <p>Overcoming smoking addiction is a significant challenge, but with our support and resources, you can take steps towards a smoke-free life.</p>
+    </div>
+    <div class="w3-quarter">
+      <a href="#screen-time">
+        <img src="screen3.jpg" style="width:100px; height:100px;" alt="Screen Time">
+      </a>
+      <p class="w3-large">Screen Time</p>
+      <p>Excessive screen time can impact your mental health. Discover healthier habits and find balance with our guidance.</p>
+    </div>
+    <div class="w3-quarter">
+      <a href="#drinking">
+        <img src="ddrinks.jpg" style="width:100px; height:100px;" alt="Drinking">
+      </a>
+      <p class="w3-large">Drinking</p>
+      <p>Reducing alcohol consumption can improve your overall well-being. Let us help you navigate this journey towards moderation.</p>
+    </div>
+    <div class="w3-quarter">
+      <a href="#junk-food">
+        <img src="foood.jpg" style="width:100px; height:100px;" alt="Junk Food">
+      </a>
+      <p class="w3-large">Junk Food</p>
+      <p>Breaking free from junk food cravings is a journey towards better nutrition and overall health. Let's take the first step together.</p>
+    </div>
+  </div>
+</div>
+
+<!-- About Section -->
+<div class="w3-container" style="padding:64px 16px" id="about-website">
+  <h3 class="w3-center">ABOUT THE WEBSITE</h3>
+  <p class="w3-center w3-large">Our Ambition</p>
+  <div class="w3-row-padding w3-center" style="margin-top:64px">
+    <div class="w3-quarter">
+      <i class="fa fa-desktop w3-margin-bottom w3-jumbo w3-center"></i>
+      <p class="w3-large">Responsive</p>
+      <p>Whether you're taking a break from your smartphone or unwinding at your desktop after a dopamine detox session, our website seamlessly adjusts to support your journey. Wherever you are in your detox, we're here to provide the perfect experience for you.</p>
+    </div>
+    <div class="w3-quarter">
+      <i class="fa fa-heart w3-margin-bottom w3-jumbo"></i>
+      <p class="w3-large">Passion</p>
+      <p>Every feature, every update, and every interaction is infused with our dedication to your mental well-being. When you join us, you're joining a community driven by the shared desire to thrive in a world overflowing with stimuli.</p>
+    </div>
+    <div class="w3-quarter">
+      <i class="fa fa-diamond w3-margin-bottom w3-jumbo"></i>
+      <p class="w3-large">Design</p>
+      <p>Our design philosophy is simple: clarity, calmness, and control. We've carefully crafted every aspect of our app to support your dopamine detox journey.</p>
+    </div>
+    <div class="w3-quarter">
+      <i class="fa fa-cog w3-margin-bottom w3-jumbo"></i>
+      <p class="w3-large">Support</p>
+      <p>Your dopamine detox journey is unique, and we're here to support you every step of the way. Whether you have questions about the detox process, need tips for managing cravings, or just want to share your progress, we're here to listen, guide, and empower you. </p>
+    </div>
+  </div>
+</div>
+
+
+<!-- Team Section -->
+<div class="w3-container" style="padding:64px 16px" id="team">
+  <h3 class="w3-center">THE TEAM</h3>
+  <p class="w3-center w3-large">The people behind your motivational journey</p>
+  <div class="w3-row-padding w3-grayscale" style="margin-top:64px">
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <!-- Apply 'w3-card' class here to maintain the card appearance -->
+      <div class="flip-card w3-card">
+        <div class="flip-card-inner">
+          <!-- Front side -->
+          <div class="flip-card-front w3-container">
+            <h3>Ankita Dash</h3>
+            <p class="w3-opacity">PROFILE CUSTOMIZATION</p>
+            <p>I'm the profile customization developer, encoding features that enable users to personalize their online presence.</p>
+          </div>
+          <!-- Back side -->
+          <div class="flip-card-back w3-container">
+            <h3>Why this concept, Ankita?</h3>
+            <p>I aim to offer practical solutions that can help individuals improve their mental health and productivity.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <!-- Apply 'w3-card' class here to maintain the card appearance -->
+      <div class="flip-card w3-card">
+        <div class="flip-card-inner">
+          <!-- Front side -->
+          <div class="flip-card-front w3-container">
+            <h3>Adnaan Loonat</h3>
+            <p class="w3-opacity">MOOD PICKER</p>
+            <p>I'm aiming to create a tool that allows users to express and track their emotions in an interactive way.</p>
+          </div>
+          <!-- Back side -->
+          <div class="flip-card-back w3-container">
+            <h3>Why this concept, Adnaan?</h3>
+            <p>I noticed a growing need for a space where individuals could learn to disconnect, reflect, and find peace amidst the chaos. </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="flip-card w3-card">
+        <div class="flip-card-inner">
+          <!-- Front side of the card -->
+          <div class="flip-card-front w3-container">
+            <h3>Samuel Davies-Jelly</h3>
+            <p class="w3-opacity">GROUPS</p>
+            <p>Interested in collaboration, I am dedicated to creating the Groups feature for a better digital experience along with peers.</p>
+          </div>
+          <!-- Back side of the card -->
+          <div class="flip-card-back w3-container">
+            <h3>Why this concept, Samuel?</h3>
+            <p>I was inspired to create this after experiencing a transformative impact of reducing unnecessary stimuli in my own life. </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <!-- Apply 'w3-card' class here to maintain the card appearance -->
+      <div class="flip-card w3-card">
+        <div class="flip-card-inner">
+          <!-- Front side -->
+          <div class="flip-card-front w3-container">
+            <h3>Asa Bizenjo</h3>
+            <p class="w3-opacity">CHALLENGES</p>
+            <p>I thrive in challenging environments. So, I'm doing the Challenges feature, creating engaging tasks to motivate users.<p></p>
+          </div>
+          <!-- Back side -->
+          <div class="flip-card-back w3-container">
+            <h3>Why this concept, Asa?</h3>
+            <p>This website isn't just a resource; it's a community platform where individuals can find encouragement and motivation. </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <!-- Apply 'w3-card' class here to maintain the card appearance -->
+      <div class="flip-card w3-card">
+        <div class="flip-card-inner">
+          <!-- Front side -->
+          <div class="flip-card-front w3-container">
+            <h3>Prince Alexander</h3>
+            <p class="w3-opacity">MOOD JOURNAL</p>
+            <p>I am developing the Mood Journal feature which allows our users to track their emotional journey along the way.</p>
+          </div>
+          <!-- Back side -->
+          <div class="flip-card-back w3-container">
+            <h3>Why this concept, Prince?</h3>
+            <p>I chose to develop this website to introduce innovative and actionable solutions to combat the negative effects of digital overuse. </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="flip-card w3-card">
+        <div class="flip-card-inner">
+          <!-- Front side -->
+          <div class="flip-card-front w3-container">
+            <h3>Allen Joseph</h3>
+            <p class="w3-opacity">HABIT TRACKER</p>
+            <p>I am developing the habit tracker feature, helping users cultivate positive routines and behaviours regularly. </p>
+          </div>
+          <!-- Back side -->
+          <div class="flip-card-back w3-container">
+            <h3>Why this concept, Allen?</h3>
+            <p>It's designed to inform users about the science of dopamine and how modern habits can hijack our natural reward system. </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Work Section -->
+<div class="w3-container" style="padding:64px 16px" id="work">
+  <h3 class="w3-center">OUR WORK</h3>
+  <p class="w3-center w3-large">What our website can do for people</p>
+
+  <div class="w3-row-padding" style="margin-top:64px">
+    <div class="w3-col l3 m6">
+      <img src="happ.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Enhanced Mood">
+    </div>
+    <div class="w3-col l3 m6">
+      <img src="improved life2.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Improved Lifestyle">
+    </div>
+    <div class="w3-col l3 m6">
+      <img src="productivity.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Increased Productivity">
+    </div>
+    <div class="w3-col l3 m6">
+      <img src="worklife.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Healthy Balance Between Work and LIfe">
+    </div>
+  </div>
+
+  <!-- Modal for full size images on click-->
+  <div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
+    <span class="w3-button w3-xxlarge w3-black w3-padding-large w3-display-topright" title="Close Modal Image">×</span>
+    <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+      <img id="img01" class="w3-image">
+      <p id="caption" class="w3-opacity w3-large"></p>
+    </div>
+  </div>
+
+  <!-- Contact Section -->
+  <div class="w3-container w3-light-grey" style="padding:64px 16px" id="contact">
+    <h3 class="w3-center">CONTACT</h3>
+    <p class="w3-center w3-large">Lets get in touch. Send us a message:</p>
+    <div style="margin-top:48px">
+      <p><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i> Birmingham, United Kingdom</p>
+      <p><i class="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i> Phone: +44 7654896543</p>
+      <p><i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"> </i> Email: purefywithus@gmail.com</p>
+      <br>
+      <form action="/action_page.php" target="_blank">
+        <p><input class="w3-input w3-border" type="text" placeholder="Name" required name="Name"></p>
+        <p><input class="w3-input w3-border" type="text" placeholder="Email" required name="Email"></p>
+        <p><input class="w3-input w3-border" type="text" placeholder="Subject" required name="Subject"></p>
+        <p><input class="w3-input w3-border" type="text" placeholder="Message" required name="Message"></p>
+        <p>
+          <button class="w3-button w3-black" type="submit">
+            <i class="fa fa-paper-plane"></i> SEND MESSAGE
+          </button>
+        </p>
+      </form>
+      <!-- Image of location/map -->
+      <img src="my logo.jpg" class="w3-image w3-greyscale" style="width:10%;margin-top:1px">
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="w3-center w3-black w3-padding-64">
+    <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+    <div class="w3-xlarge w3-section">
+      <i class="fa fa-facebook-official w3-hover-opacity"></i>
+      <i class="fa fa-instagram w3-hover-opacity"></i>
+      <i class="fa fa-snapchat w3-hover-opacity"></i>
+      <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+      <i class="fa fa-twitter w3-hover-opacity"></i>
+      <i class="fa fa-linkedin w3-hover-opacity"></i>
+    </div>
+    <p>Copyright © 2024, Purefy! All Rights Reserved.</p>
+  </footer>
+
+  <script>
+
+    // Wait for the DOM to be fully loaded
+    document.addEventListener("DOMContentLoaded", function() {
+      // Find all flip-cards
+      var flipCards = document.querySelectorAll('.flip-card');
+
+      // Iterate through each card
+      flipCards.forEach(function(card) {
+        card.addEventListener('click', function() {
+          // Get the inner card
+          var innerCard = card.querySelector('.flip-card-inner');
+
+          // Check if the card is flipped
+          var isFlipped = innerCard.style.transform === 'rotateY(180deg)';
+
+          // If the card is flipped, reset the height
+          if (isFlipped) {
+            card.style.height = 'auto';
+          } else {
+            // If the card is not flipped, adjust the height based on the back content
+            var backContent = card.querySelector('.flip-card-back');
+            var frontContent = card.querySelector('.flip-card-front');
+
+            // Set the card's height to the greater of the front or back content's scrollHeight
+            var maxHeight = Math.max(frontContent.scrollHeight, backContent.scrollHeight);
+            card.style.height = maxHeight + 'px';
+          }
+
+          // Toggle the flip
+          innerCard.style.transform = isFlipped ? 'rotateY(0deg)' : 'rotateY(180deg)';
+        });
+      });
+    });
+
+    if (!sessionStorage.getItem('hasAnimated')) {
+      // If the page hasn't animated yet, proceed with the fade-in
+      window.addEventListener('load', function() {
+        document.body.style.opacity = 1; // Fade in the body
+        sessionStorage.setItem('hasAnimated', 'true'); // Set the flag
+      });
+    } else {
+      // If the page has already animated, skip the fade-in
+      document.body.style.opacity = 1;
+    }
+
+    // Modal Image Gallery
+    function onClick(element) {
+      document.getElementById("img01").src = element.src;
+      document.getElementById("modal01").style.display = "block";
+      var captionText = document.getElementById("caption");
+      captionText.innerHTML = element.alt;
+    }
+
+
+    // Toggle between showing and hiding the sidebar when clicking the menu icon
+    var mySidebar = document.getElementById("mySidebar");
+
+    function w3_open() {
+      if (mySidebar.style.display === 'block') {
+        mySidebar.style.display = 'none';
+      } else {
+        mySidebar.style.display = 'block';
+      }
+    }
+
+    // Close the sidebar with the close button
+    function w3_close() {
+      mySidebar.style.display = "none";
+    }
+  </script>
+
