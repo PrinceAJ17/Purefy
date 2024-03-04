@@ -1,23 +1,24 @@
-/* ==========================================================================
-Main page styles
-========================================================================== */
-
-.hipster {
-  display: inline-block;
-  width: 347px;
-  height: 497px;
-  background: url('../../content/images/jhipster_family_member_0.svg') no-repeat center top;
-  background-size: contain;
-}
-
-/* wait autoprefixer update to allow simple generation of high pixel density media query */
-@media only screen and (-webkit-min-device-pixel-ratio: 2),
-  only screen and (-moz-min-device-pixel-ratio: 2),
-  only screen and (-o-min-device-pixel-ratio: 2/1),
-  only screen and (min-resolution: 192dpi),
-  only screen and (min-resolution: 2dppx) {
-  .hipster {
-    background: url('../../content/images/jhipster_family_member_0.svg') no-repeat center top;
-    background-size: contain;
+.challenges-container {
+  padding: 90px 16px;
+  .center {
+    text-align: center;
+  }
+  .large {
+    font-size: 1.25em; /* Adjust based on preference */
+  }
+  .row-padding {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .quarter {
+    width: 25%;
+    padding: 0 4px; /* Adjust padding as needed */
+    box-sizing: border-box;
+  }
+  .image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
   }
 }

@@ -1,54 +1,41 @@
-<div class="row">
-  <div class="col-md-3">
-    <span class="hipster img-fluid rounded"></span>
-  </div>
-
-  <div class="col-md-9">
-    <h1 class="display-4"><span>Welcome, Java Hipster!</span> (Teamproject)</h1>
-
-    <p class="lead">This is your homepage</p>
-
-    <div [ngSwitch]="account !== null">
-      <div class="alert alert-success" *ngSwitchCase="true">
-        <span id="home-logged-message" *ngIf="account">You are logged in as user "{{ account.login }}".</span>
-      </div>
-
-      <div class="alert alert-warning" *ngSwitchCase="false">
-        <span>If you want to </span>
-        <a class="alert-link" (click)="login()">sign in</a
-        ><span
-          >, you can try the default accounts:<br />- Administrator (login="admin" and password="admin") <br />- User (login="user" and
-          password="user").</span
-        >
-      </div>
-
-      <div class="alert alert-warning" *ngSwitchCase="false">
-        <span>You don't have an account yet?</span>&nbsp;
-        <a class="alert-link" routerLink="account/register">Register a new account</a>
-      </div>
+<div class="challenges-container" id="about">
+  <h3 class="center">CHALLENGES TO OVERCOME</h3>
+  <p class="center large">Our Goal</p>
+  <div class="row-padding center" style="margin-top:64px">
+    <!-- Smoking Challenge -->
+    <div class="quarter">
+      <a href="#smoking">
+        <img src="assets/images/smoking.jpg" alt="Smoking" class="image">
+      </a>
+      <p class="large">Smoking</p>
+      <p>Overcoming smoking addiction is a significant challenge, but with our support and resources, you can take steps towards a smoke-free life.</p>
     </div>
 
-    <p>If you have any question on JHipster:</p>
+    <!-- Screen Time Challenge -->
+    <div class="quarter">
+      <a href="#screen-time">
+        <img src="assets/images/screen3.jpg" alt="Screen Time" class="image">
+      </a>
+      <p class="large">Screen Time</p>
+      <p>Excessive screen time can impact your mental health. Discover healthier habits and find balance with our guidance.</p>
+    </div>
 
-    <ul>
-      <li><a href="https://www.jhipster.tech/" target="_blank" rel="noopener noreferrer">JHipster homepage</a></li>
-      <li>
-        <a href="https://stackoverflow.com/tags/jhipster/info" target="_blank" rel="noopener noreferrer">JHipster on Stack Overflow</a>
-      </li>
-      <li>
-        <a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank" rel="noopener noreferrer"
-          >JHipster bug tracker</a
-        >
-      </li>
-      <li>
-        <a href="https://gitter.im/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer">JHipster public chat room</a>
-      </li>
-      <li><a href="https://twitter.com/jhipster" target="_blank" rel="noopener noreferrer">follow @jhipster on Twitter</a></li>
-    </ul>
+    <!-- Drinking Challenge -->
+    <div class="quarter">
+      <a href="#drinking">
+        <img src="assets/images/ddrinks.jpg" alt="Drinking" class="image">
+      </a>
+      <p class="large">Drinking</p>
+      <p>Reducing alcohol consumption can improve your overall well-being. Let us help you navigate this journey towards moderation.</p>
+    </div>
 
-    <p>
-      <span>If you like JHipster, don't forget to give us a star on</span>
-      <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer">GitHub</a>!
-    </p>
+    <!-- Junk Food Challenge -->
+    <div class="quarter">
+      <a href="#junk-food">
+        <img src="assets/images/foood.jpg" alt="Junk Food" class="image">
+      </a>
+      <p class="large">Junk Food</p>
+      <p>Breaking free from junk food cravings is a journey towards better nutrition and overall health. Let's take the first step together.</p>
+    </div>
   </div>
 </div>
