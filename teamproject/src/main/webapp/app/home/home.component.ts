@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-
+import { HttpClient } from '@angular/common/http';
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/auth/account.model';
 
@@ -104,7 +104,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     { image: 'worklife.jpg', description: 'Healthy Balance Between Work and Life' }
   ];
 
-  constructor(private accountService: AccountService, private router: Router) {}
+  constructor(private accountService: AccountService, private router: Router, private http: HttpClient) {}
 
   ngOnInit(): void {
     this.accountService
@@ -145,7 +145,21 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     console.log('Form submitted:', this.contact);
-    // Here, implement your form submission logic, e.g., sending data to the server
-    // Reset the form or provide feedback to the user after submission
+    // Send a POST request to your backend endpoint
+    this.http.post('/api/feedbacks', this.contact)
+      .subscribe(
+        (response) => {
+          console.log('Feedback submitted successfully:', response);
+          // Optionally, you can show a success message to the user
+          alert('Feedback submitted successfully!');
+          // Clear the form after successful submission
+          this.contact = { name: '', email: '', subject: '', message: '' };
+        },
+        (error) => {
+          console.error('Error submitting feedback:', error);
+          // Optionally, you can show an error message to the user
+          alert('Error submitting feedback. Please try again later.');
+        }
+      );
   }
 }
