@@ -6,7 +6,7 @@ import {ChallengesComponent} from "../entities/challenges/list/challenges.compon
 export const HOME_ROUTE: Route = {
   path: '',
 
-  component: ChallengesComponent,
+  component: HomeComponent,
   data: {
     pageTitle: 'Welcome, Java Hipster!',
   },
