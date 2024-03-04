@@ -1,24 +1,99 @@
-.challenges-container {
-  padding: 90px 16px;
-  .center {
-    text-align: center;
-  }
-  .large {
-    font-size: 1.25em; /* Adjust based on preference */
-  }
-  .row-padding {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  .quarter {
-    width: 25%;
-    padding: 0 4px; /* Adjust padding as needed */
-    box-sizing: border-box;
-  }
-  .image {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-  }
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+
+body, html {
+  height: 100%;
+  line-height: 1.8;
 }
+
+body {
+  opacity: 0; /* Start hidden */
+  transition: opacity 2s ease-in-out; /* Transition for fade-in */
+}
+
+/* Full height image header */
+.bgimg-1 {
+  background-position: center;
+  background-size: cover;
+  background-image: url("okay.jpg");
+  min-height: 100%;
+}
+
+.w3-quarter:hover img {
+  opacity: 0.7; /* Adjust the opacity level as desired */
+  transition: opacity 0.5s ease; /* Add a transition effect for smooth animation */
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.7); /* Add a glowing shadow effect */
+}
+
+.w3-bar .w3-button {
+  padding: 16px;
+}
+
+.w3-bar-item:hover, .w3-button:hover {
+  background-color: #f1f1f1; /* Example hover effect */
+}
+
+.flip-card {
+  /* Remove fixed height if present and use min-height if needed */
+  min-height: 250px; /* Example min-height, adjust as necessary */
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  /* Height should be auto or not set to allow for dynamic resizing */
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  /* Use min-height to ensure content fits, but allow expansion */
+  min-height: 250px; /* Adjust based on your content */
+  backface-visibility: hidden;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+  /* Align items flex-start to stack content from the top */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Adjust as per your design */
+}
+
+
+/* Adjust back card styling as needed */
+.flip-card-back {
+  background-color: #2980b9; /* Example background color */
+  color: white; /* Example text color */
+}.challenges-container {
+   padding: 90px 16px;
+   .center {
+     text-align: center;
+   }
+   .large {
+     font-size: 1.25em; /* Adjust based on preference */
+   }
+   .row-padding {
+     display: flex;
+     justify-content: center;
+     flex-wrap: wrap;
+   }
+   .quarter {
+     width: 25%;
+     padding: 0 4px; /* Adjust padding as needed */
+     box-sizing: border-box;
+   }
+   .image {
+     width: 100px;
+     height: 100px;
+     object-fit: cover;
+
+     /* Example custom styles or overrides */
+     .w3-modal-content {
+       max-width: 200px; /* Adjust modal size as needed */
+     }
+   }
+ }
