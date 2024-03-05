@@ -22,6 +22,12 @@
         <dd>
           <span>{{ challenges.allChallenges }}</span>
         </dd>
+        <dt><span>Progress</span></dt>
+        <dd>
+          <div *ngIf="challenges.progress">
+            <a [routerLink]="['/progress', challenges.progress.id, 'view']">{{ challenges.progress.id }}</a>
+          </div>
+        </dd>
         <dt><span>Junk Food</span></dt>
         <dd>
           <div *ngIf="challenges.junkFood">

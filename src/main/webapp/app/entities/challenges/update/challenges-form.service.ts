@@ -20,6 +20,7 @@ type ChallengesFormGroupContent = {
   id: FormControl<IChallenges['id'] | NewChallenges['id']>;
   selectChallenge: FormControl<IChallenges['selectChallenge']>;
   allChallenges: FormControl<IChallenges['allChallenges']>;
+  progress: FormControl<IChallenges['progress']>;
   junkFood: FormControl<IChallenges['junkFood']>;
   screenTime: FormControl<IChallenges['screenTime']>;
   alcohol: FormControl<IChallenges['alcohol']>;
@@ -47,6 +48,7 @@ export class ChallengesFormService {
       ),
       selectChallenge: new FormControl(challengesRawValue.selectChallenge),
       allChallenges: new FormControl(challengesRawValue.allChallenges),
+      progress: new FormControl(challengesRawValue.progress),
       junkFood: new FormControl(challengesRawValue.junkFood),
       screenTime: new FormControl(challengesRawValue.screenTime),
       alcohol: new FormControl(challengesRawValue.alcohol),

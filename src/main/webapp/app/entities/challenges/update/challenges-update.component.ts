@@ -7,6 +7,8 @@ import { finalize, map } from 'rxjs/operators';
 import { ChallengesFormService, ChallengesFormGroup } from './challenges-form.service';
 import { IChallenges } from '../challenges.model';
 import { ChallengesService } from '../service/challenges.service';
+import { IProgress } from 'app/entities/progress/progress.model';
+import { ProgressService } from 'app/entities/progress/service/progress.service';
 import { IJunkFood } from 'app/entities/junk-food/junk-food.model';
 import { JunkFoodService } from 'app/entities/junk-food/service/junk-food.service';
 import { IScreenTime } from 'app/entities/screen-time/screen-time.model';
@@ -28,6 +30,7 @@ export class ChallengesUpdateComponent implements OnInit {
   isSaving = false;
   challenges: IChallenges | null = null;
 
+  progressesCollection: IProgress[] = [];
   junkFoodsSharedCollection: IJunkFood[] = [];
   screenTimesSharedCollection: IScreenTime[] = [];
   alcoholSharedCollection: IAlcohol[] = [];
@@ -40,6 +43,7 @@ export class ChallengesUpdateComponent implements OnInit {
   constructor(
     protected challengesService: ChallengesService,
     protected challengesFormService: ChallengesFormService,
+    protected progressService: ProgressService,
     protected junkFoodService: JunkFoodService,
     protected screenTimeService: ScreenTimeService,
     protected alcoholService: AlcoholService,
@@ -48,6 +52,8 @@ export class ChallengesUpdateComponent implements OnInit {
     protected filteredService: FilteredService,
     protected activatedRoute: ActivatedRoute
   ) {}
+
+  compareProgress = (o1: IProgress | null, o2: IProgress | null): boolean => this.progressService.compareProgress(o1, o2);
 
   compareJunkFood = (o1: IJunkFood | null, o2: IJunkFood | null): boolean => this.junkFoodService.compareJunkFood(o1, o2);
 
@@ -109,6 +115,10 @@ export class ChallengesUpdateComponent implements OnInit {
     this.challenges = challenges;
     this.challengesFormService.resetForm(this.editForm, challenges);
 
+    this.progressesCollection = this.progressService.addProgressToCollectionIfMissing<IProgress>(
+      this.progressesCollection,
+      challenges.progress
+    );
     this.junkFoodsSharedCollection = this.junkFoodService.addJunkFoodToCollectionIfMissing<IJunkFood>(
       this.junkFoodsSharedCollection,
       challenges.junkFood
@@ -136,6 +146,16 @@ export class ChallengesUpdateComponent implements OnInit {
   }
 
   protected loadRelationshipsOptions(): void {
+    this.progressService
+      .query({ filter: 'challenges-is-null' })
+      .pipe(map((res: HttpResponse<IProgress[]>) => res.body ?? []))
+      .pipe(
+        map((progresses: IProgress[]) =>
+          this.progressService.addProgressToCollectionIfMissing<IProgress>(progresses, this.challenges?.progress)
+        )
+      )
+      .subscribe((progresses: IProgress[]) => (this.progressesCollection = progresses));
+
     this.junkFoodService
       .query()
       .pipe(map((res: HttpResponse<IJunkFood[]>) => res.body ?? []))

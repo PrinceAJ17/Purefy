@@ -24,6 +24,13 @@
       "relationshipType": "one-to-one"
     },
     {
+      "otherEntityName": "progress",
+      "otherEntityRelationshipName": "leaderBoards",
+      "ownerSide": true,
+      "relationshipName": "progress",
+      "relationshipType": "one-to-one"
+    },
+    {
       "otherEntityName": "userPoints",
       "otherEntityRelationshipName": "leaderBoards",
       "relationshipName": "userPoints",

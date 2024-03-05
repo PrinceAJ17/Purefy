@@ -9,6 +9,8 @@ import { of, Subject, from } from 'rxjs';
 import { ChallengesFormService } from './challenges-form.service';
 import { ChallengesService } from '../service/challenges.service';
 import { IChallenges } from '../challenges.model';
+import { IProgress } from 'app/entities/progress/progress.model';
+import { ProgressService } from 'app/entities/progress/service/progress.service';
 import { IJunkFood } from 'app/entities/junk-food/junk-food.model';
 import { JunkFoodService } from 'app/entities/junk-food/service/junk-food.service';
 import { IScreenTime } from 'app/entities/screen-time/screen-time.model';
@@ -30,6 +32,7 @@ describe('Challenges Management Update Component', () => {
   let activatedRoute: ActivatedRoute;
   let challengesFormService: ChallengesFormService;
   let challengesService: ChallengesService;
+  let progressService: ProgressService;
   let junkFoodService: JunkFoodService;
   let screenTimeService: ScreenTimeService;
   let alcoholService: AlcoholService;
@@ -58,6 +61,7 @@ describe('Challenges Management Update Component', () => {
     activatedRoute = TestBed.inject(ActivatedRoute);
     challengesFormService = TestBed.inject(ChallengesFormService);
     challengesService = TestBed.inject(ChallengesService);
+    progressService = TestBed.inject(ProgressService);
     junkFoodService = TestBed.inject(JunkFoodService);
     screenTimeService = TestBed.inject(ScreenTimeService);
     alcoholService = TestBed.inject(AlcoholService);
@@ -69,6 +73,24 @@ describe('Challenges Management Update Component', () => {
   });
 
   describe('ngOnInit', () => {
+    it('Should call progress query and add missing value', () => {
+      const challenges: IChallenges = { id: 456 };
+      const progress: IProgress = { id: 62070 };
+      challenges.progress = progress;
+
+      const progressCollection: IProgress[] = [{ id: 26595 }];
+      jest.spyOn(progressService, 'query').mockReturnValue(of(new HttpResponse({ body: progressCollection })));
+      const expectedCollection: IProgress[] = [progress, ...progressCollection];
+      jest.spyOn(progressService, 'addProgressToCollectionIfMissing').mockReturnValue(expectedCollection);
+
+      activatedRoute.data = of({ challenges });
+      comp.ngOnInit();
+
+      expect(progressService.query).toHaveBeenCalled();
+      expect(progressService.addProgressToCollectionIfMissing).toHaveBeenCalledWith(progressCollection, progress);
+      expect(comp.progressesCollection).toEqual(expectedCollection);
+    });
+
     it('Should call JunkFood query and add missing value', () => {
       const challenges: IChallenges = { id: 456 };
       const junkFood: IJunkFood = { id: 52347 };
@@ -203,6 +225,8 @@ describe('Challenges Management Update Component', () => {
 
     it('Should update editForm', () => {
       const challenges: IChallenges = { id: 456 };
+      const progress: IProgress = { id: 29877 };
+      challenges.progress = progress;
       const junkFood: IJunkFood = { id: 51940 };
       challenges.junkFood = junkFood;
       const screenTime: IScreenTime = { id: 4845 };
@@ -219,6 +243,7 @@ describe('Challenges Management Update Component', () => {
       activatedRoute.data = of({ challenges });
       comp.ngOnInit();
 
+      expect(comp.progressesCollection).toContain(progress);
       expect(comp.junkFoodsSharedCollection).toContain(junkFood);
       expect(comp.screenTimesSharedCollection).toContain(screenTime);
       expect(comp.alcoholSharedCollection).toContain(alcohol);
@@ -298,6 +323,16 @@ describe('Challenges Management Update Component', () => {
   });
 
   describe('Compare relationships', () => {
+    describe('compareProgress', () => {
+      it('Should forward to progressService', () => {
+        const entity = { id: 123 };
+        const entity2 = { id: 456 };
+        jest.spyOn(progressService, 'compareProgress');
+        comp.compareProgress(entity, entity2);
+        expect(progressService.compareProgress).toHaveBeenCalledWith(entity, entity2);
+      });
+    });
+
     describe('compareJunkFood', () => {
       it('Should forward to junkFoodService', () => {
         const entity = { id: 123 };

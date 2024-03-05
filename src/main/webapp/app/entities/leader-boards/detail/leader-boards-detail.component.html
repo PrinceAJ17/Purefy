@@ -24,6 +24,12 @@
             <a [routerLink]="['/grouping', leaderBoards.grouping.id, 'view']">{{ leaderBoards.grouping.id }}</a>
           </div>
         </dd>
+        <dt><span>Progress</span></dt>
+        <dd>
+          <div *ngIf="leaderBoards.progress">
+            <a [routerLink]="['/progress', leaderBoards.progress.id, 'view']">{{ leaderBoards.progress.id }}</a>
+          </div>
+        </dd>
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

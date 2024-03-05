@@ -31,6 +31,11 @@ public class Challenges implements Serializable {
     @Column(name = "all_challenges")
     private String allChallenges;
 
+    @JsonIgnoreProperties(value = { "challenges", "leaderBoards", "userDB" }, allowSetters = true)
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Progress progress;
+
     @ManyToOne
     @JsonIgnoreProperties(value = { "challenges" }, allowSetters = true)
     private JunkFood junkFood;
@@ -113,6 +118,19 @@ public class Challenges implements Serializable {
 
     public void setAllChallenges(String allChallenges) {
         this.allChallenges = allChallenges;
+    }
+
+    public Progress getProgress() {
+        return this.progress;
+    }
+
+    public void setProgress(Progress progress) {
+        this.progress = progress;
+    }
+
+    public Challenges progress(Progress progress) {
+        this.setProgress(progress);
+        return this;
     }
 
     public JunkFood getJunkFood() {

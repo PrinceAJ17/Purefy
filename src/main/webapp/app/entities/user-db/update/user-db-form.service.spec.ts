@@ -27,6 +27,7 @@ describe('UserDB Form Service', () => {
             profilePicture: expect.any(Object),
             userName: expect.any(Object),
             landingPage: expect.any(Object),
+            progress: expect.any(Object),
           })
         );
       });
@@ -44,6 +45,7 @@ describe('UserDB Form Service', () => {
             profilePicture: expect.any(Object),
             userName: expect.any(Object),
             landingPage: expect.any(Object),
+            progress: expect.any(Object),
           })
         );
       });

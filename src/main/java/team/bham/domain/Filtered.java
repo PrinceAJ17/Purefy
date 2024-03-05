@@ -37,7 +37,7 @@ public class Filtered implements Serializable {
     @ManyToMany(mappedBy = "filtereds")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(
-        value = { "junkFood", "screenTime", "alcohol", "smoking", "searches", "filtereds", "navigationPortal" },
+        value = { "progress", "junkFood", "screenTime", "alcohol", "smoking", "searches", "filtereds", "navigationPortal" },
         allowSetters = true
     )
     private Set<Challenges> challenges = new HashSet<>();

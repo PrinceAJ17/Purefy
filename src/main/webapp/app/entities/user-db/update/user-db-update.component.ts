@@ -12,6 +12,8 @@ import { EventManager, EventWithContent } from 'app/core/util/event-manager.serv
 import { DataUtils, FileLoadError } from 'app/core/util/data-util.service';
 import { ILandingPage } from 'app/entities/landing-page/landing-page.model';
 import { LandingPageService } from 'app/entities/landing-page/service/landing-page.service';
+import { IProgress } from 'app/entities/progress/progress.model';
+import { ProgressService } from 'app/entities/progress/service/progress.service';
 
 @Component({
   selector: 'jhi-user-db-update',
@@ -22,6 +24,7 @@ export class UserDBUpdateComponent implements OnInit {
   userDB: IUserDB | null = null;
 
   landingPagesCollection: ILandingPage[] = [];
+  progressesCollection: IProgress[] = [];
 
   editForm: UserDBFormGroup = this.userDBFormService.createUserDBFormGroup();
 
@@ -31,10 +34,13 @@ export class UserDBUpdateComponent implements OnInit {
     protected userDBService: UserDBService,
     protected userDBFormService: UserDBFormService,
     protected landingPageService: LandingPageService,
+    protected progressService: ProgressService,
     protected activatedRoute: ActivatedRoute
   ) {}
 
   compareLandingPage = (o1: ILandingPage | null, o2: ILandingPage | null): boolean => this.landingPageService.compareLandingPage(o1, o2);
+
+  compareProgress = (o1: IProgress | null, o2: IProgress | null): boolean => this.progressService.compareProgress(o1, o2);
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ userDB }) => {
@@ -103,6 +109,10 @@ export class UserDBUpdateComponent implements OnInit {
       this.landingPagesCollection,
       userDB.landingPage
     );
+    this.progressesCollection = this.progressService.addProgressToCollectionIfMissing<IProgress>(
+      this.progressesCollection,
+      userDB.progress
+    );
   }
 
   protected loadRelationshipsOptions(): void {
@@ -115,5 +125,15 @@ export class UserDBUpdateComponent implements OnInit {
         )
       )
       .subscribe((landingPages: ILandingPage[]) => (this.landingPagesCollection = landingPages));
+
+    this.progressService
+      .query({ filter: 'userdb-is-null' })
+      .pipe(map((res: HttpResponse<IProgress[]>) => res.body ?? []))
+      .pipe(
+        map((progresses: IProgress[]) =>
+          this.progressService.addProgressToCollectionIfMissing<IProgress>(progresses, this.userDB?.progress)
+        )
+      )
+      .subscribe((progresses: IProgress[]) => (this.progressesCollection = progresses));
   }
 }

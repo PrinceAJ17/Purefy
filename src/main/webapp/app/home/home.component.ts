@@ -37,6 +37,8 @@ interface ContactForm {
 export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('teamSection', { static: true }) teamSection?: ElementRef;
 
+  smokingimage = 'src/main/webapp/app/home/smoking.jpg';
+
   account: Account | null = null;
   private readonly destroy$ = new Subject<void>();
   sidebarOpen = false;

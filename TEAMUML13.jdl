@@ -270,6 +270,20 @@ entity UserDB {
     userName String
 }
 
+entity Progress {
+	detoxProgress    Long
+    detoxTotal		 Long
+	challengesInfo	 String
+	leaderboardInfo	 String
+}
+
+relationship OneToOne {
+Challenges to Progress
+LeaderBoards to Progress
+UserDB to Progress
+
+}
+
 relationship OneToOne {
     NavigationPortal to Challenges
     NavigationPortal to Habit

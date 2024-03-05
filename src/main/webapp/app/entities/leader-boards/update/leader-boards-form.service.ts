@@ -20,6 +20,7 @@ type LeaderBoardsFormGroupContent = {
   id: FormControl<ILeaderBoards['id'] | NewLeaderBoards['id']>;
   standings: FormControl<ILeaderBoards['standings']>;
   grouping: FormControl<ILeaderBoards['grouping']>;
+  progress: FormControl<ILeaderBoards['progress']>;
 };
 
 export type LeaderBoardsFormGroup = FormGroup<LeaderBoardsFormGroupContent>;
@@ -41,6 +42,7 @@ export class LeaderBoardsFormService {
       ),
       standings: new FormControl(leaderBoardsRawValue.standings),
       grouping: new FormControl(leaderBoardsRawValue.grouping),
+      progress: new FormControl(leaderBoardsRawValue.progress),
     });
   }
 

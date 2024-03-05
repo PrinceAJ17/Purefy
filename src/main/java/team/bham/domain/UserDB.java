@@ -50,6 +50,11 @@ public class UserDB implements Serializable {
     @JoinColumn(unique = true)
     private LandingPage landingPage;
 
+    @JsonIgnoreProperties(value = { "challenges", "leaderBoards", "userDB" }, allowSetters = true)
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Progress progress;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
@@ -166,6 +171,19 @@ public class UserDB implements Serializable {
 
     public UserDB landingPage(LandingPage landingPage) {
         this.setLandingPage(landingPage);
+        return this;
+    }
+
+    public Progress getProgress() {
+        return this.progress;
+    }
+
+    public void setProgress(Progress progress) {
+        this.progress = progress;
+    }
+
+    public UserDB progress(Progress progress) {
+        this.setProgress(progress);
         return this;
     }
 

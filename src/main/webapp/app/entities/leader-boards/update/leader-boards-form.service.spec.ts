@@ -22,6 +22,7 @@ describe('LeaderBoards Form Service', () => {
             id: expect.any(Object),
             standings: expect.any(Object),
             grouping: expect.any(Object),
+            progress: expect.any(Object),
           })
         );
       });
@@ -34,6 +35,7 @@ describe('LeaderBoards Form Service', () => {
             id: expect.any(Object),
             standings: expect.any(Object),
             grouping: expect.any(Object),
+            progress: expect.any(Object),
           })
         );
       });

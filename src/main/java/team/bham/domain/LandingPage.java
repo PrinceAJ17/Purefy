@@ -40,7 +40,7 @@ public class LandingPage implements Serializable {
     @JoinColumn(unique = true)
     private MoodPicker moodPicker;
 
-    @JsonIgnoreProperties(value = { "landingPage" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "landingPage", "progress" }, allowSetters = true)
     @OneToOne(mappedBy = "landingPage")
     private UserDB userDB;
 

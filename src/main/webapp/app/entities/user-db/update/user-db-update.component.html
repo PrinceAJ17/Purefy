@@ -98,6 +98,21 @@
             </option>
           </select>
         </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_progress">Progress</label>
+          <select
+            class="form-control"
+            id="field_progress"
+            data-cy="progress"
+            name="progress"
+            formControlName="progress"
+            [compareWith]="compareProgress"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="progressOption" *ngFor="let progressOption of progressesCollection">{{ progressOption.id }}</option>
+          </select>
+        </div>
       </div>
 
       <div>

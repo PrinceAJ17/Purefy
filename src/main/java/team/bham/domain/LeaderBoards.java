@@ -33,6 +33,11 @@ public class LeaderBoards implements Serializable {
     @JoinColumn(unique = true)
     private Grouping grouping;
 
+    @JsonIgnoreProperties(value = { "challenges", "leaderBoards", "userDB" }, allowSetters = true)
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Progress progress;
+
     @OneToMany(mappedBy = "leaderBoards")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "leaderBoards" }, allowSetters = true)
@@ -83,6 +88,19 @@ public class LeaderBoards implements Serializable {
 
     public LeaderBoards grouping(Grouping grouping) {
         this.setGrouping(grouping);
+        return this;
+    }
+
+    public Progress getProgress() {
+        return this.progress;
+    }
+
+    public void setProgress(Progress progress) {
+        this.progress = progress;
+    }
+
+    public LeaderBoards progress(Progress progress) {
+        this.setProgress(progress);
         return this;
     }
 
