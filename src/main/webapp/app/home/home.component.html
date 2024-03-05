@@ -47,7 +47,7 @@
     <div class="quarter">
       <a href="#smoking">
         <div class="picture">
-          <img src="smoking.jpg" alt="Smoking" class="image" />
+          <img src="main/webapp/content/images/smoking.jpg" alt="Smoking" class="image" />
         </div>
       </a>
       <p class="large">Smoking</p>
@@ -59,9 +59,8 @@
 
     <!-- Screen Time Challenge -->
     <div class="quarter">
-      <a href="#screen-time">
-        <img src="assets/images/screen3.jpg" alt="Screen Time" class="image" />
-      </a>
+      <!-- Use (click) event binding to trigger a function when the image is clicked -->
+      <img src="screen3.jpg" alt="Screen Time" class="image" (click)="redirectToLevels()" />
       <p class="large">Screen Time</p>
       <p>Excessive screen time can impact your mental health. Discover healthier habits and find balance with our guidance.</p>
     </div>
@@ -69,7 +68,7 @@
     <!-- Drinking Challenge -->
     <div class="quarter">
       <a href="#drinking">
-        <img src="assets/images/ddrinks.jpg" alt="Drinking" class="image" />
+        <img src="ddrinks.jpg" alt="Drinking" class="image" />
       </a>
       <p class="large">Drinking</p>
       <p>Reducing alcohol consumption can improve your overall well-being. Let us help you navigate this journey towards moderation.</p>
@@ -78,7 +77,7 @@
     <!-- Junk Food Challenge -->
     <div class="quarter">
       <a href="#junk-food">
-        <img src="assets/images/foood.jpg" alt="Junk Food" class="image" />
+        <img src="foood.jpg" alt="Junk Food" class="image" />
       </a>
       <p class="large">Junk Food</p>
       <p>

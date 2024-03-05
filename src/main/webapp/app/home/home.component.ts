@@ -103,7 +103,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   ];
 
   works: WorkItem[] = [
-    { image: 'happ.jpg', description: 'Enhanced Mood' },
+    { image: 'src/main/webapp/app/home/happ.jpg', description: 'Enhanced Mood' },
     { image: 'improved life2.jpg', description: 'Improved Lifestyle' },
     { image: 'productivity.jpg', description: 'Increased Productivity' },
     { image: 'worklife.jpg', description: 'Healthy Balance Between Work and Life' },
@@ -111,6 +111,9 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   constructor(private accountService: AccountService, private router: Router, private http: HttpClient, private renderer: Renderer2) {}
 
+  redirectToLevels() {
+    this.router.navigate(['/levels']); // Navigate to the 'levels' route
+  }
   ngOnInit(): void {
     this.accountService
       .getAuthenticationState()
