@@ -80,6 +80,12 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
+          <th scope="col" jhiSortBy="progress.id">
+            <div class="d-flex">
+              <span>Progress</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -100,6 +106,11 @@
           <td>
             <div *ngIf="userDB.landingPage">
               <a [routerLink]="['/landing-page', userDB.landingPage.id, 'view']">{{ userDB.landingPage.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="userDB.progress">
+              <a [routerLink]="['/progress', userDB.progress.id, 'view']">{{ userDB.progress.id }}</a>
             </div>
           </td>
           <td class="text-end">

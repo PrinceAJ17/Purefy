@@ -50,6 +50,12 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
+          <th scope="col" jhiSortBy="progress.id">
+            <div class="d-flex">
+              <span>Progress</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -62,6 +68,11 @@
           <td>
             <div *ngIf="leaderBoards.grouping">
               <a [routerLink]="['/grouping', leaderBoards.grouping.id, 'view']">{{ leaderBoards.grouping.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="leaderBoards.progress">
+              <a [routerLink]="['/progress', leaderBoards.progress.id, 'view']">{{ leaderBoards.progress.id }}</a>
             </div>
           </td>
           <td class="text-end">

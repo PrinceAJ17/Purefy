@@ -36,7 +36,7 @@ public class UserPoints implements Serializable {
     private Integer totalPoints;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "grouping", "userPoints", "navigationPortal" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "grouping", "progress", "userPoints", "navigationPortal" }, allowSetters = true)
     private LeaderBoards leaderBoards;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

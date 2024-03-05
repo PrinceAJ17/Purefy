@@ -1,3 +1,4 @@
+import { IProgress } from 'app/entities/progress/progress.model';
 import { IJunkFood } from 'app/entities/junk-food/junk-food.model';
 import { IScreenTime } from 'app/entities/screen-time/screen-time.model';
 import { IAlcohol } from 'app/entities/alcohol/alcohol.model';
@@ -9,6 +10,7 @@ export interface IChallenges {
   id: number;
   selectChallenge?: boolean | null;
   allChallenges?: string | null;
+  progress?: Pick<IProgress, 'id'> | null;
   junkFood?: Pick<IJunkFood, 'id'> | null;
   screenTime?: Pick<IScreenTime, 'id'> | null;
   alcohol?: Pick<IAlcohol, 'id'> | null;

@@ -11,6 +11,8 @@ import { LeaderBoardsService } from '../service/leader-boards.service';
 import { ILeaderBoards } from '../leader-boards.model';
 import { IGrouping } from 'app/entities/grouping/grouping.model';
 import { GroupingService } from 'app/entities/grouping/service/grouping.service';
+import { IProgress } from 'app/entities/progress/progress.model';
+import { ProgressService } from 'app/entities/progress/service/progress.service';
 
 import { LeaderBoardsUpdateComponent } from './leader-boards-update.component';
 
@@ -21,6 +23,7 @@ describe('LeaderBoards Management Update Component', () => {
   let leaderBoardsFormService: LeaderBoardsFormService;
   let leaderBoardsService: LeaderBoardsService;
   let groupingService: GroupingService;
+  let progressService: ProgressService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -44,6 +47,7 @@ describe('LeaderBoards Management Update Component', () => {
     leaderBoardsFormService = TestBed.inject(LeaderBoardsFormService);
     leaderBoardsService = TestBed.inject(LeaderBoardsService);
     groupingService = TestBed.inject(GroupingService);
+    progressService = TestBed.inject(ProgressService);
 
     comp = fixture.componentInstance;
   });
@@ -67,15 +71,36 @@ describe('LeaderBoards Management Update Component', () => {
       expect(comp.groupingsCollection).toEqual(expectedCollection);
     });
 
+    it('Should call progress query and add missing value', () => {
+      const leaderBoards: ILeaderBoards = { id: 456 };
+      const progress: IProgress = { id: 46042 };
+      leaderBoards.progress = progress;
+
+      const progressCollection: IProgress[] = [{ id: 30897 }];
+      jest.spyOn(progressService, 'query').mockReturnValue(of(new HttpResponse({ body: progressCollection })));
+      const expectedCollection: IProgress[] = [progress, ...progressCollection];
+      jest.spyOn(progressService, 'addProgressToCollectionIfMissing').mockReturnValue(expectedCollection);
+
+      activatedRoute.data = of({ leaderBoards });
+      comp.ngOnInit();
+
+      expect(progressService.query).toHaveBeenCalled();
+      expect(progressService.addProgressToCollectionIfMissing).toHaveBeenCalledWith(progressCollection, progress);
+      expect(comp.progressesCollection).toEqual(expectedCollection);
+    });
+
     it('Should update editForm', () => {
       const leaderBoards: ILeaderBoards = { id: 456 };
       const grouping: IGrouping = { id: 65693 };
       leaderBoards.grouping = grouping;
+      const progress: IProgress = { id: 16392 };
+      leaderBoards.progress = progress;
 
       activatedRoute.data = of({ leaderBoards });
       comp.ngOnInit();
 
       expect(comp.groupingsCollection).toContain(grouping);
+      expect(comp.progressesCollection).toContain(progress);
       expect(comp.leaderBoards).toEqual(leaderBoards);
     });
   });
@@ -156,6 +181,16 @@ describe('LeaderBoards Management Update Component', () => {
         jest.spyOn(groupingService, 'compareGrouping');
         comp.compareGrouping(entity, entity2);
         expect(groupingService.compareGrouping).toHaveBeenCalledWith(entity, entity2);
+      });
+    });
+
+    describe('compareProgress', () => {
+      it('Should forward to progressService', () => {
+        const entity = { id: 123 };
+        const entity2 = { id: 456 };
+        jest.spyOn(progressService, 'compareProgress');
+        comp.compareProgress(entity, entity2);
+        expect(progressService.compareProgress).toHaveBeenCalledWith(entity, entity2);
       });
     });
   });

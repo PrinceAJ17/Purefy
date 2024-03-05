@@ -13,5 +13,11 @@
                                  constraintName="fk_user_db__landing_page_id"
                                  referencedColumnNames="id"
                                  referencedTableName="landing_page"/>
+
+        <addForeignKeyConstraint baseColumnNames="progress_id"
+                                 baseTableName="user_db"
+                                 constraintName="fk_user_db__progress_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="progress"/>
     </changeSet>
 </databaseChangeLog>

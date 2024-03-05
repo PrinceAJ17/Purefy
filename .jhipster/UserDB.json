@@ -43,6 +43,13 @@
       "ownerSide": true,
       "relationshipName": "landingPage",
       "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "progress",
+      "otherEntityRelationshipName": "userDB",
+      "ownerSide": true,
+      "relationshipName": "progress",
+      "relationshipType": "one-to-one"
     }
   ],
   "service": "no"

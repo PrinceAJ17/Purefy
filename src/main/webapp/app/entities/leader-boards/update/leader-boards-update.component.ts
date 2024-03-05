@@ -9,6 +9,8 @@ import { ILeaderBoards } from '../leader-boards.model';
 import { LeaderBoardsService } from '../service/leader-boards.service';
 import { IGrouping } from 'app/entities/grouping/grouping.model';
 import { GroupingService } from 'app/entities/grouping/service/grouping.service';
+import { IProgress } from 'app/entities/progress/progress.model';
+import { ProgressService } from 'app/entities/progress/service/progress.service';
 
 @Component({
   selector: 'jhi-leader-boards-update',
@@ -19,6 +21,7 @@ export class LeaderBoardsUpdateComponent implements OnInit {
   leaderBoards: ILeaderBoards | null = null;
 
   groupingsCollection: IGrouping[] = [];
+  progressesCollection: IProgress[] = [];
 
   editForm: LeaderBoardsFormGroup = this.leaderBoardsFormService.createLeaderBoardsFormGroup();
 
@@ -26,10 +29,13 @@ export class LeaderBoardsUpdateComponent implements OnInit {
     protected leaderBoardsService: LeaderBoardsService,
     protected leaderBoardsFormService: LeaderBoardsFormService,
     protected groupingService: GroupingService,
+    protected progressService: ProgressService,
     protected activatedRoute: ActivatedRoute
   ) {}
 
   compareGrouping = (o1: IGrouping | null, o2: IGrouping | null): boolean => this.groupingService.compareGrouping(o1, o2);
+
+  compareProgress = (o1: IProgress | null, o2: IProgress | null): boolean => this.progressService.compareProgress(o1, o2);
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ leaderBoards }) => {
@@ -83,6 +89,10 @@ export class LeaderBoardsUpdateComponent implements OnInit {
       this.groupingsCollection,
       leaderBoards.grouping
     );
+    this.progressesCollection = this.progressService.addProgressToCollectionIfMissing<IProgress>(
+      this.progressesCollection,
+      leaderBoards.progress
+    );
   }
 
   protected loadRelationshipsOptions(): void {
@@ -95,5 +105,15 @@ export class LeaderBoardsUpdateComponent implements OnInit {
         )
       )
       .subscribe((groupings: IGrouping[]) => (this.groupingsCollection = groupings));
+
+    this.progressService
+      .query({ filter: 'leaderboards-is-null' })
+      .pipe(map((res: HttpResponse<IProgress[]>) => res.body ?? []))
+      .pipe(
+        map((progresses: IProgress[]) =>
+          this.progressService.addProgressToCollectionIfMissing<IProgress>(progresses, this.leaderBoards?.progress)
+        )
+      )
+      .subscribe((progresses: IProgress[]) => (this.progressesCollection = progresses));
   }
 }

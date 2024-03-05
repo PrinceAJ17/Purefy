@@ -164,6 +164,11 @@ import { RouterModule } from '@angular/router';
         data: { pageTitle: 'Feedbacks' },
         loadChildren: () => import('./feedback/feedback.module').then(m => m.FeedbackModule),
       },
+      {
+        path: 'progress',
+        data: { pageTitle: 'Progresses' },
+        loadChildren: () => import('./progress/progress.module').then(m => m.ProgressModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

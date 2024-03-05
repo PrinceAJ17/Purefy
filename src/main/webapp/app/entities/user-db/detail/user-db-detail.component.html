@@ -47,6 +47,12 @@
             <a [routerLink]="['/landing-page', userDB.landingPage.id, 'view']">{{ userDB.landingPage.id }}</a>
           </div>
         </dd>
+        <dt><span>Progress</span></dt>
+        <dd>
+          <div *ngIf="userDB.progress">
+            <a [routerLink]="['/progress', userDB.progress.id, 'view']">{{ userDB.progress.id }}</a>
+          </div>
+        </dd>
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

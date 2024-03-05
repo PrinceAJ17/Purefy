@@ -21,6 +21,13 @@
   "readOnly": false,
   "relationships": [
     {
+      "otherEntityName": "progress",
+      "otherEntityRelationshipName": "challenges",
+      "ownerSide": true,
+      "relationshipName": "progress",
+      "relationshipType": "one-to-one"
+    },
+    {
       "otherEntityName": "junkFood",
       "otherEntityRelationshipName": "challenges",
       "relationshipName": "junkFood",

@@ -52,7 +52,7 @@ public class Grouping implements Serializable {
     @JsonIgnoreProperties(value = { "grouping" }, allowSetters = true)
     private Set<Badges> badges = new HashSet<>();
 
-    @JsonIgnoreProperties(value = { "grouping", "userPoints", "navigationPortal" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "grouping", "progress", "userPoints", "navigationPortal" }, allowSetters = true)
     @OneToOne(mappedBy = "grouping")
     private LeaderBoards leaderBoards;
 

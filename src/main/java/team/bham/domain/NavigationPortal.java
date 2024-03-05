@@ -30,7 +30,7 @@ public class NavigationPortal implements Serializable {
     private Boolean selectedFeature;
 
     @JsonIgnoreProperties(
-        value = { "junkFood", "screenTime", "alcohol", "smoking", "searches", "filtereds", "navigationPortal" },
+        value = { "progress", "junkFood", "screenTime", "alcohol", "smoking", "searches", "filtereds", "navigationPortal" },
         allowSetters = true
     )
     @OneToOne
@@ -42,7 +42,7 @@ public class NavigationPortal implements Serializable {
     @JoinColumn(unique = true)
     private Habit habit;
 
-    @JsonIgnoreProperties(value = { "grouping", "userPoints", "navigationPortal" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "grouping", "progress", "userPoints", "navigationPortal" }, allowSetters = true)
     @OneToOne
     @JoinColumn(unique = true)
     private LeaderBoards leaderBoards;

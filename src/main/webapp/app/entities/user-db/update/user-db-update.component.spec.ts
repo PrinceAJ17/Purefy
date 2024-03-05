@@ -11,6 +11,8 @@ import { UserDBService } from '../service/user-db.service';
 import { IUserDB } from '../user-db.model';
 import { ILandingPage } from 'app/entities/landing-page/landing-page.model';
 import { LandingPageService } from 'app/entities/landing-page/service/landing-page.service';
+import { IProgress } from 'app/entities/progress/progress.model';
+import { ProgressService } from 'app/entities/progress/service/progress.service';
 
 import { UserDBUpdateComponent } from './user-db-update.component';
 
@@ -21,6 +23,7 @@ describe('UserDB Management Update Component', () => {
   let userDBFormService: UserDBFormService;
   let userDBService: UserDBService;
   let landingPageService: LandingPageService;
+  let progressService: ProgressService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -44,6 +47,7 @@ describe('UserDB Management Update Component', () => {
     userDBFormService = TestBed.inject(UserDBFormService);
     userDBService = TestBed.inject(UserDBService);
     landingPageService = TestBed.inject(LandingPageService);
+    progressService = TestBed.inject(ProgressService);
 
     comp = fixture.componentInstance;
   });
@@ -67,15 +71,36 @@ describe('UserDB Management Update Component', () => {
       expect(comp.landingPagesCollection).toEqual(expectedCollection);
     });
 
+    it('Should call progress query and add missing value', () => {
+      const userDB: IUserDB = { id: 456 };
+      const progress: IProgress = { id: 50627 };
+      userDB.progress = progress;
+
+      const progressCollection: IProgress[] = [{ id: 70256 }];
+      jest.spyOn(progressService, 'query').mockReturnValue(of(new HttpResponse({ body: progressCollection })));
+      const expectedCollection: IProgress[] = [progress, ...progressCollection];
+      jest.spyOn(progressService, 'addProgressToCollectionIfMissing').mockReturnValue(expectedCollection);
+
+      activatedRoute.data = of({ userDB });
+      comp.ngOnInit();
+
+      expect(progressService.query).toHaveBeenCalled();
+      expect(progressService.addProgressToCollectionIfMissing).toHaveBeenCalledWith(progressCollection, progress);
+      expect(comp.progressesCollection).toEqual(expectedCollection);
+    });
+
     it('Should update editForm', () => {
       const userDB: IUserDB = { id: 456 };
       const landingPage: ILandingPage = { id: 23393 };
       userDB.landingPage = landingPage;
+      const progress: IProgress = { id: 65186 };
+      userDB.progress = progress;
 
       activatedRoute.data = of({ userDB });
       comp.ngOnInit();
 
       expect(comp.landingPagesCollection).toContain(landingPage);
+      expect(comp.progressesCollection).toContain(progress);
       expect(comp.userDB).toEqual(userDB);
     });
   });
@@ -156,6 +181,16 @@ describe('UserDB Management Update Component', () => {
         jest.spyOn(landingPageService, 'compareLandingPage');
         comp.compareLandingPage(entity, entity2);
         expect(landingPageService.compareLandingPage).toHaveBeenCalledWith(entity, entity2);
+      });
+    });
+
+    describe('compareProgress', () => {
+      it('Should forward to progressService', () => {
+        const entity = { id: 123 };
+        const entity2 = { id: 456 };
+        jest.spyOn(progressService, 'compareProgress');
+        comp.compareProgress(entity, entity2);
+        expect(progressService.compareProgress).toHaveBeenCalledWith(entity, entity2);
       });
     });
   });

@@ -20,6 +20,9 @@
             <column name="all_challenges" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
+            <column name="progress_id" type="bigint">
+                <constraints nullable="true" unique="true" uniqueConstraintName="ux_challenges__progress_id" />
+            </column>
             <column name="junk_food_id" type="bigint">
                 <constraints nullable="true" />
             </column>

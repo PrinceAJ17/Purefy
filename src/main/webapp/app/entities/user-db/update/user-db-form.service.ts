@@ -26,6 +26,7 @@ type UserDBFormGroupContent = {
   profilePictureContentType: FormControl<IUserDB['profilePictureContentType']>;
   userName: FormControl<IUserDB['userName']>;
   landingPage: FormControl<IUserDB['landingPage']>;
+  progress: FormControl<IUserDB['progress']>;
 };
 
 export type UserDBFormGroup = FormGroup<UserDBFormGroupContent>;
@@ -53,6 +54,7 @@ export class UserDBFormService {
       profilePictureContentType: new FormControl(userDBRawValue.profilePictureContentType),
       userName: new FormControl(userDBRawValue.userName),
       landingPage: new FormControl(userDBRawValue.landingPage),
+      progress: new FormControl(userDBRawValue.progress),
     });
   }
 
