@@ -21,7 +21,7 @@ const routes: Routes = [
     component: CoffeeLevelsComponent,
   },
   {
-    path: 'Coffee-Start',
+    path: 'Coffee-Start/:state',
     component: CoffeeStartComponent,
   },
 ];
@@ -59,7 +59,7 @@ const routes: Routes = [
           component: CoffeeLevelsComponent,
         },
         {
-          path: 'Coffee-Start',
+          path: 'Coffee-Start/:state',
           component: CoffeeStartComponent,
         },
         navbarRoute,
