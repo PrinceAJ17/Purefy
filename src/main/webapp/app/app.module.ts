@@ -23,14 +23,24 @@ import { NavbarComponent } from './layouts/navbar/navbar.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { PageRibbonComponent } from './layouts/profiles/page-ribbon.component';
 import { ErrorComponent } from './layouts/error/error.component';
-import { LevelsComponent } from './levels/levels.component';
-import { BeginnerComponent } from './beginner/beginner.component';
+import { ChallengesIndexComponent } from './challenges-index/challenges-index.component';
+import { AllChallengesComponent } from './all-challenges/all-challenges.component';
+import { CoffeeLevelsComponent } from './coffee-levels/coffee-levels.component';
+import { SociaLevelsComponent } from './socia-levels/socia-levels.component';
+import { FoodLevelsComponent } from './food-levels/food-levels.component';
+import { AlcoholLevelsComponent } from './alcohol-levels/alcohol-levels.component';
+import { SmokingLevelsComponent } from './smoking-levels/smoking-levels.component';
+import { MusicLevelsComponent } from './music-levels/music-levels.component';
+import { GamesLevelsComponent } from './games-levels/games-levels.component';
+import { VideoLevelsComponent } from './video-levels/video-levels.component';
+import { CoffeeStartComponent } from './coffee-start/coffee-start.component';
 
 @NgModule({
   imports: [
     BrowserModule,
     SharedModule,
     HomeModule,
+
     // jhipster-needle-angular-add-module JHipster will add new module here
     AppRoutingModule,
     // Set this to true to enable service worker (PWA)
@@ -44,7 +54,24 @@ import { BeginnerComponent } from './beginner/beginner.component';
     { provide: NgbDateAdapter, useClass: NgbDateDayjsAdapter },
     httpInterceptorProviders,
   ],
-  declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent, LevelsComponent, BeginnerComponent],
+  declarations: [
+    MainComponent,
+    NavbarComponent,
+    ErrorComponent,
+    PageRibbonComponent,
+    FooterComponent,
+    ChallengesIndexComponent,
+    AllChallengesComponent,
+    CoffeeLevelsComponent,
+    SociaLevelsComponent,
+    FoodLevelsComponent,
+    AlcoholLevelsComponent,
+    SmokingLevelsComponent,
+    MusicLevelsComponent,
+    GamesLevelsComponent,
+    VideoLevelsComponent,
+    CoffeeStartComponent,
+  ],
   bootstrap: [MainComponent],
 })
 export class AppModule {
