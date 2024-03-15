@@ -6,17 +6,23 @@ import { navbarRoute } from './layouts/navbar/navbar.route';
 import { DEBUG_INFO_ENABLED } from 'app/app.constants';
 import { Authority } from 'app/config/authority.constants';
 import { UserRouteAccessService } from 'app/core/auth/user-route-access.service';
-import { LevelsComponent } from './levels/levels.component';
-import { BeginnerComponent } from './beginner/beginner.component';
+import { ChallengesIndexComponent } from './challenges-index/challenges-index.component';
+import { AllChallengesComponent } from './all-challenges/all-challenges.component';
+import { CoffeeLevelsComponent } from './coffee-levels/coffee-levels.component';
+import { CoffeeStartComponent } from './coffee-start/coffee-start.component';
 
 const routes: Routes = [
   {
-    path: 'levels',
-    component: LevelsComponent,
+    path: 'All-Challenges',
+    component: AllChallengesComponent,
   },
   {
-    path: 'Beginner',
-    component: BeginnerComponent,
+    path: 'Coffee',
+    component: CoffeeLevelsComponent,
+  },
+  {
+    path: 'Coffee-Start',
+    component: CoffeeStartComponent,
   },
 ];
 
@@ -41,16 +47,20 @@ const routes: Routes = [
           loadChildren: () => import('./login/login.module').then(m => m.LoginModule),
         },
         {
-          path: 'levels',
-          component: LevelsComponent,
-        },
-        {
-          path: 'beginner',
-          component: BeginnerComponent,
-        },
-        {
           path: '',
           loadChildren: () => import(`./entities/entity-routing.module`).then(m => m.EntityRoutingModule),
+        },
+        {
+          path: 'All-Challenges',
+          component: AllChallengesComponent,
+        },
+        {
+          path: 'Coffee',
+          component: CoffeeLevelsComponent,
+        },
+        {
+          path: 'Coffee-Start',
+          component: CoffeeStartComponent,
         },
         navbarRoute,
         ...errorRoute,
