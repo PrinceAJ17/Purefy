@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'jhi-coffee-start',
@@ -6,14 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./coffee-start.component.scss'],
 })
 export class CoffeeStartComponent implements OnInit {
-  constructor() {}
+  constructor(private route: ActivatedRoute) {}
 
-  currentState = 'state1';
+  currentState: string | undefined;
 
   // You can add methods to change the currentState here, if necessary
-  changeState(newState: string) {
-    this.currentState = newState;
-  }
 
   ngOnInit(): void {
     this.loadScript('vendor/jquery/jquery.min.js')
@@ -30,6 +28,17 @@ export class CoffeeStartComponent implements OnInit {
       .catch(error => {
         console.error('Script loading error:', error);
       });
+
+    this.route.params.subscribe(params => {
+      // You might set a default state if 'state' param is not provided
+      this.currentState = params['state']; // Could be undefined if not provided
+
+      if (!this.currentState) {
+        // Handle the case when currentState is undefined,
+        // for example, by setting a default value or redirecting
+        this.currentState = 'defaultState'; // Set a default state or implement other logic
+      }
+    });
   }
 
   private loadScript(scriptUrl: string): Promise<void> {
