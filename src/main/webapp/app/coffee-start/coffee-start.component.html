@@ -105,15 +105,19 @@
                             <p>
                               Limit your coffee consumption to just three occasions throughout the day. This approach helps in balancing the
                               benefits of caffeine, such as increased alertness and concentration, with its potential downsides, including
-                              disturbed sleep patterns and increased heart rate if overconsumed. Choose three specific times that align with
-                              your energy needs, perhaps one in the morning to kickstart your day, another in the early afternoon to sustain
-                              your energy levels and one in the early evening without affecting your nighttime rest. Remember, moderation is
-                              key to enjoying coffee's perks while maintaining your health and well-being.
+                              disturbed sleep patterns and increased heart rate if over-consumed. Choose three specific times that align
+                              with your energy needs, perhaps one in the morning to kickstart your day, another in the early afternoon to
+                              sustain your energy levels and one in the early evening without affecting your nighttime rest. Remember,
+                              moderation is key to enjoying coffee's perks while maintaining your health and well-being.
                             </p>
                           </div>
                           <div class="col-lg-12">
-                            <div class="main-border-button">
-                              <a href="#">START NOW!</a>
+                            <div *ngIf="!timerRunning" class="main-border-button">
+                              <a href="#" (click)="startTimer(); $event.preventDefault()">START NOW!</a>
+                            </div>
+
+                            <div *ngIf="timerRunning" class="main-border-button">
+                              <h4>Time Remaining: {{ timeLeft }}</h4>
                             </div>
                           </div>
                         </div>
