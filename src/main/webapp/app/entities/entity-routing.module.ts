@@ -169,6 +169,7 @@ import { RouterModule } from '@angular/router';
         data: { pageTitle: 'Progresses' },
         loadChildren: () => import('./progress/progress.module').then(m => m.ProgressModule),
       },
+
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

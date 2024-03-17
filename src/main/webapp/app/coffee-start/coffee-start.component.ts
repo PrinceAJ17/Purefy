@@ -11,8 +11,6 @@ export class CoffeeStartComponent implements OnInit {
 
   currentState: string | undefined;
 
-  // You can add methods to change the currentState here, if necessary
-
   ngOnInit(): void {
     this.loadScript('vendor/jquery/jquery.min.js')
       .then(() => this.loadScript('vendor/bootstrap/js/bootstrap.min.js'))
@@ -39,6 +37,9 @@ export class CoffeeStartComponent implements OnInit {
         this.currentState = 'defaultState'; // Set a default state or implement other logic
       }
     });
+
+    // Timer code
+    this.checkTimer();
   }
 
   private loadScript(scriptUrl: string): Promise<void> {
@@ -51,5 +52,51 @@ export class CoffeeStartComponent implements OnInit {
       script.onerror = error => reject(error);
       body.appendChild(script);
     });
+  }
+
+  //timer code
+
+  timerRunning = false;
+  timeLeft?: string;
+
+  startTimer() {
+    const endTime = new Date().getTime() + 24 * 60 * 60 * 1000; // 24 hours from now
+    localStorage.setItem('timerEndTime', endTime.toString());
+    this.timerRunning = true;
+    this.updateTimeLeft();
+  }
+
+  checkTimer() {
+    const endTime = parseInt(localStorage.getItem('timerEndTime') || '0', 10);
+    if (endTime) {
+      this.timerRunning = new Date().getTime() < endTime;
+      if (this.timerRunning) {
+        this.updateTimeLeft();
+      }
+    }
+  }
+
+  updateTimeLeft() {
+    const interval = setInterval(() => {
+      const endTime = parseInt(localStorage.getItem('timerEndTime') || '0', 10);
+      const now = new Date().getTime();
+      const distance = endTime - now;
+
+      if (distance < 0) {
+        clearInterval(interval);
+        this.timeLeft = undefined;
+        this.timerRunning = false;
+        localStorage.removeItem('timerEndTime'); // Clear timer end time
+        return;
+      }
+
+      // Time calculations for days, hours, minutes and seconds
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      // Output the result in an element with id="demo"
+      this.timeLeft = hours + 'h ' + minutes + 'm ' + seconds + 's ';
+    }, 1000);
   }
 }
