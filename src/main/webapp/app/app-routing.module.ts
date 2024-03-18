@@ -10,11 +10,47 @@ import { ChallengesIndexComponent } from './challenges-index/challenges-index.co
 import { AllChallengesComponent } from './all-challenges/all-challenges.component';
 import { CoffeeLevelsComponent } from './coffee-levels/coffee-levels.component';
 import { CoffeeStartComponent } from './coffee-start/coffee-start.component';
+import { SociaLevelsComponent } from './socia-levels/socia-levels.component';
+import { FoodLevelsComponent } from './food-levels/food-levels.component';
+import { AlcoholLevelsComponent } from './alcohol-levels/alcohol-levels.component';
+import { SmokingLevelsComponent } from './smoking-levels/smoking-levels.component';
+import { MusicLevelsComponent } from './music-levels/music-levels.component';
+import { GamesLevelsComponent } from './games-levels/games-levels.component';
+import { VideoLevelsComponent } from './video-levels/video-levels.component';
+import { AlcoholStartComponent } from './alcohol-start/alcohol-start.component';
 
 const routes: Routes = [
   {
     path: 'All-Challenges',
     component: AllChallengesComponent,
+  },
+  {
+    path: 'Music',
+    component: MusicLevelsComponent,
+  },
+  {
+    path: 'Video',
+    component: VideoLevelsComponent,
+  },
+  {
+    path: 'Social',
+    component: SociaLevelsComponent,
+  },
+  {
+    path: 'Smoking',
+    component: SmokingLevelsComponent,
+  },
+  {
+    path: 'JunkFood',
+    component: FoodLevelsComponent,
+  },
+  {
+    path: 'Alcohol',
+    component: AlcoholLevelsComponent,
+  },
+  {
+    path: 'VideoGames',
+    component: GamesLevelsComponent,
   },
   {
     path: 'Coffee',
@@ -23,6 +59,10 @@ const routes: Routes = [
   {
     path: 'Coffee-Start/:state',
     component: CoffeeStartComponent,
+  },
+  {
+    path: 'Alcohol-Start/:state',
+    component: AlcoholStartComponent,
   },
 ];
 
@@ -61,6 +101,38 @@ const routes: Routes = [
         {
           path: 'Coffee-Start/:state',
           component: CoffeeStartComponent,
+        },
+        {
+          path: 'Music',
+          component: MusicLevelsComponent,
+        },
+        {
+          path: 'Video',
+          component: VideoLevelsComponent,
+        },
+        {
+          path: 'Social',
+          component: SociaLevelsComponent,
+        },
+        {
+          path: 'Smoking',
+          component: SmokingLevelsComponent,
+        },
+        {
+          path: 'JunkFood',
+          component: FoodLevelsComponent,
+        },
+        {
+          path: 'Alcohol',
+          component: AlcoholLevelsComponent,
+        },
+        {
+          path: 'VideoGames',
+          component: GamesLevelsComponent,
+        },
+        {
+          path: 'Alcohol-Start/:state',
+          component: AlcoholStartComponent,
         },
         navbarRoute,
         ...errorRoute,
