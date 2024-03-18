@@ -41,6 +41,10 @@ import { MusicStartComponent } from './music-start/music-start.component';
 import { SmokingStartComponent } from './smoking-start/smoking-start.component';
 import { SocialStartComponent } from './social-start/social-start.component';
 import { VideoStartComponent } from './video-start/video-start.component';
+import { MoodJournalPageComponent } from './mood-journal-page/mood-journal-page.component';
+import { EntriesComponent } from './entries/entries.component';
+import { PromptsComponent } from './prompts/prompts.component';
+import { EmotionsComponent } from './emotions/emotions.component';
 
 @NgModule({
   imports: [
@@ -85,6 +89,10 @@ import { VideoStartComponent } from './video-start/video-start.component';
     SmokingStartComponent,
     SocialStartComponent,
     VideoStartComponent,
+    MoodJournalPageComponent,
+    EntriesComponent,
+    PromptsComponent,
+    EmotionsComponent,
   ],
   bootstrap: [MainComponent],
 })
