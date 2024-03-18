@@ -10,6 +10,9 @@ export class AlcoholStartComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
 
   currentState: string | undefined;
+  timers: { [timerId: string]: string } = {};
+  challengeCompleted: { [timerId: string]: boolean } = {};
+  timerIntervals: { [timerId: string]: any } = {};
 
   ngOnInit(): void {
     this.loadScript('vendor/jquery/jquery.min.js')
@@ -37,6 +40,9 @@ export class AlcoholStartComponent implements OnInit {
         this.currentState = 'defaultState'; // Set a default state or implement other logic
       }
     });
+
+    // Timer code
+    this.checkTimers();
   }
 
   private loadScript(scriptUrl: string): Promise<void> {
@@ -53,37 +59,66 @@ export class AlcoholStartComponent implements OnInit {
 
   //timer code
 
-  timers: { [id: string]: { running: boolean; timeLeft: string } } = {};
-
-  startTimerFromHTML(timerId: string, duration: number) {
-    const endTime = new Date().getTime() + duration;
-    localStorage.setItem(`${timerId}-endTime`, endTime.toString());
-
-    if (!this.timers[timerId]) {
-      this.timers[timerId] = { running: true, timeLeft: '' };
-    }
-
+  // Start a timer with a given id and duration in hours
+  startTimer(timerId: string, durationInHours: number): void {
+    const endTime = new Date().getTime() + durationInHours * 60 * 60 * 1000;
+    localStorage.setItem(timerId, endTime.toString());
+    this.challengeCompleted[timerId] = false; // Reset the completion status
     this.updateTimeLeft(timerId);
   }
 
-  updateTimeLeft(timerId: string) {
-    const interval = setInterval(() => {
-      const endTime = parseInt(localStorage.getItem(`${timerId}-endTime`) || '0', 10);
-      const now = new Date().getTime();
-      const distance = endTime - now;
+  stopTimer(timerId: string): void {
+    clearInterval(this.timerIntervals[timerId]);
+    localStorage.removeItem(timerId);
+    this.timers[timerId] = '';
+    this.challengeCompleted[timerId] = false;
+    delete this.timerIntervals[timerId]; // Clean up the interval reference
+  }
 
-      if (distance < 0) {
-        clearInterval(interval);
-        this.timers[timerId].running = false;
-        this.timers[timerId].timeLeft = 'Expired';
-        return;
+  timerRunning(timerId: string): boolean {
+    return !!localStorage.getItem(timerId);
+  }
+
+  updateTimeLeft(timerId: string): void {
+    if (this.timerIntervals[timerId]) {
+      clearInterval(this.timerIntervals[timerId]);
+    }
+
+    const updateTime = () => {
+      const endTime = parseInt(localStorage.getItem(timerId) || '0');
+      const currentTime = new Date().getTime();
+      const timeLeft = endTime - currentTime;
+      if (timeLeft <= 0) {
+        clearInterval(this.timerIntervals[timerId]);
+        localStorage.removeItem(timerId);
+        this.timers[timerId] = '';
+        this.challengeCompleted[timerId] = true;
+      } else {
+        this.timers[timerId] = this.formatTimeLeft(timeLeft);
       }
+    };
 
-      const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((distance / (1000 * 60)) % 60);
-      const seconds = Math.floor((distance / 1000) % 60);
+    updateTime(); // Update immediately, then start interval
+    this.timerIntervals[timerId] = setInterval(updateTime, 1000);
+  }
 
-      this.timers[timerId].timeLeft = `${hours}h ${minutes}m ${seconds}s`;
-    }, 1000);
+  checkTimers(): void {
+    // Dynamically check your timers here based on application needs
+    const timerIds = ['AL1', 'AL2', 'AL3', 'AL4'];
+    timerIds.forEach(timerId => {
+      if (this.timerRunning(timerId)) {
+        this.updateTimeLeft(timerId);
+      } else {
+        // If the timer is not found in localStorage, it might have been stopped or never started
+        this.challengeCompleted[timerId] = !localStorage.getItem(timerId);
+      }
+    });
+  }
+
+  private formatTimeLeft(timeLeft: number): string {
+    const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+    return `${hours}h ${minutes}m ${seconds}s`;
   }
 }

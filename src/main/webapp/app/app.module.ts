@@ -35,6 +35,12 @@ import { GamesLevelsComponent } from './games-levels/games-levels.component';
 import { VideoLevelsComponent } from './video-levels/video-levels.component';
 import { CoffeeStartComponent } from './coffee-start/coffee-start.component';
 import { AlcoholStartComponent } from './alcohol-start/alcohol-start.component';
+import { FoodStartComponent } from './food-start/food-start.component';
+import { GamesStartComponent } from './games-start/games-start.component';
+import { MusicStartComponent } from './music-start/music-start.component';
+import { SmokingStartComponent } from './smoking-start/smoking-start.component';
+import { SocialStartComponent } from './social-start/social-start.component';
+import { VideoStartComponent } from './video-start/video-start.component';
 
 @NgModule({
   imports: [
@@ -73,6 +79,12 @@ import { AlcoholStartComponent } from './alcohol-start/alcohol-start.component';
     VideoLevelsComponent,
     CoffeeStartComponent,
     AlcoholStartComponent,
+    FoodStartComponent,
+    GamesStartComponent,
+    MusicStartComponent,
+    SmokingStartComponent,
+    SocialStartComponent,
+    VideoStartComponent,
   ],
   bootstrap: [MainComponent],
 })

@@ -7,9 +7,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./coffee-start.component.scss'],
 })
 export class CoffeeStartComponent implements OnInit {
-  constructor(private route: ActivatedRoute) {
-    this.checkTimers();
-  }
+  constructor(private route: ActivatedRoute) {}
 
   currentState: string | undefined;
   timers: { [timerId: string]: string } = {};
