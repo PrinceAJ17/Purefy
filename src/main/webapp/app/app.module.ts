@@ -25,6 +25,7 @@ import { PageRibbonComponent } from './layouts/profiles/page-ribbon.component';
 import { ErrorComponent } from './layouts/error/error.component';
 import { LevelsComponent } from './levels/levels.component';
 import { BeginnerComponent } from './beginner/beginner.component';
+import { ProfilepageComponent } from './profilepage/profilepage.component';
 
 @NgModule({
   imports: [
@@ -44,7 +45,16 @@ import { BeginnerComponent } from './beginner/beginner.component';
     { provide: NgbDateAdapter, useClass: NgbDateDayjsAdapter },
     httpInterceptorProviders,
   ],
-  declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent, LevelsComponent, BeginnerComponent],
+  declarations: [
+    MainComponent,
+    NavbarComponent,
+    ErrorComponent,
+    PageRibbonComponent,
+    FooterComponent,
+    LevelsComponent,
+    BeginnerComponent,
+    ProfilepageComponent,
+  ],
   bootstrap: [MainComponent],
 })
 export class AppModule {
