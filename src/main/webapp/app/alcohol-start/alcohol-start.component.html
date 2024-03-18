@@ -22,42 +22,41 @@
       </div>
     </div>
     <!-- ***** Preloader End ***** -->
-    <header class="header-area header-sticky">
-      <div class="container">
-        <div class="row">
-          <div class="col-12">
-            <nav class="main-nav">
-              <!-- ***** Logo Start ***** -->
-              <a href="" class="logo">
-                <img src="assets/images/purefy-removebg-preview.png" alt="" />
-              </a>
-              <!-- ***** Logo End ***** -->
-
-              <!-- ***** Menu Start ***** -->
-              <ul class="nav">
-                <li><a href="">Home</a></li>
-                <li><a href="index.html" class="active">Challenges</a></li>
-                <li><a href="">Mood Journal</a></li>
-                <li><a href="">Habit Tracker</a></li>
-                <li><a href="">About</a></li>
-                <li><a href="">Team</a></li>
-                <li>
-                  <a href="" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
-                </li>
-              </ul>
-              <a class="menu-trigger">
-                <span>Menu</span>
-              </a>
-              <!-- ***** Menu End ***** -->
-            </nav>
-          </div>
-        </div>
-      </div>
-    </header>
     <!-- ***** Header Area End ***** -->
 
     <div [ngSwitch]="currentState">
       <div *ngSwitchCase="'state1'">
+        <header class="header-area header-sticky">
+          <div class="container">
+            <div class="row">
+              <div class="col-12">
+                <nav class="main-nav">
+                  <!-- ***** Logo Start ***** -->
+                  <a href="" class="logo">
+                    <img src="assets/images/purefy-removebg-preview.png" alt="" />
+                  </a>
+                  <!-- ***** Logo End ***** -->
+                  <!-- ***** Menu Start ***** -->
+                  <ul class="nav">
+                    <li><a href="">Home</a></li>
+                    <li><a href="index.html" class="active">Challenges</a></li>
+                    <li><a href="">Mood Journal</a></li>
+                    <li><a href="">Habit Tracker</a></li>
+                    <li><a href="">About</a></li>
+                    <li><a href="">Team</a></li>
+                    <li>
+                      <a href="" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
+                    </li>
+                  </ul>
+                  <a class="menu-trigger">
+                    <span>Menu</span>
+                  </a>
+                  <!-- ***** Menu End ***** -->
+                </nav>
+              </div>
+            </div>
+          </div>
+        </header>
         <div class="container">
           <div class="row">
             <div class="col-lg-12">
@@ -106,14 +105,16 @@
                             </p>
                           </div>
                           <div class="col-lg-12">
-                            <!-- Start button, only shown if timer2 is not running -->
-                            <div *ngIf="!timers['timer1']?.running" class="main-border-button">
-                              <a href="#" (click)="startTimerFromHTML('timer1', 86400); $event.preventDefault()">START NOW!</a>
+                            <div *ngIf="!timerRunning('AL1')" class="main-border-button">
+                              <!-- This link is shown if the timer is not running, regardless of whether the challenge has been completed before. -->
+                              <a href="#" (click)="startTimer('AL1', 24); $event.preventDefault()">START NOW!</a>
                             </div>
 
-                            <!-- Timer display, only shown if timer2 is running -->
-                            <div *ngIf="timers['timer1']?.running" class="main-border-button">
-                              <h4>Time Remaining: {{ timers['timer1']?.timeLeft }}</h4>
+                            <!-- While the timer is running, show the time remaining and a "Stop Challenge" link -->
+                            <div *ngIf="timerRunning('AL1')" class="main-border-button">
+                              <h4>Time Remaining: {{ timers['AL1'] }}</h4>
+                              <!-- "Stop Challenge" link -->
+                              <a href="#" (click)="stopTimer('AL1'); $event.preventDefault()">QUIT!</a>
                             </div>
                           </div>
                         </div>
@@ -128,6 +129,37 @@
         </div>
       </div>
       <div *ngSwitchCase="'state2'">
+        <header class="header-area header-sticky">
+          <div class="container">
+            <div class="row">
+              <div class="col-12">
+                <nav class="main-nav">
+                  <!-- ***** Logo Start ***** -->
+                  <a href="" class="logo">
+                    <img src="assets/images/purefy-removebg-preview.png" alt="" />
+                  </a>
+                  <!-- ***** Logo End ***** -->
+                  <!-- ***** Menu Start ***** -->
+                  <ul class="nav">
+                    <li><a href="">Home</a></li>
+                    <li><a href="index.html" class="active">Challenges</a></li>
+                    <li><a href="">Mood Journal</a></li>
+                    <li><a href="">Habit Tracker</a></li>
+                    <li><a href="">About</a></li>
+                    <li><a href="">Team</a></li>
+                    <li>
+                      <a href="" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
+                    </li>
+                  </ul>
+                  <a class="menu-trigger">
+                    <span>Menu</span>
+                  </a>
+                  <!-- ***** Menu End ***** -->
+                </nav>
+              </div>
+            </div>
+          </div>
+        </header>
         <div class="container">
           <div class="row">
             <div class="col-lg-12">
@@ -175,13 +207,18 @@
                             </p>
                           </div>
                           <div class="col-lg-12">
-                            <div *ngIf="!timers['timer2']?.running" class="main-border-button">
-                              <a href="#" (click)="startTimerFromHTML('timer2', 86400); $event.preventDefault()">START NOW!</a>
+                            <div *ngIf="!timerRunning('AL2')" class="main-border-button">
+                              <!-- This link is shown if the timer is not running, regardless of whether the challenge has been completed before. -->
+                              <a href="#" (click)="startTimer('AL2', 24); $event.preventDefault()">START NOW!</a>
                             </div>
 
-                            <!-- Timer display, only shown if timer2 is running -->
-                            <div *ngIf="timers['timer2']?.running" class="main-border-button">
-                              <h4>Time Remaining: {{ timers['timer2']?.timeLeft }}</h4>
+                            <!-- Display time remaining if the timer is running -->
+                            <!-- While the timer is running, show the time remaining and a "Stop Challenge" link -->
+                            <div *ngIf="timerRunning('AL2')" class="main-border-button">
+                              <h4>Time Remaining: {{ timers['AL2'] }}</h4>
+                              <!-- "Stop Challenge" link -->
+                              <br />
+                              <a href="#" (click)="stopTimer('AL2'); $event.preventDefault()">QUIT!</a>
                             </div>
                           </div>
                         </div>
@@ -196,6 +233,37 @@
         </div>
       </div>
       <div *ngSwitchCase="'state3'">
+        <header class="header-area header-sticky">
+          <div class="container">
+            <div class="row">
+              <div class="col-12">
+                <nav class="main-nav">
+                  <!-- ***** Logo Start ***** -->
+                  <a href="" class="logo">
+                    <img src="assets/images/purefy-removebg-preview.png" alt="" />
+                  </a>
+                  <!-- ***** Logo End ***** -->
+                  <!-- ***** Menu Start ***** -->
+                  <ul class="nav">
+                    <li><a href="">Home</a></li>
+                    <li><a href="index.html" class="active">Challenges</a></li>
+                    <li><a href="">Mood Journal</a></li>
+                    <li><a href="">Habit Tracker</a></li>
+                    <li><a href="">About</a></li>
+                    <li><a href="">Team</a></li>
+                    <li>
+                      <a href="" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
+                    </li>
+                  </ul>
+                  <a class="menu-trigger">
+                    <span>Menu</span>
+                  </a>
+                  <!-- ***** Menu End ***** -->
+                </nav>
+              </div>
+            </div>
+          </div>
+        </header>
         <div class="container">
           <div class="row">
             <div class="col-lg-12">
@@ -226,7 +294,7 @@
                             <br />
                             <h3>INSTRUCTIONS :</h3>
                             <br />
-                            <h4>No Alcohol For 2 Weeks.</h4>
+                            <h4>No Alcohol For Two Weeks.</h4>
                           </div>
 
                           <div class="col-lg-12">
@@ -242,81 +310,125 @@
                               your body a chance to reset and recover.
                             </p>
                           </div>
-                          <div *ngIf="!timers['timer3']?.running" class="main-border-button">
-                            <a href="#" (click)="startTimerFromHTML('timer3', 86400); $event.preventDefault()">START NOW!</a>
-                          </div>
+                          <div class="col-lg-12">
+                            <div *ngIf="!timerRunning('AL3')" class="main-border-button">
+                              <!-- This link is shown if the timer is not running, regardless of whether the challenge has been completed before. -->
+                              <a href="#" (click)="startTimer('AL3', 24); $event.preventDefault()">START NOW!</a>
+                            </div>
 
-                          <!-- Timer display, only shown if timer2 is running -->
-                          <div *ngIf="timers['timer3']?.running" class="main-border-button">
-                            <h4>Time Remaining: {{ timers['timer3']?.timeLeft }}</h4>
+                            <!-- Display time remaining if the timer is running -->
+                            <!-- While the timer is running, show the time remaining and a "Stop Challenge" link -->
+                            <div *ngIf="timerRunning('AL3')" class="main-border-button">
+                              <h4>Time Remaining: {{ timers['AL3'] }}</h4>
+                              <!-- "Stop Challenge" link -->
+                              <br />
+                              <a href="#" (click)="stopTimer('AL33'); $event.preventDefault()">QUIT!</a>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
+                <!-- ***** Details End ***** -->
               </div>
-              <!-- ***** Details End ***** -->
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div *ngSwitchCase="'state4'">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="page-content">
-              <!-- ***** Details Start ***** -->
-              <div class="game-details">
-                <div class="row">
-                  <div class="col-lg-12">
-                    <h2>Alcohol</h2>
-                  </div>
-                  <div class="col-lg-12">
-                    <div class="content">
-                      <div class="row">
-                        <div class="col-lg-6">
-                          <div class="left-info">
+      <div *ngSwitchCase="'state4'">
+        <header class="header-area header-sticky">
+          <div class="container">
+            <div class="row">
+              <div class="col-12">
+                <nav class="main-nav">
+                  <!-- ***** Logo Start ***** -->
+                  <a href="" class="logo">
+                    <img src="assets/images/purefy-removebg-preview.png" alt="" />
+                  </a>
+                  <!-- ***** Logo End ***** -->
+                  <!-- ***** Menu Start ***** -->
+                  <ul class="nav">
+                    <li><a href="">Home</a></li>
+                    <li><a href="index.html" class="active">Challenges</a></li>
+                    <li><a href="">Mood Journal</a></li>
+                    <li><a href="">Habit Tracker</a></li>
+                    <li><a href="">About</a></li>
+                    <li><a href="">Team</a></li>
+                    <li>
+                      <a href="" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
+                    </li>
+                  </ul>
+                  <a class="menu-trigger">
+                    <span>Menu</span>
+                  </a>
+                  <!-- ***** Menu End ***** -->
+                </nav>
+              </div>
+            </div>
+          </div>
+        </header>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="page-content">
+                <!-- ***** Details Start ***** -->
+                <div class="game-details">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h2>Alcohol</h2>
+                    </div>
+                    <div class="col-lg-12">
+                      <div class="content">
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div class="left-info">
+                              <br />
+                              <br />
+                              <h3>Level 4</h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="right-info">
+                              <h3><em>Time to shine.</em></h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
                             <br />
                             <br />
-                            <h3>Level 4</h3>
-                          </div>
-                        </div>
-                        <div class="col-lg-6">
-                          <div class="right-info">
-                            <h3><em>Time to shine.</em></h3>
-                          </div>
-                        </div>
-                        <div class="col-lg-12">
-                          <br />
-                          <br />
-                          <h3>INSTRUCTIONS :</h3>
-                          <br />
-                          <h4>No Alcohol For A Month!</h4>
-                        </div>
-
-                        <div class="col-lg-12">
-                          <br />
-
-                          <p>
-                            For the next month, we're adopting a no-alcohol policy to support your health and wellness goals. This means
-                            avoiding all alcoholic beverages, from beer and wine to spirits, throughout the entire period. This break from
-                            alcohol can offer numerous benefits, including improved sleep, increased energy levels, and potential weight
-                            loss, as well as giving your liver a chance to recover and detoxify. During this time, consider exploring
-                            alternative drinks such as sparkling water, non-alcoholic cocktails, or herbal teas to keep your hydration
-                            levels up and to find new favorites that don't include alcohol. Embrace this as an opportunity to focus on your
-                            well-being, observe any changes in how you feel, and possibly discover a more vibrant version of yourself.
-                          </p>
-                        </div>
-                        <div class="col-lg-12">
-                          <div *ngIf="!timers['timer4']?.running" class="main-border-button">
-                            <a href="#" (click)="startTimerFromHTML('timer4', 86400); $event.preventDefault()">START NOW!</a>
+                            <h3>INSTRUCTIONS :</h3>
+                            <br />
+                            <h4>No Alcohol For A Month!</h4>
                           </div>
 
-                          <!-- Timer display, only shown if timer2 is running -->
-                          <div *ngIf="timers['timer4']?.running" class="main-border-button">
-                            <h4>Time Remaining: {{ timers['timer4']?.timeLeft }}</h4>
+                          <div class="col-lg-12">
+                            <br />
+
+                            <p>
+                              For the next month, you are to completely abstain from consuming alcohol. This commitment to a temporary
+                              alcohol-free period can offer numerous health benefits, including improved sleep quality, increased energy
+                              levels, and potentially better hydration and weight management. To successfully navigate this month, consider
+                              substituting alcoholic beverages with healthier alternatives such as water, herbal teas, or non-alcoholic
+                              mocktails. Engaging in this challenge also provides an opportunity to explore new activities or hobbies that
+                              don't center around alcohol consumption. Mark your calendar from today, and let's embark on this journey
+                              towards a healthier lifestyle together. Remember, the goal is to focus on the positive changes you'll notice
+                              in your body and mind during this alcohol-free period.
+                            </p>
+                          </div>
+                          <div class="col-lg-12">
+                            <div *ngIf="!timerRunning('AL4')" class="main-border-button">
+                              <!-- This link is shown if the timer is not running, regardless of whether the challenge has been completed before. -->
+                              <a href="#" (click)="startTimer('AL4', 24); $event.preventDefault()">START NOW!</a>
+                            </div>
+
+                            <!-- Display time remaining if the timer is running -->
+                            <!-- While the timer is running, show the time remaining and a "Stop Challenge" link -->
+                            <div *ngIf="timerRunning('AL4')" class="main-border-button">
+                              <h4>Time Remaining: {{ timers['AL4'] }}</h4>
+                              <!-- "Stop Challenge" link -->
+                              <br />
+                              <a href="#" (click)="stopTimer('AL4'); $event.preventDefault()">QUIT!</a>
+                            </div>
                           </div>
                         </div>
                       </div>
