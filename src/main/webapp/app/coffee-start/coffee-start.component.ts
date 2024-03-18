@@ -7,9 +7,14 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./coffee-start.component.scss'],
 })
 export class CoffeeStartComponent implements OnInit {
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute) {
+    this.checkTimers();
+  }
 
   currentState: string | undefined;
+  timers: { [timerId: string]: string } = {};
+  challengeCompleted: { [timerId: string]: boolean } = {};
+  timerIntervals: { [timerId: string]: any } = {};
 
   ngOnInit(): void {
     this.loadScript('vendor/jquery/jquery.min.js')
@@ -39,7 +44,7 @@ export class CoffeeStartComponent implements OnInit {
     });
 
     // Timer code
-    this.checkTimer();
+    this.checkTimers();
   }
 
   private loadScript(scriptUrl: string): Promise<void> {
@@ -56,47 +61,66 @@ export class CoffeeStartComponent implements OnInit {
 
   //timer code
 
-  timerRunning = false;
-  timeLeft?: string;
-
-  startTimer() {
-    const endTime = new Date().getTime() + 24 * 60 * 60 * 1000; // 24 hours from now
-    localStorage.setItem('timerEndTime', endTime.toString());
-    this.timerRunning = true;
-    this.updateTimeLeft();
+  // Start a timer with a given id and duration in hours
+  startTimer(timerId: string, durationInHours: number): void {
+    const endTime = new Date().getTime() + durationInHours * 60 * 60 * 1000;
+    localStorage.setItem(timerId, endTime.toString());
+    this.challengeCompleted[timerId] = false; // Reset the completion status
+    this.updateTimeLeft(timerId);
   }
 
-  checkTimer() {
-    const endTime = parseInt(localStorage.getItem('timerEndTime') || '0', 10);
-    if (endTime) {
-      this.timerRunning = new Date().getTime() < endTime;
-      if (this.timerRunning) {
-        this.updateTimeLeft();
-      }
+  stopTimer(timerId: string): void {
+    clearInterval(this.timerIntervals[timerId]);
+    localStorage.removeItem(timerId);
+    this.timers[timerId] = '';
+    this.challengeCompleted[timerId] = false;
+    delete this.timerIntervals[timerId]; // Clean up the interval reference
+  }
+
+  timerRunning(timerId: string): boolean {
+    return !!localStorage.getItem(timerId);
+  }
+
+  updateTimeLeft(timerId: string): void {
+    if (this.timerIntervals[timerId]) {
+      clearInterval(this.timerIntervals[timerId]);
     }
+
+    const updateTime = () => {
+      const endTime = parseInt(localStorage.getItem(timerId) || '0');
+      const currentTime = new Date().getTime();
+      const timeLeft = endTime - currentTime;
+      if (timeLeft <= 0) {
+        clearInterval(this.timerIntervals[timerId]);
+        localStorage.removeItem(timerId);
+        this.timers[timerId] = '';
+        this.challengeCompleted[timerId] = true;
+      } else {
+        this.timers[timerId] = this.formatTimeLeft(timeLeft);
+      }
+    };
+
+    updateTime(); // Update immediately, then start interval
+    this.timerIntervals[timerId] = setInterval(updateTime, 1000);
   }
 
-  updateTimeLeft() {
-    const interval = setInterval(() => {
-      const endTime = parseInt(localStorage.getItem('timerEndTime') || '0', 10);
-      const now = new Date().getTime();
-      const distance = endTime - now;
-
-      if (distance < 0) {
-        clearInterval(interval);
-        this.timeLeft = undefined;
-        this.timerRunning = false;
-        localStorage.removeItem('timerEndTime'); // Clear timer end time
-        return;
+  checkTimers(): void {
+    // Dynamically check your timers here based on application needs
+    const timerIds = ['timer1', 'timer2', 'timer3', 'timer4'];
+    timerIds.forEach(timerId => {
+      if (this.timerRunning(timerId)) {
+        this.updateTimeLeft(timerId);
+      } else {
+        // If the timer is not found in localStorage, it might have been stopped or never started
+        this.challengeCompleted[timerId] = !localStorage.getItem(timerId);
       }
+    });
+  }
 
-      // Time calculations for days, hours, minutes and seconds
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      // Output the result in an element with id="demo"
-      this.timeLeft = hours + 'h ' + minutes + 'm ' + seconds + 's ';
-    }, 1000);
+  private formatTimeLeft(timeLeft: number): string {
+    const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+    return `${hours}h ${minutes}m ${seconds}s`;
   }
 }

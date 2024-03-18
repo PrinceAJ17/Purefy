@@ -34,6 +34,7 @@ import { MusicLevelsComponent } from './music-levels/music-levels.component';
 import { GamesLevelsComponent } from './games-levels/games-levels.component';
 import { VideoLevelsComponent } from './video-levels/video-levels.component';
 import { CoffeeStartComponent } from './coffee-start/coffee-start.component';
+import { AlcoholStartComponent } from './alcohol-start/alcohol-start.component';
 
 @NgModule({
   imports: [
@@ -71,6 +72,7 @@ import { CoffeeStartComponent } from './coffee-start/coffee-start.component';
     GamesLevelsComponent,
     VideoLevelsComponent,
     CoffeeStartComponent,
+    AlcoholStartComponent,
   ],
   bootstrap: [MainComponent],
 })
