@@ -99,7 +99,6 @@ public class CacheConfiguration {
             createCache(cm, team.bham.domain.UserDB.class.getName());
             createCache(cm, team.bham.domain.Feedback.class.getName());
             createCache(cm, team.bham.domain.Progress.class.getName());
-            createCache(cm, team.bham.domain.Timer.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }
