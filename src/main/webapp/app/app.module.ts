@@ -45,6 +45,7 @@ import { MoodJournalPageComponent } from './mood-journal-page/mood-journal-page.
 import { EntriesComponent } from './entries/entries.component';
 import { PromptsComponent } from './prompts/prompts.component';
 import { EmotionsComponent } from './emotions/emotions.component';
+import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 
 @NgModule({
   imports: [
@@ -93,6 +94,7 @@ import { EmotionsComponent } from './emotions/emotions.component';
     EntriesComponent,
     PromptsComponent,
     EmotionsComponent,
+    LeaderboardComponent,
   ],
   bootstrap: [MainComponent],
 })

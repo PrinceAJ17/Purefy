@@ -18,6 +18,8 @@ import { MusicLevelsComponent } from './music-levels/music-levels.component';
 import { GamesLevelsComponent } from './games-levels/games-levels.component';
 import { VideoLevelsComponent } from './video-levels/video-levels.component';
 import { AlcoholStartComponent } from './alcohol-start/alcohol-start.component';
+import { LeaderboardComponent } from './leaderboard/leaderboard.component';
+import { MoodJournalPageComponent } from './mood-journal-page/mood-journal-page.component';
 
 const routes: Routes = [
   {
@@ -63,6 +65,14 @@ const routes: Routes = [
   {
     path: 'Alcohol-Start/:state',
     component: AlcoholStartComponent,
+  },
+  {
+    path: 'leaderboard',
+    component: LeaderboardComponent,
+  },
+  {
+    path: 'MoodJournalPage',
+    component: MoodJournalPageComponent,
   },
 ];
 
@@ -133,6 +143,14 @@ const routes: Routes = [
         {
           path: 'Alcohol-Start/:state',
           component: AlcoholStartComponent,
+        },
+        {
+          path: 'leaderboard',
+          component: LeaderboardComponent,
+        },
+        {
+          path: 'MoodJournalPage',
+          component: MoodJournalPageComponent,
         },
         navbarRoute,
         ...errorRoute,
