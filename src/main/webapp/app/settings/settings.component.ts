@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Router} from '@angular/Router'
 
 @Component({
   selector: 'jhi-settings',
@@ -7,4 +8,6 @@ import { Component } from '@angular/core';
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss'],
 })
-export class SettingsComponent {}
+export class SettingsComponent {
+  constructor(private router: Router) {}
+}
