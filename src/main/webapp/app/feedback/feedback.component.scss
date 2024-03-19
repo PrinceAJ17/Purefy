@@ -1,0 +1,47 @@
+@import 'vendor/bootstrap/css/bootstrap.min';
+
+.form-input,
+.form-button {
+  width: 80%; /* Adjust width as needed */
+  margin: auto;
+  display: block;
+  border-radius: 25px; /* Rounded ends */
+  padding: 10px;
+  margin-bottom: 16px;
+}
+
+.form-input:hover,
+.form-button:hover {
+  box-shadow: 0 0 10px #fff; /* Glow effect on hover */
+}
+
+.form-button {
+  background-color: #222;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px 20px; /* Adjust padding for better button sizing */
+}
+
+/* Ensuring the button text and icon are aligned properly */
+.form-button i {
+  margin-right: 5px;
+}
+
+/* Adjusting input field text color for better visibility */
+.form-input {
+  background-color: #555; /* Lighter shade for input background */
+  color: #fff; /* White text color */
+  border: 1px solid #666; /* Slight border */
+}
+
+/* Optional: Changing the placeholder color for better visibility */
+.form-input::placeholder {
+  color: #bbb;
+}
+
+.error-message {
+  margin-bottom: 10px;
+  color: red;
+  font-size: 0.8em;
+}

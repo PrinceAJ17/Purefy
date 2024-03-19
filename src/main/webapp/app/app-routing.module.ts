@@ -8,6 +8,9 @@ import { Authority } from 'app/config/authority.constants';
 import { UserRouteAccessService } from 'app/core/auth/user-route-access.service';
 import { LevelsComponent } from './levels/levels.component';
 import { BeginnerComponent } from './beginner/beginner.component';
+import { ProfilepageComponent } from './profilepage/profilepage.component';
+import { SettingsComponent } from './settings/settings.component';
+import { FeedbackComponent } from './feedback/feedback.component';
 
 const routes: Routes = [
   {
@@ -17,6 +20,18 @@ const routes: Routes = [
   {
     path: 'Beginner',
     component: BeginnerComponent,
+  },
+  {
+    path: 'Settings',
+    component: SettingsComponent,
+  },
+  {
+    path: 'Profilepage',
+    component: ProfilepageComponent,
+  },
+  {
+    path: 'Feedback',
+    component: FeedbackComponent,
   },
 ];
 
@@ -47,6 +62,18 @@ const routes: Routes = [
         {
           path: 'beginner',
           component: BeginnerComponent,
+        },
+        {
+          path: 'Settings',
+          component: SettingsComponent,
+        },
+        {
+          path: 'Profilepage',
+          component: ProfilepageComponent,
+        },
+        {
+          path: 'Feedback',
+          component: FeedbackComponent,
         },
         {
           path: '',

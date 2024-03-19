@@ -26,6 +26,7 @@ import { ErrorComponent } from './layouts/error/error.component';
 import { LevelsComponent } from './levels/levels.component';
 import { BeginnerComponent } from './beginner/beginner.component';
 import { ProfilepageComponent } from './profilepage/profilepage.component';
+import { FeedbackComponent } from './feedback/feedback.component';
 
 @NgModule({
   imports: [
@@ -54,6 +55,7 @@ import { ProfilepageComponent } from './profilepage/profilepage.component';
     LevelsComponent,
     BeginnerComponent,
     ProfilepageComponent,
+    FeedbackComponent,
   ],
   bootstrap: [MainComponent],
 })
