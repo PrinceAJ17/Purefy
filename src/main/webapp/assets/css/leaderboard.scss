@@ -63,7 +63,7 @@ html, body {
   -ms-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  max-width: 92%;
+  max-width: 95%;
   margin: 0 auto;
 }
 
@@ -257,7 +257,7 @@ Header Style
   -moz-transition: all .5s ease 0s;
   -o-transition: all .5s ease 0s;
   transition: all .5s ease 0s;
-  width: 80%;
+  width: 77%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -281,7 +281,7 @@ Header Style
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 130%;
+  width: 140%;
 
 }
 
@@ -718,7 +718,7 @@ Main Boxes Style
 }
 .childBox{
   display: flex;
-  height: 100%;
+  height: 9vh;
 }
 
 .titleBox{
@@ -879,7 +879,7 @@ Current Leaderboard Style
   font-size: small;
   color: #fff;
   justify-content: center;
- }
+}
 
 
 
@@ -902,10 +902,9 @@ Current Leaderboard Style
 }
 
 .weekly-stats .leaderboard .bar{
-  height: 60%;
+  height: 90%;
   width: 70%;
   margin-right: 2%;
-
 }
 @keyframes barAnimation {
   from{width: 0}
@@ -914,7 +913,10 @@ Current Leaderboard Style
 }
 
 .weekly-stats .leaderboard .bar .progress{
-
+  display: flex;
+  height: 100%;
+  background-color: #27292a;
+  border-radius: 2px;
 }
 
 .weekly-stats .leaderboard .bar .progress .animation{

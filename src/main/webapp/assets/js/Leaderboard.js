@@ -22,12 +22,14 @@ window.leaderboardFunctions = (function() {
     }
   }
 
-  function populateLeaderboard(leaderboardData, containerSelector) {
+  function populateLeaderboard(leaderboardData) {
     var leaderboard = document.querySelector('.leaderboard');
     if (!leaderboard)
       return;
 
     leaderboardData.sort(function (a, b) { return b.score - a.score; });
+
+    leaderboardData.splice(6);
 
     while (leaderboard.firstChild) {
       leaderboard.removeChild(leaderboard.firstChild);
@@ -38,10 +40,10 @@ window.leaderboardFunctions = (function() {
       var medalImageSrc = getMedalImage(rank);
       var entryElement = document.createElement('div');
       entryElement.className = "".concat(ordinalIndicator);
-      entryElement.innerHTML = "\n            \n            ".concat(medalImageSrc ? "<img src=\"".concat(medalImageSrc, "\" alt=\"Medal\" style=\"margin-left: 0\">") : '', "\n            <h2>").concat(ordinalIndicator, "</h2>\n            <div class=\"Avatar\">\n                <img src=\"assets/images/Avatar.png\" alt=\"\">\n                <div class=\"name\">").concat(entry.name, "</div>\n            </div>\n            <div class=\"bar\">\n                <div class=\"progress\">\n                    <div class=\"animation\">\n                        <h2>").concat(entry.score, "</h2>\n                    </div>\n                </div>\n            </div>\n        ");
+      entryElement.innerHTML = "\n            \n            ".concat(medalImageSrc ? "<img src=\"".concat(medalImageSrc, "\" alt=\"Medal\" style=\"margin-left: 0\">") : '', "\n            <h3>").concat(ordinalIndicator, "</h3>\n            <div class=\"Avatar\">\n                <img src=\"assets/images/Avatar.png\" alt=\"\">\n                <div class=\"name\">").concat(entry.name, "</div>\n            </div>\n            <div class=\"bar\">\n                <div class=\"progress\">\n                    <div class=\"animation\">\n                        <h2>").concat(entry.score, "</h2>\n                    </div>\n                </div>\n            </div>\n        ");
       leaderboard.appendChild(entryElement);
     });
-    var highestScore = leaderboardData[0].score;
+    var highestScore = leaderboardData[0] ? leaderboardData[0].score : 0;
     leaderboardData.forEach(function (entry, index) {
       var progressWidth = (entry.score / highestScore) * 100;
       var entryElement = leaderboard.children[index];
@@ -50,10 +52,20 @@ window.leaderboardFunctions = (function() {
     });
   }
 
+  function loadCss() {
+    const link = document.createElement('link');
+    link.href = 'assets/css/leaderboard';
+    link.type = 'text/css';
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
+  }
+
   return {
+
     populateLeaderboard: populateLeaderboard,
     getOrdinalIndicator: getOrdinalIndicator,
-    getMedalImage: getMedalImage
+    getMedalImage: getMedalImage,
+    loadCss: loadCss
   };
 })();
 

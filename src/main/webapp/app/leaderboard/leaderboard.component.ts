@@ -27,8 +27,8 @@ export class LeaderboardComponent implements OnInit {
     { name: "Allen", score: 11 },
     { name: "Asa", score: 10 },
     { name: "Ankita", score: 9 },
-    { name: "Adnaan", score: 8 },
-    { name: "Prince", score: 7 },
+    { name: "Adnaan", score: 9 },
+    { name: "Prince", score: 8 },
   
   ];
 
