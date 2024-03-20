@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <title>Coffee Start</title>
+  </head>
+
+  <body>
+    <!-- ***** Preloader Start ***** -->
+    <div id="js-preloader" class="js-preloader">
+      <div class="preloader-inner">
+        <span class="dot"></span>
+        <div class="dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+    <!-- ***** Preloader End ***** -->
+    <header class="header-area header-sticky">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <nav class="main-nav">
+              <!-- ***** Logo Start ***** -->
+              <a href="" class="logo">
+                <img src="assets/images/purefy-removebg-preview.png" alt="" />
+              </a>
+              <!-- ***** Logo End ***** -->
+              <!-- ***** Search Start ***** -->
+              <div class="search-input">
+                <form id="search" action="#">
+                  <input type="text" placeholder="Search Challenges" id="searchText" name="searchKeyword" onkeypress="handle" />
+                  <i class="fa fa-search"></i>
+                </form>
+              </div>
+              <!-- ***** Search End ***** -->
+              <!-- ***** Menu Start ***** -->
+              <ul class="nav">
+                <li><a href="">Home</a></li>
+                <li><a href="index.html" class="active">Challenges</a></li>
+                <li><a href="">Mood Journal</a></li>
+                <li><a href="">Habit Tracker</a></li>
+                <li><a href="">About</a></li>
+                <li><a href="">Team</a></li>
+                <li>
+                  <a href="" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
+                </li>
+              </ul>
+              <a class="menu-trigger">
+                <span>Menu</span>
+              </a>
+              <!-- ***** Menu End ***** -->
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <div [ngSwitch]="currentState">
+      <div *ngSwitchCase="'state1'">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="page-content">
+                <!-- ***** Details Start ***** -->
+                <div class="game-details">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h2>Coffee</h2>
+                    </div>
+
+                    <div class="col-lg-12">
+                      <div class="content">
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div class="left-info">
+                              <br />
+                              <br />
+                              <h3>Level 1</h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="right-info">
+                              <h5><em>A Nice Way To Start.</em></h5>
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
+                            <br />
+                            <br />
+                            <h3>INSTRUCTIONS :</h3>
+                            <br />
+                            <h4>Only Three Cups Of Coffee Today.</h4>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <br />
+
+                            <p>
+                              Limit your coffee consumption to just three occasions throughout the day. This approach helps in balancing the
+                              benefits of caffeine, such as increased alertness and concentration, with its potential downsides, including
+                              disturbed sleep patterns and increased heart rate if over-consumed. Choose three specific times that align
+                              with your energy needs, perhaps one in the morning to kickstart your day, another in the early afternoon to
+                              sustain your energy levels and one in the early evening without affecting your nighttime rest. Remember,
+                              moderation is key to enjoying coffee's perks while maintaining your health and well-being.
+                            </p>
+                          </div>
+                          <div class="col-lg-12">
+                            <div *ngIf="!timerRunning('timer1')" class="main-border-button">
+                              <!-- This link is shown if the timer is not running, regardless of whether the challenge has been completed before. -->
+                              <a href="#" (click)="startTimer('timer1', 24); $event.preventDefault()">START NOW!</a>
+                            </div>
+
+                            <!-- While the timer is running, show the time remaining and a "Stop Challenge" link -->
+                            <div *ngIf="timerRunning('timer1')" class="main-border-button">
+                              <h4>Time Remaining: {{ timers['timer1'] }}</h4>
+                              <!-- "Stop Challenge" link -->
+                              <a href="#" (click)="stopTimer('timer1'); $event.preventDefault()">QUIT!</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- ***** Details End ***** -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngSwitchCase="'state2'">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="page-content">
+                <!-- ***** Details Start ***** -->
+                <div class="game-details">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h2>Coffee</h2>
+                    </div>
+                    <div class="col-lg-12">
+                      <div class="content">
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div class="left-info">
+                              <br />
+                              <br />
+                              <h3>Level 2</h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="right-info">
+                              <h3><em>You are good at self control?</em></h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
+                            <br />
+                            <br />
+                            <h3>INSTRUCTIONS :</h3>
+                            <br />
+                            <h4>Only Two Cups Of Coffee Today.</h4>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <br />
+
+                            <p>
+                              Limit your coffee consumption to just two occasions throughout the day. This approach helps in balancing the
+                              benefits of caffeine, such as increased alertness and concentration, with its potential downsides, including
+                              disturbed sleep patterns and increased heart rate if overconsumed. Choose two specific times that align with
+                              your energy needs, perhaps one in the morning to kickstart your day and another in the early afternoon to
+                              sustain your energy levels without affecting your nighttime rest. Remember, moderation is key to enjoying
+                              coffee's perks while maintaining your health and well-being.
+                            </p>
+                          </div>
+                          <div class="col-lg-12">
+                            <div *ngIf="!timerRunning('timer2')" class="main-border-button">
+                              <!-- This link is shown if the timer is not running, regardless of whether the challenge has been completed before. -->
+                              <a href="#" (click)="startTimer('timer2', 24); $event.preventDefault()">START NOW!</a>
+                            </div>
+
+                            <!-- Display time remaining if the timer is running -->
+                            <!-- While the timer is running, show the time remaining and a "Stop Challenge" link -->
+                            <div *ngIf="timerRunning('timer2')" class="main-border-button">
+                              <h4>Time Remaining: {{ timers['timer2'] }}</h4>
+                              <!-- "Stop Challenge" link -->
+                              <br />
+                              <a href="#" (click)="stopTimer('timer2'); $event.preventDefault()">QUIT!</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- ***** Details End ***** -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngSwitchCase="'state3'">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="page-content">
+                <!-- ***** Details Start ***** -->
+                <div class="game-details">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h2>Coffee</h2>
+                    </div>
+                    <div class="col-lg-12">
+                      <div class="content">
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div class="left-info">
+                              <br />
+                              <br />
+                              <h3>Level 3</h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="right-info">
+                              <h3><em>You are almost there.</em></h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
+                            <br />
+                            <br />
+                            <h3>INSTRUCTIONS :</h3>
+                            <br />
+                            <h4>Only One Cup Of Coffee Today.</h4>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <br />
+
+                            <p>
+                              Limit your coffee consumption to just one occasion throughout the day. This approach helps in balancing the
+                              benefits of caffeine, such as increased alertness and concentration, with its potential downsides, including
+                              disturbed sleep patterns and increased heart rate if overconsumed. Choose one specific time that align with
+                              your energy needs, perhaps one in the morning to kickstart your day to sustain your energy levels without
+                              affecting your nighttime rest. Remember, moderation is key to enjoying coffee's perks while maintaining your
+                              health and well-being.
+                            </p>
+                          </div>
+                          <div class="col-lg-12">
+                            <div *ngIf="!timerRunning('timer3')" class="main-border-button">
+                              <!-- This link is shown if the timer is not running, regardless of whether the challenge has been completed before. -->
+                              <a href="#" (click)="startTimer('timer3', 24); $event.preventDefault()">START NOW!</a>
+                            </div>
+
+                            <!-- Display time remaining if the timer is running -->
+                            <!-- While the timer is running, show the time remaining and a "Stop Challenge" link -->
+                            <div *ngIf="timerRunning('timer3')" class="main-border-button">
+                              <h4>Time Remaining: {{ timers['timer3'] }}</h4>
+                              <!-- "Stop Challenge" link -->
+                              <br />
+                              <a href="#" (click)="stopTimer('timer3'); $event.preventDefault()">QUIT!</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- ***** Details End ***** -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngSwitchCase="'state4'">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="page-content">
+                <!-- ***** Details Start ***** -->
+                <div class="game-details">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h2>Coffee</h2>
+                    </div>
+                    <div class="col-lg-12">
+                      <div class="content">
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div class="left-info">
+                              <br />
+                              <br />
+                              <h3>Level 4</h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="right-info">
+                              <h3><em>Time to shine.</em></h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
+                            <br />
+                            <br />
+                            <h3>INSTRUCTIONS :</h3>
+                            <br />
+                            <h4>No Coffee For A Week!</h4>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <br />
+
+                            <p>
+                              Limit your coffee consumption to just two occasions throughout the day. This approach helps in balancing the
+                              benefits of caffeine, such as increased alertness and concentration, with its potential downsides, including
+                              disturbed sleep patterns and increased heart rate if overconsumed. Choose two specific times that align with
+                              your energy needs, perhaps one in the morning to kickstart your day and another in the early afternoon to
+                              sustain your energy levels without affecting your nighttime rest. Remember, moderation is key to enjoying
+                              coffee's perks while maintaining your health and well-being.
+                            </p>
+                          </div>
+                          <div class="col-lg-12">
+                            <div *ngIf="!timerRunning('timer4')" class="main-border-button">
+                              <!-- This link is shown if the timer is not running, regardless of whether the challenge has been completed before. -->
+                              <a href="#" (click)="startTimer('timer2', 24); $event.preventDefault()">START NOW!</a>
+                            </div>
+
+                            <!-- Display time remaining if the timer is running -->
+                            <!-- While the timer is running, show the time remaining and a "Stop Challenge" link -->
+                            <div *ngIf="timerRunning('timer4')" class="main-border-button">
+                              <h4>Time Remaining: {{ timers['timer4'] }}</h4>
+                              <!-- "Stop Challenge" link -->
+                              <br />
+                              <a href="#" (click)="stopTimer('timer4'); $event.preventDefault()">QUIT!</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- ***** Details End ***** -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <p>
+              Copyright © 2024, Purefy. All rights reserved.
+
+              <br />You are accessing an experimental web application developed by participants (Team 13) of the Team Project 2024 module.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
