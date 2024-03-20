@@ -1,1 +1,177 @@
-<p>entries works!</p>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <title>ENTRIES</title>
+  </head>
+  <body>
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <nav class="main-nav">
+              <!-- ***** Logo Start ***** -->
+              <a href="#" class="logo">
+                <img src="assets/images/purefy-removebg-preview.png" alt="" />
+              </a>
+              <!-- ***** Logo End ***** -->
+              <!-- ***** Menu Start ***** -->
+              <ul class="nav">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Challenges</a></li>
+                <li><a href="#" routerLink="/MoodJournalPage">Mood Journal</a></li>
+                <li><a href="#">Habit Tracker</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Team</a></li>
+                <li>
+                  <a href="#" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
+                </li>
+              </ul>
+              <a class="menu-trigger">
+                <span>Menu</span>
+              </a>
+              <!-- ***** Menu End ***** -->
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <!-- ***** Page Content Start ***** -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="page-content">
+            <h4>Entries</h4>
+            <!-- ***** Introductory Section Expanded ***** -->
+            <div class="intro-section-entries">
+              <p>Explore your added entries below or add a new entry simply by pressing the "+" button below!</p>
+            </div>
+            <!-- ***** MoodJournal Section Start ***** -->
+            <div class="row">
+              <div class="col-lg-2">
+                <!-- ***** Sidebar Start ***** -->
+                <div class="sidebar" id="sidebar">
+                  <ul>
+                    <li><a href="#" routerLink="/MoodJournalPage">All</a></li>
+                    <li><a href="#" routerLink="/MoodJournalPage">Entries</a></li>
+                    <li><a href="#" routerLink="/MoodJournalPage">Prompts</a></li>
+                  </ul>
+                </div>
+                <!-- ***** Sidebar End ***** -->
+              </div>
+              <div class="col-lg-10 mood-journal-section">
+                <div id="journal-content">
+                  <!-- ***** Search Bar Start ***** -->
+                  <div class="journal-search">
+                    <form id="journalSearch" action="#">
+                      <input type="text" placeholder="Search Entries" id="journalSearchText" name="searchKeyword" />
+                      <button type="submit" class="search-button"><i class="fa fa-search"></i></button>
+                    </form>
+                  </div>
+                  <!-- ***** Search Bar End ***** -->
+                  <!-- ***** Normal Entries Start ***** -->
+                  <!-- Example of a Normal Entry -->
+                  <div class="card mb-4 normal-entry">
+                    <div class="card-body">
+                      <h5 class="card-title">Morning Meditation</h5>
+                      <p class="card-text">
+                        Started my day with a 20-minute meditation session. Felt a deep sense of calm and readiness for the day ahead.
+                      </p>
+                      <p class="card-text"><small class="text-muted">Entry Date: 2024-03-24</small></p>
+                    </div>
+                  </div>
+                  <!-- Example of a Normal Entry -->
+                  <div class="card mb-4 normal-entry">
+                    <div class="card-body">
+                      <h5 class="card-title">Afternoon Hike</h5>
+                      <p class="card-text">
+                        Took a refreshing hike in the local nature reserve. The weather was perfect, and the views were stunning. Felt
+                        rejuvenated.
+                      </p>
+                      <p class="card-text"><small class="text-muted">Entry Date: 2024-03-25</small></p>
+                    </div>
+                  </div>
+                  <!-- Example of a Normal Entry -->
+                  <div class="card mb-4 normal-entry">
+                    <div class="card-body">
+                      <h5 class="card-title">Evening with Friends</h5>
+                      <p class="card-text">
+                        Spent a wonderful evening catching up with old friends over dinner. It's amazing how laughter and good company can
+                        uplift your spirits.
+                      </p>
+                      <p class="card-text"><small class="text-muted">Entry Date: 2024-03-26</small></p>
+                    </div>
+                  </div>
+                  <!-- Example of a Normal Entry -->
+                  <div class="card mb-4 normal-entry">
+                    <div class="card-body">
+                      <h5 class="card-title">Creative Writing</h5>
+                      <p class="card-text">
+                        Dedicated a couple of hours to creative writing. Managed to draft a short story that's been brewing in my mind for
+                        weeks.
+                      </p>
+                      <p class="card-text"><small class="text-muted">Entry Date: 2024-03-27</small></p>
+                    </div>
+                  </div>
+                  <!-- Example of a Normal Entry -->
+                  <div class="card mb-4 normal-entry">
+                    <div class="card-body">
+                      <h5 class="card-title">Learning to Cook</h5>
+                      <p class="card-text">
+                        Tried cooking a new recipe today. The process was as rewarding as the delicious outcome. Excited to explore more
+                        recipes.
+                      </p>
+                      <p class="card-text"><small class="text-muted">Entry Date: 2024-03-28</small></p>
+                    </div>
+                  </div>
+                  <!-- ***** Normal Entries End ***** -->
+                  <!-- ***** Add Entry Button Start **** -->
+                  <div class="add-entry-button-container">
+                    <button id="addButton" class="add-entry-button">+</button>
+                  </div>
+                  <!-- Popup entry here -->
+                  <div class="add-entry-popup" id="addEntryPopup">
+                    <div class="popup-content">
+                      <span class="close-button" onclick="closePopup()">&times;</span>
+                      <h3>Add New Entry</h3>
+                      <form>
+                        <div class="form-group">
+                          <label for="entryTitle">Title:</label>
+                          <input type="text" id="entryTitle" name="entryTitle" />
+                        </div>
+                        <div class="form-group">
+                          <label for="entryContent">Content:</label>
+                          <textarea id="entryContent" name="entryContent" placeholder="What's on your mind?"></textarea>
+                        </div>
+                        <button type="submit">Submit</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ***** Page Content End ***** -->
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <p>
+              Copyright © 2024, Purefy. All rights reserved. <br />You are accessing an experimental web application developed by
+              participants (Team 13) of the Team Project 2024 module.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

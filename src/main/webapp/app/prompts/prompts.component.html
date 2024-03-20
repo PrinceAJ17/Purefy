@@ -1,1 +1,176 @@
-<p>prompts works!</p>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <title>PROMPTS</title>
+  </head>
+  <body>
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <nav class="main-nav">
+              <!-- ***** Logo Start ***** -->
+              <a href="#" class="logo">
+                <img src="assets/images/purefy-removebg-preview.png" alt="" />
+              </a>
+              <!-- ***** Logo End ***** -->
+              <!-- ***** Menu Start ***** -->
+              <ul class="nav">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Challenges</a></li>
+                <li><a href="#" routerLink="/MoodJournalPage">Mood Journal</a></li>
+                <li><a href="#">Habit Tracker</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Team</a></li>
+                <li>
+                  <a href="#" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
+                </li>
+              </ul>
+              <a class="menu-trigger">
+                <span>Menu</span>
+              </a>
+              <!-- ***** Menu End ***** -->
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <!-- ***** Page Content Start ***** -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="page-content">
+            <h4>Prompts</h4>
+            <!-- ***** Introductory Section Expanded ***** -->
+            <div class="intro-section-prompts">
+              <p>Explore your prompted entries below or add a new prompted entry simply by pressing the "+" button below!</p>
+              <p class="note">Note: you will only be allowed to make a prompted entry if you've chosen a mood from the "Mood Picker"</p>
+            </div>
+            <div class="col-lg-2 sidebar-container">
+              <!-- ***** Sidebar Start ***** -->
+              <div class="sidebar" id="sidebar">
+                <ul>
+                  <li><a href="#" routerLink="/MoodJournalPage">All</a></li>
+                  <li><a href="#" routerLink="/Entries">Entries</a></li>
+                  <li><a href="#" routerLink="/Prompts">Prompts</a></li>
+                </ul>
+              </div>
+              <!-- ***** Sidebar End ***** -->
+              <!-- Additional Text Section Start -->
+            </div>
+            <div class="col-lg-10 mood-journal-section">
+              <div id="journal-content">
+                <!-- ***** Search Bar Start ***** -->
+                <div class="journal-search">
+                  <form id="journalSearch" action="#">
+                    <input type="text" placeholder="Search Prompts" id="journalSearchText" name="searchKeyword" />
+                    <button type="submit" class="search-button"><i class="fa fa-search"></i></button>
+                  </form>
+                </div>
+                <!-- ***** Search Bar End ***** -->
+                <!-- ***** Prompted Entries Start ***** -->
+                <!-- Example of a Prompted Entry -->
+                <div class="card mb-4 prompted-entry">
+                  <div class="card-body">
+                    <h5 class="card-title">What Brings You Joy?</h5>
+                    <p class="card-text">Prompt: Think about the things that bring you joy and write about them.</p>
+                    <p class="card-text">
+                      Spending time in nature, especially during the early hours of the morning, always fills me with a sense of peace and
+                      joy.
+                    </p>
+                    <p class="card-text"><small class="text-muted">Entry Date: 2024-03-24</small></p>
+                  </div>
+                </div>
+                <!-- Example of a Prompted Entry -->
+                <div class="card mb-4 prompted-entry">
+                  <div class="card-body">
+                    <h5 class="card-title">A Lesson Learned</h5>
+                    <p class="card-text">Prompt: Reflect on a recent challenge and the lesson it taught you.</p>
+                    <p class="card-text">
+                      I learned the importance of patience and perseverance when facing challenges. Overcoming a difficult task at work
+                      recently reminded me of this valuable lesson.
+                    </p>
+                    <p class="card-text"><small class="text-muted">Entry Date: 2024-03-25</small></p>
+                  </div>
+                </div>
+                <!-- Example of a Prompted Entry -->
+                <div class="card mb-4 prompted-entry">
+                  <div class="card-body">
+                    <h5 class="card-title">Gratitude</h5>
+                    <p class="card-text">Prompt: Write about someone or something you're grateful for today.</p>
+                    <p class="card-text">
+                      Today, I'm especially grateful for my family's support and understanding. Their love and encouragement mean the world
+                      to me.
+                    </p>
+                    <p class="card-text"><small class="text-muted">Entry Date: 2024-03-26</small></p>
+                  </div>
+                </div>
+                <!-- Example of a Prompted Entry -->
+                <div class="card mb-4 prompted-entry">
+                  <div class="card-body">
+                    <h5 class="card-title">Dreams for the Future</h5>
+                    <p class="card-text">Prompt: Visualize where you see yourself in 5 years and describe it.</p>
+                    <p class="card-text">
+                      In five years, I see myself leading a project that brings positive change to the community. I envision a fulfilling
+                      career that aligns with my values and passions.
+                    </p>
+                    <p class="card-text"><small class="text-muted">Entry Date: 2024-03-27</small></p>
+                  </div>
+                </div>
+                <!-- Example of a Prompted Entry -->
+                <div class="card mb-4 prompted-entry">
+                  <div class="card-body">
+                    <h5 class="card-title">A Moment of Peace</h5>
+                    <p class="card-text">Prompt: Describe a recent moment when you felt complete peace.</p>
+                    <p class="card-text">
+                      A quiet evening walk in the park last week was my recent moment of peace. The cool breeze and the setting sun provided
+                      a perfect backdrop for reflection.
+                    </p>
+                    <p class="card-text"><small class="text-muted">Entry Date: 2024-03-28</small></p>
+                  </div>
+                </div>
+                <!-- ***** Prompted Entries End ***** -->
+                <!-- ***** Add Entry Button Start **** -->
+                <div class="add-prompt-button-container">
+                  <button id="addPromptButton" class="add-prompt-button">+</button>
+                </div>
+                <!-- Popup for adding new prompt -->
+                <div class="add-prompt-popup" id="addPromptPopup">
+                  <div class="prompt-popup-content">
+                    <span class="prompt-close-button" onclick="closePromptPopup()">&times;</span>
+                    <h3>Add New Prompt</h3>
+                    <p>
+                      It appears you might be feeling <a href="#" routerLink="/Emotions"><u>sad</u></a> today. Let us help you navigate
+                      through your emotions with AI-generated prompts, thoughtfully designed to resonate with your current state of mind.
+                      Our goal is to provide a comforting space for reflection and understanding, tailored specifically to your feelings.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ***** Page Content End ***** -->
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <p>
+              Copyright © 2024, Purefy. All rights reserved. <br />You are accessing an experimental web application developed by
+              participants (Team 13) of the Team Project 2024 module.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

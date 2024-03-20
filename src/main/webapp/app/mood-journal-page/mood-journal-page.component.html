@@ -1,1 +1,164 @@
-<p>mood-journal-page works!</p>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <title>MOOD JOURNAL</title>
+  </head>
+  <body>
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <nav class="main-nav">
+              <!-- ***** Logo Start ***** -->
+              <a href="#" class="logo">
+                <img src="assets/images/purefy-removebg-preview.png" alt="" />
+              </a>
+              <!-- ***** Logo End ***** -->
+              <!-- ***** Menu Start ***** -->
+              <ul class="nav">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Challenges</a></li>
+                <li><a href="#" routerLink="/MoodJournalPage">Mood Journal</a></li>
+                <li><a href="#">Habit Tracker</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Team</a></li>
+                <li>
+                  <a href="#" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
+                </li>
+              </ul>
+              <a class="menu-trigger">
+                <span>Menu</span>
+              </a>
+              <!-- ***** Menu End ***** -->
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <!-- ***** Page Content Start ***** -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="page-content">
+            <h4>Welcome to Your Mood Journal</h4>
+            <!-- ***** Introductory Section Expanded ***** -->
+            <div class="intro-section">
+              <h2>What is the <u>Mood Journal</u>?</h2>
+              <p>
+                Mood Journal is a personal space for you to express your thoughts, emotions, and daily experiences. It's designed to help
+                you track your mood over time, discover patterns, and reflect on your mental well-being. Whether you're looking to manage
+                stress, enhance self-awareness, or simply keep a record of your days, Mood Journal is here to support you on your journey.
+              </p>
+              <!-- Subsection for Entries -->
+              <div class="intro-subsection">
+                <h3>Entries</h3>
+                <p>
+                  'Entries' allow you to freely jot down your daily experiences, thoughts, and feelings. This is your space to write without
+                  constraints, making it perfect for keeping track of day-to-day activities, introspection, or expressing creativity. It's
+                  your personal diary for whatever you wish to record.
+                </p>
+              </div>
+              <!-- Subsection for Prompts -->
+              <div class="intro-subsection">
+                <h3>Prompts</h3>
+                <p>
+                  'Prompts' offer guided prompts to inspire your writing. They are designed to help you explore your thoughts and feelings
+                  more deeply, providing a starting point for reflection and self-discovery. These prompts are generated based on your
+                  chosen mood from the 'Mood Picker' thus engaging your mind and encouraging meaningful entries based on your feelings.
+                </p>
+              </div>
+              <p>Start by selecting 'Entries' to log your daily experiences or 'Prompts' to explore guided reflections.</p>
+            </div>
+            <!-- ***** MoodJournal Section Start ***** -->
+            <div class="row">
+              <div class="col-lg-2">
+                <!-- ***** Sidebar Start ***** -->
+                <div class="sidebar" id="sidebar">
+                  <ul>
+                    <li><a href="#" routerLink="/MoodJournalPage">All</a></li>
+                    <li><a href="#" routerLink="/Entries">Entries</a></li>
+                    <li><a href="#" routerLink="/Prompts">Prompts</a></li>
+                  </ul>
+                </div>
+                <!-- ***** Sidebar End ***** -->
+              </div>
+              <div class="col-lg-10 mood-journal-section">
+                <div id="journal-content">
+                  <!-- ***** Search Bar Added Here ***** -->
+                  <div class="journal-search">
+                    <form id="journalSearch" action="#">
+                      <input type="text" placeholder="Search Mood Journal" id="journalSearchText" name="searchKeyword" />
+                      <button type="submit" class="search-button"><i class="fa fa-search"></i></button>
+                    </form>
+                  </div>
+                  <!-- Example of a Normal Entry -->
+                  <div class="card mb-4 normal-entry">
+                    <div class="card-body">
+                      <h5 class="card-title">Reflections on a Quiet Evening</h5>
+                      <p class="card-text">
+                        The tranquility of the evening brings a sense of peace. It's moments like these that remind me to slow down and
+                        cherish the present.
+                      </p>
+                      <p class="card-text"><small class="text-muted">Entry Date: 2024-03-20</small></p>
+                    </div>
+                  </div>
+                  <!-- Example of a Prompted Entry -->
+                  <div class="card mb-4 prompted-entry">
+                    <div class="card-body">
+                      <h5 class="card-title">Dream Destinations</h5>
+                      <p class="card-text">Prompt: If you could travel anywhere, where would you go?</p>
+                      <p class="card-text">I'd choose the serene landscapes of New Zealand, a paradise for nature lovers.</p>
+                      <p class="card-text"><small class="text-muted">Entry Date: 2024-03-21</small></p>
+                    </div>
+                  </div>
+                  <!-- Example of a Normal Entry -->
+                  <div class="card mb-4 normal-entry">
+                    <div class="card-body">
+                      <h5 class="card-title">Joy in the Little Things</h5>
+                      <p class="card-text">
+                        Today, I found joy in the smallest moments: a delicious cup of coffee, a good book, and the warmth of the sun.
+                      </p>
+                      <p class="card-text"><small class="text-muted">Entry Date: 2024-03-22</small></p>
+                    </div>
+                  </div>
+                  <!-- Example of a Prompted Entry -->
+                  <div class="card mb-4 prompted-entry">
+                    <div class="card-body">
+                      <h5 class="card-title">Gratitude for Today</h5>
+                      <p class="card-text">Prompt: What made you smile today?</p>
+                      <p class="card-text">A video call with an old friend brought so much laughter and reminiscing.</p>
+                      <p class="card-text"><small class="text-muted">Entry Date: 2024-03-23</small></p>
+                    </div>
+                  </div>
+                  <!-- ***** MoodJournal Section End ***** -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ***** Page Content End ***** -->
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <p>
+              Copyright © 2024, Purefy. All rights reserved.
+
+              <br />You are accessing an experimental web application developed by participants (Team 13) of the Team Project 2024 module.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
