@@ -18,7 +18,7 @@ import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
 
 /**
- * REST controller for managing {@link team.bham.domain.Members}.
+ * REST controller for managing {@link Members}.
  */
 @RestController
 @RequestMapping("/api")

@@ -20,7 +20,7 @@ import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
 
 /**
- * REST controller for managing {@link team.bham.domain.LandingPage}.
+ * REST controller for managing {@link LandingPage}.
  */
 @RestController
 @RequestMapping("/api")

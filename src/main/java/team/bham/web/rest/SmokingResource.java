@@ -18,7 +18,7 @@ import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
 
 /**
- * REST controller for managing {@link team.bham.domain.Smoking}.
+ * REST controller for managing {@link Smoking}.
  */
 @RestController
 @RequestMapping("/api")

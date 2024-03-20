@@ -18,7 +18,7 @@ import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
 
 /**
- * REST controller for managing {@link team.bham.domain.PromptsPage}.
+ * REST controller for managing {@link PromptsPage}.
  */
 @RestController
 @RequestMapping("/api")

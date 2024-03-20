@@ -18,7 +18,7 @@ import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
 
 /**
- * REST controller for managing {@link team.bham.domain.JunkFood}.
+ * REST controller for managing {@link JunkFood}.
  */
 @RestController
 @RequestMapping("/api")
