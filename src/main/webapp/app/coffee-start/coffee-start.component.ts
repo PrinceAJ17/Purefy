@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import dayjs from 'dayjs/esm';
+import { HistoryService } from '../entities/history/service/history.service';
+import { AccountService } from '../core/auth/account.service';
+import { catchError, tap } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'jhi-coffee-start',
@@ -7,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./coffee-start.component.scss'],
 })
 export class CoffeeStartComponent implements OnInit {
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private accountService: AccountService, private historyService: HistoryService) {}
 
   currentState: string | undefined;
   timers: { [timerId: string]: string } = {};
@@ -73,6 +78,55 @@ export class CoffeeStartComponent implements OnInit {
     this.timers[timerId] = '';
     this.challengeCompleted[timerId] = false;
     delete this.timerIntervals[timerId]; // Clean up the interval reference
+  }
+
+  startChallenge(challengeName: string, challengeLevel: string) {
+    this.accountService
+      .identity()
+      .pipe(
+        tap(user => {
+          if (user !== null) {
+            const startDate = dayjs(); // Capture the current date and time
+            this.historyService
+              .createHistoryForChallenge(challengeName, challengeLevel, startDate)
+              .pipe(
+                tap(() => {
+                  // History created successfully
+                  console.log('History created successfully');
+                  // Optionally, you can navigate to a different route or perform other actions upon successful creation of history
+                }),
+                catchError(error => {
+                  // Handle error
+                  console.error('Error creating history:', error);
+                  return throwError(error); // Re-throw error for further handling if needed
+                })
+              )
+              .subscribe();
+          } else {
+            // User is not logged in, handle the case accordingly
+            console.log('User is not logged in.');
+            // You might want to display a message to the user or redirect them to the login page
+          }
+        }),
+        catchError(error => {
+          // Handle error fetching user identity
+          console.error('Error fetching user identity:', error);
+          return throwError(error); // Re-throw error for further handling if needed
+        })
+      )
+      .subscribe();
+  }
+
+  // This method combines starting the timer and the challenge
+  startTimerAndChallenge(timerId: string, challengeName: string, challengeLevel: string) {
+    this.startTimer(timerId, 24); // Assuming this starts the timer
+    this.startChallenge(challengeName, challengeLevel); // Initiates the challenge
+  }
+
+  // Method to stop the timer, could be extended to include challenge stopping logic
+  stopTimerAndChallenge(timerId: string) {
+    this.stopTimer(timerId); // Stop the timer
+    // Here, you could add logic to handle the challenge stopping, if necessary
   }
 
   timerRunning(timerId: string): boolean {

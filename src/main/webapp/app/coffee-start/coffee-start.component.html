@@ -113,15 +113,14 @@
                           </div>
                           <div class="col-lg-12">
                             <div *ngIf="!timerRunning('timer1')" class="main-border-button">
-                              <!-- This link is shown if the timer is not running, regardless of whether the challenge has been completed before. -->
-                              <a href="#" (click)="startTimer('timer1', 24); $event.preventDefault()">START NOW!</a>
+                              <a href="#" (click)="startTimerAndChallenge('timer1', 'Coffee', '1'); $event.preventDefault()">START NOW!</a>
                             </div>
 
-                            <!-- While the timer is running, show the time remaining and a "Stop Challenge" link -->
+                            <!-- Display time remaining and stop challenge link -->
                             <div *ngIf="timerRunning('timer1')" class="main-border-button">
                               <h4>Time Remaining: {{ timers['timer1'] }}</h4>
-                              <!-- "Stop Challenge" link -->
-                              <a href="#" (click)="stopTimer('timer1'); $event.preventDefault()">QUIT!</a>
+                              <br />
+                              <a href="#" (click)="stopTimerAndChallenge('timer1'); $event.preventDefault()">QUIT!</a>
                             </div>
                           </div>
                         </div>
@@ -175,7 +174,7 @@
                             <p>
                               Limit your coffee consumption to just two occasions throughout the day. This approach helps in balancing the
                               benefits of caffeine, such as increased alertness and concentration, with its potential downsides, including
-                              disturbed sleep patterns and increased heart rate if overconsumed. Choose two specific times that align with
+                              disturbed sleep patterns and increased heart rate if over-consumed. Choose two specific times that align with
                               your energy needs, perhaps one in the morning to kickstart your day and another in the early afternoon to
                               sustain your energy levels without affecting your nighttime rest. Remember, moderation is key to enjoying
                               coffee's perks while maintaining your health and well-being.
@@ -183,17 +182,14 @@
                           </div>
                           <div class="col-lg-12">
                             <div *ngIf="!timerRunning('timer2')" class="main-border-button">
-                              <!-- This link is shown if the timer is not running, regardless of whether the challenge has been completed before. -->
-                              <a href="#" (click)="startTimer('timer2', 24); $event.preventDefault()">START NOW!</a>
+                              <a href="#" (click)="startTimerAndChallenge('timer2', 'Coffee', '2'); $event.preventDefault()">START NOW!</a>
                             </div>
 
-                            <!-- Display time remaining if the timer is running -->
-                            <!-- While the timer is running, show the time remaining and a "Stop Challenge" link -->
+                            <!-- Display time remaining and stop challenge link -->
                             <div *ngIf="timerRunning('timer2')" class="main-border-button">
                               <h4>Time Remaining: {{ timers['timer2'] }}</h4>
-                              <!-- "Stop Challenge" link -->
                               <br />
-                              <a href="#" (click)="stopTimer('timer2'); $event.preventDefault()">QUIT!</a>
+                              <a href="#" (click)="stopTimerAndChallenge('timer2'); $event.preventDefault()">QUIT!</a>
                             </div>
                           </div>
                         </div>
@@ -247,7 +243,7 @@
                             <p>
                               Limit your coffee consumption to just one occasion throughout the day. This approach helps in balancing the
                               benefits of caffeine, such as increased alertness and concentration, with its potential downsides, including
-                              disturbed sleep patterns and increased heart rate if overconsumed. Choose one specific time that align with
+                              disturbed sleep patterns and increased heart rate if over-consumed. Choose one specific time that align with
                               your energy needs, perhaps one in the morning to kickstart your day to sustain your energy levels without
                               affecting your nighttime rest. Remember, moderation is key to enjoying coffee's perks while maintaining your
                               health and well-being.
@@ -255,17 +251,14 @@
                           </div>
                           <div class="col-lg-12">
                             <div *ngIf="!timerRunning('timer3')" class="main-border-button">
-                              <!-- This link is shown if the timer is not running, regardless of whether the challenge has been completed before. -->
-                              <a href="#" (click)="startTimer('timer3', 24); $event.preventDefault()">START NOW!</a>
+                              <a href="#" (click)="startTimerAndChallenge('timer3', 'Coffee', '3'); $event.preventDefault()">START NOW!</a>
                             </div>
 
-                            <!-- Display time remaining if the timer is running -->
-                            <!-- While the timer is running, show the time remaining and a "Stop Challenge" link -->
+                            <!-- Display time remaining and stop challenge link -->
                             <div *ngIf="timerRunning('timer3')" class="main-border-button">
                               <h4>Time Remaining: {{ timers['timer3'] }}</h4>
-                              <!-- "Stop Challenge" link -->
                               <br />
-                              <a href="#" (click)="stopTimer('timer3'); $event.preventDefault()">QUIT!</a>
+                              <a href="#" (click)="stopTimerAndChallenge('timer3'); $event.preventDefault()">QUIT!</a>
                             </div>
                           </div>
                         </div>
@@ -319,7 +312,7 @@
                             <p>
                               Limit your coffee consumption to just two occasions throughout the day. This approach helps in balancing the
                               benefits of caffeine, such as increased alertness and concentration, with its potential downsides, including
-                              disturbed sleep patterns and increased heart rate if overconsumed. Choose two specific times that align with
+                              disturbed sleep patterns and increased heart rate if over-consumed. Choose two specific times that align with
                               your energy needs, perhaps one in the morning to kickstart your day and another in the early afternoon to
                               sustain your energy levels without affecting your nighttime rest. Remember, moderation is key to enjoying
                               coffee's perks while maintaining your health and well-being.
@@ -327,17 +320,15 @@
                           </div>
                           <div class="col-lg-12">
                             <div *ngIf="!timerRunning('timer4')" class="main-border-button">
-                              <!-- This link is shown if the timer is not running, regardless of whether the challenge has been completed before. -->
-                              <a href="#" (click)="startTimer('timer2', 24); $event.preventDefault()">START NOW!</a>
+                              <a href="#" (click)="startTimerAndChallenge('timer4', 'Coffee', '4'); $event.preventDefault()">START NOW!</a>
                             </div>
 
-                            <!-- Display time remaining if the timer is running -->
-                            <!-- While the timer is running, show the time remaining and a "Stop Challenge" link -->
+                            <!-- Display time remaining and stop challenge link -->
                             <div *ngIf="timerRunning('timer4')" class="main-border-button">
                               <h4>Time Remaining: {{ timers['timer4'] }}</h4>
-                              <!-- "Stop Challenge" link -->
                               <br />
-                              <a href="#" (click)="stopTimer('timer4'); $event.preventDefault()">QUIT!</a>
+                              <a href="#" (click)="stopTimerAndChallenge('timer4'); $event.preventDefault()">QUIT!</a>
+                              <a routerLink="/History">History</a>
                             </div>
                           </div>
                         </div>

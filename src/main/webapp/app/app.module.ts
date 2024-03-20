@@ -41,6 +41,7 @@ import { MusicStartComponent } from './music-start/music-start.component';
 import { SmokingStartComponent } from './smoking-start/smoking-start.component';
 import { SocialStartComponent } from './social-start/social-start.component';
 import { VideoStartComponent } from './video-start/video-start.component';
+import { HistoryComponent } from './history/history.component';
 
 @NgModule({
   imports: [
@@ -85,6 +86,7 @@ import { VideoStartComponent } from './video-start/video-start.component';
     SmokingStartComponent,
     SocialStartComponent,
     VideoStartComponent,
+    HistoryComponent,
   ],
   bootstrap: [MainComponent],
 })
