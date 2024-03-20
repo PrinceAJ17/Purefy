@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <title>EMOTIONS</title>
+  </head>
+  <body>
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <nav class="main-nav">
+              <!-- ***** Logo Start ***** -->
+              <a href="#" class="logo">
+                <img src="assets/images/purefy-removebg-preview.png" alt="" />
+              </a>
+              <!-- ***** Logo End ***** -->
+              <!-- ***** Menu Start ***** -->
+              <ul class="nav">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Challenges</a></li>
+                <li><a href="#" routerLink="/MoodJournalPage">Mood Journal</a></li>
+                <li><a href="#">Habit Tracker</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Team</a></li>
+                <li>
+                  <a href="#" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
+                </li>
+              </ul>
+              <a class="menu-trigger">
+                <span>Menu</span>
+              </a>
+              <!-- ***** Menu End ***** -->
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <!-- ***** Page Content Start ***** -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="page-content">
+            <h4>Journal in your emotions using prompts!</h4>
+            <div class="intro-section-prompts">
+              <p>
+                Below are some AI generated prompts specifically chosen according to your emotions. Feel free to use them to help you
+                reflect and contemplate on your feelings.
+              </p>
+            </div>
+            <!-- AI Prompts Carousel Here -->
+            <div class="owl-features owl-carousel">
+              <!-- First Prompt -->
+              <div class="item">
+                <div class="thumb">
+                  <h4>How does your sadness manifest in your thoughts, body, and relationships?</h4>
+                </div>
+              </div>
+              <!-- Second Prompt -->
+              <div class="item">
+                <div class="thumb">
+                  <h4>Reflect on a recent experience of sadness. What triggered it, and how did you cope?</h4>
+                </div>
+              </div>
+              <!-- Third Prompt -->
+              <div class="item">
+                <div class="thumb">
+                  <h4>What messages might your sadness be trying to communicate to you?</h4>
+                </div>
+              </div>
+              <!-- Fourth Prompt -->
+              <div class="item">
+                <div class="thumb">
+                  <h4>How can you reframe your sadness as an opportunity for personal growth and resilience?</h4>
+                </div>
+              </div>
+              <!-- Fifth Prompt -->
+              <div class="item">
+                <div class="thumb">
+                  <h4>Identify three things that bring you comfort or joy during moments of sadness.</h4>
+                </div>
+              </div>
+              <!-- Sixth Prompt -->
+              <div class="item">
+                <div class="thumb">
+                  <h4>Contemplate a moment when sadness felt overwhelming. How did you find light in that darkness?</h4>
+                </div>
+              </div>
+            </div>
+            <div class="journal-entry-form">
+              <form id="journalForm">
+                <div class="form-group">
+                  <label for="promptTitle">Title:</label>
+                  <input type="text" id="promptTitle" name="promptTitle" />
+                </div>
+                <div class="form-group">
+                  <p>Selected Prompt: <span id="selectedPrompt"></span></p>
+                </div>
+                <div class="form-group">
+                  <label for="promptContent">Content:</label>
+                  <textarea id="promptContent" name="promptContent" placeholder="What's on your mind?"></textarea>
+                </div>
+                <button type="submit">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ***** Page Content End ***** -->
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <p>
+              Copyright © 2024, Purefy. All rights reserved. <br />You are accessing an experimental web application developed by
+              participants (Team 13) of the Team Project 2024 module.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
