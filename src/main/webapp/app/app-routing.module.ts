@@ -18,6 +18,7 @@ import { MusicLevelsComponent } from './music-levels/music-levels.component';
 import { GamesLevelsComponent } from './games-levels/games-levels.component';
 import { VideoLevelsComponent } from './video-levels/video-levels.component';
 import { AlcoholStartComponent } from './alcohol-start/alcohol-start.component';
+import { HistoryComponent } from './history/history.component';
 
 const routes: Routes = [
   {
@@ -63,6 +64,10 @@ const routes: Routes = [
   {
     path: 'Alcohol-Start/:state',
     component: AlcoholStartComponent,
+  },
+  {
+    path: 'History',
+    component: HistoryComponent,
   },
 ];
 
@@ -133,6 +138,10 @@ const routes: Routes = [
         {
           path: 'Alcohol-Start/:state',
           component: AlcoholStartComponent,
+        },
+        {
+          path: 'History',
+          component: HistoryComponent,
         },
         navbarRoute,
         ...errorRoute,
