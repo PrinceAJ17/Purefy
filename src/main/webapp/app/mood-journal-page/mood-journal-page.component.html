@@ -22,8 +22,9 @@
               <ul class="nav">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Challenges</a></li>
-                <li><a href="#" routerLink="/MoodJournalPage">Mood Journal</a></li>
+                <li><a href="#" routerLink="/MoodJournalPage" class="active">Mood Journal</a></li>
                 <li><a href="#">Habit Tracker</a></li>
+                <li><a href="#">Leaderboards</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Team</a></li>
                 <li>
@@ -46,7 +47,7 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="page-content">
-            <h4>Welcome to Your Mood Journal</h4>
+            <h4><strong>Welcome to Your Mood Journal</strong></h4>
             <!-- ***** Introductory Section Expanded ***** -->
             <div class="intro-section">
               <h2>What is the <u>Mood Journal</u>?</h2>
@@ -81,9 +82,9 @@
                 <!-- ***** Sidebar Start ***** -->
                 <div class="sidebar" id="sidebar">
                   <ul>
-                    <li><a href="#" routerLink="/MoodJournalPage">All</a></li>
-                    <li><a href="#" routerLink="/Entries">Entries</a></li>
-                    <li><a href="#" routerLink="/Prompts">Prompts</a></li>
+                    <li><a routerLink="/MoodJournalPage">All</a></li>
+                    <li><a routerLink="/Entries">Entries</a></li>
+                    <li><a routerLink="/Prompts">Prompts</a></li>
                   </ul>
                 </div>
                 <!-- ***** Sidebar End ***** -->
@@ -100,7 +101,7 @@
                   <!-- Example of a Normal Entry -->
                   <div class="card mb-4 normal-entry">
                     <div class="card-body">
-                      <h5 class="card-title">Reflections on a Quiet Evening</h5>
+                      <h6 class="card-title">Reflections on a Quiet Evening</h6>
                       <p class="card-text">
                         The tranquility of the evening brings a sense of peace. It's moments like these that remind me to slow down and
                         cherish the present.
@@ -111,7 +112,7 @@
                   <!-- Example of a Prompted Entry -->
                   <div class="card mb-4 prompted-entry">
                     <div class="card-body">
-                      <h5 class="card-title">Dream Destinations</h5>
+                      <h6 class="card-title">Dream Destinations</h6>
                       <p class="card-text">Prompt: If you could travel anywhere, where would you go?</p>
                       <p class="card-text">I'd choose the serene landscapes of New Zealand, a paradise for nature lovers.</p>
                       <p class="card-text"><small class="text-muted">Entry Date: 2024-03-21</small></p>
@@ -120,7 +121,7 @@
                   <!-- Example of a Normal Entry -->
                   <div class="card mb-4 normal-entry">
                     <div class="card-body">
-                      <h5 class="card-title">Joy in the Little Things</h5>
+                      <h6 class="card-title">Joy in the Little Things</h6>
                       <p class="card-text">
                         Today, I found joy in the smallest moments: a delicious cup of coffee, a good book, and the warmth of the sun.
                       </p>
@@ -130,7 +131,7 @@
                   <!-- Example of a Prompted Entry -->
                   <div class="card mb-4 prompted-entry">
                     <div class="card-body">
-                      <h5 class="card-title">Gratitude for Today</h5>
+                      <h6 class="card-title">Gratitude for Today</h6>
                       <p class="card-text">Prompt: What made you smile today?</p>
                       <p class="card-text">A video call with an old friend brought so much laughter and reminiscing.</p>
                       <p class="card-text"><small class="text-muted">Entry Date: 2024-03-23</small></p>
