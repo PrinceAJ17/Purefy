@@ -20,6 +20,9 @@ import { VideoLevelsComponent } from './video-levels/video-levels.component';
 import { AlcoholStartComponent } from './alcohol-start/alcohol-start.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { MoodJournalPageComponent } from './mood-journal-page/mood-journal-page.component';
+import { EntriesComponent } from './entries/entries.component';
+import { PromptsComponent } from './prompts/prompts.component';
+import { EmotionsComponent } from './emotions/emotions.component';
 
 const routes: Routes = [
   {
@@ -73,6 +76,18 @@ const routes: Routes = [
   {
     path: 'MoodJournalPage',
     component: MoodJournalPageComponent,
+  },
+  {
+    path: 'Entries',
+    component: EntriesComponent,
+  },
+  {
+    path: 'Prompts',
+    component: PromptsComponent,
+  },
+  {
+    path: 'Emotions',
+    component: EmotionsComponent,
   },
 ];
 
@@ -151,6 +166,18 @@ const routes: Routes = [
         {
           path: 'MoodJournalPage',
           component: MoodJournalPageComponent,
+        },
+        {
+          path: 'Entries',
+          component: EntriesComponent,
+        },
+        {
+          path: 'Prompts',
+          component: PromptsComponent,
+        },
+        {
+          path: 'Emotions',
+          component: EmotionsComponent,
         },
         navbarRoute,
         ...errorRoute,
