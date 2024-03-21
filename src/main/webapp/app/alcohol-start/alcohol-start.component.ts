@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { HistoryService } from '../entities/history/service/history.service';
+import { AccountService } from '../core/auth/account.service';
+import { tap, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import dayjs from 'dayjs/esm';
 
 @Component({
   selector: 'jhi-alcohol-start',
@@ -7,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./alcohol-start.component.scss'],
 })
 export class AlcoholStartComponent implements OnInit {
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private accountService: AccountService, private historyService: HistoryService) {}
 
   currentState: string | undefined;
   timers: { [timerId: string]: string } = {};
@@ -17,7 +22,6 @@ export class AlcoholStartComponent implements OnInit {
   ngOnInit(): void {
     this.loadScript('vendor/jquery/jquery.min.js')
       .then(() => this.loadScript('vendor/bootstrap/js/bootstrap.min.js'))
-      .then(() => this.loadScript('assets/js/isotope.min.js'))
       .then(() => this.loadScript('assets/js/owl-carousel.js'))
       .then(() => this.loadScript('assets/js/tabs.js'))
       .then(() => this.loadScript('assets/js/popup.js'))
@@ -75,6 +79,55 @@ export class AlcoholStartComponent implements OnInit {
     delete this.timerIntervals[timerId]; // Clean up the interval reference
   }
 
+  startChallenge(challengeName: string, challengeLevel: string) {
+    this.accountService
+      .identity()
+      .pipe(
+        tap(user => {
+          if (user !== null) {
+            const startDate = dayjs(); // Capture the current date and time
+            this.historyService
+              .createHistoryForChallenge(challengeName, challengeLevel, startDate)
+              .pipe(
+                tap(() => {
+                  // History created successfully
+                  console.log('History created successfully');
+                  // Optionally, you can navigate to a different route or perform other actions upon successful creation of history
+                }),
+                catchError(error => {
+                  // Handle error
+                  console.error('Error creating history:', error);
+                  return throwError(error); // Re-throw error for further handling if needed
+                })
+              )
+              .subscribe();
+          } else {
+            // User is not logged in, handle the case accordingly
+            console.log('User is not logged in.');
+            // You might want to display a message to the user or redirect them to the login page
+          }
+        }),
+        catchError(error => {
+          // Handle error fetching user identity
+          console.error('Error fetching user identity:', error);
+          return throwError(error); // Re-throw error for further handling if needed
+        })
+      )
+      .subscribe();
+  }
+
+  // This method combines starting the timer and the challenge
+  startTimerAndChallenge(timerId: string, Duration: number, challengeName: string, challengeLevel: string) {
+    this.startTimer(timerId, Duration); // Assuming this starts the timer
+    this.startChallenge(challengeName, challengeLevel); // Initiates the challenge
+  }
+
+  // Method to stop the timer, could be extended to include challenge stopping logic
+  stopTimerAndChallenge(timerId: string, challengeName: string, challengeLevel: string) {
+    this.stopTimer(timerId); // Stop the timer
+    this.startChallenge(challengeName, challengeLevel);
+  }
+
   timerRunning(timerId: string): boolean {
     return !!localStorage.getItem(timerId);
   }
@@ -104,7 +157,7 @@ export class AlcoholStartComponent implements OnInit {
 
   checkTimers(): void {
     // Dynamically check your timers here based on application needs
-    const timerIds = ['AL1', 'AL2', 'AL3', 'AL4'];
+    const timerIds = ['A1', 'A2', 'A3', 'A4'];
     timerIds.forEach(timerId => {
       if (this.timerRunning(timerId)) {
         this.updateTimeLeft(timerId);

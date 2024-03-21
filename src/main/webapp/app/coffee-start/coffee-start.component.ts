@@ -22,7 +22,6 @@ export class CoffeeStartComponent implements OnInit {
   ngOnInit(): void {
     this.loadScript('vendor/jquery/jquery.min.js')
       .then(() => this.loadScript('vendor/bootstrap/js/bootstrap.min.js'))
-      .then(() => this.loadScript('assets/js/isotope.min.js'))
       .then(() => this.loadScript('assets/js/owl-carousel.js'))
       .then(() => this.loadScript('assets/js/tabs.js'))
       .then(() => this.loadScript('assets/js/popup.js'))
@@ -34,7 +33,6 @@ export class CoffeeStartComponent implements OnInit {
       .catch(error => {
         console.error('Script loading error:', error);
       });
-
     this.route.params.subscribe(params => {
       // You might set a default state if 'state' param is not provided
       this.currentState = params['state']; // Could be undefined if not provided
@@ -124,9 +122,9 @@ export class CoffeeStartComponent implements OnInit {
   }
 
   // Method to stop the timer, could be extended to include challenge stopping logic
-  stopTimerAndChallenge(timerId: string) {
+  stopTimerAndChallenge(timerId: string, challengeName: string, challengeLevel: string) {
     this.stopTimer(timerId); // Stop the timer
-    // Here, you could add logic to handle the challenge stopping, if necessary
+    this.startChallenge(challengeName, challengeLevel);
   }
 
   timerRunning(timerId: string): boolean {
