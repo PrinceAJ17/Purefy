@@ -6,7 +6,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
-    <title>Social Media Levels</title>
+    <title>Alcohol Levels</title>
   </head>
 
   <body>
@@ -34,20 +34,13 @@
                 <img src="assets/images/purefy-removebg-preview.png" alt="" />
               </a>
               <!-- ***** Logo End ***** -->
-              <!-- ***** Search Start ***** -->
-              <div class="search-input">
-                <form id="search" action="#">
-                  <input type="text" placeholder="Search Challenges" id="searchText" name="searchKeyword" onkeypress="handle" />
-                  <i class="fa fa-search"></i>
-                </form>
-              </div>
-              <!-- ***** Search End ***** -->
               <!-- ***** Menu Start ***** -->
               <ul class="nav">
                 <li><a href="">Home</a></li>
                 <li><a href="index.html" class="active">Challenges</a></li>
                 <li><a href="">Mood Journal</a></li>
                 <li><a href="">Habit Tracker</a></li>
+                <li><a href="">Leaderboards</a></li>
                 <li><a href="">About</a></li>
                 <li><a href="">Team</a></li>
                 <li>
@@ -82,7 +75,7 @@
                       <div class="thumb">
                         <img src="assets/images/ezgif-3-ff7c873609.jpg" alt="" />
                         <div class="hover-effect">
-                          <h6>Start</h6>
+                          <h6 (click)="navigateToTarget('state1')">Start</h6>
                         </div>
                       </div>
                       <h4>Beginner<br /><span>A nice way to start.</span></h4>
@@ -94,7 +87,7 @@
                       <div class="thumb">
                         <img src="assets/images/ezgif-3-5800aa8b9e.jpg" alt="" />
                         <div class="hover-effect">
-                          <h6>Start</h6>
+                          <h6 (click)="navigateToTarget('state2')">Start</h6>
                         </div>
                       </div>
                       <h4>Amateur<br /><span>You are good at self control?</span></h4>
@@ -106,7 +99,7 @@
                       <div class="thumb">
                         <img src="assets/images/ezgif-3-889b0f5a8d.jpg" alt="" />
                         <div class="hover-effect">
-                          <h6>Start</h6>
+                          <h6 (click)="navigateToTarget('state3')">Start</h6>
                         </div>
                       </div>
                       <h4>Intermediate<br /><span>You are almost there.</span></h4>
@@ -117,7 +110,7 @@
                       <div class="thumb">
                         <img src="assets/images/ezgif-3-040872034a.jpg" alt="" />
                         <div class="hover-effect">
-                          <h6>Start</h6>
+                          <h6 (click)="navigateToTarget('state4')">Start</h6>
                         </div>
                       </div>
                       <h4>Legendary<br /><span>Time to shine.</span></h4>
@@ -128,7 +121,7 @@
                       <div class="thumb">
                         <img src="assets/images/ezgif-3-ff7c873609.jpg" alt="" />
                         <div class="hover-effect">
-                          <h6>Start</h6>
+                          <h6 (click)="navigateToTarget('state1')">Start</h6>
                         </div>
                       </div>
                       <h4>Beginner<br /><span>A nice way to start.</span></h4>
@@ -140,7 +133,7 @@
                       <div class="thumb">
                         <img src="assets/images/ezgif-3-5800aa8b9e.jpg" alt="" />
                         <div class="hover-effect">
-                          <h6>Start</h6>
+                          <h6 (click)="navigateToTarget('state2')">Start</h6>
                         </div>
                       </div>
                       <h4>Amateur<br /><span>You are good at self control?</span></h4>
@@ -152,7 +145,7 @@
                       <div class="thumb">
                         <img src="assets/images/ezgif-3-889b0f5a8d.jpg" alt="" />
                         <div class="hover-effect">
-                          <h6>Start</h6>
+                          <h6 (click)="navigateToTarget('state3')">Start</h6>
                         </div>
                       </div>
                       <h4>Intermediate<br /><span>You are almost there.</span></h4>
@@ -163,7 +156,7 @@
                       <div class="thumb">
                         <img src="assets/images/ezgif-3-040872034a.jpg" alt="" />
                         <div class="hover-effect">
-                          <h6>Start</h6>
+                          <h6 (click)="navigateToTarget('state4')">Start</h6>
                         </div>
                       </div>
                       <h4>Legendary<br /><span>Time to shine.</span></h4>

@@ -22,41 +22,42 @@
       </div>
     </div>
     <!-- ***** Preloader End ***** -->
+    <header class="header-area header-sticky">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <nav class="main-nav">
+              <!-- ***** Logo Start ***** -->
+              <a href="" class="logo">
+                <img src="assets/images/purefy-removebg-preview.png" alt="" />
+              </a>
+              <!-- ***** Logo End ***** -->
+              <!-- ***** Menu Start ***** -->
+              <ul class="nav">
+                <li><a href="">Home</a></li>
+                <li><a href="index.html" class="active">Challenges</a></li>
+                <li><a href="">Mood Journal</a></li>
+                <li><a href="">Habit Tracker</a></li>
+                <li><a href="">Leaderboards</a></li>
+                <li><a href="">About</a></li>
+                <li><a href="">Team</a></li>
+                <li>
+                  <a href="" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
+                </li>
+              </ul>
+              <a class="menu-trigger">
+                <span>Menu</span>
+              </a>
+              <!-- ***** Menu End ***** -->
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
     <!-- ***** Header Area End ***** -->
 
     <div [ngSwitch]="currentState">
       <div *ngSwitchCase="'state1'">
-        <header class="header-area header-sticky">
-          <div class="container">
-            <div class="row">
-              <div class="col-12">
-                <nav class="main-nav">
-                  <!-- ***** Logo Start ***** -->
-                  <a href="" class="logo">
-                    <img src="assets/images/purefy-removebg-preview.png" alt="" />
-                  </a>
-                  <!-- ***** Logo End ***** -->
-                  <!-- ***** Menu Start ***** -->
-                  <ul class="nav">
-                    <li><a href="">Home</a></li>
-                    <li><a href="index.html" class="active">Challenges</a></li>
-                    <li><a href="">Mood Journal</a></li>
-                    <li><a href="">Habit Tracker</a></li>
-                    <li><a href="">About</a></li>
-                    <li><a href="">Team</a></li>
-                    <li>
-                      <a href="" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
-                    </li>
-                  </ul>
-                  <a class="menu-trigger">
-                    <span>Menu</span>
-                  </a>
-                  <!-- ***** Menu End ***** -->
-                </nav>
-              </div>
-            </div>
-          </div>
-        </header>
         <div class="container">
           <div class="row">
             <div class="col-lg-12">
@@ -104,17 +105,29 @@
                               consumption and a healthier lifestyle.
                             </p>
                           </div>
+
                           <div class="col-lg-12">
-                            <div *ngIf="!timerRunning('AL1')" class="main-border-button">
-                              <!-- This link is shown if the timer is not running, regardless of whether the challenge has been completed before. -->
-                              <a href="#" (click)="startTimer('AL1', 24); $event.preventDefault()">START NOW!</a>
+                            <div *ngIf="!timerRunning('A1')" class="main-border-button">
+                              <a href="#" (click)="startTimerAndChallenge('A1', 24, 'Alcohol', '1'); $event.preventDefault()">START NOW!</a>
                             </div>
 
-                            <!-- While the timer is running, show the time remaining and a "Stop Challenge" link -->
-                            <div *ngIf="timerRunning('AL1')" class="main-border-button">
-                              <h4>Time Remaining: {{ timers['AL1'] }}</h4>
-                              <!-- "Stop Challenge" link -->
-                              <a href="#" (click)="stopTimer('AL1'); $event.preventDefault()">QUIT!</a>
+                            <!-- Display time remaining and stop challenge link -->
+                            <div *ngIf="timerRunning('A1')" class="main-border-button">
+                              <h4>Time Remaining: {{ timers['A1'] }}</h4>
+                              <br />
+                              <a
+                                href="#"
+                                (click)="
+                                  stopTimerAndChallenge(
+                                    'A1',
+                                    'Alcohol (This challenge was called off, and the date of cancellation is indicated below.)',
+                                    '1'
+                                  );
+                                  $event.preventDefault()
+                                "
+                                >QUIT!</a
+                              >
+                              <a routerLink="/History">History</a>
                             </div>
                           </div>
                         </div>
@@ -129,37 +142,6 @@
         </div>
       </div>
       <div *ngSwitchCase="'state2'">
-        <header class="header-area header-sticky">
-          <div class="container">
-            <div class="row">
-              <div class="col-12">
-                <nav class="main-nav">
-                  <!-- ***** Logo Start ***** -->
-                  <a href="" class="logo">
-                    <img src="assets/images/purefy-removebg-preview.png" alt="" />
-                  </a>
-                  <!-- ***** Logo End ***** -->
-                  <!-- ***** Menu Start ***** -->
-                  <ul class="nav">
-                    <li><a href="">Home</a></li>
-                    <li><a href="index.html" class="active">Challenges</a></li>
-                    <li><a href="">Mood Journal</a></li>
-                    <li><a href="">Habit Tracker</a></li>
-                    <li><a href="">About</a></li>
-                    <li><a href="">Team</a></li>
-                    <li>
-                      <a href="" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
-                    </li>
-                  </ul>
-                  <a class="menu-trigger">
-                    <span>Menu</span>
-                  </a>
-                  <!-- ***** Menu End ***** -->
-                </nav>
-              </div>
-            </div>
-          </div>
-        </header>
         <div class="container">
           <div class="row">
             <div class="col-lg-12">
@@ -206,19 +188,31 @@
                               week, you're taking a positive step towards enhancing your overall health and well-being.
                             </p>
                           </div>
+
                           <div class="col-lg-12">
-                            <div *ngIf="!timerRunning('AL2')" class="main-border-button">
-                              <!-- This link is shown if the timer is not running, regardless of whether the challenge has been completed before. -->
-                              <a href="#" (click)="startTimer('AL2', 24); $event.preventDefault()">START NOW!</a>
+                            <div *ngIf="!timerRunning('A2')" class="main-border-button">
+                              <a href="#" (click)="startTimerAndChallenge('A2', 168, 'Alcohol', '2'); $event.preventDefault()"
+                                >START NOW!</a
+                              >
                             </div>
 
-                            <!-- Display time remaining if the timer is running -->
-                            <!-- While the timer is running, show the time remaining and a "Stop Challenge" link -->
-                            <div *ngIf="timerRunning('AL2')" class="main-border-button">
-                              <h4>Time Remaining: {{ timers['AL2'] }}</h4>
-                              <!-- "Stop Challenge" link -->
+                            <!-- Display time remaining and stop challenge link -->
+                            <div *ngIf="timerRunning('A2')" class="main-border-button">
+                              <h4>Time Remaining: {{ timers['A2'] }}</h4>
                               <br />
-                              <a href="#" (click)="stopTimer('AL2'); $event.preventDefault()">QUIT!</a>
+                              <a
+                                href="#"
+                                (click)="
+                                  stopTimerAndChallenge(
+                                    'A2',
+                                    'Alcohol (This challenge was called off, and the date of cancellation is indicated below.)',
+                                    '2'
+                                  );
+                                  $event.preventDefault()
+                                "
+                                >QUIT!</a
+                              >
+                              <a routerLink="/History">History</a>
                             </div>
                           </div>
                         </div>
@@ -233,37 +227,6 @@
         </div>
       </div>
       <div *ngSwitchCase="'state3'">
-        <header class="header-area header-sticky">
-          <div class="container">
-            <div class="row">
-              <div class="col-12">
-                <nav class="main-nav">
-                  <!-- ***** Logo Start ***** -->
-                  <a href="" class="logo">
-                    <img src="assets/images/purefy-removebg-preview.png" alt="" />
-                  </a>
-                  <!-- ***** Logo End ***** -->
-                  <!-- ***** Menu Start ***** -->
-                  <ul class="nav">
-                    <li><a href="">Home</a></li>
-                    <li><a href="index.html" class="active">Challenges</a></li>
-                    <li><a href="">Mood Journal</a></li>
-                    <li><a href="">Habit Tracker</a></li>
-                    <li><a href="">About</a></li>
-                    <li><a href="">Team</a></li>
-                    <li>
-                      <a href="" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
-                    </li>
-                  </ul>
-                  <a class="menu-trigger">
-                    <span>Menu</span>
-                  </a>
-                  <!-- ***** Menu End ***** -->
-                </nav>
-              </div>
-            </div>
-          </div>
-        </header>
         <div class="container">
           <div class="row">
             <div class="col-lg-12">
@@ -310,19 +273,31 @@
                               your body a chance to reset and recover.
                             </p>
                           </div>
+
                           <div class="col-lg-12">
-                            <div *ngIf="!timerRunning('AL3')" class="main-border-button">
-                              <!-- This link is shown if the timer is not running, regardless of whether the challenge has been completed before. -->
-                              <a href="#" (click)="startTimer('AL3', 24); $event.preventDefault()">START NOW!</a>
+                            <div *ngIf="!timerRunning('A3')" class="main-border-button">
+                              <a href="#" (click)="startTimerAndChallenge('A3', 336, 'Alcohol', '3'); $event.preventDefault()"
+                                >START NOW!</a
+                              >
                             </div>
 
-                            <!-- Display time remaining if the timer is running -->
-                            <!-- While the timer is running, show the time remaining and a "Stop Challenge" link -->
-                            <div *ngIf="timerRunning('AL3')" class="main-border-button">
-                              <h4>Time Remaining: {{ timers['AL3'] }}</h4>
-                              <!-- "Stop Challenge" link -->
+                            <!-- Display time remaining and stop challenge link -->
+                            <div *ngIf="timerRunning('A3')" class="main-border-button">
+                              <h4>Time Remaining: {{ timers['A3'] }}</h4>
                               <br />
-                              <a href="#" (click)="stopTimer('AL33'); $event.preventDefault()">QUIT!</a>
+                              <a
+                                href="#"
+                                (click)="
+                                  stopTimerAndChallenge(
+                                    'A3',
+                                    'Alcohol (This challenge was called off, and the date of cancellation is indicated below.)',
+                                    '3'
+                                  );
+                                  $event.preventDefault()
+                                "
+                                >QUIT!</a
+                              >
+                              <a routerLink="/History">History</a>
                             </div>
                           </div>
                         </div>
@@ -337,37 +312,6 @@
         </div>
       </div>
       <div *ngSwitchCase="'state4'">
-        <header class="header-area header-sticky">
-          <div class="container">
-            <div class="row">
-              <div class="col-12">
-                <nav class="main-nav">
-                  <!-- ***** Logo Start ***** -->
-                  <a href="" class="logo">
-                    <img src="assets/images/purefy-removebg-preview.png" alt="" />
-                  </a>
-                  <!-- ***** Logo End ***** -->
-                  <!-- ***** Menu Start ***** -->
-                  <ul class="nav">
-                    <li><a href="">Home</a></li>
-                    <li><a href="index.html" class="active">Challenges</a></li>
-                    <li><a href="">Mood Journal</a></li>
-                    <li><a href="">Habit Tracker</a></li>
-                    <li><a href="">About</a></li>
-                    <li><a href="">Team</a></li>
-                    <li>
-                      <a href="" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
-                    </li>
-                  </ul>
-                  <a class="menu-trigger">
-                    <span>Menu</span>
-                  </a>
-                  <!-- ***** Menu End ***** -->
-                </nav>
-              </div>
-            </div>
-          </div>
-        </header>
         <div class="container">
           <div class="row">
             <div class="col-lg-12">
@@ -415,19 +359,31 @@
                               in your body and mind during this alcohol-free period.
                             </p>
                           </div>
+
                           <div class="col-lg-12">
-                            <div *ngIf="!timerRunning('AL4')" class="main-border-button">
-                              <!-- This link is shown if the timer is not running, regardless of whether the challenge has been completed before. -->
-                              <a href="#" (click)="startTimer('AL4', 24); $event.preventDefault()">START NOW!</a>
+                            <div *ngIf="!timerRunning('A4')" class="main-border-button">
+                              <a href="#" (click)="startTimerAndChallenge('A4', 720, 'Alcohol', '4'); $event.preventDefault()"
+                                >START NOW!</a
+                              >
                             </div>
 
-                            <!-- Display time remaining if the timer is running -->
-                            <!-- While the timer is running, show the time remaining and a "Stop Challenge" link -->
-                            <div *ngIf="timerRunning('AL4')" class="main-border-button">
-                              <h4>Time Remaining: {{ timers['AL4'] }}</h4>
-                              <!-- "Stop Challenge" link -->
+                            <!-- Display time remaining and stop challenge link -->
+                            <div *ngIf="timerRunning('A4')" class="main-border-button">
+                              <h4>Time Remaining: {{ timers['A4'] }}</h4>
                               <br />
-                              <a href="#" (click)="stopTimer('AL4'); $event.preventDefault()">QUIT!</a>
+                              <a
+                                href="#"
+                                (click)="
+                                  stopTimerAndChallenge(
+                                    'A4',
+                                    'Alcohol (This challenge was called off, and the date of cancellation is indicated below.)',
+                                    '4'
+                                  );
+                                  $event.preventDefault()
+                                "
+                                >QUIT!</a
+                              >
+                              <a routerLink="/History">History</a>
                             </div>
                           </div>
                         </div>

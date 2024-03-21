@@ -19,6 +19,12 @@ import { GamesLevelsComponent } from './games-levels/games-levels.component';
 import { VideoLevelsComponent } from './video-levels/video-levels.component';
 import { AlcoholStartComponent } from './alcohol-start/alcohol-start.component';
 import { HistoryComponent } from './history/history.component';
+import { FoodStartComponent } from './food-start/food-start.component';
+import { GamesStartComponent } from './games-start/games-start.component';
+import { MusicStartComponent } from './music-start/music-start.component';
+import { SmokingStartComponent } from './smoking-start/smoking-start.component';
+import { SocialStartComponent } from './social-start/social-start.component';
+import { VideoStartComponent } from './video-start/video-start.component';
 
 const routes: Routes = [
   {
@@ -68,6 +74,30 @@ const routes: Routes = [
   {
     path: 'History',
     component: HistoryComponent,
+  },
+  {
+    path: 'Food-Start/:state',
+    component: FoodStartComponent,
+  },
+  {
+    path: 'Games-Start/:state',
+    component: GamesStartComponent,
+  },
+  {
+    path: 'Music-Start/:state',
+    component: MusicStartComponent,
+  },
+  {
+    path: 'Smoking-Start/:state',
+    component: SmokingStartComponent,
+  },
+  {
+    path: 'Social-Start/:state',
+    component: SocialStartComponent,
+  },
+  {
+    path: 'Videos-Start/:state',
+    component: VideoStartComponent,
   },
 ];
 
@@ -142,6 +172,30 @@ const routes: Routes = [
         {
           path: 'History',
           component: HistoryComponent,
+        },
+        {
+          path: 'Food-Start/:state',
+          component: FoodStartComponent,
+        },
+        {
+          path: 'Games-Start/:state',
+          component: GamesStartComponent,
+        },
+        {
+          path: 'Music-Start/:state',
+          component: MusicStartComponent,
+        },
+        {
+          path: 'Smoking-Start/:state',
+          component: SmokingStartComponent,
+        },
+        {
+          path: 'Social-Start/:state',
+          component: SocialStartComponent,
+        },
+        {
+          path: 'Videos-Start/:state',
+          component: VideoStartComponent,
         },
         navbarRoute,
         ...errorRoute,

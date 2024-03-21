@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'jhi-games-levels',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./games-levels.component.scss'],
 })
 export class GamesLevelsComponent implements OnInit {
-  constructor() {}
+  constructor(private router: Router) {}
   ngOnInit(): void {
     this.loadScript('vendor/jquery/jquery.min.js')
       .then(() => this.loadScript('vendor/bootstrap/js/bootstrap.min.js'))
@@ -34,5 +35,8 @@ export class GamesLevelsComponent implements OnInit {
       script.onerror = error => reject(error);
       body.appendChild(script);
     });
+  }
+  navigateToTarget(state: string) {
+    this.router.navigate(['/Games-Start', state]);
   }
 }
