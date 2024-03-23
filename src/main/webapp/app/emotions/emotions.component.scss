@@ -1,4 +1,9 @@
-@import 'vendor/bootstrap/css/bootstrap.min';
+@import 'assets/css/animate';
+@import 'assets/css/fontawesome';
+@import 'assets/css/owl';
+@import 'assets/css/swiper';
+@import 'assets/css/flex-slider';
+
 /*
 
 TemplateMo 579 Cyborg Gaming
@@ -90,6 +95,10 @@ article,
 aside,
 footer,
 figcaption {
+  margin: 0px;
+  padding: 0px;
+  border: 0;
+  outline: 0;
 }
 
 .clearfix:after {
@@ -143,6 +152,8 @@ body {
   -ms-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  max-width: 98%;
+  margin: 0 auto;
 }
 
 a {
@@ -192,6 +203,8 @@ body {
 
 body .page-content {
   margin-top: 110px;
+  margin-right: -60px;
+  margin-left: -10px;
   background-color: #27292a;
   padding: 60px;
   border-radius: 23px;
@@ -286,6 +299,7 @@ h4 {
   font-size: 34px;
   text-decoration: none;
   margin-bottom: 30px;
+  font-weight: bold;
 }
 
 h4 em {
@@ -373,7 +387,7 @@ Header Style
   vertical-align: middle;
   text-align: right;
   margin-top: 0px;
-  margin-right: 30px;
+  margin-right: -80px;
   -webkit-transition: all 0.3s ease 0s;
   -moz-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
@@ -744,8 +758,8 @@ LandingPage Style
   background-color: #2c2f33;
   padding: 20px;
   border-radius: 8px;
-  margin-left: 85%;
-  max-width: 200px;
+  margin-left: 930px;
+  width: 160px;
 }
 
 .sidebar ul {
@@ -775,6 +789,7 @@ LandingPage Style
   background-color: #2c2f33;
   border-radius: 8px;
   margin-left: 20px;
+  margin-top: 0px;
   max-width: 900px;
   height: 500px;
   overflow-y: scroll;
@@ -810,6 +825,7 @@ LandingPage Style
 }
 
 .card-title {
+  font-size: 14px;
   margin-left: 5px;
   color: #000000;
 }
@@ -853,7 +869,9 @@ LandingPage Style
   margin-bottom: 30px;
   border-radius: 8px;
 }
-
+.intro-section h2 {
+  font-size: 24px;
+}
 .intro-section p {
   color: #fff;
   margin-top: 10px;
@@ -868,6 +886,7 @@ LandingPage Style
 }
 
 .intro-subsection h3 {
+  font-size: 20px;
   color: #ec6090;
 }
 
@@ -888,6 +907,7 @@ LandingPage Style
 
 .journal-search input[type='text'] {
   padding: 10px;
+  font-size: small;
   margin-right: 10px;
   width: 100%;
   max-width: 300px;
@@ -899,10 +919,15 @@ LandingPage Style
   padding: 10px;
   background-color: #ec6090;
   color: white;
-  border-radius: 20px;
+  border-radius: 50%;
   border: none;
   cursor: pointer;
   margin-right: -510px;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .search-button i {
@@ -971,8 +996,12 @@ EntriesPage Style
   border-left: 5px solid #20058b;
   width: 80%;
   max-width: 600px;
-  height: 420px;
+  height: 430px;
   border-radius: 10px;
+}
+
+.popup-content h3 {
+  font-size: 20px;
 }
 
 .close-button {
@@ -983,6 +1012,7 @@ EntriesPage Style
 }
 
 .close-button:hover {
+  color: black;
   cursor: pointer;
 }
 .close-button:focus {
@@ -1025,7 +1055,6 @@ EntriesPage Style
   width: 100%;
   margin: 10px 0;
 }
-
 .add-entry-popup button {
   background-color: #adcdf9;
 }
@@ -1116,6 +1145,7 @@ PromptsPage Style
 
 .prompt-close-button:hover,
 .prompt-close-button:focus {
+  cursor: pointer;
   color: black;
 }
 
@@ -1209,6 +1239,7 @@ EmotionsPage Style
 
 .journal-entry-form button {
   background-color: #d88686;
+  font-size: 14px;
   color: white;
   padding: 10px 20px;
   border: none;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,15 +7,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./entries.component.scss'],
 })
 export class EntriesComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private renderer: Renderer2) {}
+
   ngOnInit(): void {
     this.loadScript('vendor/jquery/jquery.min.js')
       .then(() => this.loadScript('vendor/bootstrap/js/bootstrap.min.js'))
-
       .then(() => this.loadScript('assets/js/tabs.js'))
       .then(() => this.loadScript('assets/js/popup.js'))
       .then(() => this.loadScript('assets/js/custom.js'))
-      .then(() => this.loadScript('assets/js/moodjournal.js'))
+      .then(() => this.loadScript('assets/js/MoodJournal.js'))
       .then(() => {
         console.log('All scripts loaded successfully');
         // Initialization or callback functions that depend on these scripts can go here
@@ -35,5 +35,21 @@ export class EntriesComponent implements OnInit {
       script.onerror = error => reject(error);
       body.appendChild(script);
     });
+  }
+
+  // Method to open the popup
+  openPopup(): void {
+    const popup = document.getElementById('addEntryPopup');
+    if (popup) {
+      this.renderer.setStyle(popup, 'display', 'block');
+    }
+  }
+
+  // Method to close the popup
+  closePopup(): void {
+    const popup = document.getElementById('addEntryPopup');
+    if (popup) {
+      this.renderer.setStyle(popup, 'display', 'none');
+    }
   }
 }

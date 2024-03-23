@@ -6,6 +6,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <title>ENTRIES</title>
   </head>
+  <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
   <body>
     <!-- ***** Header Area Start ***** -->
     <header class="header-area header-sticky">
@@ -52,105 +64,103 @@
               <p>Explore your added entries below or add a new entry simply by pressing the "+" button below!</p>
             </div>
             <!-- ***** MoodJournal Section Start ***** -->
-            <div class="row">
-              <div class="col-lg-2">
-                <!-- ***** Sidebar Start ***** -->
-                <div class="sidebar" id="sidebar">
-                  <ul>
-                    <li><a href="#" routerLink="/MoodJournalPage">All</a></li>
-                    <li><a href="#" routerLink="/MoodJournalPage">Entries</a></li>
-                    <li><a href="#" routerLink="/MoodJournalPage">Prompts</a></li>
-                  </ul>
-                </div>
-                <!-- ***** Sidebar End ***** -->
+            <div class="col-lg-2">
+              <!-- ***** Sidebar Start ***** -->
+              <div class="sidebar" id="sidebar">
+                <ul>
+                  <li><a href="#" routerLink="/MoodJournalPage">All</a></li>
+                  <li><a href="#" routerLink="/Entries">Entries</a></li>
+                  <li><a href="#" routerLink="/Prompts">Prompts</a></li>
+                </ul>
               </div>
-              <div class="col-lg-10 mood-journal-section">
-                <div id="journal-content">
-                  <!-- ***** Search Bar Start ***** -->
-                  <div class="journal-search">
-                    <form id="journalSearch" action="#">
-                      <input type="text" placeholder="Search Entries" id="journalSearchText" name="searchKeyword" />
-                      <button type="submit" class="search-button"><i class="fa fa-search"></i></button>
+              <!-- ***** Sidebar End ***** -->
+            </div>
+            <div class="col-lg-10 mood-journal-section">
+              <div id="journal-content">
+                <!-- ***** Search Bar Start ***** -->
+                <div class="journal-search">
+                  <form id="journalSearch" action="#">
+                    <input type="text" placeholder="Search Entries" id="journalSearchText" name="searchKeyword" />
+                    <button type="submit" class="search-button"><i class="fa fa-search"></i></button>
+                  </form>
+                </div>
+                <!-- ***** Search Bar End ***** -->
+                <!-- ***** Normal Entries Start ***** -->
+                <!-- Example of a Normal Entry -->
+                <div class="card mb-4 normal-entry">
+                  <div class="card-body">
+                    <h6 class="card-title">Morning Meditation</h6>
+                    <p class="card-text">
+                      Started my day with a 20-minute meditation session. Felt a deep sense of calm and readiness for the day ahead.
+                    </p>
+                    <p class="card-text"><small>Entry Date: 2024-03-24</small></p>
+                  </div>
+                </div>
+                <!-- Example of a Normal Entry -->
+                <div class="card mb-4 normal-entry">
+                  <div class="card-body">
+                    <h6 class="card-title">Afternoon Hike</h6>
+                    <p class="card-text">
+                      Took a refreshing hike in the local nature reserve. The weather was perfect, and the views were stunning. Felt
+                      rejuvenated.
+                    </p>
+                    <p class="card-text"><small>Entry Date: 2024-03-25</small></p>
+                  </div>
+                </div>
+                <!-- Example of a Normal Entry -->
+                <div class="card mb-4 normal-entry">
+                  <div class="card-body">
+                    <h6 class="card-title">Evening with Friends</h6>
+                    <p class="card-text">
+                      Spent a wonderful evening catching up with old friends over dinner. It's amazing how laughter and good company can
+                      uplift your spirits.
+                    </p>
+                    <p class="card-text"><small>Entry Date: 2024-03-26</small></p>
+                  </div>
+                </div>
+                <!-- Example of a Normal Entry -->
+                <div class="card mb-4 normal-entry">
+                  <div class="card-body">
+                    <h6 class="card-title">Creative Writing</h6>
+                    <p class="card-text">
+                      Dedicated a couple of hours to creative writing. Managed to draft a short story that's been brewing in my mind for
+                      weeks.
+                    </p>
+                    <p class="card-text"><small>Entry Date: 2024-03-27</small></p>
+                  </div>
+                </div>
+                <!-- Example of a Normal Entry -->
+                <div class="card mb-4 normal-entry">
+                  <div class="card-body">
+                    <h6 class="card-title">Learning to Cook</h6>
+                    <p class="card-text">
+                      Tried cooking a new recipe today. The process was as rewarding as the delicious outcome. Excited to explore more
+                      recipes.
+                    </p>
+                    <p class="card-text"><small>Entry Date: 2024-03-28</small></p>
+                  </div>
+                </div>
+                <!-- ***** Normal Entries End ***** -->
+                <!-- ***** Add Entry Button Start **** -->
+                <div class="add-entry-button-container">
+                  <button id="addButton" class="add-entry-button" (click)="openPopup()">+</button>
+                </div>
+                <!-- Popup entry here -->
+                <div class="add-entry-popup" id="addEntryPopup">
+                  <div class="popup-content">
+                    <span class="close-button" (click)="closePopup()">&times;</span>
+                    <h3>Add New Entry</h3>
+                    <form>
+                      <div class="form-group">
+                        <label for="entryTitle">Title:</label>
+                        <input type="text" id="entryTitle" name="entryTitle" />
+                      </div>
+                      <div class="form-group">
+                        <label for="entryContent">Content:</label>
+                        <textarea id="entryContent" name="entryContent" placeholder="What's on your mind?"></textarea>
+                      </div>
+                      <button type="submit">Submit</button>
                     </form>
-                  </div>
-                  <!-- ***** Search Bar End ***** -->
-                  <!-- ***** Normal Entries Start ***** -->
-                  <!-- Example of a Normal Entry -->
-                  <div class="card mb-4 normal-entry">
-                    <div class="card-body">
-                      <h6 class="card-title">Morning Meditation</h6>
-                      <p class="card-text">
-                        Started my day with a 20-minute meditation session. Felt a deep sense of calm and readiness for the day ahead.
-                      </p>
-                      <p class="card-text"><small class="text-muted">Entry Date: 2024-03-24</small></p>
-                    </div>
-                  </div>
-                  <!-- Example of a Normal Entry -->
-                  <div class="card mb-4 normal-entry">
-                    <div class="card-body">
-                      <h6 class="card-title">Afternoon Hike</h6>
-                      <p class="card-text">
-                        Took a refreshing hike in the local nature reserve. The weather was perfect, and the views were stunning. Felt
-                        rejuvenated.
-                      </p>
-                      <p class="card-text"><small class="text-muted">Entry Date: 2024-03-25</small></p>
-                    </div>
-                  </div>
-                  <!-- Example of a Normal Entry -->
-                  <div class="card mb-4 normal-entry">
-                    <div class="card-body">
-                      <h6 class="card-title">Evening with Friends</h6>
-                      <p class="card-text">
-                        Spent a wonderful evening catching up with old friends over dinner. It's amazing how laughter and good company can
-                        uplift your spirits.
-                      </p>
-                      <p class="card-text"><small class="text-muted">Entry Date: 2024-03-26</small></p>
-                    </div>
-                  </div>
-                  <!-- Example of a Normal Entry -->
-                  <div class="card mb-4 normal-entry">
-                    <div class="card-body">
-                      <h6 class="card-title">Creative Writing</h6>
-                      <p class="card-text">
-                        Dedicated a couple of hours to creative writing. Managed to draft a short story that's been brewing in my mind for
-                        weeks.
-                      </p>
-                      <p class="card-text"><small class="text-muted">Entry Date: 2024-03-27</small></p>
-                    </div>
-                  </div>
-                  <!-- Example of a Normal Entry -->
-                  <div class="card mb-4 normal-entry">
-                    <div class="card-body">
-                      <h6 class="card-title">Learning to Cook</h6>
-                      <p class="card-text">
-                        Tried cooking a new recipe today. The process was as rewarding as the delicious outcome. Excited to explore more
-                        recipes.
-                      </p>
-                      <p class="card-text"><small class="text-muted">Entry Date: 2024-03-28</small></p>
-                    </div>
-                  </div>
-                  <!-- ***** Normal Entries End ***** -->
-                  <!-- ***** Add Entry Button Start **** -->
-                  <div class="add-entry-button-container">
-                    <button id="addButton" class="add-entry-button">+</button>
-                  </div>
-                  <!-- Popup entry here -->
-                  <div class="add-entry-popup" id="addEntryPopup">
-                    <div class="popup-content">
-                      <span class="close-button" onclick="closePopup()">&times;</span>
-                      <h3>Add New Entry</h3>
-                      <form>
-                        <div class="form-group">
-                          <label for="entryTitle">Title:</label>
-                          <input type="text" id="entryTitle" name="entryTitle" />
-                        </div>
-                        <div class="form-group">
-                          <label for="entryContent">Content:</label>
-                          <textarea id="entryContent" name="entryContent" placeholder="What's on your mind?"></textarea>
-                        </div>
-                        <button type="submit">Submit</button>
-                      </form>
-                    </div>
                   </div>
                 </div>
               </div>

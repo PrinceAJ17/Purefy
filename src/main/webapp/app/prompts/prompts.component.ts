@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,7 +7,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./prompts.component.scss'],
 })
 export class PromptsComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private renderer: Renderer2) {}
+
   ngOnInit(): void {
     this.loadScript('vendor/jquery/jquery.min.js')
       .then(() => this.loadScript('vendor/bootstrap/js/bootstrap.min.js'))
@@ -35,5 +36,21 @@ export class PromptsComponent implements OnInit {
       script.onerror = error => reject(error);
       body.appendChild(script);
     });
+  }
+
+  // Method to open the prompt popup
+  openPromptPopup(): void {
+    const popup = document.getElementById('addPromptPopup');
+    if (popup) {
+      this.renderer.setStyle(popup, 'display', 'block');
+    }
+  }
+
+  // Method to close the prompt popup
+  closePromptPopup(): void {
+    const popup = document.getElementById('addPromptPopup');
+    if (popup) {
+      this.renderer.setStyle(popup, 'display', 'none');
+    }
   }
 }
