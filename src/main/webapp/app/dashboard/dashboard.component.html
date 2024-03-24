@@ -65,7 +65,7 @@
               <div class="col-lg-12">
                 <div class="featured-games header-text">
                   <div class="heading-section">
-                    <h1 class="animate__animated animate__bounce"><em>Welcome,</em> Adnaan</h1>
+                    <h1 class="animate__animated animate__bounce"><em style="color: #e75e8d">Welcome,</em> Adnaan</h1>
                   </div>
                 </div>
               </div>
@@ -77,7 +77,7 @@
               <div class="col-lg-12">
                 <div class="featured-games header-text">
                   <div class="row">
-                    <div [ngSwitch]="emotionView" id="mood-title">
+                    <div [ngSwitch]="currentView" id="mood-title">
                       <div id="mood-title-text" *ngSwitchCase="'None'"><h1>How are we feeling today?</h1></div>
 
                       <div *ngSwitchDefault class="main-button back-button">
@@ -90,36 +90,33 @@
                           <br />
                           <h3>Here are some tailored suggestions:</h3>
                         </div>
-                        <a class="back-button" (click)="switchView('Redo')">Choose again</a>
+                        <a class="back-button" (click)="switchView('None')">Choose again</a>
                       </div>
                     </div>
 
                     <br />
 
-                    <div [ngSwitch]="emotionView" class="image-container">
-                      <div *ngSwitchCase="'None'">
-                        <a (click)="switchView('Happy')"
-                          ><img src="assets/images/ezgif-3-ff7c873609.jpg" alt="" style="border-radius: 23px"
-                        /></a>
-                      </div>
-                      <div *ngSwitchCase="'None'">
-                        <a (click)="switchView('Neutral')"
-                          ><img src="assets/images/ezgif-3-5800aa8b9e.jpg" alt="" style="border-radius: 23px"
-                        /></a>
-                      </div>
-                      <div *ngSwitchCase="'None'">
-                        <a (click)="switchView('Sad')"
-                          >"<img src="assets/images/ezgif-3-889b0f5a8d.jpg" alt="" style="border-radius: 23px"
-                        /></a>
-                      </div>
+                    <div [ngSwitch]="currentView" class="image-container">
+                      <!-- Displays basic mood selection -->
+                      <ng-container *ngSwitchCase="'None'">
+                        <ng-container *ngFor="let item of MOODINDEX">
+                          <div class="centered-text-container">
+                            <a (click)="switchView(item.Em)">
+                              <img src="assets/images/greybackground.jpg" alt="" style="border-radius: 23px; border: 2px solid #e75e8d" />
+                              <h1 class="centered-text">{{ item.Em }}</h1>
+                            </a>
+                          </div>
+                        </ng-container>
+                      </ng-container>
+
                       <!-- Displays detailed mood selection -->
                       <ng-container *ngSwitchDefault>
                         <ng-container *ngFor="let item of MOODINDEX">
-                          <ng-container *ngIf="item.Md == emotionView">
-                            <div class="centered-text-container" *ngFor="let em of item.Em">
-                              <a (click)="switchView(em)">
+                          <ng-container *ngIf="item.Em == currentView">
+                            <div class="centered-text-container" *ngFor="let md of item.Md">
+                              <a (click)="switchView('MoodChosen', md)">
                                 <img src="assets/images/greybackground.jpg" alt="" style="border-radius: 23px; border: 2px solid #e75e8d" />
-                                <h1 class="centered-text">{{ em }}</h1>
+                                <h1 class="centered-text">{{ md }}</h1>
                               </a>
                             </div>
                           </ng-container>
@@ -129,7 +126,7 @@
                       <!-- Displays tips -->
                       <ng-container *ngSwitchCase="'MoodChosen'">
                         <ng-container *ngFor="let item of TIPSINDEX">
-                          <ng-container *ngIf="item.Em == chosenMood">
+                          <ng-container *ngIf="item.Md == chosenMood">
                             <ul class="extra-line-space">
                               <li *ngFor="let tip of item.tips">
                                 <h4>- {{ tip }}</h4>

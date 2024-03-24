@@ -12,49 +12,31 @@ import { CommonModule } from '@angular/common';
 export class DashboardComponent implements OnInit {
   constructor(private router: Router) {}
 
-  emotionView = 'None';
+  currentView = 'None';
 
   chosenMood = 'None';
 
-  //HAPPY = ['Motivated','Content','Optimistic'];
-
-  //NEUTRAL = ['Bored','Tempted','Unmotivated'];
-
-  //SAD = ['Irritable','Anxious','Tired'];
-
   TIPSINDEX = [
-    { Em: 'Motivated', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
-    { Em: 'Content', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
-    { Em: 'Optimistic', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
-    { Em: 'Bored', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
-    { Em: 'Tempted', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
-    { Em: 'Unmotivated', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
-    { Em: 'Irritable', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
-    { Em: 'Anxious', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
-    { Em: 'Tired', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
+    { Md: 'Motivated', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
+    { Md: 'Content', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
+    { Md: 'Optimistic', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
+    { Md: 'Bored', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
+    { Md: 'Tempted', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
+    { Md: 'Unmotivated', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
+    { Md: 'Irritable', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
+    { Md: 'Anxious', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
+    { Md: 'Tired', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
   ];
 
   MOODINDEX = [
-    { Md: 'Happy', Em: ['Motivated', 'Content', 'Optimistic'] },
-    { Md: 'Neutral', Em: ['Bored', 'Tempted', 'Unmotivated'] },
-    { Md: 'Sad', Em: ['Irritable', 'Anxious', 'Tired'] },
+    { Em: 'Happy', Md: ['Motivated', 'Content', 'Optimistic'] },
+    { Em: 'Neutral', Md: ['Bored', 'Tempted', 'Unmotivated'] },
+    { Em: 'Sad', Md: ['Irritable', 'Anxious', 'Tired'] },
   ];
 
-  //ALLEMOTIONS = this.HAPPY.concat(this.NEUTRAL.concat(this.SAD));
-
-  //emotionCheck = (this.emotionView in this.ALLEMOTIONS);
-
-  switchView(emotion: string): void {
-    if (this.TIPSINDEX.some(obj => Object.values(obj)[0] === emotion)) {
-      this.emotionView = 'MoodChosen';
-      this.chosenMood = emotion;
-    } else {
-      this.emotionView = emotion;
-      if (emotion == 'Redo') {
-        this.chosenMood = 'None';
-        this.emotionView = 'None';
-      }
-    }
+  switchView(view: string, mood: string = 'None'): void {
+    this.currentView = view;
+    this.chosenMood = mood;
   }
 
   ngOnInit(): void {
