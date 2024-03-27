@@ -708,17 +708,19 @@ Main Boxes Style
   display: flex;
   margin-left: -1%;
   align-content: center;
+  width: 180vh;
+  height: 100vh;
 }
 
 .parentBox {
   display: grid;
-  width: 100ch;
-  height: 100%;
+  width: 100%;
+  height: 80%;
 
 }
 .childBox{
   display: flex;
-  height: 9vh;
+  height: 100%;
 }
 
 .titleBox{
@@ -745,7 +747,7 @@ Your Group Style
   padding-right: 20px;
   padding-top: 10px;
   width: 100%;
-  max-height: 100%;
+  height: 98%;
   display: grid;
   margin-bottom: 2%;
 
@@ -754,13 +756,13 @@ Your Group Style
 .your-group .nameBadge{
   width: 100%;
   display: flex;
-
 }
 
 .your-group .Points{
   display: flex;
   flex-direction: column;
   align-items: center;
+
 }
 
 .your-group .teamName{
@@ -778,7 +780,7 @@ Your Group Style
   align-items: flex-end;
 }
 .your-group .nameBadge .Badge img{
-  max-width: 17%;
+  max-width: 15%;
   height: auto;
 }
 
@@ -842,7 +844,7 @@ Current Leaderboard Style
   padding-top: 10px;
   padding-right: 20px;
   width: 100%;
-  height: 80vh;
+  height: 100%;
   display: grid;
 }
 .weekly-stats .current-leaderboard {
@@ -875,8 +877,7 @@ Current Leaderboard Style
 
 .weekly-stats .leaderboard >div .name{
   display: flex;
-  width: 5ch;
-  font-size: small;
+  font-size: 1.5vh;
   color: #fff;
   justify-content: center;
 }
@@ -943,8 +944,79 @@ Previous Leaderboard Style
   border-radius: 23px;
   padding: 20px;
   width: 50%;
-  height: 390%;
+  height: 100%;
 
+}
+
+.previous-leaderboard .pleaderboard{
+  margin-top: 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.previous-leaderboard .pleaderboard >div{
+  display: flex;
+  justify-content: flex-end;
+  text-align: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 5px;
+  margin-right: 1%;
+  margin-left: 1%;
+  height: 20%;
+}
+
+.previous-leaderboard .pleaderboard >div .name{
+  display: flex;
+  width: 3ch;
+  font-size: 1.5vh;
+  color: #fff;
+  justify-content: center;
+}
+
+
+
+.previous-leaderboard .pleaderboard >div img{
+  width: 4ch;
+  margin-top: 5px;
+  margin-right: auto;
+
+}
+
+.previous-leaderboard .pleaderboard >div .Avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 2px;
+}
+
+.previous-leaderboard .pleaderboard >div .Avatar img{
+  width: 5vh;
+}
+
+.previous-leaderboard .pleaderboard >div .bar{
+  height: 6.5vh;
+  width: 68%;
+  margin-right: 2%;
+}
+
+.previous-leaderboard .pleaderboard >div .bar .progress{
+  display: flex;
+  height: 100%;
+  background-color: #27292a;
+  border-radius: 2px;
+}
+
+.previous-leaderboard .pleaderboard >div .bar .progress .animation{
+  height: 100%;
+  background-color: #6FA8DC;
+  animation-name: barAnimation;
+  animation-duration: 1s;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 /*
 ---------------------------------------------
@@ -957,9 +1029,79 @@ Overall Leaderboard Style
   border-radius: 23px;
   padding: 20px;
   width: 50%;
-  height: 390%;
+  height: 100%;
+}
+
+.overall-leaderboard .oleaderboard{
+  margin-top: 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.overall-leaderboard .oleaderboard >div{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  width: 100%;
+}
+
+.overall-leaderboard .oleaderboard .topbox {
+  height: 75%;
+}
+
+.overall-leaderboard .oleaderboard .bottombox {
+  height: 25%;
+  justify-content: space-evenly;
+}
+
+.overall-leaderboard .oleaderboard .topbox >div{
+  display: flex;
+  align-items: center;
+}
+
+.overall-leaderboard .oleaderboard .bottombox >div{
+  display: flex;
+  align-items: center;
+}
+
+
+.overall-leaderboard .oleaderboard >div .Avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
 }
+
+.overall-leaderboard .oleaderboard >div .Avatar .name{
+  font-size: 2vh;
+  color: #fff;
+  text-align: center;
+}
+
+
+.overall-leaderboard .oleaderboard .topbox .Avatar img{
+  width: 12vh;
+}
+
+.overall-leaderboard .oleaderboard .bottombox .Avatar img{
+  width: 8vh;
+}
+
+
+.overall-leaderboard .oleaderboard .topbox >div .points {
+  font-size: 3vh;
+  color: #fff;
+  text-align: center;
+}
+
+.overall-leaderboard .oleaderboard .bottombox >div .points {
+  font-size: 2vh;
+  color: #fff;
+  text-align: center;
+}
+
 
 
 /*

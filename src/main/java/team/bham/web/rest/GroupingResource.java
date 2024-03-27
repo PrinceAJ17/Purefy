@@ -15,6 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import team.bham.domain.Grouping;
 import team.bham.repository.GroupingRepository;
+import team.bham.service.GroupingService;
+import team.bham.service.dto.GroupDTO;
 import team.bham.web.rest.errors.BadRequestAlertException;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
@@ -36,8 +38,11 @@ public class GroupingResource {
 
     private final GroupingRepository groupingRepository;
 
-    public GroupingResource(GroupingRepository groupingRepository) {
+    private final GroupingService groupingService;
+
+    public GroupingResource(GroupingRepository groupingRepository, GroupingService groupingService) {
         this.groupingRepository = groupingRepository;
+        this.groupingService = groupingService;
     }
 
     /**
@@ -198,4 +203,21 @@ public class GroupingResource {
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString()))
             .build();
     }
+
+    /**
+     * {@code GET  /groupings/user/{userID}/groups} : get the groups based on UserID.
+     *
+     * @param id the id of the grouping to retrieve.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the grouping, or with status {@code 404 (Not Found)}.
+
+    @GetMapping("/groupings/user/{userID}/groups")
+    public ResponseEntity<List<GroupDTO>> getGroupsByUserID(@PathVariable Long userID) {
+        log.debug("REST request to get Groups based on UserID : {}", userID);
+        List<GroupDTO> groups = groupingService.getGroupsByUserID(userID);
+        if (groups.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(groups);
+    }
+    */
 }

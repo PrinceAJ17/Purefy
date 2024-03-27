@@ -7,12 +7,15 @@ import java.util.Objects;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import team.bham.domain.Members;
 import team.bham.repository.MembersRepository;
+import team.bham.service.MembersService;
+import team.bham.service.dto.PointsDTO;
 import team.bham.web.rest.errors.BadRequestAlertException;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
@@ -34,8 +37,12 @@ public class MembersResource {
 
     private final MembersRepository membersRepository;
 
-    public MembersResource(MembersRepository membersRepository) {
+    private final MembersService membersService;
+
+    public MembersResource(MembersRepository membersRepository, MembersService membersService) {
+
         this.membersRepository = membersRepository;
+        this.membersService = membersService;
     }
 
     /**
@@ -180,4 +187,21 @@ public class MembersResource {
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString()))
             .build();
     }
+
+    /**
+     * {@code GET  /members/group/{groupID}/points} : get the current points for users in a specific group.
+     *
+     * @param groupID the id of the group.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of PointsDTO, or with status {@code 404 (Not Found)}.
+     */
+    @GetMapping("/members/group/{groupID}/points")
+    public ResponseEntity<List<PointsDTO>> getPointsByGroupID(@PathVariable Long groupID) {
+        log.debug("REST request to get points by group ID : {}", groupID);
+        List<PointsDTO> points = membersService.getPointsByGroupID(groupID);
+        if (points.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(points);
+    }
+
 }

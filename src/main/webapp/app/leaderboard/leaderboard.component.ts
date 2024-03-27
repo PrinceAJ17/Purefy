@@ -1,9 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {HttpClient} from '@angular/common/http';
+
+interface BackendLeaderboardEntry {
+  username: string;
+  currentPoints: number;
+  previousPoints: number;
+  totalPoints: number;
+}
 
 interface LeaderboardEntry {
   name: string;
-  score: number;
+  current: number;
+  previous: number;
+  total: number;
 }
 
 declare global {
@@ -23,16 +33,9 @@ declare global {
 export class LeaderboardComponent implements OnInit {
 
   leaderboardData: LeaderboardEntry[] = [
-    { name: "Sam", score: 13 },
-    { name: "Allen", score: 11 },
-    { name: "Asa", score: 10 },
-    { name: "Ankita", score: 9 },
-    { name: "Adnaan", score: 9 },
-    { name: "Prince", score: 8 },
-  
-  ];
+  ]
 
-  constructor(private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
     this.loadScript('vendor/jquery/jquery.min.js')
@@ -59,16 +62,38 @@ export class LeaderboardComponent implements OnInit {
     });
   }
 
-  private loadAndPopulateLeaderboard(): Promise<void> {
-    return this.loadScript('assets/js/Leaderboard.js').then(() => {
-      if (window.leaderboardFunctions) {
-        window.leaderboardFunctions.populateLeaderboard(this.leaderboardData);
-      } else {
-        console.error('leaderboardFunctions is not defined');
+  private loadAndPopulateLeaderboard(): void {
+
+    const groupId = 1; // Example group ID
+    const url = `http://localhost:8080/api/members/group/${groupId}/points`;
+
+    this.http.get<BackendLeaderboardEntry[]>(url).subscribe({
+      next: (data) => {
+        this.leaderboardData = data.map(entry => ({
+          name: entry.username,
+          current: entry.currentPoints,
+          previous: entry.previousPoints,
+          total:  entry.totalPoints,
+        }));
+
+        this.loadScript('assets/js/Leaderboard.js').then(() => {
+          if (window.leaderboardFunctions) {
+            window.leaderboardFunctions.populateLeaderboard(this.leaderboardData);
+            window.leaderboardFunctions.populatePreviousLeaderboard(this.leaderboardData);
+            window.leaderboardFunctions.populateOverallLeaderboard(this.leaderboardData);
+            window.leaderboardFunctions.populateYourGroup(this.leaderboardData);
+          } else {
+            console.error('Leaderboard functions not available.');
+          }
+        }).catch(error => console.error('Error loading Leaderboard.js:', error));
+  
+      },
+      error: (error) => {
+        console.error('Error fetching leaderboard data:', error);
+      },
+      complete: () => {
+        console.log('Completed fetching leaderboard data');
       }
-    }).catch(error => console.error('Script loading error:', error));
+    });
   }
-
 }
-
-
