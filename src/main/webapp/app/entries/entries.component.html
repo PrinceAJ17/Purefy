@@ -85,62 +85,16 @@
                   </form>
                 </div>
                 <!-- ***** Search Bar End ***** -->
-                <!-- ***** Normal Entries Start ***** -->
-                <!-- Example of a Normal Entry -->
-                <div class="card mb-4 normal-entry">
+                <!-- Place this inside the <div id="journal-content"> where hardcoded entries used to be -->
+                <div *ngFor="let entry of entries" class="card mb-4 normal-entry">
                   <div class="card-body">
-                    <h6 class="card-title">Morning Meditation</h6>
+                    <h6 class="card-title">{{ entry.title }}</h6>
+                    <p class="card-text">{{ entry.content }}</p>
                     <p class="card-text">
-                      Started my day with a 20-minute meditation session. Felt a deep sense of calm and readiness for the day ahead.
+                      <small>Entry Date: {{ entry.date | date }}</small>
                     </p>
-                    <p class="card-text"><small>Entry Date: 2024-03-24</small></p>
                   </div>
                 </div>
-                <!-- Example of a Normal Entry -->
-                <div class="card mb-4 normal-entry">
-                  <div class="card-body">
-                    <h6 class="card-title">Afternoon Hike</h6>
-                    <p class="card-text">
-                      Took a refreshing hike in the local nature reserve. The weather was perfect, and the views were stunning. Felt
-                      rejuvenated.
-                    </p>
-                    <p class="card-text"><small>Entry Date: 2024-03-25</small></p>
-                  </div>
-                </div>
-                <!-- Example of a Normal Entry -->
-                <div class="card mb-4 normal-entry">
-                  <div class="card-body">
-                    <h6 class="card-title">Evening with Friends</h6>
-                    <p class="card-text">
-                      Spent a wonderful evening catching up with old friends over dinner. It's amazing how laughter and good company can
-                      uplift your spirits.
-                    </p>
-                    <p class="card-text"><small>Entry Date: 2024-03-26</small></p>
-                  </div>
-                </div>
-                <!-- Example of a Normal Entry -->
-                <div class="card mb-4 normal-entry">
-                  <div class="card-body">
-                    <h6 class="card-title">Creative Writing</h6>
-                    <p class="card-text">
-                      Dedicated a couple of hours to creative writing. Managed to draft a short story that's been brewing in my mind for
-                      weeks.
-                    </p>
-                    <p class="card-text"><small>Entry Date: 2024-03-27</small></p>
-                  </div>
-                </div>
-                <!-- Example of a Normal Entry -->
-                <div class="card mb-4 normal-entry">
-                  <div class="card-body">
-                    <h6 class="card-title">Learning to Cook</h6>
-                    <p class="card-text">
-                      Tried cooking a new recipe today. The process was as rewarding as the delicious outcome. Excited to explore more
-                      recipes.
-                    </p>
-                    <p class="card-text"><small>Entry Date: 2024-03-28</small></p>
-                  </div>
-                </div>
-                <!-- ***** Normal Entries End ***** -->
                 <!-- ***** Add Entry Button Start **** -->
                 <div class="add-entry-button-container">
                   <button id="addButton" class="add-entry-button" (click)="openPopup()">+</button>
@@ -150,14 +104,18 @@
                   <div class="popup-content">
                     <span class="close-button" (click)="closePopup()">&times;</span>
                     <h3>Add New Entry</h3>
-                    <form>
+                    <form (ngSubmit)="saveEntry()">
                       <div class="form-group">
                         <label for="entryTitle">Title:</label>
-                        <input type="text" id="entryTitle" name="entryTitle" />
+                        <input type="text" id="entryTitle" [(ngModel)]="entryFeature.title" name="entryTitle" required />
                       </div>
                       <div class="form-group">
                         <label for="entryContent">Content:</label>
-                        <textarea id="entryContent" name="entryContent" placeholder="What's on your mind?"></textarea>
+                        <textarea id="entryContent" [(ngModel)]="entryFeature.content" name="entryContent" required></textarea>
+                      </div>
+                      <div class="form-group">
+                        <label for="entryDate">Date:</label>
+                        <input type="date" id="entryDate" [(ngModel)]="entryFeature.date" name="entryDate" required />
                       </div>
                       <button type="submit">Submit</button>
                     </form>

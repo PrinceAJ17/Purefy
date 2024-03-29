@@ -51,6 +51,7 @@
     <include file="config/liquibase/changelog/20240305141518_added_entity_Feedback.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20240305175636_added_entity_Progress.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20240317011117_added_entity_Timer.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240329180500_added_entity_EntriesFeature.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20240305141206_added_entity_constraints_Challenges.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20240305141209_added_entity_constraints_ScreenTime.xml" relativeToChangelogFile="false"/>

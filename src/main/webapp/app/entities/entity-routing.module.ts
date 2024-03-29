@@ -170,6 +170,16 @@ import { RouterModule } from '@angular/router';
         loadChildren: () => import('./progress/progress.module').then(m => m.ProgressModule),
       },
 
+      {
+        path: 'entries-feature',
+        data: { pageTitle: 'EntriesFeatures' },
+        loadChildren: () => import('./entries-feature/entries-feature.module').then(m => m.EntriesFeatureModule),
+      },
+      {
+        path: 'timer',
+        data: { pageTitle: 'Timers' },
+        loadChildren: () => import('./timer/timer.module').then(m => m.TimerModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

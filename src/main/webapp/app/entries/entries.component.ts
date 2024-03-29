@@ -1,5 +1,7 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
+import { EntriesFeatureService } from './entities/entries-feature/service/entries-feature.service'; // Adjust the path as necessary
+import { EntriesFeature } from './entities/entries-feature/entries-feature.module'; // Adjust the path as necessary
 
 @Component({
   selector: 'jhi-entries',
@@ -7,7 +9,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./entries.component.scss'],
 })
 export class EntriesComponent implements OnInit {
-  constructor(private router: Router, private renderer: Renderer2) {}
+  entryFeature: EntriesFeature = new EntriesFeature(); // Adjust based on your actual model
+  entries: EntriesFeature[] = []; // Store fetched entries
+
+  constructor(
+    private router: Router,
+    private renderer: Renderer2,
+    private entriesFeatureService: EntriesFeatureService // Inject your service
+  ) {}
 
   ngOnInit(): void {
     this.loadScript('vendor/jquery/jquery.min.js')
@@ -23,6 +32,12 @@ export class EntriesComponent implements OnInit {
       .catch(error => {
         console.error('Script loading error:', error);
       });
+    this.loadEntries(); // Call this method to load entries
+  }
+  loadEntries(): void {
+    this.entriesFeatureService.getAll().subscribe((data: EntriesFeature[]) => {
+      this.entries = data;
+    });
   }
 
   private loadScript(scriptUrl: string): Promise<void> {
@@ -34,6 +49,16 @@ export class EntriesComponent implements OnInit {
       script.onload = () => resolve();
       script.onerror = error => reject(error);
       body.appendChild(script);
+    });
+  }
+
+  saveEntry(): void {
+    this.entriesFeatureService.create(this.entryFeature).subscribe({
+      next: res => {
+        console.log('Entry saved:', res);
+        this.closePopup(); // Close the popup on successful save
+      },
+      error: err => console.error('Error saving entry:', err),
     });
   }
 
