@@ -1,7 +1,7 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
-import { EntriesFeatureService } from './entities/entries-feature/service/entries-feature.service'; // Adjust the path as necessary
-import { EntriesFeature } from './entities/entries-feature/entries-feature.module'; // Adjust the path as necessary
+import { EntriesFeatureService } from '../entities/entries-feature/service/entries-feature.service'; // Adjust the path as necessary
+import { EntriesFeature } from '../entities/entries-feature/entries-feature.module'; // Adjust the path as necessary
 
 @Component({
   selector: 'jhi-entries',
