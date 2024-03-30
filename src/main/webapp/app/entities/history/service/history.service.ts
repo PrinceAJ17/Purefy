@@ -3,11 +3,12 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable, switchMap, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import dayjs from 'dayjs/esm';
-import { AccountService } from '../../../core/auth/account.service';
+
 import { isPresent } from 'app/core/util/operators';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
 import { IHistory, NewHistory } from '../history.model';
+import { AccountService } from '../../../core/auth/account.service';
 
 export type PartialUpdateHistory = Partial<IHistory> & Pick<IHistory, 'id'>;
 

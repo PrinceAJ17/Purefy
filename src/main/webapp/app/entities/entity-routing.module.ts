@@ -180,6 +180,11 @@ import { RouterModule } from '@angular/router';
         data: { pageTitle: 'Timers' },
         loadChildren: () => import('./timer/timer.module').then(m => m.TimerModule),
       },
+      {
+        path: 'points',
+        data: { pageTitle: 'Points' },
+        loadChildren: () => import('./points/points.module').then(m => m.PointsModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

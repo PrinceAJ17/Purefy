@@ -5,6 +5,7 @@ import { HistoryService } from '../entities/history/service/history.service';
 import { AccountService } from '../core/auth/account.service';
 import { catchError, tap } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { PointsService } from '../entities/points/service/points.service';
 
 @Component({
   selector: 'jhi-coffee-start',
@@ -12,7 +13,12 @@ import { throwError } from 'rxjs';
   styleUrls: ['./coffee-start.component.scss'],
 })
 export class CoffeeStartComponent implements OnInit {
-  constructor(private route: ActivatedRoute, private accountService: AccountService, private historyService: HistoryService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private accountService: AccountService,
+    private historyService: HistoryService,
+    private pointsService: PointsService
+  ) {}
 
   currentState: string | undefined;
   timers: { [timerId: string]: string } = {};
@@ -172,5 +178,25 @@ export class CoffeeStartComponent implements OnInit {
     const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
     return `${hours}h ${minutes}m ${seconds}s`;
+  }
+
+  sendPoints(points: number): void {
+    this.accountService.identity().subscribe(account => {
+      if (account && account.login) {
+        this.pointsService.updatePoints(account.login, points).subscribe(() => {
+          console.log('Points updated successfully');
+        });
+      }
+    });
+  }
+
+  deductPoints(pointsToDeduct: number): void {
+    this.accountService.identity().subscribe(account => {
+      if (account && account.login) {
+        this.pointsService.deductPoints(account.login, pointsToDeduct).subscribe(() => {
+          console.log(`Deducted ${pointsToDeduct} points successfully.`);
+        });
+      }
+    });
   }
 }
