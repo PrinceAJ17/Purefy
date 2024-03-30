@@ -105,7 +105,9 @@
                           </div>
                           <div class="col-lg-12">
                             <div *ngIf="!timerRunning('timer1')" class="main-border-button">
-                              <a href="#" (click)="startTimerAndChallenge('timer1', 'Coffee', '1'); $event.preventDefault()">START NOW!</a>
+                              <a href="#" (click)="startTimerAndChallenge('timer1', 'Coffee', '1'); $event.preventDefault(); sendPoints(1)"
+                                >START NOW!</a
+                              >
                             </div>
 
                             <!-- Display time remaining and stop challenge link -->
@@ -120,7 +122,8 @@
                                     'Coffee (This challenge was called off, and the date of cancellation is indicated below.)',
                                     '1'
                                   );
-                                  $event.preventDefault()
+                                  $event.preventDefault();
+                                  deductPoints(1)
                                 "
                                 >QUIT!</a
                               >
@@ -186,7 +189,9 @@
                           </div>
                           <div class="col-lg-12">
                             <div *ngIf="!timerRunning('timer2')" class="main-border-button">
-                              <a href="#" (click)="startTimerAndChallenge('timer2', 'Coffee', '2'); $event.preventDefault()">START NOW!</a>
+                              <a href="#" (click)="startTimerAndChallenge('timer2', 'Coffee', '2'); $event.preventDefault(); sendPoints(2)"
+                                >START NOW!</a
+                              >
                             </div>
 
                             <!-- Display time remaining and stop challenge link -->
@@ -201,7 +206,8 @@
                                     'Coffee (This challenge was called off, and the date of cancellation is indicated below.)',
                                     '2'
                                   );
-                                  $event.preventDefault()
+                                  $event.preventDefault();
+                                  deductPoints(1)
                                 "
                                 >QUIT!</a
                               >
@@ -267,7 +273,9 @@
                           </div>
                           <div class="col-lg-12">
                             <div *ngIf="!timerRunning('timer3')" class="main-border-button">
-                              <a href="#" (click)="startTimerAndChallenge('timer3', 'Coffee', '3'); $event.preventDefault()">START NOW!</a>
+                              <a href="#" (click)="startTimerAndChallenge('timer3', 'Coffee', '3'); $event.preventDefault(); sendPoints(3)"
+                                >START NOW!</a
+                              >
                             </div>
 
                             <!-- Display time remaining and stop challenge link -->
@@ -282,7 +290,8 @@
                                     'Coffee (This challenge was called off, and the date of cancellation is indicated below.)',
                                     '3'
                                   );
-                                  $event.preventDefault()
+                                  $event.preventDefault();
+                                  deductPoints(3)
                                 "
                                 >QUIT!</a
                               >
@@ -348,7 +357,9 @@
                           </div>
                           <div class="col-lg-12">
                             <div *ngIf="!timerRunning('timer4')" class="main-border-button">
-                              <a href="#" (click)="startTimerAndChallenge('timer4', 'Coffee', '4'); $event.preventDefault()">START NOW!</a>
+                              <a href="#" (click)="startTimerAndChallenge('timer4', 'Coffee', '4'); $event.preventDefault(); sendPoints(4)"
+                                >START NOW!</a
+                              >
                             </div>
 
                             <!-- Display time remaining and stop challenge link -->
@@ -363,7 +374,8 @@
                                     'Coffee (This challenge was called off, and the date of cancellation is indicated below.)',
                                     '4'
                                   );
-                                  $event.preventDefault()
+                                  $event.preventDefault();
+                                  deductPoints(4)
                                 "
                                 >QUIT!</a
                               >

@@ -102,6 +102,7 @@ public class CacheConfiguration {
 
             createCache(cm, team.bham.domain.History.class.getName());
             createCache(cm, team.bham.domain.Timer.class.getName());
+            createCache(cm, team.bham.domain.Points.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }
