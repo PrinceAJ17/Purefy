@@ -1,7 +1,9 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { EntriesFeatureService } from '../entities/entries-feature/service/entries-feature.service'; // Adjust the path as necessary
-import { EntriesFeature } from '../entities/entries-feature/entries-feature.module'; // Adjust the path as necessary
+import { EntriesFeature, NewEntriesFeature } from '../entities/entries-feature/entries-feature.model'; // Adjust the path as necessary
+import * as dayjs from 'dayjs'; // Ensure Day.js is imported if you need to perform any conversions or checks
+import { HttpClient, HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'jhi-entries',
@@ -9,9 +11,17 @@ import { EntriesFeature } from '../entities/entries-feature/entries-feature.modu
   styleUrls: ['./entries.component.scss'],
 })
 export class EntriesComponent implements OnInit {
-  entryFeature: EntriesFeature = new EntriesFeature(); // Adjust based on your actual model
+  entryFeature: EntriesFeature = {
+    id: 0, // Assuming 0 is not a valid ID and will be replaced by the backend
+    title: null,
+    content: null,
+    date: null, // Initialize all fields to null or their default state
+  };
   entries: EntriesFeature[] = []; // Store fetched entries
-
+  formatDate(date: dayjs.Dayjs | null | undefined): string | null {
+    if (!date) return null; // Handle null or undefined
+    return date.toDate().toISOString(); // Convert to ISO string, or use toDate() for a Date object
+  }
   constructor(
     private router: Router,
     private renderer: Renderer2,
@@ -53,12 +63,21 @@ export class EntriesComponent implements OnInit {
   }
 
   saveEntry(): void {
-    this.entriesFeatureService.create(this.entryFeature).subscribe({
-      next: res => {
-        console.log('Entry saved:', res);
-        this.closePopup(); // Close the popup on successful save
+    const { id, ...submissionEntry } = this.entryFeature;
+    this.entriesFeatureService.create(submissionEntry as NewEntriesFeature).subscribe({
+      next: (res: HttpResponse<EntriesFeature>) => {
+        console.log('Entry saved:', res.body);
+        if (res.body) {
+          this.entries.push(res.body);
+          this.resetForm();
+          this.closePopup();
+        }
       },
       error: err => console.error('Error saving entry:', err),
+      complete: () => {
+        // Display a success message
+        alert('Entry saved successfully!');
+      },
     });
   }
 
@@ -76,5 +95,14 @@ export class EntriesComponent implements OnInit {
     if (popup) {
       this.renderer.setStyle(popup, 'display', 'none');
     }
+  }
+  resetForm(): void {
+    // Reset entryFeature to its initial state to clear the form
+    this.entryFeature = {
+      id: 0, // Or as appropriate for your initial state
+      title: null,
+      content: null,
+      date: null,
+    };
   }
 }

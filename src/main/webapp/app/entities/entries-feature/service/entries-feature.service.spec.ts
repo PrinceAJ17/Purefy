@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { DATE_FORMAT } from 'app/config/input.constants';
-import { IEntriesFeature } from '../entries-feature.model';
+import { EntriesFeature } from '../entries-feature.model';
 import { sampleWithRequiredData, sampleWithNewData, sampleWithPartialData, sampleWithFullData } from '../entries-feature.test-samples';
 
 import { EntriesFeatureService, RestEntriesFeature } from './entries-feature.service';
@@ -15,7 +15,7 @@ const requireRestSample: RestEntriesFeature = {
 describe('EntriesFeature Service', () => {
   let service: EntriesFeatureService;
   let httpMock: HttpTestingController;
-  let expectedResult: IEntriesFeature | IEntriesFeature[] | boolean | null;
+  let expectedResult: EntriesFeature | EntriesFeature[] | boolean | null;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -100,15 +100,15 @@ describe('EntriesFeature Service', () => {
 
     describe('addEntriesFeatureToCollectionIfMissing', () => {
       it('should add a EntriesFeature to an empty array', () => {
-        const entriesFeature: IEntriesFeature = sampleWithRequiredData;
+        const entriesFeature: EntriesFeature = sampleWithRequiredData;
         expectedResult = service.addEntriesFeatureToCollectionIfMissing([], entriesFeature);
         expect(expectedResult).toHaveLength(1);
         expect(expectedResult).toContain(entriesFeature);
       });
 
       it('should not add a EntriesFeature to an array that contains it', () => {
-        const entriesFeature: IEntriesFeature = sampleWithRequiredData;
-        const entriesFeatureCollection: IEntriesFeature[] = [
+        const entriesFeature: EntriesFeature = sampleWithRequiredData;
+        const entriesFeatureCollection: EntriesFeature[] = [
           {
             ...entriesFeature,
           },
@@ -119,23 +119,23 @@ describe('EntriesFeature Service', () => {
       });
 
       it("should add a EntriesFeature to an array that doesn't contain it", () => {
-        const entriesFeature: IEntriesFeature = sampleWithRequiredData;
-        const entriesFeatureCollection: IEntriesFeature[] = [sampleWithPartialData];
+        const entriesFeature: EntriesFeature = sampleWithRequiredData;
+        const entriesFeatureCollection: EntriesFeature[] = [sampleWithPartialData];
         expectedResult = service.addEntriesFeatureToCollectionIfMissing(entriesFeatureCollection, entriesFeature);
         expect(expectedResult).toHaveLength(2);
         expect(expectedResult).toContain(entriesFeature);
       });
 
       it('should add only unique EntriesFeature to an array', () => {
-        const entriesFeatureArray: IEntriesFeature[] = [sampleWithRequiredData, sampleWithPartialData, sampleWithFullData];
-        const entriesFeatureCollection: IEntriesFeature[] = [sampleWithRequiredData];
+        const entriesFeatureArray: EntriesFeature[] = [sampleWithRequiredData, sampleWithPartialData, sampleWithFullData];
+        const entriesFeatureCollection: EntriesFeature[] = [sampleWithRequiredData];
         expectedResult = service.addEntriesFeatureToCollectionIfMissing(entriesFeatureCollection, ...entriesFeatureArray);
         expect(expectedResult).toHaveLength(3);
       });
 
       it('should accept varargs', () => {
-        const entriesFeature: IEntriesFeature = sampleWithRequiredData;
-        const entriesFeature2: IEntriesFeature = sampleWithPartialData;
+        const entriesFeature: EntriesFeature = sampleWithRequiredData;
+        const entriesFeature2: EntriesFeature = sampleWithPartialData;
         expectedResult = service.addEntriesFeatureToCollectionIfMissing([], entriesFeature, entriesFeature2);
         expect(expectedResult).toHaveLength(2);
         expect(expectedResult).toContain(entriesFeature);
@@ -143,14 +143,14 @@ describe('EntriesFeature Service', () => {
       });
 
       it('should accept null and undefined values', () => {
-        const entriesFeature: IEntriesFeature = sampleWithRequiredData;
+        const entriesFeature: EntriesFeature = sampleWithRequiredData;
         expectedResult = service.addEntriesFeatureToCollectionIfMissing([], null, entriesFeature, undefined);
         expect(expectedResult).toHaveLength(1);
         expect(expectedResult).toContain(entriesFeature);
       });
 
       it('should return initial array if no EntriesFeature is added', () => {
-        const entriesFeatureCollection: IEntriesFeature[] = [sampleWithRequiredData];
+        const entriesFeatureCollection: EntriesFeature[] = [sampleWithRequiredData];
         expectedResult = service.addEntriesFeatureToCollectionIfMissing(entriesFeatureCollection, undefined, null);
         expect(expectedResult).toEqual(entriesFeatureCollection);
       });

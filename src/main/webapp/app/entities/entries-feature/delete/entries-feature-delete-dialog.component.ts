@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { IEntriesFeature } from '../entries-feature.model';
+import { EntriesFeature } from '../entries-feature.model';
 import { EntriesFeatureService } from '../service/entries-feature.service';
 import { ITEM_DELETED_EVENT } from 'app/config/navigation.constants';
 
@@ -9,7 +9,7 @@ import { ITEM_DELETED_EVENT } from 'app/config/navigation.constants';
   templateUrl: './entries-feature-delete-dialog.component.html',
 })
 export class EntriesFeatureDeleteDialogComponent {
-  entriesFeature?: IEntriesFeature;
+  entriesFeature?: EntriesFeature;
 
   constructor(protected entriesFeatureService: EntriesFeatureService, protected activeModal: NgbActiveModal) {}
 

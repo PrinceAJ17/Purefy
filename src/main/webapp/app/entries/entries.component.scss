@@ -996,7 +996,7 @@ EntriesPage Style
   border-left: 5px solid #20058b;
   width: 80%;
   max-width: 600px;
-  height: 430px;
+  height: 500px;
   border-radius: 10px;
 }
 
@@ -1041,6 +1041,12 @@ EntriesPage Style
   height: 200px;
   display: block;
   width: 100%;
+}
+
+#entryDate {
+  color: black;
+  background-color: #bae0fb;
+  border: 1px solid #ccc;
 }
 
 .form-group {

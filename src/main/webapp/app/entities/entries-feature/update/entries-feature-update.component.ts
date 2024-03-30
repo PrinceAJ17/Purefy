@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 
 import { EntriesFeatureFormService, EntriesFeatureFormGroup } from './entries-feature-form.service';
-import { IEntriesFeature } from '../entries-feature.model';
+import { EntriesFeature } from '../entries-feature.model';
 import { EntriesFeatureService } from '../service/entries-feature.service';
 
 @Component({
@@ -14,7 +14,7 @@ import { EntriesFeatureService } from '../service/entries-feature.service';
 })
 export class EntriesFeatureUpdateComponent implements OnInit {
   isSaving = false;
-  entriesFeature: IEntriesFeature | null = null;
+  entriesFeature: EntriesFeature | null = null;
 
   editForm: EntriesFeatureFormGroup = this.entriesFeatureFormService.createEntriesFeatureFormGroup();
 
@@ -47,7 +47,7 @@ export class EntriesFeatureUpdateComponent implements OnInit {
     }
   }
 
-  protected subscribeToSaveResponse(result: Observable<HttpResponse<IEntriesFeature>>): void {
+  protected subscribeToSaveResponse(result: Observable<HttpResponse<EntriesFeature>>): void {
     result.pipe(finalize(() => this.onSaveFinalize())).subscribe({
       next: () => this.onSaveSuccess(),
       error: () => this.onSaveError(),
@@ -66,7 +66,7 @@ export class EntriesFeatureUpdateComponent implements OnInit {
     this.isSaving = false;
   }
 
-  protected updateForm(entriesFeature: IEntriesFeature): void {
+  protected updateForm(entriesFeature: EntriesFeature): void {
     this.entriesFeature = entriesFeature;
     this.entriesFeatureFormService.resetForm(this.editForm, entriesFeature);
   }

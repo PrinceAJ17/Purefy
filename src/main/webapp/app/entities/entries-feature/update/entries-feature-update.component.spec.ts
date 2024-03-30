@@ -8,7 +8,7 @@ import { of, Subject, from } from 'rxjs';
 
 import { EntriesFeatureFormService } from './entries-feature-form.service';
 import { EntriesFeatureService } from '../service/entries-feature.service';
-import { IEntriesFeature } from '../entries-feature.model';
+import { EntriesFeature } from '../entries-feature.model';
 
 import { EntriesFeatureUpdateComponent } from './entries-feature-update.component';
 
@@ -46,7 +46,7 @@ describe('EntriesFeature Management Update Component', () => {
 
   describe('ngOnInit', () => {
     it('Should update editForm', () => {
-      const entriesFeature: IEntriesFeature = { id: 456 };
+      const entriesFeature: EntriesFeature = { id: 456 };
 
       activatedRoute.data = of({ entriesFeature });
       comp.ngOnInit();
@@ -58,7 +58,7 @@ describe('EntriesFeature Management Update Component', () => {
   describe('save', () => {
     it('Should call update service on save for existing entity', () => {
       // GIVEN
-      const saveSubject = new Subject<HttpResponse<IEntriesFeature>>();
+      const saveSubject = new Subject<HttpResponse<EntriesFeature>>();
       const entriesFeature = { id: 123 };
       jest.spyOn(entriesFeatureFormService, 'getEntriesFeature').mockReturnValue(entriesFeature);
       jest.spyOn(entriesFeatureService, 'update').mockReturnValue(saveSubject);
@@ -81,7 +81,7 @@ describe('EntriesFeature Management Update Component', () => {
 
     it('Should call create service on save for new entity', () => {
       // GIVEN
-      const saveSubject = new Subject<HttpResponse<IEntriesFeature>>();
+      const saveSubject = new Subject<HttpResponse<EntriesFeature>>();
       const entriesFeature = { id: 123 };
       jest.spyOn(entriesFeatureFormService, 'getEntriesFeature').mockReturnValue({ id: null });
       jest.spyOn(entriesFeatureService, 'create').mockReturnValue(saveSubject);
@@ -104,7 +104,7 @@ describe('EntriesFeature Management Update Component', () => {
 
     it('Should set isSaving to false on error', () => {
       // GIVEN
-      const saveSubject = new Subject<HttpResponse<IEntriesFeature>>();
+      const saveSubject = new Subject<HttpResponse<EntriesFeature>>();
       const entriesFeature = { id: 123 };
       jest.spyOn(entriesFeatureService, 'update').mockReturnValue(saveSubject);
       jest.spyOn(comp, 'previousState');

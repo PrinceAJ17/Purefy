@@ -5,7 +5,7 @@ import { ActivatedRouteSnapshot, ActivatedRoute, Router, convertToParamMap } fro
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 
-import { IEntriesFeature } from '../entries-feature.model';
+import { EntriesFeature } from '../entries-feature.model';
 import { EntriesFeatureService } from '../service/entries-feature.service';
 
 import { EntriesFeatureRoutingResolveService } from './entries-feature-routing-resolve.service';
@@ -15,7 +15,7 @@ describe('EntriesFeature routing resolve service', () => {
   let mockActivatedRouteSnapshot: ActivatedRouteSnapshot;
   let routingResolveService: EntriesFeatureRoutingResolveService;
   let service: EntriesFeatureService;
-  let resultEntriesFeature: IEntriesFeature | null | undefined;
+  let resultEntriesFeature: EntriesFeature | null | undefined;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -72,7 +72,7 @@ describe('EntriesFeature routing resolve service', () => {
 
     it('should route to 404 page if data not found in server', () => {
       // GIVEN
-      jest.spyOn(service, 'find').mockReturnValue(of(new HttpResponse<IEntriesFeature>({ body: null })));
+      jest.spyOn(service, 'find').mockReturnValue(of(new HttpResponse<EntriesFeature>({ body: null })));
       mockActivatedRouteSnapshot.params = { id: 123 };
 
       // WHEN

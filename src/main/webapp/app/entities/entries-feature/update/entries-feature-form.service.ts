@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { IEntriesFeature, NewEntriesFeature } from '../entries-feature.model';
+import { EntriesFeature, NewEntriesFeature } from '../entries-feature.model';
 
 /**
  * A partial Type with required key is used as form input.
@@ -12,15 +12,15 @@ type PartialWithRequiredKeyOf<T extends { id: unknown }> = Partial<Omit<T, 'id'>
  * Type for createFormGroup and resetForm argument.
  * It accepts IEntriesFeature for edit and NewEntriesFeatureFormGroupInput for create.
  */
-type EntriesFeatureFormGroupInput = IEntriesFeature | PartialWithRequiredKeyOf<NewEntriesFeature>;
+type EntriesFeatureFormGroupInput = EntriesFeature | PartialWithRequiredKeyOf<NewEntriesFeature>;
 
 type EntriesFeatureFormDefaults = Pick<NewEntriesFeature, 'id'>;
 
 type EntriesFeatureFormGroupContent = {
-  id: FormControl<IEntriesFeature['id'] | NewEntriesFeature['id']>;
-  title: FormControl<IEntriesFeature['title']>;
-  content: FormControl<IEntriesFeature['content']>;
-  date: FormControl<IEntriesFeature['date']>;
+  id: FormControl<EntriesFeature['id'] | NewEntriesFeature['id']>;
+  title: FormControl<EntriesFeature['title']>;
+  content: FormControl<EntriesFeature['content']>;
+  date: FormControl<EntriesFeature['date']>;
 };
 
 export type EntriesFeatureFormGroup = FormGroup<EntriesFeatureFormGroupContent>;
@@ -46,8 +46,8 @@ export class EntriesFeatureFormService {
     });
   }
 
-  getEntriesFeature(form: EntriesFeatureFormGroup): IEntriesFeature | NewEntriesFeature {
-    return form.getRawValue() as IEntriesFeature | NewEntriesFeature;
+  getEntriesFeature(form: EntriesFeatureFormGroup): EntriesFeature | NewEntriesFeature {
+    return form.getRawValue() as EntriesFeature | NewEntriesFeature;
   }
 
   resetForm(form: EntriesFeatureFormGroup, entriesFeature: EntriesFeatureFormGroupInput): void {

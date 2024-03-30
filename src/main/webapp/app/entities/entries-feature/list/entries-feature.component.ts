@@ -4,7 +4,7 @@ import { ActivatedRoute, Data, ParamMap, Router } from '@angular/router';
 import { combineLatest, filter, Observable, switchMap, tap } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { IEntriesFeature } from '../entries-feature.model';
+import { EntriesFeature } from '../entries-feature.model';
 
 import { ITEMS_PER_PAGE } from 'app/config/pagination.constants';
 import { ASC, DESC, SORT, ITEM_DELETED_EVENT, DEFAULT_SORT_DATA } from 'app/config/navigation.constants';
@@ -17,7 +17,7 @@ import { ParseLinks } from 'app/core/util/parse-links.service';
   templateUrl: './entries-feature.component.html',
 })
 export class EntriesFeatureComponent implements OnInit {
-  entriesFeatures?: IEntriesFeature[];
+  entriesFeatures?: EntriesFeature[];
   isLoading = false;
 
   predicate = 'id';
@@ -48,13 +48,13 @@ export class EntriesFeatureComponent implements OnInit {
     this.load();
   }
 
-  trackId = (_index: number, item: IEntriesFeature): number => this.entriesFeatureService.getEntriesFeatureIdentifier(item);
+  trackId = (_index: number, item: EntriesFeature): number => this.entriesFeatureService.getEntriesFeatureIdentifier(item);
 
   ngOnInit(): void {
     this.load();
   }
 
-  delete(entriesFeature: IEntriesFeature): void {
+  delete(entriesFeature: EntriesFeature): void {
     const modalRef = this.modalService.open(EntriesFeatureDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.entriesFeature = entriesFeature;
     // unsubscribe not needed because closed completes on modal close
@@ -105,7 +105,7 @@ export class EntriesFeatureComponent implements OnInit {
     this.entriesFeatures = dataFromBody;
   }
 
-  protected fillComponentAttributesFromResponseBody(data: IEntriesFeature[] | null): IEntriesFeature[] {
+  protected fillComponentAttributesFromResponseBody(data: EntriesFeature[] | null): EntriesFeature[] {
     const entriesFeaturesNew = this.entriesFeatures ?? [];
     if (data) {
       for (const d of data) {

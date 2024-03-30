@@ -1,17 +1,17 @@
 import dayjs from 'dayjs/esm';
 
-import { IEntriesFeature, NewEntriesFeature } from './entries-feature.model';
+import { EntriesFeature, NewEntriesFeature } from './entries-feature.model';
 
-export const sampleWithRequiredData: IEntriesFeature = {
+export const sampleWithRequiredData: EntriesFeature = {
   id: 59371,
 };
 
-export const sampleWithPartialData: IEntriesFeature = {
+export const sampleWithPartialData: EntriesFeature = {
   id: 58799,
   content: 'SSL revolutionize Programmable',
 };
 
-export const sampleWithFullData: IEntriesFeature = {
+export const sampleWithFullData: EntriesFeature = {
   id: 40265,
   title: 'Avon',
   content: 'hack',

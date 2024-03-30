@@ -8,22 +8,22 @@ import { isPresent } from 'app/core/util/operators';
 import { DATE_FORMAT } from 'app/config/input.constants';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
-import { IEntriesFeature, NewEntriesFeature } from '../entries-feature.model';
+import { EntriesFeature, NewEntriesFeature } from '../entries-feature.model';
 
-export type PartialUpdateEntriesFeature = Partial<IEntriesFeature> & Pick<IEntriesFeature, 'id'>;
+export type PartialUpdateEntriesFeature = Partial<EntriesFeature> & Pick<EntriesFeature, 'id'>;
 
-type RestOf<T extends IEntriesFeature | NewEntriesFeature> = Omit<T, 'date'> & {
+type RestOf<T extends EntriesFeature | NewEntriesFeature> = Omit<T, 'date'> & {
   date?: string | null;
 };
 
-export type RestEntriesFeature = RestOf<IEntriesFeature>;
+export type RestEntriesFeature = RestOf<EntriesFeature>;
 
 export type NewRestEntriesFeature = RestOf<NewEntriesFeature>;
 
 export type PartialUpdateRestEntriesFeature = RestOf<PartialUpdateEntriesFeature>;
 
-export type EntityResponseType = HttpResponse<IEntriesFeature>;
-export type EntityArrayResponseType = HttpResponse<IEntriesFeature[]>;
+export type EntityResponseType = HttpResponse<EntriesFeature>;
+export type EntityArrayResponseType = HttpResponse<EntriesFeature[]>;
 
 @Injectable({ providedIn: 'root' })
 export class EntriesFeatureService {
@@ -38,7 +38,7 @@ export class EntriesFeatureService {
       .pipe(map(res => this.convertResponseFromServer(res)));
   }
 
-  update(entriesFeature: IEntriesFeature): Observable<EntityResponseType> {
+  update(entriesFeature: EntriesFeature): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(entriesFeature);
     return this.http
       .put<RestEntriesFeature>(`${this.resourceUrl}/${this.getEntriesFeatureIdentifier(entriesFeature)}`, copy, { observe: 'response' })
@@ -69,15 +69,15 @@ export class EntriesFeatureService {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
-  getEntriesFeatureIdentifier(entriesFeature: Pick<IEntriesFeature, 'id'>): number {
+  getEntriesFeatureIdentifier(entriesFeature: Pick<EntriesFeature, 'id'>): number {
     return entriesFeature.id;
   }
 
-  compareEntriesFeature(o1: Pick<IEntriesFeature, 'id'> | null, o2: Pick<IEntriesFeature, 'id'> | null): boolean {
+  compareEntriesFeature(o1: Pick<EntriesFeature, 'id'> | null, o2: Pick<EntriesFeature, 'id'> | null): boolean {
     return o1 && o2 ? this.getEntriesFeatureIdentifier(o1) === this.getEntriesFeatureIdentifier(o2) : o1 === o2;
   }
 
-  addEntriesFeatureToCollectionIfMissing<Type extends Pick<IEntriesFeature, 'id'>>(
+  addEntriesFeatureToCollectionIfMissing<Type extends Pick<EntriesFeature, 'id'>>(
     entriesFeatureCollection: Type[],
     ...entriesFeaturesToCheck: (Type | null | undefined)[]
   ): Type[] {
@@ -100,11 +100,11 @@ export class EntriesFeatureService {
   }
 
   // In EntriesFeatureService
-  getAll(): Observable<IEntriesFeature[]> {
-    return this.http.get<IEntriesFeature[]>(this.resourceUrl);
+  getAll(): Observable<EntriesFeature[]> {
+    return this.http.get<EntriesFeature[]>(this.resourceUrl);
   }
 
-  protected convertDateFromClient<T extends IEntriesFeature | NewEntriesFeature | PartialUpdateEntriesFeature>(
+  protected convertDateFromClient<T extends EntriesFeature | NewEntriesFeature | PartialUpdateEntriesFeature>(
     entriesFeature: T
   ): RestOf<T> {
     return {
@@ -113,20 +113,20 @@ export class EntriesFeatureService {
     };
   }
 
-  protected convertDateFromServer(restEntriesFeature: RestEntriesFeature): IEntriesFeature {
+  protected convertDateFromServer(restEntriesFeature: RestEntriesFeature): EntriesFeature {
     return {
       ...restEntriesFeature,
       date: restEntriesFeature.date ? dayjs(restEntriesFeature.date) : undefined,
     };
   }
 
-  protected convertResponseFromServer(res: HttpResponse<RestEntriesFeature>): HttpResponse<IEntriesFeature> {
+  protected convertResponseFromServer(res: HttpResponse<RestEntriesFeature>): HttpResponse<EntriesFeature> {
     return res.clone({
       body: res.body ? this.convertDateFromServer(res.body) : null,
     });
   }
 
-  protected convertResponseArrayFromServer(res: HttpResponse<RestEntriesFeature[]>): HttpResponse<IEntriesFeature[]> {
+  protected convertResponseArrayFromServer(res: HttpResponse<RestEntriesFeature[]>): HttpResponse<EntriesFeature[]> {
     return res.clone({
       body: res.body ? res.body.map(item => this.convertDateFromServer(item)) : null,
     });
