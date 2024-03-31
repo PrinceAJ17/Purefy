@@ -46,9 +46,9 @@ public class PointsResource {
         this.pointsRepository = pointsRepository;
     }
 
-    @PostMapping("/points")
-    public ResponseEntity<Points> updatePoints(@RequestParam String username, @RequestParam int points) {
-        Points updatedPoints = pointsService.updatePoints(username, points);
+    @PostMapping("/points/add")
+    public ResponseEntity<Points> addPoints(@RequestParam String username, @RequestParam int points) {
+        Points updatedPoints = pointsService.addPoints(username, points);
         return ResponseEntity.ok(updatedPoints);
     }
 

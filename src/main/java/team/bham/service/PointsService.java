@@ -28,7 +28,7 @@ public class PointsService {
         this.pointsRepository = pointsRepository;
     }
 
-    public Points updatePoints(String username, int pointsToAdd) {
+    public Points addPoints(String username, int pointsToAdd) {
         Points points = pointsRepository
             .findByUsername(username)
             .orElseGet(() -> {
