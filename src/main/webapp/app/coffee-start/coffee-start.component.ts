@@ -181,22 +181,16 @@ export class CoffeeStartComponent implements OnInit {
   }
 
   sendPoints(points: number): void {
-    this.accountService.identity().subscribe(account => {
-      if (account && account.login) {
-        this.pointsService.updatePoints(account.login, points).subscribe(() => {
-          console.log('Points updated successfully');
-        });
-      }
+    this.pointsService.addPoints(points).subscribe({
+      next: () => console.log('Points updated successfully'),
+      error: error => console.error('Failed to update points:', error),
     });
   }
 
   deductPoints(pointsToDeduct: number): void {
-    this.accountService.identity().subscribe(account => {
-      if (account && account.login) {
-        this.pointsService.deductPoints(account.login, pointsToDeduct).subscribe(() => {
-          console.log(`Deducted ${pointsToDeduct} points successfully.`);
-        });
-      }
+    this.pointsService.deductPoints(pointsToDeduct).subscribe({
+      next: () => console.log(`Deducted ${pointsToDeduct} points successfully.`),
+      error: error => console.error('Failed to deduct points:', error),
     });
   }
 }

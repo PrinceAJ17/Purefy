@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
+import { Observable, switchMap, throwError } from 'rxjs';
 
 import { isPresent } from 'app/core/util/operators';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
 import { IPoints, NewPoints } from '../points.model';
+import { AccountService } from '../../../core/auth/account.service';
+import { catchError } from 'rxjs/operators';
 
 export type PartialUpdatePoints = Partial<IPoints> & Pick<IPoints, 'id'>;
 
@@ -16,7 +18,11 @@ export type EntityArrayResponseType = HttpResponse<IPoints[]>;
 export class PointsService {
   protected resourceUrl = this.applicationConfigService.getEndpointFor('api/points');
 
-  constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
+  constructor(
+    protected http: HttpClient,
+    protected applicationConfigService: ApplicationConfigService,
+    private accountService: AccountService
+  ) {}
 
   create(points: NewPoints): Observable<EntityResponseType> {
     return this.http.post<IPoints>(this.resourceUrl, points, { observe: 'response' });
@@ -30,13 +36,44 @@ export class PointsService {
     return this.http.patch<IPoints>(`${this.resourceUrl}/${this.getPointsIdentifier(points)}`, points, { observe: 'response' });
   }
 
-  deductPoints(username: string, points: number): Observable<any> {
-    return this.http.post(`${this.resourceUrl}/deduct`, { username, points });
+  deductPoints(pointsToDeduct: number): Observable<any> {
+    return this.accountService.identity().pipe(
+      switchMap(account => {
+        if (account && account.login) {
+          const username = account.login;
+          // Assuming you have a method to construct the request
+          return this.http.post(`${this.resourceUrl}/deduct`, null, {
+            params: new HttpParams().set('username', username).set('points', pointsToDeduct.toString()),
+            observe: 'response',
+          });
+        } else {
+          return throwError(() => new Error('User is not logged in.'));
+        }
+      }),
+      catchError(error => {
+        return throwError(() => error);
+      })
+    );
   }
 
-  updatePoints(username: string, points: number): Observable<any> {
-    const updatePointsUrl = `${this.resourceUrl}/update`;
-    return this.http.post(updatePointsUrl, { username, points }, { observe: 'response' });
+  addPoints(pointsToAdd: number): Observable<any> {
+    return this.accountService.identity().pipe(
+      switchMap(account => {
+        if (account && account.login) {
+          const username = account.login;
+          // Assuming you have a method to construct the request
+          return this.http.post(`${this.resourceUrl}/add`, null, {
+            params: new HttpParams().set('username', username).set('points', pointsToAdd.toString()),
+            observe: 'response',
+          });
+        } else {
+          return throwError(() => new Error('User is not logged in.'));
+        }
+      }),
+      catchError(error => {
+        return throwError(() => error);
+      })
+    );
   }
 
   find(id: number): Observable<EntityResponseType> {
