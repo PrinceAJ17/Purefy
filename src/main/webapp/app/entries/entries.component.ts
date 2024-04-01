@@ -2,7 +2,7 @@ import { Component, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { EntriesFeatureService } from '../entities/entries-feature/service/entries-feature.service'; // Adjust the path as necessary
 import { EntriesFeature, NewEntriesFeature } from '../entities/entries-feature/entries-feature.model'; // Adjust the path as necessary
-import * as dayjs from 'dayjs'; // Ensure Day.js is imported if you need to perform any conversions or checks
+import { default as dayjs } from 'dayjs';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 
 @Component({
@@ -18,9 +18,10 @@ export class EntriesComponent implements OnInit {
     date: null, // Initialize all fields to null or their default state
   };
   entries: EntriesFeature[] = []; // Store fetched entries
-  formatDate(date: dayjs.Dayjs | null | undefined): string | null {
+  formatDate(date: string | dayjs.Dayjs | null | undefined): string | null {
     if (!date) return null; // Handle null or undefined
-    return date.toDate().toISOString(); // Convert to ISO string, or use toDate() for a Date object
+    const formattedDate = dayjs(date).isValid() ? dayjs(date) : dayjs(); // If date is a valid string, parse it; otherwise, create a new Dayjs object
+    return formattedDate.toDate().toISOString(); // Convert to ISO string, or use toDate() for a Date object
   }
   constructor(
     private router: Router,
