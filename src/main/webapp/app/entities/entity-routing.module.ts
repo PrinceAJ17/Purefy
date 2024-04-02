@@ -176,6 +176,11 @@ import { RouterModule } from '@angular/router';
         loadChildren: () => import('./history/history.module').then(m => m.HistoryModule),
       },
       {
+        path: 'entries-feature',
+        data: { pageTitle: 'EntriesFeatures' },
+        loadChildren: () => import('./entries-feature/entries-feature.module').then(m => m.EntriesFeatureModule),
+      },
+      {
         path: 'timer',
         data: { pageTitle: 'Timers' },
         loadChildren: () => import('./timer/timer.module').then(m => m.TimerModule),

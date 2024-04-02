@@ -17,7 +17,7 @@ import { HomeModule } from './home/home.module';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { NgbDateDayjsAdapter } from './config/datepicker-adapter';
 import { fontAwesomeIcons } from './config/font-awesome-icons';
-import { httpInterceptorProviders } from 'app/core/interceptor/index';
+import { httpInterceptorProviders } from './core/interceptor';
 import { MainComponent } from './layouts/main/main.component';
 import { NavbarComponent } from './layouts/navbar/navbar.component';
 import { FooterComponent } from './layouts/footer/footer.component';
@@ -42,6 +42,11 @@ import { SmokingStartComponent } from './smoking-start/smoking-start.component';
 import { SocialStartComponent } from './social-start/social-start.component';
 import { VideoStartComponent } from './video-start/video-start.component';
 import { HistoryComponent } from './history/history.component';
+import { MoodJournalPageComponent } from './mood-journal-page/mood-journal-page.component';
+import { EntriesComponent } from './entries/entries.component';
+import { PromptsComponent } from './prompts/prompts.component';
+import { EmotionsComponent } from './emotions/emotions.component';
+import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 
 @NgModule({
   imports: [
@@ -87,6 +92,11 @@ import { HistoryComponent } from './history/history.component';
     SocialStartComponent,
     VideoStartComponent,
     HistoryComponent,
+    MoodJournalPageComponent,
+    EntriesComponent,
+    PromptsComponent,
+    EmotionsComponent,
+    LeaderboardComponent,
   ],
   bootstrap: [MainComponent],
 })
