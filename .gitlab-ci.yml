@@ -20,8 +20,6 @@ before_script:
 
 nohttp:
   stage: check
-  tags:
-    - my-specific-runner
   script:
     - ./mvnw -ntp checkstyle:check -Dmaven.repo.local=$MAVEN_USER_HOME
 
