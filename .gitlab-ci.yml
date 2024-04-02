@@ -23,6 +23,8 @@ nohttp:
 
 maven-compile:
   stage: build
+   tags:
+    - my-specific-runner
   script:
     - ./mvnw -ntp compile -P-webapp -Dmaven.repo.local=$MAVEN_USER_HOME
   artifacts:
@@ -33,6 +35,8 @@ maven-compile:
 
 maven-package:
   stage: package
+   tags:
+    - my-specific-runner
   script:
     - echo "jhipster" | sudo -S apt-get update
     - echo "jhipster" | sudo -S apt-get install -y chromium-browser
