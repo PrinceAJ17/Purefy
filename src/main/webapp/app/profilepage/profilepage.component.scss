@@ -1,6 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900');
 @import url('https://unpkg.com/swiper@7/swiper-bundle.min.css');
 
+.toggle-container {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+}
+
+.toggle-light-mode {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: #fff; /* Moon color */
+}
+
+.toggle-light-mode.active {
+  color: #ffcc00; /* Sun color */
+}
+
 .image-container {
   position: relative;
   overflow: hidden;

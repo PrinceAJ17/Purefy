@@ -1,6 +1,7 @@
 import { Route } from '@angular/router';
-import { ProfilepageComponent } from '../profilepage/profilepage.component';
+
 import { HomeComponent } from './home.component';
+import { ProfilepageComponent } from '../profilepage/profilepage.component';
 
 export const HOME_ROUTE: Route = {
   path: '',
