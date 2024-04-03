@@ -896,6 +896,7 @@ LandingPage Style
 }
 
 .journal-search {
+  margin-left: 550px;
   margin-bottom: 20px;
 }
 
@@ -913,25 +914,6 @@ LandingPage Style
   max-width: 300px;
   border-radius: 20px;
   border: 1px solid #ddd;
-}
-
-.search-button {
-  padding: 10px;
-  background-color: #ec6090;
-  color: white;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-  margin-right: -510px;
-  height: 40px;
-  width: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.search-button i {
-  margin-right: 0;
 }
 
 /*

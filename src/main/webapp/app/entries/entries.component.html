@@ -80,13 +80,19 @@
                 <!-- ***** Search Bar Start ***** -->
                 <div class="journal-search">
                   <form id="journalSearch" action="#">
-                    <input type="text" placeholder="Search Entries" id="journalSearchText" name="searchKeyword" />
-                    <button type="submit" class="search-button"><i class="fa fa-search"></i></button>
+                    <input
+                      type="text"
+                      placeholder="Search Entries"
+                      id="journalSearchText"
+                      name="searchKeyword"
+                      [(ngModel)]="searchTerm"
+                      (input)="filterEntries()"
+                    />
                   </form>
                 </div>
                 <!-- ***** Search Bar End ***** -->
                 <!-- Entry card -->
-                <div *ngFor="let entry of entries" class="card mb-4 normal-entry entry-container">
+                <div *ngFor="let entry of filteredEntries" class="card mb-4 normal-entry entry-container">
                   <div class="card-body">
                     <h6 class="card-title">{{ entry.title }}</h6>
                     <p class="card-text">{{ entry.content }}</p>
