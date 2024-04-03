@@ -97,6 +97,21 @@ export class EntriesComponent implements OnInit {
       this.renderer.setStyle(popup, 'display', 'none');
     }
   }
+
+  deleteEntry(id: number): void {
+    if (confirm('Are you sure you want to delete this entry?')) {
+      this.entriesFeatureService.delete(id).subscribe(
+        () => {
+          this.entries = this.entries.filter(entry => entry.id !== id);
+          console.log('Entry deleted successfully');
+        },
+        error => {
+          console.error('Error deleting entry:', error);
+        }
+      );
+    }
+  }
+
   resetForm(): void {
     // Reset entryFeature to its initial state to clear the form
     this.entryFeature = {

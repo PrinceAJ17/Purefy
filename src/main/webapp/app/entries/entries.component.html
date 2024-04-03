@@ -85,14 +85,15 @@
                   </form>
                 </div>
                 <!-- ***** Search Bar End ***** -->
-                <!-- Place this inside the <div id="journal-content"> where hardcoded entries used to be -->
-                <div *ngFor="let entry of entries" class="card mb-4 normal-entry">
+                <!-- Entry card -->
+                <div *ngFor="let entry of entries" class="card mb-4 normal-entry entry-container">
                   <div class="card-body">
                     <h6 class="card-title">{{ entry.title }}</h6>
                     <p class="card-text">{{ entry.content }}</p>
                     <p class="card-text">
                       <small>Entry Date: {{ formatDate(entry.date) | date }}</small>
                     </p>
+                    <button class="delete-button" (click)="deleteEntry(entry.id)">Delete</button>
                   </div>
                 </div>
                 <!-- ***** Add Entry Button Start **** -->
