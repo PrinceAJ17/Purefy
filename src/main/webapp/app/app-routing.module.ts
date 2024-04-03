@@ -25,6 +25,11 @@ import { MusicStartComponent } from './music-start/music-start.component';
 import { SmokingStartComponent } from './smoking-start/smoking-start.component';
 import { SocialStartComponent } from './social-start/social-start.component';
 import { VideoStartComponent } from './video-start/video-start.component';
+import { LeaderboardComponent } from './leaderboard/leaderboard.component';
+import { MoodJournalPageComponent } from './mood-journal-page/mood-journal-page.component';
+import { EntriesComponent } from './entries/entries.component';
+import { PromptsComponent } from './prompts/prompts.component';
+import { EmotionsComponent } from './emotions/emotions.component';
 
 const routes: Routes = [
   {
@@ -98,6 +103,26 @@ const routes: Routes = [
   {
     path: 'Videos-Start/:state',
     component: VideoStartComponent,
+  },
+  {
+    path: 'leaderboard',
+    component: LeaderboardComponent,
+  },
+  {
+    path: 'MoodJournalPage',
+    component: MoodJournalPageComponent,
+  },
+  {
+    path: 'Entries',
+    component: EntriesComponent,
+  },
+  {
+    path: 'Prompts',
+    component: PromptsComponent,
+  },
+  {
+    path: 'Emotions',
+    component: EmotionsComponent,
   },
 ];
 
@@ -196,6 +221,26 @@ const routes: Routes = [
         {
           path: 'Videos-Start/:state',
           component: VideoStartComponent,
+        },
+        {
+          path: 'leaderboard',
+          component: LeaderboardComponent,
+        },
+        {
+          path: 'MoodJournalPage',
+          component: MoodJournalPageComponent,
+        },
+        {
+          path: 'Entries',
+          component: EntriesComponent,
+        },
+        {
+          path: 'Prompts',
+          component: PromptsComponent,
+        },
+        {
+          path: 'Emotions',
+          component: EmotionsComponent,
         },
         navbarRoute,
         ...errorRoute,
