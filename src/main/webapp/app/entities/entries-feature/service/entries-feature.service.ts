@@ -109,7 +109,8 @@ export class EntriesFeatureService {
   ): RestOf<T> {
     return {
       ...entriesFeature,
-      date: entriesFeature.date?.format(DATE_FORMAT) ?? null,
+      // Check if `date` exists and is a dayjs object, then format; otherwise, set to null.
+      date: entriesFeature.date && dayjs(entriesFeature.date).isValid() ? dayjs(entriesFeature.date).format(DATE_FORMAT) : null,
     };
   }
 

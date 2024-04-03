@@ -2,7 +2,7 @@ import { Component, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { EntriesFeatureService } from '../entities/entries-feature/service/entries-feature.service'; // Adjust the path as necessary
 import { EntriesFeature, NewEntriesFeature } from '../entities/entries-feature/entries-feature.model'; // Adjust the path as necessary
-import { default as dayjs } from 'dayjs';
+import dayjs from 'dayjs/esm';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 
 @Component({
@@ -64,8 +64,11 @@ export class EntriesComponent implements OnInit {
   }
 
   saveEntry(): void {
-    const { id, ...submissionEntry } = this.entryFeature;
-    this.entriesFeatureService.create(submissionEntry as NewEntriesFeature).subscribe({
+    const entryWithDateAsDayjs = {
+      ...this.entryFeature,
+      date: this.entryFeature.date ? dayjs(this.entryFeature.date) : null,
+    };
+    this.entriesFeatureService.create(entryWithDateAsDayjs as unknown as NewEntriesFeature).subscribe({
       next: (res: HttpResponse<EntriesFeature>) => {
         console.log('Entry saved:', res.body);
         if (res.body) {
