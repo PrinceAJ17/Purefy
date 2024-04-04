@@ -48,7 +48,11 @@ export class EntriesComponent implements OnInit {
 
   loadEntries(): void {
     this.entriesFeatureService.getAll().subscribe((data: EntriesFeature[]) => {
-      this.entries = data;
+      this.entries = data.sort((a, b) => {
+        const dateA = dayjs(a.date);
+        const dateB = dayjs(b.date);
+        return dateB.valueOf() - dateA.valueOf(); // Sort in descending order
+      });
       this.filteredEntries = this.entries;
     });
   }
