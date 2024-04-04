@@ -20,7 +20,11 @@ export class PasswordComponent implements OnInit {
     newPassword: '',
   };
 
-  constructor(private http: HttpClient) {}
+  errorMessage: string; // Define errorMessage property
+
+  constructor(private http: HttpClient) {
+    this.errorMessage = ''; // Initialize errorMessage property
+  }
 
   ngOnInit(): void {}
 

@@ -1,11 +1,11 @@
 import { Route } from '@angular/router';
 
 import { HomeComponent } from './home.component';
-import { ProfilepageComponent } from '../profilepage/profilepage.component';
+import { LoginComponent } from '../login/login.component';
 
 export const HOME_ROUTE: Route = {
   path: '',
-  component: ProfilepageComponent,
+  component: LoginComponent,
   data: {
     pageTitle: 'Welcome, Java Hipster!',
   },

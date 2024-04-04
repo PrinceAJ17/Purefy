@@ -34,6 +34,8 @@ import { DeleteComponent } from './delete/delete.component';
 import { NumberComponent } from './number/number.component';
 import { PasswordComponent } from './password/password.component';
 import { HabitTrackerComponent } from './habit-tracker/habit-tracker.component';
+import { TeamComponent } from './team/team.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   imports: [
@@ -70,6 +72,8 @@ import { HabitTrackerComponent } from './habit-tracker/habit-tracker.component';
     NumberComponent,
     PasswordComponent,
     HabitTrackerComponent,
+    TeamComponent,
+    AboutComponent,
   ],
   bootstrap: [MainComponent],
 })

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { LoginService } from 'app/login/login.service';
 
 @Component({
   selector: 'jhi-signout',
@@ -6,15 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./signout.component.scss'],
 })
 export class SignoutComponent implements OnInit {
-  constructor() {}
+  constructor(
+    private loginService: LoginService, // Inject the LoginService
+    private router: Router // Inject the Router for navigation
+  ) {}
 
   ngOnInit(): void {}
 
   onSubmit(): void {
-    // Simulate sign-out by clearing any stored user session or tokens
-    // You can use localStorage, sessionStorage, or any other method for storing user data
-    localStorage.removeItem('currentUser'); // Assuming 'currentUser' is used to store user data
+    this.loginService.logout(); // Use the logout function from your LoginService
     console.log('User signed out successfully');
-    // You can also redirect the user to another page after sign-out
+    this.router.navigate(['/Login']); // Navigate to home or login page after logout
   }
 }

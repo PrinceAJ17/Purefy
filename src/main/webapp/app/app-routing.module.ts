@@ -9,14 +9,13 @@ import { UserRouteAccessService } from 'app/core/auth/user-route-access.service'
 import { LevelsComponent } from './levels/levels.component';
 import { BeginnerComponent } from './beginner/beginner.component';
 import { ProfilepageComponent } from './profilepage/profilepage.component';
-import { SettingsComponent } from './settings/settings.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { SupportComponent } from './support/support.component';
-import { EmailComponent } from './email/email.component';
+import { TeamComponent } from './team/team.component';
+import { AboutComponent } from './about/about.component';
 import { SignoutComponent } from './signout/signout.component';
-import { DeleteComponent } from './delete/delete.component';
-import { NumberComponent } from './number/number.component';
-import { PasswordComponent } from './password/password.component';
+import { LoginComponent } from './login/login.component';
+import { PasswordResetFinishComponent } from './account/password-reset/finish/password-reset-finish.component';
 
 const routes: Routes = [
   {
@@ -24,24 +23,32 @@ const routes: Routes = [
     component: LevelsComponent,
   },
   {
-    path: 'Number',
-    component: NumberComponent,
+    path: 'About',
+    component: AboutComponent,
+  },
+  {
+    path: 'Team',
+    component: TeamComponent,
+  },
+  {
+    path: 'Password',
+    component: PasswordResetFinishComponent,
   },
   {
     path: 'Beginner',
     component: BeginnerComponent,
   },
   {
-    path: 'Settings',
-    component: SettingsComponent,
-  },
-  {
-    path: 'Delete',
-    component: DeleteComponent,
+    path: 'Login',
+    component: LoginComponent,
   },
   {
     path: 'Profilepage',
     component: ProfilepageComponent,
+  },
+  {
+    path: 'Signout',
+    component: SignoutComponent,
   },
   {
     path: 'Feedback',
@@ -50,18 +57,6 @@ const routes: Routes = [
   {
     path: 'Support',
     component: SupportComponent,
-  },
-  {
-    path: 'Email',
-    component: EmailComponent,
-  },
-  {
-    path: 'Signout',
-    component: SignoutComponent,
-  },
-  {
-    path: 'Password',
-    component: PasswordComponent,
   },
 ];
 
@@ -90,21 +85,26 @@ const routes: Routes = [
           component: LevelsComponent,
         },
         {
+          path: 'Password',
+          component: PasswordResetFinishComponent,
+        },
+        {
           path: 'beginner',
           component: BeginnerComponent,
         },
         {
-          path: 'Settings',
-          component: SettingsComponent,
+          path: 'Login',
+          component: LoginComponent,
+        },
+        {
+          path: 'Team',
+          component: TeamComponent,
         },
         {
           path: 'Profilepage',
           component: ProfilepageComponent,
         },
-        {
-          path: 'Password',
-          component: PasswordComponent,
-        },
+
         {
           path: 'Feedback',
           component: FeedbackComponent,
@@ -114,20 +114,12 @@ const routes: Routes = [
           component: SupportComponent,
         },
         {
-          path: 'Email',
-          component: EmailComponent,
-        },
-        {
-          path: 'Number',
-          component: NumberComponent,
+          path: 'About',
+          component: AboutComponent,
         },
         {
           path: 'Signout',
           component: SignoutComponent,
-        },
-        {
-          path: 'Delete',
-          component: DeleteComponent,
         },
         {
           path: '',

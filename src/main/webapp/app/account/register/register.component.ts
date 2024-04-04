@@ -1,9 +1,13 @@
 import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { mergeMap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
+import { ActivateService } from '../activate/activate.service';
 import { EMAIL_ALREADY_USED_TYPE, LOGIN_ALREADY_USED_TYPE } from 'app/config/error.constants';
 import { RegisterService } from './register.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'jhi-register',
@@ -43,7 +47,12 @@ export class RegisterComponent implements AfterViewInit {
     }),
   });
 
-  constructor(private registerService: RegisterService) {}
+  constructor(
+    private registerService: RegisterService,
+    private activateService: ActivateService,
+    private route: ActivatedRoute,
+    private router: Router // Injecting Router service
+  ) {}
 
   ngAfterViewInit(): void {
     if (this.login) {
@@ -62,10 +71,22 @@ export class RegisterComponent implements AfterViewInit {
       this.doNotMatch = true;
     } else {
       const { login, email } = this.registerForm.getRawValue();
-      this.registerService
-        .save({ login, email, password, langKey: 'en' })
-        .subscribe({ next: () => (this.success = true), error: response => this.processError(response) });
+      this.registerService.save({ login, email, password, langKey: 'en' }).subscribe({
+        next: () => {
+          this.success = true;
+          setTimeout(() => {
+            this.router.navigate(['/Login']); // Redirect to login page after 5 seconds
+          }, 2000);
+        },
+        error: response => this.processError(response),
+      });
     }
+  }
+  ngOnInit(): void {
+    this.route.queryParams.pipe(mergeMap(params => this.activateService.get(params.key))).subscribe({
+      next: () => (this.success = true),
+      error: () => (this.error = true),
+    });
   }
 
   private processError(response: HttpErrorResponse): void {

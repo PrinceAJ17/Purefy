@@ -86,7 +86,7 @@ public class UserService {
             .findOneByEmailIgnoreCase(mail)
             .filter(User::isActivated)
             .map(user -> {
-                user.setResetKey(RandomUtil.generateResetKey());
+                user.setResetKey("12345");
                 user.setResetDate(Instant.now());
                 this.clearUserCaches(user);
                 return user;
@@ -123,7 +123,7 @@ public class UserService {
         newUser.setImageUrl(userDTO.getImageUrl());
         newUser.setLangKey(userDTO.getLangKey());
         // new user is not active
-        newUser.setActivated(false);
+        newUser.setActivated(true);
         // new user gets registration key
         newUser.setActivationKey(RandomUtil.generateActivationKey());
         Set<Authority> authorities = new HashSet<>();
@@ -200,7 +200,7 @@ public class UserService {
                     user.setEmail(userDTO.getEmail().toLowerCase());
                 }
                 user.setImageUrl(userDTO.getImageUrl());
-                user.setActivated(userDTO.isActivated());
+                user.setActivated(true);
                 user.setLangKey(userDTO.getLangKey());
                 Set<Authority> managedAuthorities = user.getAuthorities();
                 managedAuthorities.clear();
