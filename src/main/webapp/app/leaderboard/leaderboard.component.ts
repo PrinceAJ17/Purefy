@@ -66,6 +66,7 @@ export class LeaderboardComponent implements OnInit {
   options: groups[] = [];
   selectedGroupId: number = 0;
 
+
   createGroup: newGroup = {groupName: ''};
   newGrouping: Group = {
     id: 0,
@@ -90,6 +91,7 @@ export class LeaderboardComponent implements OnInit {
 
   constructor(private http: HttpClient, private router: Router) {}
 
+
   ngOnInit(): void {
     this.loadScript('vendor/jquery/jquery.min.js')
       .then(() => this.getGroupsData())
@@ -108,7 +110,7 @@ export class LeaderboardComponent implements OnInit {
       const body = document.body as HTMLDivElement;
       const script = document.createElement('script');
       script.src = scriptUrl;
-      script.async = false; // Important for sequential loading
+      script.async = false; 
       script.onload = () => resolve();
       script.onerror = error => reject(error);
       body.appendChild(script);
@@ -196,33 +198,27 @@ export class LeaderboardComponent implements OnInit {
     }
   }
 
+  calculateGroupPoints(): number {
+    return this.leaderboardData.reduce((acc, curr) => acc + curr.currentPoints, 0);
+  }
 
-  
+
   private getGroupsData() {
 
     this.http.get<groups[]>('api/members/groups').subscribe({
       next: (data) => {
-        this.options = data.map(entry => ({
-          id: entry.id,
-          groupID: entry.groupID,
-          userID: entry.userID,
-          leader: entry.leader,
-          grouping: entry.grouping,
-        }));
-  
+        this.options = data;
       },
       error: (error) => {
-        console.error('Error fetching leaderboard data:', error);
+        console.error('Error fetching group data:', error);
       },
       complete: () => {
-        console.log('Completed fetching leaderboard data');
+        console.log('Completed fetching group data');
       }
     });
   }
 
-  calculateGroupPoints(): number {
-    return this.leaderboardData.reduce((acc, curr) => acc + curr.currentPoints, 0);
-  }
+
 
   onGroupChange(): void{
     console.log('Group Selected', this.selectedGroupId);
@@ -313,40 +309,43 @@ export class LeaderboardComponent implements OnInit {
   
 
   onCreate(): void {
-    console.log('Group Created:', this.createGroup);
-    this.CreateGroup(this.createGroup).subscribe({
-      next: (newGrouping: Group) => {
-        console.log('Group created successfully:', newGrouping);
+    if (this.createGroup.groupName !== null){
+      console.log('Group Created:', this.createGroup);
+      this.CreateGroup(this.createGroup).subscribe({
+        next: (newGrouping: Group) => {
+          console.log('Group created successfully:', newGrouping);
 
-        var createDTO = {id: newGrouping.id, leader: true};
+          var createDTO = {id: newGrouping.id, leader: true};
 
-        this.http.post('/api/members', createDTO).subscribe(response => {
-          console.log('Joined group successfully', response);
-          this.getGroupsData();
-        }, error => {
-          console.error('Error joining group', error);
-          // Handle errors here (e.g., display an error message)
-        });
+          this.http.post('/api/members', createDTO).subscribe(response => {
+            console.log('Joined group successfully', response);
+            this.getGroupsData();
+          }, error => {
+            console.error('Error joining group', error);
 
-      },error: (error) => {
-        console.error('Error creating group:', error);
-      }
-    });
+          });
+
+        },error: (error) => {
+          console.error('Error creating group:', error);
+        }
+      });
+  }
   }
 
   onJoin(): void {
-    console.log('Joining Group:', this.joinGroup);
+    if (this.joinGroup.groupID !== null){
+      console.log('Joining Group:', this.joinGroup);
 
-    var joinDTO = {id: this.joinGroup.groupID, leader: false}
+      var joinDTO = {id: this.joinGroup.groupID, leader: false}
 
-    this.http.post('/api/members', joinDTO).subscribe(response => {
-      console.log('Joined group successfully', response);
-      this.getGroupsData();
-    }, error => {
-      console.error('Error joining group', error);
-      alert('Please Login and make sure the group exists and you arent already a member.')
-      // Handle errors here (e.g., display an error message)
-    });;
+      this.http.post('/api/members', joinDTO).subscribe(response => {
+        console.log('Joined group successfully', response);
+        this.getGroupsData();
+      }, error => {
+        console.error('Error joining group', error);
+        alert('Please Login and make sure the group exists and you arent already a member.')
+      });;
+    }
   }
 
   onLeave(): void{

@@ -79,10 +79,10 @@
               <div class="createGroup">
                 <form (ngSubmit)="onCreate()" #contactForm="ngForm" class="create">
                   <h4>Please enter your</h4><h4> new name to create:</h4>
-                  <input type="text" id="groupNameInput" placeholder="Name" required [(ngModel)]="createGroup.groupName" name="groupName">
+                  <input type="text" id="groupNameInput" placeholder="Name" required [(ngModel)]="createGroup.groupName" name="groupName" maxlength="20">
                   <br>
                   <button type="submit"  class="createGroupButton">Create Group</button>
-                </form>
+                </form>S
                 <br>
               </div>
 
@@ -93,7 +93,7 @@
               <div class="joinGroup">
                 <form (ngSubmit)="onJoin()" #contactForm="ngForm" class="join">
                   <h4>Please enter your </h4><h4> group code to join:</h4>
-                  <input type="text" id="groupCodeInput" placeholder="Code"  required [(ngModel)]="joinGroup.groupID" name="groupID">
+                  <input type="text" id="groupCodeInput" placeholder="Code" required [(ngModel)]="joinGroup.groupID" name="groupID" minlength="1">
                   <br>
                   <button type="submit" class="joinGroupButton">Join Group</button>
                 </form>
