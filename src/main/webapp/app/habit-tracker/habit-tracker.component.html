@@ -85,9 +85,9 @@
             <p>{{ day }}</p>
             <ul>
               <li *ngFor="let habit of habits[day]; let i = index">
-                <input type="checkbox" [(ngModel)]="habit.done">
+                <input type="checkbox" [(ngModel)]="habit.habitCompletionCheckbox">
                 <!-- Editable habit name -->
-                <input type="text" [(ngModel)]="habit.name" class="habit-name" [ngClass]="{'strike-through': habit.done}">
+                <input type="text" [(ngModel)]="habit.habitExtendedName" class="habit-name" [ngClass]="{'strike-through': habit.habitCompletionCheckbox}">
               </li>
             </ul>
             <button class="new-weekly-habit-tracker" (click)="addNewHabit(day)">Add Habit</button>
@@ -119,6 +119,5 @@
 </body>
 
 </html>
-
 
 
