@@ -76,7 +76,7 @@ export class RegisterComponent implements AfterViewInit {
           this.success = true;
           setTimeout(() => {
             this.router.navigate(['/Login']); // Redirect to login page after 5 seconds
-          }, 2000);
+          }, 4000);
         },
         error: response => this.processError(response),
       });

@@ -49,7 +49,7 @@ export class PasswordComponent implements OnInit {
           // Set a timeout of 3000 milliseconds before redirecting
           setTimeout(() => {
             this.router.navigate(['/Profilepage']); // Use the correct route for your profile page
-          }, 2000);
+          }, 5000);
         },
         error: () => (this.error = true),
       });
