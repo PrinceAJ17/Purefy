@@ -731,17 +731,17 @@ Main Boxes Style
 
 .mainBox{
   display: flex;
-  margin: 0 auto;
-  width: 1440px;
+  width: 1600px;
   height: 800px;
   justify-content: center;
   align-items: center;
+  margin-left: auto;
 }
 
 .parentBox {
   display: grid;
   flex-direction: column;
-  width: 750px;
+  width: 800px;
   height: 800px;
 }
 .childBox{
@@ -1066,7 +1066,7 @@ Current Leaderboard Style
 
 .weekly-stats .leaderboard .bar{
   height: 90%;
-  width: 65%;
+  width: 70%;
   margin-left: 1%;
   margin-right: 2%;
 
@@ -1108,7 +1108,6 @@ Current Leaderboard Style
   display: flex;
   align-items: center;
   justify-content: space-around;
-
 }
 
 .weekly-stats .leaderboard .addMore .plus-sign {
@@ -1117,6 +1116,7 @@ Current Leaderboard Style
 }
 
 .weekly-stats .leaderboard .addMore .text {
+  margin-left: 12px;
   font-size: 24px;
   color: #FFFFFF;
 }
@@ -1166,7 +1166,7 @@ Previous Leaderboard Style
   text-align: center;
   align-items: center;
   width: 100%;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   margin-right: 1%;
   margin-left: 1%;
   height: auto ;
@@ -1259,6 +1259,7 @@ Previous Leaderboard Style
 }
 
 .previous-leaderboard .pleaderboard .addMore .text {
+  margin-left: 12px;
   font-size: 24px;
   color: #FFFFFF;
 }
