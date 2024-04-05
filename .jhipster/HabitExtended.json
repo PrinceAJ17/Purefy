@@ -1,0 +1,33 @@
+{
+  "changelogDate": "20240405151525",
+  "fields": [
+    {
+      "fieldName": "habitExtendedID",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "habitExtendedName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "habitCompletionCheckbox",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "habitDate",
+      "fieldType": "Instant"
+    }
+  ],
+  "name": "HabitExtended",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "recordID",
+      "otherEntityName": "newWeeklyHabitTracker",
+      "relationshipName": "rel1",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

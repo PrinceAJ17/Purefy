@@ -52,14 +52,15 @@
       "LandingPage",
       "UserDB",
       "Feedback",
-      "Progress"
+      "Progress",
+      "HabitExtended"
     ],
     "entitySuffix": "",
     "jhiPrefix": "jhi",
     "jhipsterVersion": "7.9.4",
     "jwtSecretKey": "ZmE3NjRlMDUyNGU2NmYwMGY3MTdhMWQ0NDY3OTVkYTlmY2NiZGIyMGZlNzMyNmI4MWIwOGJiZTljOTg2OGM1YjBkMjc5ZGFkZTE1ZDRlZjI0YmM0MWM2OGQ2YmYwNDg1MDQxM2VlZDZmMThjOGE0YjRlZGJkYzQ0MGEzMTI2NDc=",
     "languages": ["en", "fr"],
-    "lastLiquibaseTimestamp": 1709661396000,
+    "lastLiquibaseTimestamp": 1712330125000,
     "messageBroker": false,
     "microfrontend": false,
     "microfrontends": [],

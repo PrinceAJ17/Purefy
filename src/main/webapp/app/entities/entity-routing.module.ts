@@ -169,6 +169,11 @@ import { RouterModule } from '@angular/router';
         data: { pageTitle: 'Progresses' },
         loadChildren: () => import('./progress/progress.module').then(m => m.ProgressModule),
       },
+      {
+        path: 'habit-extended',
+        data: { pageTitle: 'HabitExtendeds' },
+        loadChildren: () => import('./habit-extended/habit-extended.module').then(m => m.HabitExtendedModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],
