@@ -1,28 +1,86 @@
 package team.bham.service.dto;
 
+import java.time.Duration;
+import java.time.LocalDate;
+
 public class PointsDTO {
-    private String username;
+    private Long groupID;
+    private String groupName;
+    private Integer groupPoints;
+    private Duration remainingTime;
+    private LocalDate currentDate;
+    private String login;
+    private String imageUrl;
     private Integer currentPoints;
     private Integer previousPoints;
     private Integer totalPoints;
 
-
-    public PointsDTO(String username, Integer currentPoints, Integer previousPoints, Integer totalPoints) {
-        this.username = username;
+    public PointsDTO(Long groupID, String groupName, Integer groupPoints, Duration remainingTime, LocalDate currentDate, String login, String imageUrl, Integer currentPoints, Integer previousPoints, Integer totalPoints) {
+        this.groupID = groupID;
+        this.groupName = groupName;
+        this.groupPoints = groupPoints;
+        this.remainingTime = remainingTime;
+        this.currentDate = currentDate;
+        this.login = login;
+        this.imageUrl = imageUrl;
         this.currentPoints = currentPoints;
         this.previousPoints = previousPoints;
         this.totalPoints = totalPoints;
+    }
 
+    public Long getGroupID() {
+        return groupID;
+    }
+
+    public void setGroupID(Long groupID) {
+        this.groupID = groupID;
+    }
+
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
+    }
+
+    public Integer getGroupPoints() {
+        return groupPoints;
+    }
+
+    public void setGroupPoints(Integer groupPoints) {
+        this.groupPoints = groupPoints;
+    }
+
+    public Duration getRemainingTime() {
+        return remainingTime;
+    }
+
+    public void setRemainingTime(Duration remainingTime) {
+        this.remainingTime = remainingTime;
+    }
+
+    public LocalDate getCurrentDate() {
+        return currentDate;
+    }
+
+    public void setCurrentDate(LocalDate currentDate) {
+        this.currentDate = currentDate;
     }
 
 
-    public String getUsername() {
-        return username;
+    public String getlogin() {
+        return login;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setlogin(String login) {
+        this.login = login;
     }
+
+    public String getImageUrl(){return imageUrl;}
+
+    public void setImageUrl(String imageUrl){this.imageUrl = imageUrl;}
+
 
     public Integer getCurrentPoints() {
         return currentPoints;

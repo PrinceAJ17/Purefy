@@ -6,11 +6,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <title>LEADERBOARD</title>
 
 </head>
+
 
 
 <body>
@@ -21,24 +22,23 @@
         <nav class="main-nav">
           <!-- ***** Logo Start ***** -->
           <a href="" class="logo">
-            <img src="assets/images/purefy-removebg-preview.png" alt="" />
+            <img src="assets/images/purefy-removebg-preview.webp" alt="" />
           </a>
           <!-- ***** Logo End ***** -->
-          <!-- ***** Search Start ***** -->
-          <div class="search-input">
-            <form id="search" action="#">
-              <input type="text" placeholder="Search Challenges" id="searchText" name="searchKeyword" onkeypress="handle" />
-              <i class="fa fa-search"></i>
-            </form>
-          </div>
-          <!-- ***** Search End ***** -->
           <!-- ***** Menu Start ***** -->
           <ul class="nav">
+            <div class="group-selection">
+              <select [(ngModel)]="selectedGroupId" (change)="onGroupChange()">
+                <option value="0">Select Group</option>
+                <option *ngFor="let group of options" [value]="group.groupID">{{ group.groupID }}</option>
+                <option value="0">Add New Group</option>
+              </select>
+            </div>
             <li><a href="">Home</a></li>
             <li><a href="">Challenges</a></li>
             <li><a href="">Mood Journal</a></li>
             <li><a href="">Habit Tracker</a></li>
-            <li><a href="Leaderboard" class="active">Leaderboard</a></li>
+            <li><a href="/Leaderboard" class="active">Leaderboard</a></li>
             <li><a href="">About</a></li>
             <li>
               <a href="" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
@@ -56,24 +56,104 @@
 <!-- ***** Header Area End ***** -->
 
 
-<!-- ***** Title Area Start ***** -->
-<br> <br> <div class="titleBox">
-  <div class="childTitleBox">
-    <h4>Your Group</h4>
-  </div>
-  <div class="childTitleBox">
-    <h4>Weekly Stats</h4>
-  </div>
-</div>
-<!-- ***** Title Area End ***** -->
 
 <!-- ***** Main Section Start ***** -->
 <div class="mainBox">
   <div class="parentBox header-text" >
-    <!-- ***** Your Group Section Start ***** -->
-    <div class="your-group ">
-
+    <div class="titleBox">
+        <h4>Your Group</h4>
     </div>
+    <!-- ***** Your Group Section Start ***** -->
+      <div class="your-group ">
+        <!-- ***** Add New Group Section Start ***** -->
+        <div *ngIf="showCreateGroup">
+          <div class="nameBadge">
+            <div class="teamName">
+              <h2>Welcome to Groups and Leaderboards!</h2>
+
+              <p>You can use groups and leaderboards to connect and compete with friends (or enemies). <br>
+                Complete challenges to earn points and see how you stack up! </p>
+            </div>
+          </div>
+            <div class="cojGroup">
+              <div class="createGroup">
+                <form (ngSubmit)="onCreate()" #contactForm="ngForm" class="create">
+                  <h4>Please enter your</h4><h4> new name to create:</h4>
+                  <input type="text" id="groupNameInput" placeholder="Name" required [(ngModel)]="createGroup.groupName" name="groupName">
+                  <br>
+                  <button type="submit"  class="createGroupButton">Create Group</button>
+                </form>
+                <br>
+              </div>
+
+              <div class="Or">
+                <h3>OR</h3>
+              </div>
+
+              <div class="joinGroup">
+                <form (ngSubmit)="onJoin()" #contactForm="ngForm" class="join">
+                  <h4>Please enter your </h4><h4> group code to join:</h4>
+                  <input type="text" id="groupCodeInput" placeholder="Code"  required [(ngModel)]="joinGroup.groupID" name="groupID">
+                  <br>
+                  <button type="submit" class="joinGroupButton">Join Group</button>
+                </form>
+                <br>
+              </div>
+            </div>
+        </div>
+        <!-- ***** Add New Group Section End ***** -->
+
+        <!-- ***** Group Section Start ***** -->
+        <div *ngIf="!showCreateGroup">
+          <div *ngFor="let entry of leaderboardData | slice:0:1; let i = index">
+            <div class="nameBadge">
+              <div class="teamName">
+                <h1>{{ entry.groupName }} <br><p> {{ entry.groupID }} </p></h1>
+              </div>
+              <div class="Badge">
+                <img [src]="getBadgeImage(calculateGroupPoints())" alt="Badge">
+              </div>
+            </div>
+            <div class="Points">
+              <h3>Total Weekly Points:</h3>
+              <h3>{{ calculateGroupPoints() }}</h3>
+              <h3>Next Badge:</h3>
+              <img [src]="getBadgeImage(calculateGroupPoints() + 10)" alt="Next Badge">
+            </div>
+            <div class = "Buttons">
+              <div class="leaveGroup">
+                <form (ngSubmit)="onLeave()" #contactForm="ngForm" class="leave">
+
+                  <button *ngIf="!showLeaveConfirmation" (click)="triggerConfirmation('leave')" type="button" class="leaveGroupButton">Leave Group</button>
+
+                  <div *ngIf="showLeaveConfirmation" class="confirmation">
+                    Are you sure?
+                    <br>
+                    <button class="yes"  type="submit">Leave</button>
+                    <button class="no" (click)="confirmAction()">Cancel</button>
+                  </div>
+                </form>
+                <br>
+              </div>
+              <div class="deleteGroup" *ngIf="isCurrentUserLeader">
+                <form (ngSubmit)="onDelete()" #contactForm="ngForm" class="delete">
+                  <button *ngIf="!showDeleteConfirmation" (click)="triggerConfirmation('delete')" type="button" class="deleteGroupButton">Delete Group</button>
+
+                  <div *ngIf="showDeleteConfirmation" class="confirmation">
+                    Are you sure?
+                    <br>
+                    <button class="yes"  type="submit">Delete</button>
+                    <button class="no" (click)="confirmAction()">Cancel</button>
+                  </div>
+                </form>
+                <br>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ***** Group Section End ***** -->
+      </div>
+
     <!-- ***** Your Group Section End ***** -->
 
     <div class="childBox">
@@ -82,7 +162,26 @@
       <div class="previous-leaderboard">
         <h4>Last Weeks Top 3</h4>
         <div class="pleaderboard">
-
+          <div *ngFor="let entry of sortedByPreviousPoints | slice:0:3; let i = index">
+              <img *ngIf="getMedalImage(i+1)" [src]="getMedalImage(i+1)" alt="Medal" style="margin-left: 0">
+              <div class="Avatar">
+                <img src="{{entry.imageUrl}}" alt="Avatar" style="color: white">
+                <div class="name">{{ entry.login }}</div>
+              </div>
+              <div class="bar" >
+                <div class="progress" [style.width]="calculatePreviousWidth(entry)">
+                  <div class="animation">
+                    <h2>{{ entry.previousPoints }}</h2>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div *ngIf="sortedByCurrentPoints.length < 3" class="addMore">
+              <div class="content">
+                <div class="plus-sign">+</div>
+                <div class="text">Invite more friends</div>
+              </div>
+          </div>
         </div>
       </div>
       <!-- ***** Previous Leaderboard Section End ***** -->
@@ -91,14 +190,34 @@
       <div class="overall-leaderboard">
         <h4>Overall Top 3</h4>
         <div class="oleaderboard">
-
-          <div class="topbox">
+          <div class="topbox" *ngIf="sortedByTotalPoints.length > 0">
+            <div *ngFor="let entry of sortedByTotalPoints | slice:0:1; let i = index" [ngClass]="getOrdinalIndicator(1)">
+              <div class="Avatar">
+                <img src="{{entry.imageUrl}}" alt="Avatar">
+                <div class="name">{{ entry.login }}</div>
+              </div>
+              <div class="points">{{ entry.totalPoints }}</div>
+            </div>
           </div>
 
-          <div class="bottombox">
+          <!-- Bottom Box for the next two entries -->
+          <div class="bottombox" *ngIf="sortedByTotalPoints.length > 1">
+            <div *ngFor="let entry of sortedByTotalPoints | slice:1:3; let i = index" [ngClass]="getOrdinalIndicator(i+2)">
+              <div class="Avatar">
+                <img src="{{entry.imageUrl}}" alt="Avatar" style="color: white">
+                <div class="name">{{ entry.login }}</div>
+              </div>
+              <div class="points">{{ entry.totalPoints }}</div>
+            </div>
+            <div *ngIf="sortedByCurrentPoints.length < 3" class="addMore">
+                <div class="plus-sign">+</div>
+            </div>
           </div>
-
-
+          <div *ngIf="sortedByCurrentPoints.length < 2" class="bottombox">
+            <div class="addMore">
+              <div class="plus-sign">+</div>
+            </div>
+          </div>
         </div>
       </div>
       <!-- ***** Overall Leaderboard Section End ***** -->
@@ -108,14 +227,17 @@
   <div class="parentBox">
 
     <!-- ***** Current Leaderboard Section Start ***** -->
+    <div class="titleBox">
+        <h4>Weekly Stats</h4>
+    </div>
     <div class="weekly-stats">
       <div class="current-leaderboard">
-        <h1>Leaderboard
-          <br><p>Week 1</p>
-        </h1>
+        <h2>Leaderboard
+          <br><p>Points will reset every monday</p>
+        </h2>
 
         <div class="time-remaining">
-          <h2>3d Left</h2>
+          <h3> {{ countdownDisplay }} left </h3>
         </div>
         <br>
       </div>
@@ -123,7 +245,30 @@
 
 
       <div class="leaderboard">
+        <div *ngFor="let entry of sortedByCurrentPoints | slice:0:6; let i = index" class="{{i + 1}}{{getOrdinalIndicator(i + 1)}}">
+          <img *ngIf="getMedalImage(i + 1)" [src]="getMedalImage(i + 1)" alt="Medal" style="margin-left: 0">
+          <h3>{{i + 1}}{{getOrdinalIndicator(i + 1)}}</h3>
+          <div class="avatar">
+            <img src="{{entry.imageUrl}}" alt="Avatar" style="color: white">
+            <div class="name">{{ entry.login }}</div>
+          </div>
+          <div class="bar" >
+            <div class="progress" [style.width]="calculateWidth(entry)">
+              <div class="animation">
+                <h2>   {{entry.currentPoints}}</h2>
+              </div>
+            </div>
+          </div>
+        </div>
 
+        <div *ngIf="sortedByCurrentPoints.length < 6" class="addMore">
+          <div *ngFor="let entry of leaderboardData | slice:0:1; let i = index">
+            <div class="content">
+              <div class="plus-sign">+</div>
+              <div class="text">Invite friends with the code: {{entry.groupID}}</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <!-- ***** Current Leaderboard Section End ***** -->

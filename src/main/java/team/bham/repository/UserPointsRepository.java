@@ -9,4 +9,6 @@ import team.bham.domain.UserPoints;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface UserPointsRepository extends JpaRepository<UserPoints, Long> {}
+public interface UserPointsRepository extends JpaRepository<UserPoints, Long> {
+
+}

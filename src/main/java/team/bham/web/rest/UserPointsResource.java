@@ -5,6 +5,10 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Map;
+import java.util.HashMap;
+import java.time.*;
+import java.time.temporal.TemporalAdjusters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import team.bham.domain.UserPoints;
+import team.bham.service.UserPointsService;
 import team.bham.repository.UserPointsRepository;
 import team.bham.web.rest.errors.BadRequestAlertException;
 import tech.jhipster.web.util.HeaderUtil;
@@ -34,8 +39,11 @@ public class UserPointsResource {
 
     private final UserPointsRepository userPointsRepository;
 
-    public UserPointsResource(UserPointsRepository userPointsRepository) {
+    private UserPointsService userPointsService;
+
+    public UserPointsResource(UserPointsRepository userPointsRepository, UserPointsService userPointsService) {
         this.userPointsRepository = userPointsRepository;
+        this.userPointsService = userPointsService;
     }
 
     /**
@@ -185,4 +193,28 @@ public class UserPointsResource {
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString()))
             .build();
     }
+
+    @GetMapping("/user-points/updatePoints")
+    public String triggerUpdatePoints() {
+        userPointsService.updatePoints();
+        return "Points update triggered";
+    }
+
+
+    @GetMapping("/user-points/nextResetTime")
+    public ResponseEntity<Map<String, Object>> getNextResetTime() {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime nextReset = now.with(TemporalAdjusters.next(DayOfWeek.MONDAY)).withHour(0).withMinute(0).withSecond(0).withNano(0);
+
+        Duration duration = Duration.between(now, nextReset);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("days", duration.toDays());
+        response.put("hours", duration.toHours() % 24);
+        response.put("minutes", duration.toMinutes() % 60);
+        response.put("seconds", duration.getSeconds() % 60);
+
+        return ResponseEntity.ok(response);
+    }
+
 }

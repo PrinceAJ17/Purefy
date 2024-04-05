@@ -63,8 +63,10 @@ html, body {
   -ms-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  max-width: 95%;
-  margin: 0 auto;
+  height: 100%;
+  margin: 0;
+  justify-content: center;
+  align-items: center;
 }
 
 a {
@@ -81,21 +83,8 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff;
   font-weight: 600;
 }
-h1{
-  font-size: 4.5vh;
-}
-h2{
-  font-size: 3.5vh;
-}
-h3{
-  font-size: 3vh;
-}
-h4{
-  font-size: 2.25vh;
-}
-h5{
-  font-size: 2vh;
-}
+
+
 
 ul {
   margin-bottom: 0px;
@@ -104,7 +93,7 @@ ul {
 p {
   font-size: 15px;
   line-height: 30px;
-  color: #fff;
+  color: white;
 }
 
 img {
@@ -128,22 +117,25 @@ body .page-content {
   background-color: #27292a;
   padding: 60px;
   border-radius: 23px;
+  align-items: center;
+  justify-content: center;
+  height: auto;
 }
 
 p {
-  font-size: 1.8vh;
-  color: #666;
+  font-size: 13px;
+  color: #B5B5B5;
   line-height: 30px;
   margin-bottom: 0px;
 }
 
 ::selection {
-  background: #e75e8d;
+  background: #E86491;
   color: #fff;
 }
 
 ::-moz-selection {
-  background: #e75e8d;
+  background: #E86491;
   color: #fff;
 }
 
@@ -155,7 +147,7 @@ p {
 .main-button a {
   font-size: 14px;
   color: #fff;
-  background-color: #e75e8d;
+  background-color: #E86491;
   padding: 12px 30px;
   display: inline-block;
   border-radius: 25px;
@@ -169,7 +161,7 @@ p {
 
 .main-button a:hover {
   background-color: #fff;
-  color: #e75e8d;
+  color: #E86491;
 }
 
 .main-border-button a {
@@ -191,7 +183,7 @@ p {
 .main-border-button a:hover {
   border-color: #fff;
   background-color: #fff;
-  color: #e75e8d;
+  color: #E86491;
 }
 
 .border-no-active a {
@@ -257,9 +249,11 @@ Header Style
   -moz-transition: all .5s ease 0s;
   -o-transition: all .5s ease 0s;
   transition: all .5s ease 0s;
-  width: 77%;
+  width: 80%;
   margin-left: auto;
   margin-right: auto;
+  display: flex;
+  justify-content: center;
 }
 
 .header-area .main-nav {
@@ -276,34 +270,48 @@ Header Style
   background-color: transparent;
 }
 
-.header-area .main-nav #search {
+.header-area .main-nav .group-selection {
   position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  width: 140%;
-
+  width: 20%;
 }
 
-.header-area .main-nav #search input {
+.header-area .main-nav .group-selection select{
   background-color: #27292a;
+  color: #b5b5b5;
+  border: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
   height: 46px;
   border-radius: 23px;
-  border: none;
-  color: #666;
-  font-size: 14px;
-  padding: 0px 15px 0px 45px;
-  flex: auto;
+  padding: 0 15px;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 20px;
+  width: 100%;
+
 }
 
-.header-area .main-nav #search i {
+.header-area .main-nav .group-selection select:focus {
+  outline: none;
+}
+
+.header-area .main-nav .group-selection::after{
+  content: '\25BC';
   position: absolute;
+  right: 20px;
+  top: 10px;
   color: #666;
-  left: 20px;
-  top: 16px;
+  pointer-events: none;
   font-size: 16px;
-
 }
+
+
 
 .header-area .main-nav .logo {
   border-right: 0px solid #27292a;
@@ -331,7 +339,7 @@ Header Style
 
 .header-area .main-nav .nav {
   display: inline-flex;
-  flex-basis: 70%;
+  flex-basis: 100%;
   justify-content: flex-end;
   vertical-align: middle;
   text-align: right;
@@ -356,7 +364,7 @@ Header Style
   font-weight: 400;
   font-size: 14px;
   text-transform: capitalize;
-  color: #666;
+  color: #b5b5b5;
   -webkit-transition: all 0.3s ease 0s;
   -moz-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
@@ -386,13 +394,13 @@ Header Style
 
 .header-area .main-nav .nav li:hover a,
 .header-area .main-nav .nav li a.active {
-  color: #e75e8d !important;
+  color: #E86491 !important;
 }
 
 .header-area .main-nav .nav li:last-child:hover a,
 .header-area .main-nav .nav li:last-child a.active {
   color: #fff !important;
-  background-color: #e75e8d !important;
+  background-color: #E86491 !important;
 }
 
 .background-header .main-nav .nav li:hover a,
@@ -435,7 +443,7 @@ Header Style
   -o-transition: all 0.4s;
   -webkit-transition: all 0.4s;
   transition: all 0.4s;
-  background-color: #e75e8d;
+  background-color: #E86491;
   display: block;
   position: absolute;
   width: 30px;
@@ -446,7 +454,7 @@ Header Style
 .background-header .main-nav .menu-trigger span,
 .background-header .main-nav .menu-trigger span:before,
 .background-header .main-nav .menu-trigger span:after {
-  background-color: #e75e8d;
+  background-color: #E86491;
 }
 
 .header-area .main-nav .menu-trigger span:before,
@@ -455,7 +463,7 @@ Header Style
   -o-transition: all 0.4s;
   -webkit-transition: all 0.4s;
   transition: all 0.4s;
-  background-color: #e75e8d;
+  background-color: #E86491;
   display: block;
   position: absolute;
   width: 30px;
@@ -465,7 +473,7 @@ Header Style
 
 .background-header .main-nav .menu-trigger span:before,
 .background-header .main-nav .menu-trigger span:after {
-  background-color: #e75e8d;
+  background-color: #E86491;
 }
 
 .header-area .main-nav .menu-trigger span:before,
@@ -506,11 +514,11 @@ Header Style
   -ms-transform: translateY(6px) translateX(1px) rotate(45deg);
   -webkit-transform: translateY(6px) translateX(1px) rotate(45deg);
   transform: translateY(6px) translateX(1px) rotate(45deg);
-  background-color: #e75e8d;
+  background-color: #E86491;
 }
 
 .background-header .main-nav .menu-trigger.active span:before {
-  background-color: #e75e8d;
+  background-color: #E86491;
 }
 
 .header-area .main-nav .menu-trigger.active span:after {
@@ -518,11 +526,11 @@ Header Style
   -ms-transform: translateY(-6px) translateX(1px) rotate(-45deg);
   -webkit-transform: translateY(-6px) translateX(1px) rotate(-45deg);
   transform: translateY(-6px) translateX(1px) rotate(-45deg);
-  background-color: #e75e8d;
+  background-color: #E86491;
 }
 
 .background-header .main-nav .menu-trigger.active span:after {
-  background-color: #e75e8d;
+  background-color: #E86491;
 }
 
 .header-area.header-sticky {
@@ -541,6 +549,8 @@ Header Style
   .header-area .main-nav:before {
     display: none;
   }
+
+
 }
 
 @media (max-width: 992px) {
@@ -573,7 +583,7 @@ Header Style
   }
   .header-area.header-sticky .nav li a:hover,
   .header-area.header-sticky .nav li a.active {
-    color: #e75e8d!important;
+    color: #E86491!important;
     opacity: 1;
   }
   .header-area.header-sticky .nav li.search-icon a {
@@ -635,7 +645,7 @@ Header Style
   }
   .header-area .main-nav .nav li a:hover {
     background: #fff !important;
-    color: #e75e8d!important;
+    color: #E86491!important;
   }
   .header-area .main-nav .nav li:last-child a img {
     display: none;
@@ -675,12 +685,27 @@ Header Style
   .header-area .main-nav .nav li.submenu:hover ul, .header-area .main-nav .nav li.submenu:focus ul {
     height: 0px;
   }
+
+
 }
+
+
 /*
 ---------------------------------------------
 Footer Style
 ---------------------------------------------
 */
+
+footer{
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 
 footer p {
   text-align: center;
@@ -706,33 +731,35 @@ Main Boxes Style
 
 .mainBox{
   display: flex;
-  margin-left: -1%;
-  align-content: center;
-  width: 180vh;
-  height: 100vh;
+  margin: 0 auto;
+  width: 1440px;
+  height: 800px;
+  justify-content: center;
+  align-items: center;
 }
 
 .parentBox {
   display: grid;
-  width: 100%;
-  height: 80%;
-
+  flex-direction: column;
+  width: 750px;
+  height: 800px;
 }
 .childBox{
   display: flex;
-  height: 100%;
+  height: 300px;
 }
 
 .titleBox{
-  display: flex;
-  margin-top: 7%;
-  margin-bottom: 3px;
+  display: grid;
+  margin-top: 120px;
+  margin-bottom: 5px;
+  margin-left: 30px;
+  white-space: nowrap;
+  flex-shrink: 1;
 }
 
-.childTitleBox{
-  white-space: nowrap;
-  margin-right: 46%;
-}
+
+
 
 /*
 ---------------------------------------------
@@ -747,10 +774,18 @@ Your Group Style
   padding-right: 20px;
   padding-top: 10px;
   width: 100%;
-  height: 98%;
+  height: 95%;
   display: grid;
-  margin-bottom: 2%;
+  margin-bottom: 3%;
+  box-shadow: 0 2px 0 2px #000;
+}
 
+
+
+.your-group:hover{
+  transform: translateZ(2px) translateX(2px) translateY(-2px);
+  transition: transform 0.3s ease-out;
+  animation: growShadow 0.4s forwards;
 }
 
 .your-group .nameBadge{
@@ -762,12 +797,36 @@ Your Group Style
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: -8%;
+
+}
+
+.your-group .cojGroup{
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: space-between;
+  font-size: medium;
+
+}
+
+.your-group .cojGroup .createGroup .create{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.your-group .cojGroup .joinGroup .join{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
 }
 
 .your-group .teamName{
   white-space: nowrap;
   flex-grow: 1;
+  margin-bottom: 30px;
 }
 .your-group .teamName .p{
   color: darkred;
@@ -779,10 +838,22 @@ Your Group Style
   flex-direction: column;
   align-items: flex-end;
 }
+
+.your-group img{
+  transition: transform 0.5s ease;
+  display: inline-block;
+  backface-visibility: hidden;
+}
+
+.your-group img:hover{
+  transform: rotateY(360deg);
+}
+
 .your-group .nameBadge .Badge img{
   max-width: 15%;
   height: auto;
 }
+
 
 .your-group .Points img{
   max-width: 15%;
@@ -793,64 +864,142 @@ Your Group Style
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 3%;
 }
 
-.deleteGroupButton{
+.deleteGroupButton, .yes{
   border-radius: 2px;
-  background-color: #CC0000;
+  background-color: orange;
   border: none;
   box-shadow: 0 5px #000;
-  font-size: 2.5vh;
+  font-size: 20px;
 
 
 }
-.leaveGroupButton{
+.leaveGroupButton, .no{
   border-radius: 2px;
-  background-color: #CC0000;
+  background-color: orange;
   border: none;
   box-shadow: 0 5px #000;
-  font-size: 2.5vh;
+  font-size: 20px;
 
 }
-.deleteGroupButton:hover{
-  background-color: darkred;
+.deleteGroupButton:hover, .yes:hover{
+  background-color: #CC0000;
 }
 
-.leaveGroupButton:hover{
+.leaveGroupButton:hover, .no:hover{
 
-  background-color: darkred;
+  background-color: #CC0000;
 }
 
-.deleteGroupButton:active{
+.deleteGroupButton:active, .yes:active{
   box-shadow: 0 2px #000;
   transform: translateY(3px);
 }
 
-.leaveGroupButton:active{
+.joinGroupButton:active, .no:active{
   box-shadow: 0 2px #000;
   transform: translateY(3px);
 }
+
+.createGroupButton{
+  border-radius: 2px;
+  background-color: yellowgreen;
+  border: none;
+  box-shadow: 0 5px #000;
+  font-size: 20px;
+
+
+}
+.joinGroupButton{
+  border-radius: 2px;
+  background-color: yellowgreen;
+  border: none;
+  box-shadow: 0 5px #000;
+  font-size: 20px;
+
+}
+.createGroupButton:hover{
+  background-color: darkgreen;
+}
+
+.joinGroupButton:hover{
+
+  background-color: darkgreen;
+}
+
+.createGroupButton:active{
+  box-shadow: 0 2px #000;
+  transform: translateY(3px);
+}
+
+.joinGroupButton:active{
+  box-shadow: 0 2px #000;
+  transform: translateY(3px);
+}
+
+#groupCodeInput {
+  background-color: darkslategray;
+  border-radius: 15px;
+  color: white;
+  padding: 6px 6px 6px 16px;
+  width: 80px;
+}
+
+#groupNameInput{
+  background-color: darkslategray;
+  border-radius: 15px;
+  color: white;
+  padding: 6px 6px 6px 16px;
+  width: 120px;
+}
+.confirmation{
+  margin-top: -20%;
+  font-size: 20px;
+  color: white;
+}
+
+
+
 /*
 ---------------------------------------------
 Current Leaderboard Style
 ---------------------------------------------
 */
+
+@keyframes growIn {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+
 .weekly-stats {
   margin-left: 2%;
   background-color: #27292a;
   border-radius: 23px;
-  padding-left: 20px;
-  padding-top: 10px;
-  padding-right: 20px;
+  padding: 10px 20px;
   width: 100%;
-  height: 100%;
-  display: grid;
+  height: 650px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  box-shadow: 0 2px 0 2px #000;
+}
+
+.weekly-stats:hover{
+  transform: translateZ(3px) translateX(3px) translateY(-3px);
+  transition: transform 0.3s ease-out;
+  animation: growShadow 0.4s forwards;
+
 }
 .weekly-stats .current-leaderboard {
   display: flex;
-  flex-grow: 1;
-
+  justify-content: start;
 }
 
 .weekly-stats .current-leaderboard .time-remaining{
@@ -861,7 +1010,9 @@ Current Leaderboard Style
 .weekly-stats .leaderboard{
   display: flex;
   flex-direction: column;
-  align-items: center;
+  flex-grow: 1;
+  justify-content: start;
+
 }
 
 .weekly-stats .leaderboard >div{
@@ -870,42 +1021,55 @@ Current Leaderboard Style
   text-align: center;
   align-items: center;
   width: 100%;
-  margin-bottom: 10px;
+  height: auto;
+  gap: 4px;
   margin-right: 2%;
   margin-left: 2%;
+  flex: 1;
+  transition: transform 0.3s ease-out;
+  transform: perspective(500px) translateZ(0);
+}
+
+.weekly-stats .leaderboard >div:hover{
+  transform: perspective(500px) translateZ(20px);
+  //box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+
 }
 
 .weekly-stats .leaderboard >div .name{
   display: flex;
-  font-size: 1.5vh;
+  font-size: 12px;
   color: #fff;
   justify-content: center;
+  flex-grow: 1;
 }
 
 
 
 .weekly-stats .leaderboard img{
-  max-width: 6ch;
+  max-width: 60px;
   margin-top: 5px;
   margin-right: auto;
+  flex-grow: 1;
 
 }
 
 .weekly-stats .leaderboard .Avatar {
   display: grid;
-  margin-left: 2%;
   align-items: center;
-  margin-right: 5px;
 }
 
 .weekly-stats .leaderboard .Avatar img{
-  width: 6vh;
+  width: 60px;
+  animation: none;
 }
 
 .weekly-stats .leaderboard .bar{
   height: 90%;
-  width: 70%;
+  width: 65%;
+  margin-left: 1%;
   margin-right: 2%;
+
 }
 @keyframes barAnimation {
   from{width: 0}
@@ -921,16 +1085,42 @@ Current Leaderboard Style
 }
 
 .weekly-stats .leaderboard .bar .progress .animation{
-  max-height: 8vh;
-  min-height: 8vh;
+  height: 100%;
   background-color: #6FA8DC;
-  animation-name: barAnimation;
-  animation-duration: 1s;
+  animation: barAnimation 1s forwards;
   width: 100%;
+  padding-left: 15px;
   display: flex;
   flex-direction: row;
   align-items: center;
 }
+
+.weekly-stats .leaderboard .addMore{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  padding-right: 20px;
+}
+
+.weekly-stats .leaderboard .addMore .content {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+}
+
+.weekly-stats .leaderboard .addMore .plus-sign {
+  font-size: 48px;
+  color: lightblue;
+}
+
+.weekly-stats .leaderboard .addMore .text {
+  font-size: 24px;
+  color: #FFFFFF;
+}
+
 
 
 
@@ -943,17 +1133,32 @@ Previous Leaderboard Style
   background-color: #27292a;
   border-radius: 23px;
   padding: 20px;
-  width: 50%;
+  width: 49.5%;
   height: 100%;
+  box-shadow: 0 2px 0 2px #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
 
 }
+
+.previous-leaderboard:hover {
+  transform: translateZ(3px) translateX(3px) translateY(-3px);
+  transition: transform 0.3s ease-out;
+  animation: growShadow 0.4s forwards;
+}
+
 
 .previous-leaderboard .pleaderboard{
   margin-top: 2%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  flex-grow: 1;
+  justify-content: start;
 }
+
+
 
 .previous-leaderboard .pleaderboard >div{
   display: flex;
@@ -964,13 +1169,23 @@ Previous Leaderboard Style
   margin-bottom: 5px;
   margin-right: 1%;
   margin-left: 1%;
-  height: 20%;
+  height: auto ;
+  flex: 1;
+  transition: transform 0.3s ease-out;
+  transform: perspective(500px) translateZ(0);
+}
+
+
+.previous-leaderboard .pleaderboard >div:hover{
+  transform: perspective(500px) translateZ(20px);
+  //box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+
 }
 
 .previous-leaderboard .pleaderboard >div .name{
   display: flex;
   width: 3ch;
-  font-size: 1.5vh;
+  font-size: 10px;
   color: #fff;
   justify-content: center;
 }
@@ -992,11 +1207,13 @@ Previous Leaderboard Style
 }
 
 .previous-leaderboard .pleaderboard >div .Avatar img{
-  width: 5vh;
+  width: 40px;
+  animation: none;
 }
 
 .previous-leaderboard .pleaderboard >div .bar{
-  height: 6.5vh;
+  flex-grow: 1;
+  height: 100%;
   width: 68%;
   margin-right: 2%;
 }
@@ -1017,19 +1234,63 @@ Previous Leaderboard Style
   display: flex;
   flex-direction: row;
   align-items: center;
+  padding-left: 10px;
+}
+
+.previous-leaderboard .pleaderboard .addMore{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  padding-right: 20px;
+}
+
+.previous-leaderboard .pleaderboard .addMore .content {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+}
+
+.previous-leaderboard .pleaderboard .addMore .plus-sign {
+  font-size: 48px;
+  color: lightblue;
+}
+
+.previous-leaderboard .pleaderboard .addMore .text {
+  font-size: 24px;
+  color: #FFFFFF;
 }
 /*
 ---------------------------------------------
 Overall Leaderboard Style
 ---------------------------------------------
 */
+@keyframes growShadow {
+  from{
+        box-shadow: 0 2px 0 2px #000;
+  } to{
+        box-shadow: 0 5px 0 5px #000;
+      }
+}
+
+
+
 .overall-leaderboard {
-  margin-left: 1%;
+  margin-left: 2%;
   background-color: #27292a;
   border-radius: 23px;
   padding: 20px;
-  width: 50%;
+  width: 49.5%;
   height: 100%;
+  box-shadow: 0 2px 0 2px #000;
+}
+
+.overall-leaderboard:hover{
+  transform: translateZ(3px) translateX(3px) translateY(-3px);
+  transition: transform 0.3s ease-out;
+  animation: growShadow 0.4s forwards;
 }
 
 .overall-leaderboard .oleaderboard{
@@ -1049,21 +1310,33 @@ Overall Leaderboard Style
 
 .overall-leaderboard .oleaderboard .topbox {
   height: 75%;
+  animation: grow 0.5s ease forwards;
 }
 
 .overall-leaderboard .oleaderboard .bottombox {
   height: 25%;
   justify-content: space-evenly;
+  animation: grow 1s ease forwards;
 }
 
-.overall-leaderboard .oleaderboard .topbox >div{
-  display: flex;
-  align-items: center;
+@keyframes grow {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
 }
 
+
+.overall-leaderboard .oleaderboard .topbox >div,
 .overall-leaderboard .oleaderboard .bottombox >div{
   display: flex;
+  flex-direction: row;
   align-items: center;
+  animation: ease;
+  transition: transform 0.2s ease;
+  transform-style: preserve-3d;
 }
 
 
@@ -1074,33 +1347,52 @@ Overall Leaderboard Style
 
 }
 
+.overall-leaderboard .oleaderboard .topbox > div:hover,
+.overall-leaderboard .oleaderboard .bottombox > div:hover{
+  transform: perspective(600px) translateZ(60px);
+
+}
+
+
 .overall-leaderboard .oleaderboard >div .Avatar .name{
-  font-size: 2vh;
+  font-size: 16px;
   color: #fff;
   text-align: center;
 }
 
 
 .overall-leaderboard .oleaderboard .topbox .Avatar img{
-  width: 12vh;
+  width: 90px;
 }
 
 .overall-leaderboard .oleaderboard .bottombox .Avatar img{
-  width: 8vh;
+  width: 70px;
 }
 
 
 .overall-leaderboard .oleaderboard .topbox >div .points {
-  font-size: 3vh;
+  font-size: 30px;
   color: #fff;
   text-align: center;
 }
 
 .overall-leaderboard .oleaderboard .bottombox >div .points {
-  font-size: 2vh;
+  font-size: 20px;
   color: #fff;
   text-align: center;
 }
+
+.overall-leaderboard .oleaderboard .bottombox .addMore{
+  align-items: center;
+  margin-top: 20px;
+}
+
+
+.overall-leaderboard .oleaderboard .bottombox .addMore .plus-sign {
+  font-size: 48px;
+  color: lightblue;
+}
+
 
 
 

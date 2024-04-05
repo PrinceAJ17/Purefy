@@ -7,6 +7,8 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
+import java.util.Map;
+import java.util.HashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import team.bham.domain.Grouping;
 import team.bham.repository.GroupingRepository;
-import team.bham.service.GroupingService;
+import team.bham.repository.MembersRepository;
 import team.bham.service.dto.GroupDTO;
 import team.bham.web.rest.errors.BadRequestAlertException;
 import tech.jhipster.web.util.HeaderUtil;
@@ -38,11 +40,12 @@ public class GroupingResource {
 
     private final GroupingRepository groupingRepository;
 
-    private final GroupingService groupingService;
+    private final MembersRepository membersRepository;
 
-    public GroupingResource(GroupingRepository groupingRepository, GroupingService groupingService) {
+
+    public GroupingResource(GroupingRepository groupingRepository, MembersRepository membersRepository) {
         this.groupingRepository = groupingRepository;
-        this.groupingService = groupingService;
+        this.membersRepository = membersRepository;
     }
 
     /**
@@ -53,16 +56,18 @@ public class GroupingResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/groupings")
-    public ResponseEntity<Grouping> createGrouping(@RequestBody Grouping grouping) throws URISyntaxException {
-        log.debug("REST request to save Grouping : {}", grouping);
-        if (grouping.getId() != null) {
-            throw new BadRequestAlertException("A new grouping cannot already have an ID", ENTITY_NAME, "idexists");
+    public ResponseEntity<Grouping> createGrouping(@RequestBody GroupDTO groupDTO) {
+        if (groupDTO.getGroupName() == null || groupDTO.getGroupName().trim().isEmpty()) {
+            return ResponseEntity.badRequest().build();
         }
-        Grouping result = groupingRepository.save(grouping);
-        return ResponseEntity
-            .created(new URI("/api/groupings/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
-            .body(result);
+
+        Grouping newGrouping = new Grouping();
+        newGrouping.setGroupingName(groupDTO.getGroupName());
+
+        newGrouping = groupingRepository.save(newGrouping);
+
+
+        return ResponseEntity.ok(newGrouping);
     }
 
     /**
@@ -198,26 +203,18 @@ public class GroupingResource {
     public ResponseEntity<Void> deleteGrouping(@PathVariable Long id) {
         log.debug("REST request to delete Grouping : {}", id);
         groupingRepository.deleteById(id);
+        long GroupID = id;
+        membersRepository.deleteAllByGroupID(GroupID);
         return ResponseEntity
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString()))
             .build();
     }
 
-    /**
-     * {@code GET  /groupings/user/{userID}/groups} : get the groups based on UserID.
-     *
-     * @param id the id of the grouping to retrieve.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the grouping, or with status {@code 404 (Not Found)}.
 
-    @GetMapping("/groupings/user/{userID}/groups")
-    public ResponseEntity<List<GroupDTO>> getGroupsByUserID(@PathVariable Long userID) {
-        log.debug("REST request to get Groups based on UserID : {}", userID);
-        List<GroupDTO> groups = groupingService.getGroupsByUserID(userID);
-        if (groups.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok().body(groups);
-    }
-    */
+
+
+
+
+
 }

@@ -14,11 +14,7 @@ import java.util.List;
 @SuppressWarnings("unused")
 @Repository
 public interface GroupingRepository extends JpaRepository<Grouping, Long> {
-    /**
-    @Query("SELECT new team.bham.service.dto.GroupDTO(g.id, g.groupingName, g.groupingPoints, g.remainingTime, g.currentDate) " +
-        "FROM Members m " +
-        "JOIN Grouping g ON m.groupID = g.id " +
-        "WHERE m.userID = :userID")
-    List<GroupDTO> findGroupsByUserID(@Param("userID") Long userID);
- */
+
+
+
 }

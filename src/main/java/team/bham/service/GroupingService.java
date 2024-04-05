@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.stream.*;
 import java.util.List;
+import java.time.*;
 
 @Service
 @Transactional
@@ -36,11 +37,8 @@ public class GroupingService {
         groupingRepository.deleteById(id);
     }
 
-     /**
-    @Transactional(readOnly = true)
-    public List<GroupDTO> getGroupsByUserID(Long UserID) {
-        return groupingRepository.findGroupsByUserID(UserID);
-    }
-    */
 
+    public void updateGroupPoints(){
+
+    }
 }
