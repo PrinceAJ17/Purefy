@@ -68,74 +68,30 @@
               <div id="journal-content">
                 <!-- ***** Search Bar Start ***** -->
                 <div class="journal-search">
-                  <form id="journalSearch" action="#">
-                    <input type="text" placeholder="Search Prompts" id="journalSearchText" name="searchKeyword" />
-                    <button type="submit" class="search-button"><i class="fa fa-search"></i></button>
+                  <form id="promptSearch" action="#">
+                    <input
+                      type="text"
+                      placeholder="Search Prompted Entries"
+                      id="promptSearchText"
+                      name="searchKeyword"
+                      [(ngModel)]="searchTerm"
+                      (input)="filterPromptedEntries()"
+                    />
                   </form>
                 </div>
                 <!-- ***** Search Bar End ***** -->
-                <!-- ***** Prompted Entries Start ***** -->
-                <!-- Example of a Prompted Entry -->
-                <div class="card mb-4 prompted-entry">
+                <!-- ***** Prompted Entry Card ***** -->
+                <div class="card mb-4 prompted-entry" *ngFor="let promptedEntry of filteredPromptedEntries">
                   <div class="card-body">
-                    <h6 class="card-title">What Brings You Joy?</h6>
-                    <p class="card-text">Prompt: Think about the things that bring you joy and write about them.</p>
+                    <h6 class="card-title">{{ promptedEntry.title }}</h6>
+                    <p class="card-text"><strong>Prompt:</strong> {{ promptedEntry.prompt }}</p>
+                    <p class="card-text">{{ promptedEntry.content }}</p>
                     <p class="card-text">
-                      Spending time in nature, especially during the early hours of the morning, always fills me with a sense of peace and
-                      joy.
+                      <small>Entry Date: {{ formatDate(promptedEntry.date) | date: 'longDate' }}</small>
                     </p>
-                    <p class="card-text"><small>Entry Date: 2024-03-24</small></p>
+                    <button class="delete-button" (click)="deletePromptedEntry(promptedEntry.id)">Delete</button>
                   </div>
                 </div>
-                <!-- Example of a Prompted Entry -->
-                <div class="card mb-4 prompted-entry">
-                  <div class="card-body">
-                    <h6 class="card-title">A Lesson Learned</h6>
-                    <p class="card-text">Prompt: Reflect on a recent challenge and the lesson it taught you.</p>
-                    <p class="card-text">
-                      I learned the importance of patience and perseverance when facing challenges. Overcoming a difficult task at work
-                      recently reminded me of this valuable lesson.
-                    </p>
-                    <p class="card-text"><small>Entry Date: 2024-03-25</small></p>
-                  </div>
-                </div>
-                <!-- Example of a Prompted Entry -->
-                <div class="card mb-4 prompted-entry">
-                  <div class="card-body">
-                    <h6 class="card-title">Gratitude</h6>
-                    <p class="card-text">Prompt: Write about someone or something you're grateful for today.</p>
-                    <p class="card-text">
-                      Today, I'm especially grateful for my family's support and understanding. Their love and encouragement mean the world
-                      to me.
-                    </p>
-                    <p class="card-text"><small>Entry Date: 2024-03-26</small></p>
-                  </div>
-                </div>
-                <!-- Example of a Prompted Entry -->
-                <div class="card mb-4 prompted-entry">
-                  <div class="card-body">
-                    <h6 class="card-title">Dreams for the Future</h6>
-                    <p class="card-text">Prompt: Visualize where you see yourself in 5 years and describe it.</p>
-                    <p class="card-text">
-                      In five years, I see myself leading a project that brings positive change to the community. I envision a fulfilling
-                      career that aligns with my values and passions.
-                    </p>
-                    <p class="card-text"><small>Entry Date: 2024-03-27</small></p>
-                  </div>
-                </div>
-                <!-- Example of a Prompted Entry -->
-                <div class="card mb-4 prompted-entry">
-                  <div class="card-body">
-                    <h6 class="card-title">A Moment of Peace</h6>
-                    <p class="card-text">Prompt: Describe a recent moment when you felt complete peace.</p>
-                    <p class="card-text">
-                      A quiet evening walk in the park last week was my recent moment of peace. The cool breeze and the setting sun provided
-                      a perfect backdrop for reflection.
-                    </p>
-                    <p class="card-text"><small>Entry Date: 2024-03-28</small></p>
-                  </div>
-                </div>
-                <!-- ***** Prompted Entries End ***** -->
                 <!-- ***** Add Entry Button Start **** -->
                 <div class="add-prompt-button-container">
                   <button id="addPromptButton" class="add-prompt-button" (click)="openPromptPopup()">+</button>

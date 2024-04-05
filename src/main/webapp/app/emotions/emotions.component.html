@@ -93,17 +93,29 @@
               </div>
             </div>
             <div class="journal-entry-form">
-              <form id="journalForm">
+              <form id="journalForm" (ngSubmit)="savePromptedEntry()">
                 <div class="form-group">
                   <label for="promptTitle">Title:</label>
-                  <input type="text" id="promptTitle" name="promptTitle" />
+                  <input type="text" id="promptTitle" [(ngModel)]="promptFeature.title" name="promptTitle" required />
                 </div>
                 <div class="form-group">
-                  <p>Selected Prompt: <span id="selectedPrompt"></span></p>
+                  <p>
+                    Selected Prompt: <span id="selectedPrompt" [(ngModel)]="promptFeature.prompt" name="selectedPrompt" required></span>
+                  </p>
                 </div>
                 <div class="form-group">
                   <label for="promptContent">Content:</label>
-                  <textarea id="promptContent" name="promptContent" placeholder="What's on your mind?"></textarea>
+                  <textarea
+                    id="promptContent"
+                    [(ngModel)]="promptFeature.content"
+                    name="promptContent"
+                    required
+                    placeholder="What's on your mind?"
+                  ></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="promptedEntryDate">Date:</label>
+                  <input type="date" id="promptedEntryDate" [(ngModel)]="promptFeature.date" name="promptedEntryDate" required />
                 </div>
                 <button type="submit">Submit</button>
               </form>

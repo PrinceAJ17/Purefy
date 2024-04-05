@@ -56,7 +56,8 @@
       "Timer",
       "History",
       "Points",
-      "EntriesFeature"
+      "EntriesFeature",
+      "PromptsFeature"
     ],
     "entitySuffix": "",
     "jhiPrefix": "jhi",

@@ -101,6 +101,7 @@ public class CacheConfiguration {
             createCache(cm, team.bham.domain.Progress.class.getName());
             createCache(cm, team.bham.domain.History.class.getName());
             createCache(cm, team.bham.domain.EntriesFeature.class.getName());
+            createCache(cm, team.bham.domain.PromptsFeature.class.getName());
             createCache(cm, team.bham.domain.Timer.class.getName());
             createCache(cm, team.bham.domain.Points.class.getName());
             // jhipster-needle-ehcache-add-entry

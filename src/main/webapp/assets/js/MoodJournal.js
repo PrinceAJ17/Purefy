@@ -1,7 +1,11 @@
 // Function to handle item click and update the selected prompt text
 function updateSelectedPrompt(item) {
-  document.getElementById('selectedPrompt').textContent = item.querySelector('h4').textContent;
+  const promptText = item.querySelector('h4').textContent;
+  document.getElementById('selectedPrompt').textContent = promptText;
   console.log('updateSelectedPrompt function called: Updated prompt text.');
+
+  // Call the setPrompt method from your TypeScript component
+  window.emotionsComponent.setPrompt(promptText);
 
   // Optional: Scroll to the journal entry form
   document.querySelector('.journal-entry-form').scrollIntoView({ behavior: 'smooth' });
