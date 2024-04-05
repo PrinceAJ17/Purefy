@@ -56,7 +56,10 @@
             <div class="header-text">
               <h6 style="margin-top: 60px">We're Purify!</h6>
               <!-- Adjusted margin-top value -->
-              <h2 class="welcome-heading">Welcome!</h2>
+              <h2 class="welcome-heading">
+                Welcome, <strong *ngIf="account$ | async as account">{{ capitalizeFirstLetter(account.login) }}</strong
+                >!
+              </h2>
               <p class="purify-text">
                 We, Purify, stand as architects of transformation, sculpting lives anew. Through the rhythm of discipline and the melody of
                 self-discovery, we orchestrate a symphony of growth. With every pulse of determination, we cleanse the clutter, unveiling
@@ -122,11 +125,11 @@
                 <div class="col-lg-2 col-sm-4">
                   <div class="item">
                     <div class="icon">
-                      <a routerLink="/Password"><img src="assets/images/password.jpg" alt="" style="border-radius: 10px" /></a>
+                      <a routerLink="/account/password"><img src="assets/images/password.jpg" alt="" style="border-radius: 10px" /></a>
                     </div>
                     <h4>Password</h4>
                     <div class="icon-button">
-                      <a routerLink="/Password"><i class="fa fa-angle-right"></i></a>
+                      <a routerLink="/account/password"><i class="fa fa-angle-right"></i></a>
                     </div>
                   </div>
                 </div>
