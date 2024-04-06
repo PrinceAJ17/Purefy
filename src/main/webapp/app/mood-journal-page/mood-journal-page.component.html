@@ -37,8 +37,7 @@
                 <li><a href="#">Challenges</a></li>
                 <li><a routerLink="/MoodJournalPage">Mood Journal</a></li>
                 <li><a href="#">Habit Tracker</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Team</a></li>
+                <li><a href="#">Leaderboard</a></li>
                 <li>
                   <a href="#" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
                 </li>
@@ -105,47 +104,37 @@
                 <!-- ***** Search Bar Added Here ***** -->
                 <div class="journal-search">
                   <form id="journalSearch" action="#">
-                    <input type="text" placeholder="Search Mood Journal" id="journalSearchText" name="searchKeyword" />
-                    <button type="submit" class="search-button"><i class="fa fa-search"></i></button>
+                    <input
+                      type="text"
+                      placeholder="Search Mood Journal"
+                      id="journalSearchText"
+                      name="searchKeyword"
+                      [(ngModel)]="searchTerm"
+                      (input)="filterEntries(); filterPromptedEntries()"
+                    />
                   </form>
                 </div>
-                <!-- Example of a Normal Entry -->
-                <div class="card mb-4 normal-entry">
+                <!-- Display Entries -->
+                <div *ngFor="let entry of filteredEntries" class="card mb-4 normal-entry entry-container">
                   <div class="card-body">
-                    <h5 class="card-title">Reflections on a Quiet Evening</h5>
+                    <h6 class="card-title">{{ entry.title }}</h6>
+                    <p class="card-text">{{ entry.content }}</p>
                     <p class="card-text">
-                      The tranquility of the evening brings a sense of peace. It's moments like these that remind me to slow down and
-                      cherish the present.
+                      <small>Entry Date: {{ formatDate(entry.date) | date }}</small>
                     </p>
-                    <p class="card-text"><small>Entry Date: 2024-03-20</small></p>
+                    <button class="delete-button" (click)="deleteEntry(entry.id)">Delete</button>
                   </div>
                 </div>
-                <!-- Example of a Prompted Entry -->
-                <div class="card mb-4 prompted-entry">
+                <!-- Display Prompted Entries -->
+                <div class="card mb-4 prompted-entry" *ngFor="let promptedEntry of filteredPromptedEntries">
                   <div class="card-body">
-                    <h5 class="card-title">Dream Destinations</h5>
-                    <p class="card-text">Prompt: If you could travel anywhere, where would you go?</p>
-                    <p class="card-text">I'd choose the serene landscapes of New Zealand, a paradise for nature lovers.</p>
-                    <p class="card-text"><small>Entry Date: 2024-03-21</small></p>
-                  </div>
-                </div>
-                <!-- Example of a Normal Entry -->
-                <div class="card mb-4 normal-entry">
-                  <div class="card-body">
-                    <h5 class="card-title">Joy in the Little Things</h5>
+                    <h6 class="card-title">{{ promptedEntry.title }}</h6>
+                    <p class="card-text">Prompt: {{ promptedEntry.prompt }}</p>
+                    <p class="card-text">{{ promptedEntry.content }}</p>
                     <p class="card-text">
-                      Today, I found joy in the smallest moments: a delicious cup of coffee, a good book, and the warmth of the sun.
+                      <small>Entry Date: {{ formatDate(promptedEntry.date) | date: 'longDate' }}</small>
                     </p>
-                    <p class="card-text"><small>Entry Date: 2024-03-22</small></p>
-                  </div>
-                </div>
-                <!-- Example of a Prompted Entry -->
-                <div class="card mb-4 prompted-entry">
-                  <div class="card-body">
-                    <h5 class="card-title">Gratitude for Today</h5>
-                    <p class="card-text">Prompt: What made you smile today?</p>
-                    <p class="card-text">A video call with an old friend brought so much laughter and reminiscing.</p>
-                    <p class="card-text"><small>Entry Date: 2024-03-23</small></p>
+                    <button class="delete-button" (click)="deletePromptedEntry(promptedEntry.id)">Delete</button>
                   </div>
                 </div>
                 <!-- ***** MoodJournal Section End ***** -->

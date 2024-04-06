@@ -24,8 +24,7 @@
                 <li><a href="#">Challenges</a></li>
                 <li><a href="#" routerLink="/MoodJournalPage">Mood Journal</a></li>
                 <li><a href="#">Habit Tracker</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Team</a></li>
+                <li><a href="#">Leaderboard</a></li>
                 <li>
                   <a href="#" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
                 </li>
@@ -83,8 +82,8 @@
                 <!-- ***** Prompted Entry Card ***** -->
                 <div class="card mb-4 prompted-entry" *ngFor="let promptedEntry of filteredPromptedEntries">
                   <div class="card-body">
-                    <h6 class="card-title">{{ promptedEntry.title }}</h6>
-                    <p class="card-text"><strong>Prompt:</strong> {{ promptedEntry.prompt }}</p>
+                    <h6 class="card-title"><{{ promptedEntry.title }}</h6>
+                    <p class="card-text">Prompt: {{ promptedEntry.prompt }}</p>
                     <p class="card-text">{{ promptedEntry.content }}</p>
                     <p class="card-text">
                       <small>Entry Date: {{ formatDate(promptedEntry.date) | date: 'longDate' }}</small>

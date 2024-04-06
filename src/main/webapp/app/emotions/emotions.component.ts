@@ -81,12 +81,14 @@ export class EmotionsComponent implements OnInit, AfterViewInit {
         if (res.body) {
           this.prompts.push(res.body);
           this.filteredPromptedEntries = this.prompts;
-          this.resetForm();
+          this.resetForm(); // Reset the form
+          this.router.navigate(['/Prompts']); // Redirect to prompts page          // Don't reset the form here, wait for the complete callback
         }
       },
       error: err => console.error('Error saving prompted entry:', err),
       complete: () => {
-        alert('Prompted entry saved successfully!');
+        alert('Prompted entry submitted successfully! You will now be redirected to the Prompts page to view your entry.'); // Display alert
+        this.router.navigate(['/Prompts']); // Redirect to prompts page
       },
     });
   }
@@ -95,9 +97,13 @@ export class EmotionsComponent implements OnInit, AfterViewInit {
     this.renderer.setProperty(this.promptFeature, 'prompt', prompt);
   }
 
+  updateSelectedPrompt(promptText: string): void {
+    this.setPrompt(promptText);
+  }
+
   resetForm(): void {
     this.promptFeature = {
-      id: 0,
+      id: this.promptFeature.id,
       title: null,
       prompt: null,
       content: null,

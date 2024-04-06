@@ -86,11 +86,17 @@ export class PromptsComponent implements OnInit {
   }
 
   filterPromptedEntries(): void {
-    this.filteredPromptedEntries = this.prompts.filter(
-      prompt =>
-        prompt.title?.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-        prompt.content?.toLowerCase().includes(this.searchTerm.toLowerCase())
-    );
+    this.filteredPromptedEntries = this.prompts
+      .filter(
+        prompt =>
+          prompt.title?.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+          prompt.content?.toLowerCase().includes(this.searchTerm.toLowerCase())
+      )
+      .sort((a, b) => {
+        const dateA = dayjs(a.date);
+        const dateB = dayjs(b.date);
+        return dateB.valueOf() - dateA.valueOf(); // Sort in descending order
+      });
   }
 
   // Method to open the prompt popup

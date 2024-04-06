@@ -108,7 +108,7 @@ export class PromptsFeatureService {
   ): RestOf<T> {
     return {
       ...promptsFeature,
-      date: promptsFeature.date?.format(DATE_FORMAT) ?? null,
+      date: promptsFeature.date ? dayjs(promptsFeature.date).format(DATE_FORMAT) : null,
     };
   }
 

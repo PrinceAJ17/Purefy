@@ -127,10 +127,16 @@ export class EntriesComponent implements OnInit {
   }
 
   filterEntries(): void {
-    this.filteredEntries = this.entries.filter(
-      entry =>
-        entry.title?.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-        entry.content?.toLowerCase().includes(this.searchTerm.toLowerCase())
-    );
+    this.filteredEntries = this.entries
+      .filter(
+        entry =>
+          entry.title?.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+          entry.content?.toLowerCase().includes(this.searchTerm.toLowerCase())
+      )
+      .sort((a, b) => {
+        const dateA = dayjs(a.date);
+        const dateB = dayjs(b.date);
+        return dateB.valueOf() - dateA.valueOf(); // Sort in descending order
+      });
   }
 }
