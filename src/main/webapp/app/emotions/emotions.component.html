@@ -54,40 +54,9 @@
             </div>
             <!-- AI Prompts Carousel Here -->
             <div class="owl-features owl-carousel">
-              <!-- First Prompt -->
-              <div class="item">
+              <div class="item" *ngFor="let prompt of promptsList; let i = index" (click)="updateSelectedPrompt(i)">
                 <div class="thumb">
-                  <h4>How does your sadness manifest in your thoughts, body, and relationships?</h4>
-                </div>
-              </div>
-              <!-- Second Prompt -->
-              <div class="item">
-                <div class="thumb">
-                  <h4>Reflect on a recent experience of sadness. What triggered it, and how did you cope?</h4>
-                </div>
-              </div>
-              <!-- Third Prompt -->
-              <div class="item">
-                <div class="thumb">
-                  <h4>What messages might your sadness be trying to communicate to you?</h4>
-                </div>
-              </div>
-              <!-- Fourth Prompt -->
-              <div class="item">
-                <div class="thumb">
-                  <h4>How can you reframe your sadness as an opportunity for personal growth and resilience?</h4>
-                </div>
-              </div>
-              <!-- Fifth Prompt -->
-              <div class="item">
-                <div class="thumb">
-                  <h4>Identify three things that bring you comfort or joy during moments of sadness.</h4>
-                </div>
-              </div>
-              <!-- Sixth Prompt -->
-              <div class="item">
-                <div class="thumb">
-                  <h4>Contemplate a moment when sadness felt overwhelming. How did you find light in that darkness?</h4>
+                  <h4>{{ prompt }}</h4>
                 </div>
               </div>
             </div>
@@ -98,9 +67,10 @@
                   <input type="text" id="promptTitle" [(ngModel)]="promptFeature.title" name="promptTitle" required />
                 </div>
                 <div class="form-group">
-                  <p>
-                    Selected Prompt: <span id="selectedPrompt">{{ promptFeature.prompt }}</span>
+                  <p *ngIf="selectedPromptIndex !== null">
+                    Selected Prompt: <span id="selectedPrompt">{{ promptsList[selectedPromptIndex] }}</span>
                   </p>
+                  <p *ngIf="selectedPromptIndex === null">Selected Prompt: None</p>
                 </div>
                 <div class="form-group">
                   <label for="promptContent">Content:</label>
