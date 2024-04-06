@@ -36,12 +36,11 @@
               <!-- ***** Logo End ***** -->
               <!-- ***** Menu Start ***** -->
               <ul class="nav">
-                <li><a href="">Home</a></li>
-                <li><a href="" class="active">Challenges</a></li>
+                <li><a href="" class="active">Home</a></li>
+                <li><a href="">Challenges</a></li>
                 <li><a href="">Mood Journal</a></li>
                 <li><a href="">Habit Tracker</a></li>
-                <li><a href="">About</a></li>
-                <li><a href="">Team</a></li>
+                <li><a href="">Leaderboard</a></li>
                 <li>
                   <a href="" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
                 </li>
@@ -65,7 +64,14 @@
               <div class="col-lg-12">
                 <div class="featured-games header-text">
                   <div class="heading-section">
-                    <h1 class="animate__animated animate__bounce"><em style="color: #e75e8d">Welcome,</em> Adnaan</h1>
+                    <h1 *ngIf="loggedin == 'true'" class="animate__animated animate__bounce">
+                      <em style="color: #e75e8d">Welcome,</em> {{ firstName }} {{ testval }} {{ testval2 }} {{ testval3 }} {{ testval4 }}
+                      {{ testval5 }}
+                    </h1>
+                    <h1 *ngIf="loggedin == 'false'" class="animate__animated animate__bounce">
+                      <em style="color: #e75e8d">Welcome </em> to the hub of <em style="color: #e75e8d">dopamine detoxing.</em>
+                      {{ testval }} {{ testval2 }} {{ testval3 }} {{ testval4 }} {{ testval5 }}
+                    </h1>
                   </div>
                 </div>
               </div>

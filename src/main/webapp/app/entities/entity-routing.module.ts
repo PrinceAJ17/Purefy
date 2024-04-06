@@ -169,6 +169,11 @@ import { RouterModule } from '@angular/router';
         data: { pageTitle: 'Progresses' },
         loadChildren: () => import('./progress/progress.module').then(m => m.ProgressModule),
       },
+      {
+        path: 'new-mood-picker',
+        data: { pageTitle: 'NewMoodPickers' },
+        loadChildren: () => import('./new-mood-picker/new-mood-picker.module').then(m => m.NewMoodPickerModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

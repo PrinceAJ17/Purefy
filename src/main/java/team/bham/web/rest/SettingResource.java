@@ -20,7 +20,7 @@ import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
 
 /**
- * REST controller for managing {@link Setting}.
+ * REST controller for managing {@link team.bham.domain.Setting}.
  */
 @RestController
 @RequestMapping("/api")
