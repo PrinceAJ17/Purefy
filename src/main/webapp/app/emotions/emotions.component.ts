@@ -18,20 +18,10 @@ export class EmotionsComponent implements OnInit, AfterViewInit {
     content: null,
     date: null,
   };
-  selectedPromptIndex: number | null = null; // Initialize as null
   prompts: PromptsFeature[] = [];
   filteredPromptedEntries: PromptsFeature[] = [];
   searchTerm: string = '';
   private renderer: Renderer2;
-
-  promptsList: string[] = [
-    'How does your sadness manifest in your thoughts, body, and relationships?',
-    'Reflect on a recent experience of sadness. What triggered it, and how did you cope?',
-    'What messages might your sadness be trying to communicate to you?',
-    'How can you reframe your sadness as an opportunity for personal growth and resilience?',
-    'Identify three things that bring you comfort or joy during moments of sadness.',
-    'Contemplate a moment when sadness felt overwhelming. How did you find light in that darkness?',
-  ];
 
   constructor(private router: Router, private rendererFactory: RendererFactory2, private promptsFeatureService: PromptsFeatureService) {
     this.renderer = rendererFactory.createRenderer(null, null);
@@ -83,20 +73,7 @@ export class EmotionsComponent implements OnInit, AfterViewInit {
     });
   }
 
-  updateSelectedPrompt(promptIndex: number): void {
-    this.selectedPromptIndex = promptIndex;
-  }
-
   savePromptedEntry(): void {
-    // Check if a prompt is selected
-    if (this.selectedPromptIndex === null) {
-      alert('Please select a prompt before submitting the entry.');
-      return;
-    }
-
-    // Set the prompt in the promptFeature object
-    this.promptFeature.prompt = this.promptsList[this.selectedPromptIndex];
-
     const { id, ...submissionPrompt } = this.promptFeature;
     this.promptsFeatureService.create(submissionPrompt as NewPromptsFeature).subscribe({
       next: (res: HttpResponse<PromptsFeature>) => {
@@ -105,7 +82,7 @@ export class EmotionsComponent implements OnInit, AfterViewInit {
           this.prompts.push(res.body);
           this.filteredPromptedEntries = this.prompts;
           this.resetForm(); // Reset the form
-          this.router.navigate(['/Prompts']); // Redirect to prompts page
+          this.router.navigate(['/Prompts']); // Redirect to prompts page          // Don't reset the form here, wait for the complete callback
         }
       },
       error: err => console.error('Error saving prompted entry:', err),
@@ -116,6 +93,14 @@ export class EmotionsComponent implements OnInit, AfterViewInit {
     });
   }
 
+  setPrompt(prompt: string): void {
+    this.renderer.setProperty(this.promptFeature, 'prompt', prompt);
+  }
+
+  updateSelectedPrompt(promptText: string): void {
+    this.setPrompt(promptText);
+  }
+
   resetForm(): void {
     this.promptFeature = {
       id: this.promptFeature.id,
@@ -124,6 +109,5 @@ export class EmotionsComponent implements OnInit, AfterViewInit {
       content: null,
       date: null,
     };
-    this.selectedPromptIndex = null; // Reset selectedPromptIndex to null
   }
 }
