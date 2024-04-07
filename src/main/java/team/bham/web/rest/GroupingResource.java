@@ -2,7 +2,9 @@ package team.bham.web.rest;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -15,6 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import team.bham.domain.Grouping;
 import team.bham.repository.GroupingRepository;
+import team.bham.repository.MembersRepository;
+import team.bham.service.dto.GroupDTO;
 import team.bham.web.rest.errors.BadRequestAlertException;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
@@ -36,8 +40,11 @@ public class GroupingResource {
 
     private final GroupingRepository groupingRepository;
 
-    public GroupingResource(GroupingRepository groupingRepository) {
+    private final MembersRepository membersRepository;
+
+    public GroupingResource(GroupingRepository groupingRepository, MembersRepository membersRepository) {
         this.groupingRepository = groupingRepository;
+        this.membersRepository = membersRepository;
     }
 
     /**
@@ -48,16 +55,17 @@ public class GroupingResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/groupings")
-    public ResponseEntity<Grouping> createGrouping(@RequestBody Grouping grouping) throws URISyntaxException {
-        log.debug("REST request to save Grouping : {}", grouping);
-        if (grouping.getId() != null) {
-            throw new BadRequestAlertException("A new grouping cannot already have an ID", ENTITY_NAME, "idexists");
+    public ResponseEntity<Grouping> createGrouping(@RequestBody GroupDTO groupDTO) {
+        if (groupDTO.getGroupName() == null || groupDTO.getGroupName().trim().isEmpty()) {
+            return ResponseEntity.badRequest().build();
         }
-        Grouping result = groupingRepository.save(grouping);
-        return ResponseEntity
-            .created(new URI("/api/groupings/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
-            .body(result);
+
+        Grouping newGrouping = new Grouping();
+        newGrouping.setGroupingName(groupDTO.getGroupName());
+
+        newGrouping = groupingRepository.save(newGrouping);
+
+        return ResponseEntity.ok(newGrouping);
     }
 
     /**
@@ -193,6 +201,8 @@ public class GroupingResource {
     public ResponseEntity<Void> deleteGrouping(@PathVariable Long id) {
         log.debug("REST request to delete Grouping : {}", id);
         groupingRepository.deleteById(id);
+        long GroupID = id;
+        membersRepository.deleteAllByGroupID(GroupID);
         return ResponseEntity
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString()))

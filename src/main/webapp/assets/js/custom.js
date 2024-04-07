@@ -6,15 +6,6 @@
     $('#js-preloader').addClass('loaded');
   });
 
-  // Initialize $grid
-  var $grid = $('.grid').isotope({
-    itemSelector: '.all',
-    percentPosition: true,
-    masonry: {
-      columnWidth: '.all',
-    },
-  });
-
   // WOW JS
   $(window).on('load', function () {
     if ($('.wow').length) {

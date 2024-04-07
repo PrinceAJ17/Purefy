@@ -7,12 +7,17 @@ import java.util.Objects;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import team.bham.domain.Grouping;
 import team.bham.domain.Members;
 import team.bham.repository.MembersRepository;
+import team.bham.service.MembersService;
+import team.bham.service.dto.CreateDTO;
+import team.bham.service.dto.PointsDTO;
 import team.bham.web.rest.errors.BadRequestAlertException;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
@@ -34,8 +39,11 @@ public class MembersResource {
 
     private final MembersRepository membersRepository;
 
-    public MembersResource(MembersRepository membersRepository) {
+    private final MembersService membersService;
+
+    public MembersResource(MembersRepository membersRepository, MembersService membersService) {
         this.membersRepository = membersRepository;
+        this.membersService = membersService;
     }
 
     /**
@@ -46,16 +54,24 @@ public class MembersResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/members")
-    public ResponseEntity<Members> createMembers(@RequestBody Members members) throws URISyntaxException {
-        log.debug("REST request to save Members : {}", members);
-        if (members.getId() != null) {
-            throw new BadRequestAlertException("A new members cannot already have an ID", ENTITY_NAME, "idexists");
+    public ResponseEntity<?> createMembers(@RequestBody CreateDTO createDTO) throws URISyntaxException {
+        log.debug("REST request to save Members");
+
+        Long currentUserId = membersService.findCurrentUserid();
+
+        boolean isMember = membersRepository.existsByUserIDAndGroupID(currentUserId, createDTO.getid());
+        if (isMember) {
+            return ResponseEntity.badRequest().body("User is already a member of this group");
         }
+
+        Members members = new Members();
+        members.setUserID(currentUserId);
+        members.setGroupID(createDTO.getid());
+        members.setLeader(createDTO.isLeader());
+
         Members result = membersRepository.save(members);
-        return ResponseEntity
-            .created(new URI("/api/members/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
-            .body(result);
+
+        return ResponseEntity.ok(members);
     }
 
     /**
@@ -166,18 +182,49 @@ public class MembersResource {
     }
 
     /**
-     * {@code DELETE  /members/:id} : delete the "id" members.
+     * {@code DELETE  /members/:groupID} : delete the "id" members.
      *
      * @param id the id of the members to delete.
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
-    @DeleteMapping("/members/{id}")
-    public ResponseEntity<Void> deleteMembers(@PathVariable Long id) {
-        log.debug("REST request to delete Members : {}", id);
-        membersRepository.deleteById(id);
+    @DeleteMapping("/members/{groupID}")
+    public ResponseEntity<Void> deleteMembers(@PathVariable Long groupID) {
+        log.debug("REST request to delete Members : {}", groupID);
+        membersService.deleteByCurrentUserAndGroupId(groupID);
         return ResponseEntity
             .noContent()
-            .headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString()))
+            .headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, groupID.toString()))
             .build();
+    }
+
+    /**
+     * {@code GET  /members/group/{groupID}/points} : get the current points for users in a specific group.
+     *
+     * @param groupID the id of the group.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of PointsDTO, or with status {@code 404 (Not Found)}.
+     */
+    @GetMapping("/members/group/{groupID}/points")
+    public ResponseEntity<List<PointsDTO>> getPointsByGroupID(@PathVariable Long groupID) {
+        log.debug("REST request to get points by group ID : {}", groupID);
+        List<PointsDTO> points = membersService.getPointsByGroupID(groupID);
+        if (points.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(points);
+    }
+
+    /**
+     * {@code GET  /members/groups} : get the current points for users in a specific group.
+     *
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of Groups, or with status {@code 404 (Not Found)}.
+     */
+    @GetMapping("/members/groups")
+    public ResponseEntity<List<Members>> getCurrentUserGroups() {
+        log.debug("REST request to get Groups by Current Users : {}");
+        List<Members> groups = membersService.findGroupsForCurrentUser();
+        if (groups.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(groups);
     }
 }
