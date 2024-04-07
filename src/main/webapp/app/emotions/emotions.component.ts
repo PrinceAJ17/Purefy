@@ -18,10 +18,20 @@ export class EmotionsComponent implements OnInit, AfterViewInit {
     content: null,
     date: null,
   };
-  prompts: PromptsFeature[] = [];
+  allPrompts: PromptsFeature[] = [];
   filteredPromptedEntries: PromptsFeature[] = [];
   searchTerm: string = '';
   private renderer: Renderer2;
+
+  // Array of prompts
+  promptOptions: { prompt: string }[] = [
+    { prompt: 'How does your sadness manifest in your thoughts, body, and relationships?' },
+    { prompt: 'Reflect on a recent experience of sadness. What triggered it, and how did you cope?' },
+    { prompt: 'What messages might your sadness be trying to communicate to you?' },
+    { prompt: 'How can you reframe your sadness as an opportunity for personal growth and resilience?' },
+    { prompt: 'Identify three things that bring you comfort or joy during moments of sadness.' },
+    { prompt: 'Contemplate a moment when sadness felt overwhelming. How did you find light in that darkness?' },
+  ];
 
   constructor(private router: Router, private rendererFactory: RendererFactory2, private promptsFeatureService: PromptsFeatureService) {
     this.renderer = rendererFactory.createRenderer(null, null);
@@ -43,7 +53,7 @@ export class EmotionsComponent implements OnInit, AfterViewInit {
         console.error('Script loading error:', error);
       });
     this.loadPromptedEntries();
-    this.filteredPromptedEntries = this.prompts;
+    this.filteredPromptedEntries = this.allPrompts;
   }
 
   ngAfterViewInit() {
@@ -52,12 +62,12 @@ export class EmotionsComponent implements OnInit, AfterViewInit {
 
   loadPromptedEntries(): void {
     this.promptsFeatureService.getAll().subscribe((data: PromptsFeature[]) => {
-      this.prompts = data.sort((a: PromptsFeature, b: PromptsFeature) => {
+      this.allPrompts = data.sort((a: PromptsFeature, b: PromptsFeature) => {
         const dateA = dayjs(a.date);
         const dateB = dayjs(b.date);
         return dateB.valueOf() - dateA.valueOf(); // Sort in descending order
       });
-      this.filteredPromptedEntries = this.prompts;
+      this.filteredPromptedEntries = this.allPrompts;
     });
   }
 
@@ -79,26 +89,26 @@ export class EmotionsComponent implements OnInit, AfterViewInit {
       next: (res: HttpResponse<PromptsFeature>) => {
         console.log('Prompted entry saved:', res.body);
         if (res.body) {
-          this.prompts.push(res.body);
-          this.filteredPromptedEntries = this.prompts;
+          this.allPrompts.push(res.body);
+          this.filteredPromptedEntries = this.allPrompts;
           this.resetForm(); // Reset the form
-          this.router.navigate(['/Prompts']); // Redirect to prompts page          // Don't reset the form here, wait for the complete callback
+          this.router.navigate(['/Prompts']); // Redirect to prompts page
         }
       },
       error: err => console.error('Error saving prompted entry:', err),
       complete: () => {
-        alert('Prompted entry submitted successfully! You will now be redirected to the Prompts page to view your entry.'); // Display alert
+        alert('Prompted entry submitted successfully! You will now be redirected to the Prompts page to view your entry.');
         this.router.navigate(['/Prompts']); // Redirect to prompts page
       },
     });
   }
 
-  setPrompt(prompt: string): void {
-    this.renderer.setProperty(this.promptFeature, 'prompt', prompt);
+  setPrompt(promptIndex: number): void {
+    this.promptFeature.prompt = this.promptOptions[promptIndex].prompt;
   }
 
-  updateSelectedPrompt(promptText: string): void {
-    this.setPrompt(promptText);
+  updateSelectedPrompt(promptIndex: number): void {
+    this.setPrompt(promptIndex);
   }
 
   resetForm(): void {
