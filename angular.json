@@ -38,12 +38,9 @@
               "src/main/webapp/vendor"
             ],
             "styles": [
-              "src/main/webapp/assets/css/owl.scss",
               "src/main/webapp/assets/css/animate.scss",
-              "src/main/webapp/assets/css/flex-slider.scss",
-              "src/main/webapp/assets/css/templatemo-cyborg-gaming.scss",
-              "src/main/webapp/assets/css/fontawesome.scss",
-              "src/main/webapp/vendor/bootstrap/css/bootstrap.min.scss"
+              "src/main/webapp/assets/css/owl.scss",
+              "src/main/webapp/assets/css/templatemo-cyborg-gaming.scss"
             ],
 
             "scripts": []
