@@ -34,13 +34,13 @@ public class Grouping implements Serializable {
     private String groupingName;
 
     @Column(name = "grouping_points")
-    private Integer groupingPoints = 0;
+    private Integer groupingPoints;
 
     @Column(name = "remaining_time")
     private Duration remainingTime;
 
     @Column(name = "jhi_current_date")
-    private LocalDate currentDate = LocalDate.now();
+    private LocalDate currentDate;
 
     @OneToMany(mappedBy = "grouping")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)

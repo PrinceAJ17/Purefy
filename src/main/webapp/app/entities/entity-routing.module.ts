@@ -169,26 +169,10 @@ import { RouterModule } from '@angular/router';
         data: { pageTitle: 'Progresses' },
         loadChildren: () => import('./progress/progress.module').then(m => m.ProgressModule),
       },
-
       {
-        path: 'history',
-        data: { pageTitle: 'Histories' },
-        loadChildren: () => import('./history/history.module').then(m => m.HistoryModule),
-      },
-      {
-        path: 'entries-feature',
-        data: { pageTitle: 'EntriesFeatures' },
-        loadChildren: () => import('./entries-feature/entries-feature.module').then(m => m.EntriesFeatureModule),
-      },
-      {
-        path: 'timer',
-        data: { pageTitle: 'Timers' },
-        loadChildren: () => import('./timer/timer.module').then(m => m.TimerModule),
-      },
-      {
-        path: 'points',
-        data: { pageTitle: 'Points' },
-        loadChildren: () => import('./points/points.module').then(m => m.PointsModule),
+        path: 'habitstracking',
+        data: { pageTitle: 'Habitstrackings' },
+        loadChildren: () => import('./habitstracking/habitstracking.module').then(m => m.HabitstrackingModule),
       },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),

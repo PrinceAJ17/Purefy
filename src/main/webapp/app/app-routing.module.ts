@@ -6,123 +6,17 @@ import { navbarRoute } from './layouts/navbar/navbar.route';
 import { DEBUG_INFO_ENABLED } from 'app/app.constants';
 import { Authority } from 'app/config/authority.constants';
 import { UserRouteAccessService } from 'app/core/auth/user-route-access.service';
-import { ChallengesIndexComponent } from './challenges-index/challenges-index.component';
-import { AllChallengesComponent } from './all-challenges/all-challenges.component';
-import { CoffeeLevelsComponent } from './coffee-levels/coffee-levels.component';
-import { CoffeeStartComponent } from './coffee-start/coffee-start.component';
-import { SociaLevelsComponent } from './socia-levels/socia-levels.component';
-import { FoodLevelsComponent } from './food-levels/food-levels.component';
-import { AlcoholLevelsComponent } from './alcohol-levels/alcohol-levels.component';
-import { SmokingLevelsComponent } from './smoking-levels/smoking-levels.component';
-import { MusicLevelsComponent } from './music-levels/music-levels.component';
-import { GamesLevelsComponent } from './games-levels/games-levels.component';
-import { VideoLevelsComponent } from './video-levels/video-levels.component';
-import { AlcoholStartComponent } from './alcohol-start/alcohol-start.component';
-import { HistoryComponent } from './history/history.component';
-import { FoodStartComponent } from './food-start/food-start.component';
-import { GamesStartComponent } from './games-start/games-start.component';
-import { MusicStartComponent } from './music-start/music-start.component';
-import { SmokingStartComponent } from './smoking-start/smoking-start.component';
-import { SocialStartComponent } from './social-start/social-start.component';
-import { VideoStartComponent } from './video-start/video-start.component';
-import { LeaderboardComponent } from './leaderboard/leaderboard.component';
-import { MoodJournalPageComponent } from './mood-journal-page/mood-journal-page.component';
-import { EntriesComponent } from './entries/entries.component';
-import { PromptsComponent } from './prompts/prompts.component';
-import { EmotionsComponent } from './emotions/emotions.component';
+import { LevelsComponent } from './levels/levels.component';
+import { BeginnerComponent } from './beginner/beginner.component';
 
 const routes: Routes = [
   {
-    path: 'All-Challenges',
-    component: AllChallengesComponent,
+    path: 'levels',
+    component: LevelsComponent,
   },
   {
-    path: 'Music',
-    component: MusicLevelsComponent,
-  },
-  {
-    path: 'Video',
-    component: VideoLevelsComponent,
-  },
-  {
-    path: 'Social',
-    component: SociaLevelsComponent,
-  },
-  {
-    path: 'Smoking',
-    component: SmokingLevelsComponent,
-  },
-  {
-    path: 'JunkFood',
-    component: FoodLevelsComponent,
-  },
-  {
-    path: 'Alcohol',
-    component: AlcoholLevelsComponent,
-  },
-  {
-    path: 'VideoGames',
-    component: GamesLevelsComponent,
-  },
-  {
-    path: 'Coffee',
-    component: CoffeeLevelsComponent,
-  },
-  {
-    path: 'Coffee-Start/:state',
-    component: CoffeeStartComponent,
-  },
-  {
-    path: 'Alcohol-Start/:state',
-    component: AlcoholStartComponent,
-  },
-  {
-    path: 'History',
-    component: HistoryComponent,
-  },
-  {
-    path: 'Food-Start/:state',
-    component: FoodStartComponent,
-  },
-  {
-    path: 'Games-Start/:state',
-    component: GamesStartComponent,
-  },
-  {
-    path: 'Music-Start/:state',
-    component: MusicStartComponent,
-  },
-  {
-    path: 'Smoking-Start/:state',
-    component: SmokingStartComponent,
-  },
-  {
-    path: 'Social-Start/:state',
-    component: SocialStartComponent,
-  },
-  {
-    path: 'Videos-Start/:state',
-    component: VideoStartComponent,
-  },
-  {
-    path: 'leaderboard',
-    component: LeaderboardComponent,
-  },
-  {
-    path: 'MoodJournalPage',
-    component: MoodJournalPageComponent,
-  },
-  {
-    path: 'Entries',
-    component: EntriesComponent,
-  },
-  {
-    path: 'Prompts',
-    component: PromptsComponent,
-  },
-  {
-    path: 'Emotions',
-    component: EmotionsComponent,
+    path: 'Beginner',
+    component: BeginnerComponent,
   },
 ];
 
@@ -147,100 +41,16 @@ const routes: Routes = [
           loadChildren: () => import('./login/login.module').then(m => m.LoginModule),
         },
         {
+          path: 'levels',
+          component: LevelsComponent,
+        },
+        {
+          path: 'beginner',
+          component: BeginnerComponent,
+        },
+        {
           path: '',
           loadChildren: () => import(`./entities/entity-routing.module`).then(m => m.EntityRoutingModule),
-        },
-        {
-          path: 'All-Challenges',
-          component: AllChallengesComponent,
-        },
-        {
-          path: 'Coffee',
-          component: CoffeeLevelsComponent,
-        },
-        {
-          path: 'Coffee-Start/:state',
-          component: CoffeeStartComponent,
-        },
-        {
-          path: 'Music',
-          component: MusicLevelsComponent,
-        },
-        {
-          path: 'Video',
-          component: VideoLevelsComponent,
-        },
-        {
-          path: 'Social',
-          component: SociaLevelsComponent,
-        },
-        {
-          path: 'Smoking',
-          component: SmokingLevelsComponent,
-        },
-        {
-          path: 'JunkFood',
-          component: FoodLevelsComponent,
-        },
-        {
-          path: 'Alcohol',
-          component: AlcoholLevelsComponent,
-        },
-        {
-          path: 'VideoGames',
-          component: GamesLevelsComponent,
-        },
-        {
-          path: 'Alcohol-Start/:state',
-          component: AlcoholStartComponent,
-        },
-        {
-          path: 'History',
-          component: HistoryComponent,
-        },
-        {
-          path: 'Food-Start/:state',
-          component: FoodStartComponent,
-        },
-        {
-          path: 'Games-Start/:state',
-          component: GamesStartComponent,
-        },
-        {
-          path: 'Music-Start/:state',
-          component: MusicStartComponent,
-        },
-        {
-          path: 'Smoking-Start/:state',
-          component: SmokingStartComponent,
-        },
-        {
-          path: 'Social-Start/:state',
-          component: SocialStartComponent,
-        },
-        {
-          path: 'Videos-Start/:state',
-          component: VideoStartComponent,
-        },
-        {
-          path: 'leaderboard',
-          component: LeaderboardComponent,
-        },
-        {
-          path: 'MoodJournalPage',
-          component: MoodJournalPageComponent,
-        },
-        {
-          path: 'Entries',
-          component: EntriesComponent,
-        },
-        {
-          path: 'Prompts',
-          component: PromptsComponent,
-        },
-        {
-          path: 'Emotions',
-          component: EmotionsComponent,
         },
         navbarRoute,
         ...errorRoute,

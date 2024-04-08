@@ -17,43 +17,21 @@ import { HomeModule } from './home/home.module';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { NgbDateDayjsAdapter } from './config/datepicker-adapter';
 import { fontAwesomeIcons } from './config/font-awesome-icons';
-import { httpInterceptorProviders } from './core/interceptor';
+import { httpInterceptorProviders } from 'app/core/interceptor/index';
 import { MainComponent } from './layouts/main/main.component';
 import { NavbarComponent } from './layouts/navbar/navbar.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { PageRibbonComponent } from './layouts/profiles/page-ribbon.component';
 import { ErrorComponent } from './layouts/error/error.component';
-import { ChallengesIndexComponent } from './challenges-index/challenges-index.component';
-import { AllChallengesComponent } from './all-challenges/all-challenges.component';
-import { CoffeeLevelsComponent } from './coffee-levels/coffee-levels.component';
-import { SociaLevelsComponent } from './socia-levels/socia-levels.component';
-import { FoodLevelsComponent } from './food-levels/food-levels.component';
-import { AlcoholLevelsComponent } from './alcohol-levels/alcohol-levels.component';
-import { SmokingLevelsComponent } from './smoking-levels/smoking-levels.component';
-import { MusicLevelsComponent } from './music-levels/music-levels.component';
-import { GamesLevelsComponent } from './games-levels/games-levels.component';
-import { VideoLevelsComponent } from './video-levels/video-levels.component';
-import { CoffeeStartComponent } from './coffee-start/coffee-start.component';
-import { AlcoholStartComponent } from './alcohol-start/alcohol-start.component';
-import { FoodStartComponent } from './food-start/food-start.component';
-import { GamesStartComponent } from './games-start/games-start.component';
-import { MusicStartComponent } from './music-start/music-start.component';
-import { SmokingStartComponent } from './smoking-start/smoking-start.component';
-import { SocialStartComponent } from './social-start/social-start.component';
-import { VideoStartComponent } from './video-start/video-start.component';
-import { HistoryComponent } from './history/history.component';
-import { MoodJournalPageComponent } from './mood-journal-page/mood-journal-page.component';
-import { EntriesComponent } from './entries/entries.component';
-import { PromptsComponent } from './prompts/prompts.component';
-import { EmotionsComponent } from './emotions/emotions.component';
-import { LeaderboardComponent } from './leaderboard/leaderboard.component';
+import { LevelsComponent } from './levels/levels.component';
+import { BeginnerComponent } from './beginner/beginner.component';
+import { HabitComponent } from './habit/habit.component';
 
 @NgModule({
   imports: [
     BrowserModule,
     SharedModule,
     HomeModule,
-
     // jhipster-needle-angular-add-module JHipster will add new module here
     AppRoutingModule,
     // Set this to true to enable service worker (PWA)
@@ -73,30 +51,9 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
     ErrorComponent,
     PageRibbonComponent,
     FooterComponent,
-    ChallengesIndexComponent,
-    AllChallengesComponent,
-    CoffeeLevelsComponent,
-    SociaLevelsComponent,
-    FoodLevelsComponent,
-    AlcoholLevelsComponent,
-    SmokingLevelsComponent,
-    MusicLevelsComponent,
-    GamesLevelsComponent,
-    VideoLevelsComponent,
-    CoffeeStartComponent,
-    AlcoholStartComponent,
-    FoodStartComponent,
-    GamesStartComponent,
-    MusicStartComponent,
-    SmokingStartComponent,
-    SocialStartComponent,
-    VideoStartComponent,
-    HistoryComponent,
-    MoodJournalPageComponent,
-    EntriesComponent,
-    PromptsComponent,
-    EmotionsComponent,
-    LeaderboardComponent,
+    LevelsComponent,
+    BeginnerComponent,
+    HabitComponent,
   ],
   bootstrap: [MainComponent],
 })
