@@ -65,12 +65,10 @@
                 <div class="featured-games header-text">
                   <div class="heading-section">
                     <h1 *ngIf="loggedin == 'true'" class="animate__animated animate__bounce">
-                      <em style="color: #e75e8d">Welcome,</em> {{ firstName }} {{ testval }} {{ testval2 }} {{ testval3 }} {{ testval4 }}
-                      {{ testval5 }}
+                      <em style="color: #e75e8d">Welcome,</em> {{ firstName }}
                     </h1>
                     <h1 *ngIf="loggedin == 'false'" class="animate__animated animate__bounce">
                       <em style="color: #e75e8d">Welcome </em> to the hub of <em style="color: #e75e8d">dopamine detoxing.</em>
-                      {{ testval }} {{ testval2 }} {{ testval3 }} {{ testval4 }} {{ testval5 }}
                     </h1>
                   </div>
                 </div>
@@ -84,7 +82,7 @@
                 <div class="featured-games header-text">
                   <div class="row">
                     <div [ngSwitch]="currentView" id="mood-title">
-                      <div id="mood-title-text" *ngSwitchCase="'None'"><h1>How are we feeling today?</h1></div>
+                      <div id="mood-title-text" *ngSwitchCase="'None'"><h1>How are you feeling today?</h1></div>
 
                       <div *ngSwitchDefault class="main-button back-button">
                         <a class="back-button" (click)="switchView('None')"><</a>

@@ -72,7 +72,6 @@ public class SecurityConfiguration {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         .and()
             .authorizeRequests()
-            .antMatchers("/**").permitAll()
             .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
             .antMatchers("/app/**/*.{js,html}").permitAll()
             .antMatchers("/i18n/**").permitAll()
