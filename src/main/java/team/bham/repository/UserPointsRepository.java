@@ -1,5 +1,6 @@
 package team.bham.repository;
 
+import java.util.Optional;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 import team.bham.domain.UserPoints;
@@ -9,4 +10,6 @@ import team.bham.domain.UserPoints;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface UserPointsRepository extends JpaRepository<UserPoints, Long> {}
+public interface UserPointsRepository extends JpaRepository<UserPoints, Long> {
+    Optional<UserPoints> findByUserID(Long UserID);
+}

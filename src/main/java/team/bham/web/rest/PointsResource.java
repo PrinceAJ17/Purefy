@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import team.bham.domain.Points;
-import team.bham.repository.PointsRepository;
+import team.bham.domain.UserPoints;
+import team.bham.repository.UserPointsRepository;
 import team.bham.service.PointsService;
 import team.bham.web.rest.errors.BadRequestAlertException;
 import tech.jhipster.web.util.HeaderUtil;
@@ -39,22 +39,22 @@ public class PointsResource {
 
     private final PointsService pointsService;
 
-    private final PointsRepository pointsRepository;
+    private final UserPointsRepository userPointsRepository;
 
-    public PointsResource(PointsService pointsService, PointsRepository pointsRepository) {
+    public PointsResource(PointsService pointsService, UserPointsRepository userPointsRepository) {
         this.pointsService = pointsService;
-        this.pointsRepository = pointsRepository;
+        this.userPointsRepository = userPointsRepository;
     }
 
     @PostMapping("/points/add")
-    public ResponseEntity<Points> addPoints(@RequestParam String username, @RequestParam int points) {
-        Points updatedPoints = pointsService.addPoints(username, points);
+    public ResponseEntity<UserPoints> addPoints(@RequestParam String username, @RequestParam int points) {
+        UserPoints updatedPoints = pointsService.addPoints(username, points);
         return ResponseEntity.ok(updatedPoints);
     }
 
     @PostMapping("/points/deduct")
-    public ResponseEntity<Points> deductPoints(@RequestParam String username, @RequestParam int points) {
-        Points updatedPoints = pointsService.deductPoints(username, points);
+    public ResponseEntity<UserPoints> deductPoints(@RequestParam String username, @RequestParam int points) {
+        UserPoints updatedPoints = pointsService.deductPoints(username, points);
         return ResponseEntity.ok(updatedPoints);
     }
 
@@ -69,8 +69,10 @@ public class PointsResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/points/{id}")
-    public ResponseEntity<Points> updatePoints(@PathVariable(value = "id", required = false) final Long id, @RequestBody Points points)
-        throws URISyntaxException {
+    public ResponseEntity<UserPoints> updatePoints(
+        @PathVariable(value = "id", required = false) final Long id,
+        @RequestBody UserPoints points
+    ) throws URISyntaxException {
         log.debug("REST request to update Points : {}, {}", id, points);
         if (points.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
@@ -79,11 +81,11 @@ public class PointsResource {
             throw new BadRequestAlertException("Invalid ID", ENTITY_NAME, "idinvalid");
         }
 
-        if (!pointsRepository.existsById(id)) {
+        if (!userPointsRepository.existsById(id)) {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
 
-        Points result = pointsService.update(points);
+        UserPoints result = pointsService.update(points);
         return ResponseEntity
             .ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME, points.getId().toString()))
@@ -102,9 +104,9 @@ public class PointsResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PatchMapping(value = "/points/{id}", consumes = { "application/json", "application/merge-patch+json" })
-    public ResponseEntity<Points> partialUpdatePoints(
+    public ResponseEntity<UserPoints> partialUpdatePoints(
         @PathVariable(value = "id", required = false) final Long id,
-        @RequestBody Points points
+        @RequestBody UserPoints points
     ) throws URISyntaxException {
         log.debug("REST request to partial update Points partially : {}, {}", id, points);
         if (points.getId() == null) {
@@ -114,11 +116,11 @@ public class PointsResource {
             throw new BadRequestAlertException("Invalid ID", ENTITY_NAME, "idinvalid");
         }
 
-        if (!pointsRepository.existsById(id)) {
+        if (!userPointsRepository.existsById(id)) {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
 
-        Optional<Points> result = pointsService.partialUpdate(points);
+        Optional<UserPoints> result = pointsService.partialUpdate(points);
 
         return ResponseUtil.wrapOrNotFound(
             result,
@@ -132,7 +134,7 @@ public class PointsResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of points in body.
      */
     @GetMapping("/points")
-    public List<Points> getAllPoints() {
+    public List<UserPoints> getAllPoints() {
         log.debug("REST request to get all Points");
         return pointsService.findAll();
     }
@@ -144,9 +146,9 @@ public class PointsResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the points, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/points/{id}")
-    public ResponseEntity<Points> getPoints(@PathVariable Long id) {
+    public ResponseEntity<UserPoints> getPoints(@PathVariable Long id) {
         log.debug("REST request to get Points : {}", id);
-        Optional<Points> points = pointsService.findOne(id);
+        Optional<UserPoints> points = pointsService.findOne(id);
         return ResponseUtil.wrapOrNotFound(points);
     }
 
