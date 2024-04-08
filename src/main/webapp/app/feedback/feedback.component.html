@@ -27,6 +27,18 @@
               <a href="" class="logo">
                 <img src="assets/images/purefy-removebg-preview.png" alt="" style="margin-top: 5px" />
               </a>
+              <li class="font-size-slider-container" style="display: flex; align-items: center; margin-top: -60px">
+                <input
+                  type="range"
+                  min="0.5"
+                  max="2"
+                  step="0.1"
+                  [(ngModel)]="fontSizeMultiplier"
+                  (ngModelChange)="updateFontSize()"
+                  class="font-size-slider"
+                  style="margin-top: 5px"
+                />
+              </li>
 
               <ul class="nav">
                 <li><a href="">Home</a></li>
@@ -64,34 +76,50 @@
           >
             <!-- Heading Section -->
             <div class="heading-section">
-              <h4>Your <em>Feedback</em> is important to us. We want to know how we're doing.</h4>
-              <h5>Please <em>feel free</em> to send a feedback!</h5>
+              <h1 style="color: white; margin: 0; text-align: center; margin-top: -30px; margin-bottom: 30px">
+                <span style="color: #e75e8d">Your </span> <span style="color: white; text-decoration: underline">Feedback </span>
+                <span style="color: #e75e8d">is important to us. We want to know how we're doing.</span>
+              </h1>
+              <h3>Please <em>feel free</em> to send a feedback!</h3>
             </div>
 
             <!-- Contact Information -->
-            <div class="contact-info" style="margin-top: 48px; text-align: center">
-              <p><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i> Birmingham, United Kingdom</p>
-              <p><i class="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i> Phone: +44 7654896543</p>
-              <p><i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"></i> Email: purefyemail@gmail.com</p>
+            <div class="contact-info" style="margin-top: 48px; text-align: center; margin-bottom: 30px">
+              <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                <i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i> Birmingham, United Kingdom
+              </p>
+              <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                <i class="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i> Phone: +44 7654896543
+              </p>
+              <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                <i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"></i> Email: purefyemail@gmail.com
+              </p>
             </div>
 
             <div class="contact-form" style="width: 100%">
               <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm">
                 <div>
                   <input
-                    class="form-input"
+                    class="form-input dynamic-text-size"
                     type="text"
                     placeholder="Name"
                     required
                     [(ngModel)]="contact.name"
                     name="name"
                     #name="ngModel"
+                    [style.fontSize]="fontSizeMultiplier + 'rem'"
                   />
-                  <div *ngIf="name.invalid && name.touched" class="error-message">Name is required.</div>
+                  <div
+                    *ngIf="name.invalid && name.touched"
+                    class="error-message dynamic-text-size"
+                    [style.fontSize]="fontSizeMultiplier + 'rem'"
+                  >
+                    Name is required.
+                  </div>
                 </div>
                 <div>
                   <input
-                    class="form-input"
+                    class="form-input dynamic-text-size"
                     type="email"
                     placeholder="Email"
                     required
@@ -99,35 +127,61 @@
                     [(ngModel)]="contact.email"
                     name="email"
                     #email="ngModel"
+                    [style.fontSize]="fontSizeMultiplier + 'rem'"
                   />
-                  <div *ngIf="email.invalid && email.touched" class="error-message">Please enter a valid email.</div>
+                  <div
+                    *ngIf="email.invalid && email.touched"
+                    class="error-message dynamic-text-size"
+                    [style.fontSize]="fontSizeMultiplier + 'rem'"
+                  >
+                    Please enter a valid email.
+                  </div>
                 </div>
                 <div>
                   <input
-                    class="form-input"
+                    class="form-input dynamic-text-size"
                     type="text"
                     placeholder="Subject"
                     required
                     [(ngModel)]="contact.subject"
                     name="subject"
                     #subject="ngModel"
+                    [style.fontSize]="fontSizeMultiplier + 'rem'"
                   />
-                  <div *ngIf="subject.invalid && subject.touched" class="error-message">Subject is required.</div>
+                  <div
+                    *ngIf="subject.invalid && subject.touched"
+                    class="error-message dynamic-text-size"
+                    [style.fontSize]="fontSizeMultiplier + 'rem'"
+                  >
+                    Subject is required.
+                  </div>
                 </div>
                 <div>
                   <input
-                    class="form-input"
+                    class="form-input dynamic-text-size"
                     type="text"
                     placeholder="Feedback"
                     required
                     [(ngModel)]="contact.message"
                     name="message"
                     #message="ngModel"
+                    [style.fontSize]="fontSizeMultiplier + 'rem'"
                   />
-                  <div *ngIf="message.invalid && message.touched" class="error-message">Feedback is required.</div>
+                  <div
+                    *ngIf="message.invalid && message.touched"
+                    class="error-message dynamic-text-size"
+                    [style.fontSize]="fontSizeMultiplier + 'rem'"
+                  >
+                    Feedback is required.
+                  </div>
                 </div>
                 <div>
-                  <button class="form-button" type="submit" [disabled]="!contactForm.valid">
+                  <button
+                    class="form-button dynamic-text-size"
+                    type="submit"
+                    [disabled]="!contactForm.valid"
+                    [style.fontSize]="fontSizeMultiplier + 'rem'"
+                  >
                     <i class="fa fa-paper-plane"></i> SUBMIT FEEDBACK
                   </button>
                 </div>
@@ -142,7 +196,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
-            <p>
+            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
               Copyright © 2024, Purefy. All rights reserved.
 
               <br />You are accessing an experimental web application developed by participants (Team 13) of the Team Project 2024 module.

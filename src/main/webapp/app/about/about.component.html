@@ -28,7 +28,18 @@
               <a href="" class="logo">
                 <img src="assets/images/purefy-removebg-preview.png" alt="" style="margin-top: 5px" />
               </a>
-
+              <li class="font-size-slider-container" style="display: flex; align-items: center; margin-top: -60px">
+                <input
+                  type="range"
+                  min="0.5"
+                  max="2"
+                  step="0.1"
+                  [(ngModel)]="fontSizeMultiplier"
+                  (ngModelChange)="updateFontSize()"
+                  class="font-size-slider"
+                  style="margin-top: 5px"
+                />
+              </li>
               <ul class="nav">
                 <li><a href="">Home</a></li>
                 <li><a href="">Challenges</a></li>
@@ -75,7 +86,7 @@
               <div class="text-container">
                 <!-- Image on the right side -->
                 <img src="assets/images/about1.jpg" alt="Image description" class="float-right-image" />
-                <p>
+                <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
                   Our website serves as a comprehensive portal for those embarking on a dopamine detox journey, aiming to mitigate the
                   overwhelming effects of constant digital stimulation. It's crafted with the intent to help users break free from the cycle
                   of short-term pleasure-seeking behaviors, fostering long-term satisfaction and mental clarity. With an extensive library
@@ -84,21 +95,21 @@
                   gratification.
                 </p>
 
-                <p>
+                <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
                   Key features include personalized detox plans tailored to individual needs, progress tracking tools, and expert-led
                   workshops and webinars that delve into the science of dopamine and its impact on our lives. The website also encourages
                   participation in a variety of challenges designed to replace unhealthy habits with positive alternatives, promoting
                   physical activity, mindfulness practices, creative pursuits, and meaningful social interactions.
                 </p>
 
-                <p>
+                <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
                   In addition to practical resources, our platform fosters a supportive environment where users can share their experiences,
                   successes, and challenges, creating a sense of community and belonging. Regularly updated blog posts, success stories, and
                   expert insights keep the content fresh and engaging, ensuring users have access to the latest research and motivational
                   stories.
                 </p>
 
-                <p>
+                <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
                   By focusing on the root causes of digital overconsumption and providing actionable solutions, our website aims to empower
                   individuals to lead more balanced, fulfilling lives in an increasingly digital world. Whether you're just starting out or
                   are well on your detox journey, our platform is designed to support, educate, and inspire you every step of the way
@@ -111,7 +122,7 @@
               <div class="container">
                 <div class="row">
                   <div class="col-lg-12">
-                    <p>
+                    <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
                       Copyright © 2024, Purefy. All rights reserved.
 
                       <br />You are accessing an experimental web application developed by participants (Team 13) of the Team Project 2024

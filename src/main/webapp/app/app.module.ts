@@ -36,6 +36,7 @@ import { PasswordComponent } from './password/password.component';
 import { HabitTrackerComponent } from './habit-tracker/habit-tracker.component';
 import { TeamComponent } from './team/team.component';
 import { AboutComponent } from './about/about.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -48,6 +49,7 @@ import { AboutComponent } from './about/about.component';
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: false }),
     HttpClientModule,
     NgxWebstorageModule.forRoot({ prefix: 'jhi', separator: '-', caseSensitive: true }),
+    FormsModule,
   ],
   providers: [
     Title,

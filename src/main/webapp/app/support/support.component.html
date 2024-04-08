@@ -27,6 +27,18 @@
               <a href="" class="logo">
                 <img src="assets/images/purefy-removebg-preview.png" alt="" style="margin-top: 5px" />
               </a>
+              <li class="font-size-slider-container" style="display: flex; align-items: center; margin-top: -60px">
+                <input
+                  type="range"
+                  min="0.5"
+                  max="2"
+                  step="0.1"
+                  [(ngModel)]="fontSizeMultiplier"
+                  (ngModelChange)="updateFontSize()"
+                  class="font-size-slider"
+                  style="margin-top: 5px"
+                />
+              </li>
 
               <ul class="nav">
                 <li><a href="">Home</a></li>
@@ -63,7 +75,7 @@
                     <div class="col-lg-4 align-self-center">
                       <div class="main-info header-text">
                         <h1>Purefy <em style="color: #e75e8d; font-style: italic; text-decoration: underline">Support</em></h1>
-                        <p>
+                        <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
                           Welcome to the Purefy Support Center. Understanding the challenges that come with dopamine detox, we want to
                           ensure you have access to the right resources, especially when it comes to your health and well-being.
                         </p>
@@ -83,7 +95,7 @@
                       <span style="color: white; text-decoration: underline">Immediate</span>
                       <span style="color: #e75e8d">Assistance</span>
                     </h4>
-                    <p>
+                    <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
                       If you're experiencing severe distress or a medical emergency, please contact emergency services in your area
                       immediately.
                     </p>
@@ -164,7 +176,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
-            <p>
+            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
               Copyright © 2024, Purefy. All rights reserved.
 
               <br />You are accessing an experimental web application developed by participants (Team 13) of the Team Project 2024 module.

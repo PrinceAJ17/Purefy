@@ -2,16 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router'; // Make sure Router is imported
-
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/auth/account.model';
 import { PasswordService } from './password.service';
+import { NgForm } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'jhi-password',
   templateUrl: './password.component.html',
 })
 export class PasswordComponent implements OnInit {
+  fontSizeMultiplier: number = 1;
+  currentUsername?: string;
   doNotMatch = false;
   error = false;
   success = false;
@@ -32,6 +35,26 @@ export class PasswordComponent implements OnInit {
 
   ngOnInit(): void {
     this.account$ = this.accountService.identity();
+    this.account$.subscribe(account => {
+      if (account) {
+        this.currentUsername = account.login;
+        // Use username-specific key to fetch font size
+        const storedFontSize = localStorage.getItem(this.getFontSizeKey());
+        if (storedFontSize) {
+          this.fontSizeMultiplier = parseFloat(storedFontSize);
+        }
+      }
+    });
+  }
+
+  getFontSizeKey(): string {
+    // Ensure there's a default key if username is not yet available
+    return `fontSizeMultiplier_${this.currentUsername || 'default'}`;
+  }
+
+  updateFontSize(): void {
+    // Save font size to local storage with username-specific key
+    localStorage.setItem(this.getFontSizeKey(), this.fontSizeMultiplier.toString());
   }
 
   changePassword(): void {

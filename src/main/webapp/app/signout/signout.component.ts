@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from 'app/login/login.service';
+import { NgForm } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { AccountService } from 'app/core/auth/account.service';
+import { Account } from 'app/core/auth/account.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'jhi-signout',
@@ -8,12 +13,40 @@ import { LoginService } from 'app/login/login.service';
   styleUrls: ['./signout.component.scss'],
 })
 export class SignoutComponent implements OnInit {
+  fontSizeMultiplier: number = 1;
+  account$?: Observable<Account | null>;
+  currentUsername?: string;
+
   constructor(
     private loginService: LoginService, // Inject the LoginService
-    private router: Router // Inject the Router for navigation
+    private router: Router, // Inject the Router for navigation
+    private accountService: AccountService,
+    private http: HttpClient
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.account$ = this.accountService.identity();
+    this.account$.subscribe(account => {
+      if (account) {
+        this.currentUsername = account.login;
+        // Use username-specific key to fetch font size
+        const storedFontSize = localStorage.getItem(this.getFontSizeKey());
+        if (storedFontSize) {
+          this.fontSizeMultiplier = parseFloat(storedFontSize);
+        }
+      }
+    });
+  }
+
+  getFontSizeKey(): string {
+    // Ensure there's a default key if username is not yet available
+    return `fontSizeMultiplier_${this.currentUsername || 'default'}`;
+  }
+
+  updateFontSize(): void {
+    // Save font size to local storage with username-specific key
+    localStorage.setItem(this.getFontSizeKey(), this.fontSizeMultiplier.toString());
+  }
 
   onSubmit(): void {
     this.loginService.logout(); // Use the logout function from your LoginService

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { AccountService } from 'app/core/auth/account.service';
+import { Account } from 'app/core/auth/account.model';
+import { Observable } from 'rxjs';
 
 interface ContactForm {
   name: string;
@@ -15,6 +18,10 @@ interface ContactForm {
   styleUrls: ['./feedback.component.scss'],
 })
 export class FeedbackComponent implements OnInit {
+  fontSizeMultiplier: number = 1;
+  account$?: Observable<Account | null>;
+  currentUsername?: string;
+
   contact: ContactForm = {
     name: '',
     email: '',
@@ -22,24 +29,32 @@ export class FeedbackComponent implements OnInit {
     message: '',
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(private accountService: AccountService, private http: HttpClient) {}
 
   ngOnInit(): void {
-    // this.loadScript('vendor/jquery/jquery.min.js')
-    // .then(() => this.loadScript('vendor/bootstrap/js/bootstrap.min.js'))
-    //  .then(() => this.loadScript('assets/js/isotope.min.js'))
-    //  .then(() => this.loadScript('assets/js/owl-carousel.js'))
-    //  .then(() => this.loadScript('assets/js/tabs.js'))
-    //  .then(() => this.loadScript('assets/js/popup.js'))
-    //  .then(() => this.loadScript('assets/js/custom.js'))
-    //  .then(() => {
-    //    console.log('All scripts loaded successfully');
-    // Initialization or callback functions that depend on these scripts can go here
-    //  })
-    //  .catch(error => {
-    //    console.error('Script loading error:', error);
-    //  });
+    this.account$ = this.accountService.identity();
+    this.account$.subscribe(account => {
+      if (account) {
+        this.currentUsername = account.login;
+        // Use username-specific key to fetch font size
+        const storedFontSize = localStorage.getItem(this.getFontSizeKey());
+        if (storedFontSize) {
+          this.fontSizeMultiplier = parseFloat(storedFontSize);
+        }
+      }
+    });
   }
+
+  getFontSizeKey(): string {
+    // Ensure there's a default key if username is not yet available
+    return `fontSizeMultiplier_${this.currentUsername || 'default'}`;
+  }
+
+  updateFontSize(): void {
+    // Save font size to local storage with username-specific key
+    localStorage.setItem(this.getFontSizeKey(), this.fontSizeMultiplier.toString());
+  }
+
   onSubmit(form: NgForm): void {
     if (form.valid) {
       this.http.post('/api/feedbacks', this.contact).subscribe(

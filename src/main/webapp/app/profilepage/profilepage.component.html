@@ -28,7 +28,18 @@
               <a href="" class="logo">
                 <img src="assets/images/purefy-removebg-preview.png" alt="" style="margin-top: 5px" />
               </a>
-
+              <li class="font-size-slider-container" style="display: flex; align-items: center; margin-top: -60px">
+                <input
+                  type="range"
+                  min="0.5"
+                  max="2"
+                  step="0.1"
+                  [(ngModel)]="fontSizeMultiplier"
+                  (ngModelChange)="updateFontSize()"
+                  class="font-size-slider"
+                  style="margin-top: 5px"
+                />
+              </li>
               <ul class="nav">
                 <li><a href="">Home</a></li>
                 <li><a href="">Challenges</a></li>
@@ -54,13 +65,12 @@
         <div class="row">
           <div class="col-lg-6 align-self-center">
             <div class="header-text">
-              <h6 style="margin-top: 60px">We're Purify!</h6>
-              <!-- Adjusted margin-top value -->
-              <h2 class="welcome-heading">
+              <h6 class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'" style="margin-top: 60px">We're Purify!</h6>
+              <h2>
                 Welcome, <strong *ngIf="account$ | async as account">{{ capitalizeFirstLetter(account.login) }}</strong
                 >!
               </h2>
-              <p class="purify-text">
+              <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
                 We, Purify, stand as architects of transformation, sculpting lives anew. Through the rhythm of discipline and the melody of
                 self-discovery, we orchestrate a symphony of growth. With every pulse of determination, we cleanse the clutter, unveiling
                 the brilliance within. We are catalysts of change, igniting the flames of possibility. Together, we embrace the journey
@@ -68,7 +78,7 @@
                 but a voyage of becoming. Join us, and let's craft a masterpiece out of our aspirations.
               </p>
               <div class="buttons">
-                <div class="main-button">
+                <div class="main-button" style="margin-top: 15px">
                   <a href="https://www.youtube.com/watch?v=hSvLDZ5l0AE" target="_blank">Watch Our Video</a>
                 </div>
               </div>
@@ -95,9 +105,9 @@
                 <div class="col-lg-12">
                   <div class="section-heading" style="margin-bottom: 60px">
                     <div class="line-dec"></div>
-                    <h2>
+                    <h1>
                       Browse Through Your <em><span style="color: pink">Profile</span></em> Here.
-                    </h2>
+                    </h1>
                   </div>
                 </div>
                 <div class="col-lg-2 col-sm-4">
@@ -177,9 +187,8 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
-            <p>
+            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
               Copyright © 2024, Purefy. All rights reserved.
-
               <br />You are accessing an experimental web application developed by participants (Team 13) of the Team Project 2024 module.
             </p>
           </div>
