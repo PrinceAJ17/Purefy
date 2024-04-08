@@ -6,12 +6,4 @@
     <!--
         Added the constraints for entity History.
     -->
-    <changeSet id="20240319025640-2" author="jhipster">
-
-        <addForeignKeyConstraint baseColumnNames="userid_id"
-                                 baseTableName="history"
-                                 constraintName="fk_history__userid_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="jhi_user"/>
-    </changeSet>
 </databaseChangeLog>
