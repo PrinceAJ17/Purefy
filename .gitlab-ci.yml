@@ -33,6 +33,8 @@ maven-compile:
 
 maven-package:
   stage: package
+  tags: 
+    - compile
   script:
     - echo "jhipster" | sudo -S apt-get update
     - echo "jhipster" | sudo -S apt-get install -y chromium-browser
