@@ -1,92 +1,85 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TrackedHabitService } from '../entities/tracked-habit/service/tracked-habit.service';
+import { ITrackedHabit, NewTrackedHabit } from '../entities/tracked-habit/tracked-habit.model';
+import { default as dayjs } from 'dayjs';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 
 interface Habit {
   name: string;
   done: boolean;
 }
 
+interface WeeklyHabits {
+  nextMonday: Date;
+  habits: { [key: string]: Habit[] };
+  weeklySummary: string;
+}
 
 @Component({
   selector: 'jhi-habit-tracker',
   templateUrl: './habit-tracker.component.html',
-  styleUrls: ['./habit-tracker.component.scss']
+  styleUrls: ['./habit-tracker.component.scss'],
 })
 export class HabitTrackerComponent implements OnInit {
-
-  constructor(private router: Router) {}
-
   daysOfWeek: string[] = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-  habits: { [key: string]: Habit[] } = {};
-  nextMonday: Date | undefined;
+  weeklyHabits: WeeklyHabits[] = [];
+  currentWeekIndex = 0;
 
   ngOnInit(): void {
-    this.loadScript('vendor/jquery/jquery.min.js')
-      .then(() => this.loadScript('src/main/webapp/vendor/bootstrap/js/bootstrap.min.js'))
-      .then(() => this.loadScript('src/main/webapp/vendor/jquery/jquery.slim.js'))
-      .then(() => this.loadScript('src/main/webapp/assets/js/isotope.min.js'))
-      .then(() => this.loadScript('src/main/webapp/assets/js/owl-carousel.js'))
-      .then(() => this.loadScript('src/main/webapp/assets/js/tabs.js'))
-      .then(() => this.loadScript('src/main/webapp/assets/js/popup.js'))
-      .then(() => this.loadScript('src/main/webapp/assets/js/custom.js'))
-      .then(() => {
-        console.log('All scripts loaded successfully');
-        // Initialization or callback functions that depend on these scripts can go here
-      })
-      .catch(error => {
-        console.error('Script loading error:', error);
-      });
-
-       this.generateNewWeekHabitTracker();
+    this.generateNewWeekHabitTracker();
   }
-
-  private loadScript(scriptUrl: string): Promise<void> {
-    return new Promise((resolve, reject) => {
-      const body = document.body as HTMLDivElement;
-      const script = document.createElement('script');
-      script.src = scriptUrl;
-      script.async = false; // Important for sequential loading
-      script.onload = () => resolve();
-      script.onerror = error => reject(error);
-      body.appendChild(script);
-    });
-  }
-
-  // functionality code
 
   generateNewWeekHabitTracker(): void {
     const currentDate = new Date();
-    const currentDay = currentDate.getDay();
-    const daysToAdd = currentDay === 0 ? 1 : 8 - currentDay;
-    this.nextMonday = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + daysToAdd);
+    currentDate.setHours(0, 0, 0, 0); // Normalize the time to the start of the day.
+    const dayOfWeek = currentDate.getDay();
+    const difference = dayOfWeek === 0 ? -6 : 1 - dayOfWeek; // If today is Sunday, the difference is -6; otherwise, it's 1 - current day of the week.
+    const nextMonday = new Date(currentDate.setDate(currentDate.getDate() + difference));
+
+    const newWeeklyHabits: WeeklyHabits = {
+      nextMonday,
+      habits: {},
+      weeklySummary: '',
+    };
 
     this.daysOfWeek.forEach(day => {
-      this.habits[day] = [
+      newWeeklyHabits.habits[day] = [
         { name: 'Wake up at 6 AM', done: false },
         { name: 'Gym', done: false },
         { name: '4 hrs focus work', done: false },
         { name: 'Eat healthy', done: false },
-        { name: 'Drink 2L of water', done: false }
+        { name: 'Drink 2L of water', done: false },
       ];
     });
+
+    this.weeklyHabits.unshift(newWeeklyHabits); // Add the new week to the start of the array.
+    this.updatePreviousWeeksDates(); // Ensure all previous weeks are updated.
   }
 
+  updatePreviousWeeksDates(): void {
+    for (let i = 1; i < this.weeklyHabits.length; i++) {
+      const previousMonday = new Date(this.weeklyHabits[i - 1].nextMonday);
+      previousMonday.setDate(previousMonday.getDate() - 7);
+      this.weeklyHabits[i].nextMonday = previousMonday;
+    }
+  }
 
   addNewHabit(day: string): void {
-    if (!this.habits[day]) {
-      this.habits[day] = [];
+    if (!this.weeklyHabits[0].habits[day]) {
+      this.weeklyHabits[0].habits[day] = [];
     }
-    this.habits[day].push({ name: 'New Habit', done: false });
+    this.weeklyHabits[0].habits[day].push({ name: 'New Habit', done: false });
   }
 
   toggleHabitStatus(day: string, index: number, event: any): void {
-    const habit = this.habits[day][index];
+    const habit = this.weeklyHabits[0].habits[day][index];
     habit.done = !habit.done;
   }
 
   removeHabit(day: string): void {
-    if (this.habits[day] && this.habits[day].length > 0) {
-      this.habits[day].pop();
+    if (this.weeklyHabits[0].habits[day] && this.weeklyHabits[0].habits[day].length > 0) {
+      this.weeklyHabits[0].habits[day].pop();
     }
   }
 

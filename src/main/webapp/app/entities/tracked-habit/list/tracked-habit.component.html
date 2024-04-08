@@ -1,0 +1,117 @@
+<div>
+  <h2 id="page-heading" data-cy="TrackedHabitHeading">
+    <span>Tracked Habits</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-tracked-habit"
+        [routerLink]="['/tracked-habit/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Tracked Habit </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="trackedHabits?.length === 0">
+    <span>No Tracked Habits found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="trackedHabits && trackedHabits.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="completed">
+            <div class="d-flex">
+              <span>Completed</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="trackedHabitID">
+            <div class="d-flex">
+              <span>Tracked Habit ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="rel1.habitName">
+            <div class="d-flex">
+              <span>Rel 1</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="rel2.recordID">
+            <div class="d-flex">
+              <span>Rel 2</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let trackedHabit of trackedHabits; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/tracked-habit', trackedHabit.id, 'view']">{{ trackedHabit.id }}</a>
+          </td>
+          <td>{{ trackedHabit.completed }}</td>
+          <td>{{ trackedHabit.trackedHabitID }}</td>
+          <td>
+            <div *ngIf="trackedHabit.rel1">
+              <a [routerLink]="['/habit', trackedHabit.rel1.id, 'view']">{{ trackedHabit.rel1.habitName }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="trackedHabit.rel2">
+              <a [routerLink]="['/new-weekly-habit-tracker', trackedHabit.rel2.id, 'view']">{{ trackedHabit.rel2.recordID }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/tracked-habit', trackedHabit.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/tracked-habit', trackedHabit.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(trackedHabit)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

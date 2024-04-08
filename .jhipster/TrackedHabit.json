@@ -1,0 +1,33 @@
+{
+  "changelogDate": "20240408023925",
+  "dto": "no",
+  "fields": [
+    {
+      "fieldName": "completed",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "trackedHabitID",
+      "fieldType": "Long"
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "name": "TrackedHabit",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "habitName",
+      "otherEntityName": "habit",
+      "relationshipName": "rel1",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "recordID",
+      "otherEntityName": "newWeeklyHabitTracker",
+      "relationshipName": "rel2",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}
