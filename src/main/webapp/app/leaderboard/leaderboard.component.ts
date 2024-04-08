@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { PointsService } from '../entities/points/service/points.service';
 
 interface groups {
   id: number;
@@ -82,7 +83,7 @@ export class LeaderboardComponent implements OnInit {
   timeLeft: any;
   countdownDisplay: string = '';
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private pointsService: PointsService) {}
 
   ngOnInit(): void {
     this.loadScript('vendor/jquery/jquery.min.js')
