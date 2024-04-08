@@ -108,7 +108,9 @@
 
                           <div class="col-lg-12">
                             <div *ngIf="!timerRunning('A1')" class="main-border-button">
-                              <a href="#" (click)="startTimerAndChallenge('A1', 24, 'Alcohol', '1'); $event.preventDefault()">START NOW!</a>
+                              <a href="#" (click)="startTimerAndChallenge('A1', 24, 'Alcohol', '1'); $event.preventDefault(); sendPoints(1)"
+                                >START NOW!</a
+                              >
                             </div>
 
                             <!-- Display time remaining and stop challenge link -->
@@ -123,7 +125,8 @@
                                     'Alcohol (This challenge was called off, and the date of cancellation is indicated below.)',
                                     '1'
                                   );
-                                  $event.preventDefault()
+                                  $event.preventDefault();
+                                  deductPoints(1)
                                 "
                                 >QUIT!</a
                               >
@@ -191,7 +194,9 @@
 
                           <div class="col-lg-12">
                             <div *ngIf="!timerRunning('A2')" class="main-border-button">
-                              <a href="#" (click)="startTimerAndChallenge('A2', 168, 'Alcohol', '2'); $event.preventDefault()"
+                              <a
+                                href="#"
+                                (click)="startTimerAndChallenge('A2', 168, 'Alcohol', '2'); $event.preventDefault(); sendPoints(2)"
                                 >START NOW!</a
                               >
                             </div>
@@ -208,7 +213,8 @@
                                     'Alcohol (This challenge was called off, and the date of cancellation is indicated below.)',
                                     '2'
                                   );
-                                  $event.preventDefault()
+                                  $event.preventDefault();
+                                  deductPoints(2)
                                 "
                                 >QUIT!</a
                               >
@@ -276,7 +282,9 @@
 
                           <div class="col-lg-12">
                             <div *ngIf="!timerRunning('A3')" class="main-border-button">
-                              <a href="#" (click)="startTimerAndChallenge('A3', 336, 'Alcohol', '3'); $event.preventDefault()"
+                              <a
+                                href="#"
+                                (click)="startTimerAndChallenge('A3', 336, 'Alcohol', '3'); $event.preventDefault(); sendPoints(3)"
                                 >START NOW!</a
                               >
                             </div>
@@ -293,7 +301,8 @@
                                     'Alcohol (This challenge was called off, and the date of cancellation is indicated below.)',
                                     '3'
                                   );
-                                  $event.preventDefault()
+                                  $event.preventDefault();
+                                  deductPoints(3)
                                 "
                                 >QUIT!</a
                               >
@@ -362,7 +371,9 @@
 
                           <div class="col-lg-12">
                             <div *ngIf="!timerRunning('A4')" class="main-border-button">
-                              <a href="#" (click)="startTimerAndChallenge('A4', 720, 'Alcohol', '4'); $event.preventDefault()"
+                              <a
+                                href="#"
+                                (click)="startTimerAndChallenge('A4', 720, 'Alcohol', '4'); $event.preventDefault(); deductPoints(4)"
                                 >START NOW!</a
                               >
                             </div>
@@ -379,7 +390,8 @@
                                     'Alcohol (This challenge was called off, and the date of cancellation is indicated below.)',
                                     '4'
                                   );
-                                  $event.preventDefault()
+                                  $event.preventDefault();
+                                  deductPoints(4)
                                 "
                                 >QUIT!</a
                               >

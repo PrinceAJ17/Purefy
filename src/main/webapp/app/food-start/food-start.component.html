@@ -105,7 +105,9 @@
                           </div>
                           <div class="col-lg-12">
                             <div *ngIf="!timerRunning('F1')" class="main-border-button">
-                              <a href="#" (click)="startTimerAndChallenge('F1', 24, 'Junk Food', '1'); $event.preventDefault()"
+                              <a
+                                href="#"
+                                (click)="startTimerAndChallenge('F1', 24, 'Junk Food', '1'); $event.preventDefault(); sendPoints(1)"
                                 >START NOW!</a
                               >
                             </div>
@@ -122,7 +124,8 @@
                                     'Junk Food (This challenge was called off, and the date of cancellation is indicated below.)',
                                     '1'
                                   );
-                                  $event.preventDefault()
+                                  $event.preventDefault();
+                                  deductPoints(1)
                                 "
                                 >QUIT!</a
                               >
@@ -187,7 +190,9 @@
                           </div>
                           <div class="col-lg-12">
                             <div *ngIf="!timerRunning('F2')" class="main-border-button">
-                              <a href="#" (click)="startTimerAndChallenge('F2', 168, 'Junk Food', '2'); $event.preventDefault()"
+                              <a
+                                href="#"
+                                (click)="startTimerAndChallenge('F2', 168, 'Junk Food', '2'); $event.preventDefault(); sendPoints(1)"
                                 >START NOW!</a
                               >
                             </div>
@@ -204,7 +209,8 @@
                                     'Junk Food (This challenge was called off, and the date of cancellation is indicated below.)',
                                     '2'
                                   );
-                                  $event.preventDefault()
+                                  $event.preventDefault();
+                                  deductPoints(2)
                                 "
                                 >QUIT!</a
                               >
@@ -269,7 +275,9 @@
                           </div>
                           <div class="col-lg-12">
                             <div *ngIf="!timerRunning('F3')" class="main-border-button">
-                              <a href="#" (click)="startTimerAndChallenge('F3', 336, 'Junk Food', '3'); $event.preventDefault()"
+                              <a
+                                href="#"
+                                (click)="startTimerAndChallenge('F3', 336, 'Junk Food', '3'); $event.preventDefault(); sendPoints(3)"
                                 >START NOW!</a
                               >
                             </div>
@@ -286,7 +294,8 @@
                                     'Junk Food (This challenge was called off, and the date of cancellation is indicated below.)',
                                     '3'
                                   );
-                                  $event.preventDefault()
+                                  $event.preventDefault();
+                                  deductPoints(3)
                                 "
                                 >QUIT!</a
                               >
@@ -352,7 +361,9 @@
                           </div>
                           <div class="col-lg-12">
                             <div *ngIf="!timerRunning('F4')" class="main-border-button">
-                              <a href="#" (click)="startTimerAndChallenge('F4', 720, 'Junk Food', '4'); $event.preventDefault()"
+                              <a
+                                href="#"
+                                (click)="startTimerAndChallenge('F4', 720, 'Junk Food', '4'); $event.preventDefault(); sendPoints(4)"
                                 >START NOW!</a
                               >
                             </div>
@@ -369,7 +380,8 @@
                                     'Junk Food (This challenge was called off, and the date of cancellation is indicated below.)',
                                     '4'
                                   );
-                                  $event.preventDefault()
+                                  $event.preventDefault();
+                                  deductPoints(4)
                                 "
                                 >QUIT!</a
                               >

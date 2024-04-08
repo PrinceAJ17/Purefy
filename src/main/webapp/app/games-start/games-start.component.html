@@ -104,7 +104,9 @@
                           </div>
                           <div class="col-lg-12">
                             <div *ngIf="!timerRunning('G1')" class="main-border-button">
-                              <a href="#" (click)="startTimerAndChallenge('G1', 12, 'Video Games', '1'); $event.preventDefault()"
+                              <a
+                                href="#"
+                                (click)="startTimerAndChallenge('G1', 12, 'Video Games', '1'); $event.preventDefault(); sendPoints(1)"
                                 >START NOW!</a
                               >
                             </div>
@@ -121,7 +123,8 @@
                                     'Video Games (This challenge was called off, and the date of cancellation is indicated below.)',
                                     '1'
                                   );
-                                  $event.preventDefault()
+                                  $event.preventDefault();
+                                  deductPoints(1)
                                 "
                                 >QUIT!</a
                               >
@@ -185,7 +188,9 @@
                           </div>
                           <div class="col-lg-12">
                             <div *ngIf="!timerRunning('G2')" class="main-border-button">
-                              <a href="#" (click)="startTimerAndChallenge('G2', 24, 'Video Games', '2'); $event.preventDefault()"
+                              <a
+                                href="#"
+                                (click)="startTimerAndChallenge('G2', 24, 'Video Games', '2'); $event.preventDefault(); sendPoints(2)"
                                 >START NOW!</a
                               >
                             </div>
@@ -202,7 +207,8 @@
                                     'Video Games (This challenge was called off, and the date of cancellation is indicated below.)',
                                     '2'
                                   );
-                                  $event.preventDefault()
+                                  $event.preventDefault();
+                                  deductPoints(2)
                                 "
                                 >QUIT!</a
                               >
@@ -266,7 +272,9 @@
                           </div>
                           <div class="col-lg-12">
                             <div *ngIf="!timerRunning('G3')" class="main-border-button">
-                              <a href="#" (click)="startTimerAndChallenge('G3', 168, 'Junk Food', '3'); $event.preventDefault()"
+                              <a
+                                href="#"
+                                (click)="startTimerAndChallenge('G3', 168, 'Junk Food', '3'); $event.preventDefault(); sendPoints(3)"
                                 >START NOW!</a
                               >
                             </div>
@@ -283,7 +291,8 @@
                                     'Video Games (This challenge was called off, and the date of cancellation is indicated below.)',
                                     '3'
                                   );
-                                  $event.preventDefault()
+                                  $event.preventDefault();
+                                  deductPoints(3)
                                 "
                                 >QUIT!</a
                               >
@@ -348,7 +357,9 @@
                           </div>
                           <div class="col-lg-12">
                             <div *ngIf="!timerRunning('G4')" class="main-border-button">
-                              <a href="#" (click)="startTimerAndChallenge('G4', 720, 'Video Games', '4'); $event.preventDefault()"
+                              <a
+                                href="#"
+                                (click)="startTimerAndChallenge('G4', 720, 'Video Games', '4'); $event.preventDefault(); sendPoints(4)"
                                 >START NOW!</a
                               >
                             </div>
@@ -365,7 +376,8 @@
                                     'Video Games (This challenge was called off, and the date of cancellation is indicated below.)',
                                     '4'
                                   );
-                                  $event.preventDefault()
+                                  $event.preventDefault();
+                                  deductPoints(4)
                                 "
                                 >QUIT!</a
                               >
