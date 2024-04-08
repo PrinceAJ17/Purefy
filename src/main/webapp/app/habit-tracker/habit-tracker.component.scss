@@ -167,9 +167,9 @@ p {
 
 /* Align Tuesday horizontally */
 .habit-grid {
- display: grid;
- grid-template-columns: repeat(2, 1fr); /* Two columns */
- grid-gap: 20px; /* Adjust the gap between items */
+  display: grid;
+  grid-template-columns: repeat(7, 1fr) 3fr; // Adjust the number of 1fr's to your actual day columns and 3fr for the summary to be wider
+  gap: 20px;
 }
 
 .habit-item {
@@ -209,19 +209,26 @@ p {
 }
 
 .weekly-summary {
- display: grid;
- grid-column: span 1; /* Span across both columns */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; // Align items to the start of the flex container
 }
 
+.weekly-summary h4 {
+  white-space: nowrap; // Keeps the heading in a single line
+  margin-bottom: 10px; // Removes space below the heading
+}
 
 .weekly-summary textarea {
- width: 25%;
- box-sizing: border-box;
- padding: 10px;
- border-radius: 5px;
- border: 1px solid #ccc;
+  width: 100%; // Full width of the container
+  margin-top: 0px; // Removes space above the textarea
+  box-sizing: border-box;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  resize: vertical; // Prevents resizing
+  height: 200px; // Adjusts the height to be smaller
 }
-
 /* Add styles for checked habits */
 .habit-item.checked {
  text-decoration: line-through; /* Add strikethrough for checked habits */
