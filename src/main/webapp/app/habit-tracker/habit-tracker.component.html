@@ -12,7 +12,7 @@
 
   <!-- Additional CSS Files -->
   <style>
-    /* Place the combined CSS here */
+    /* Your combined CSS will go here */
   </style>
 
 </head>
@@ -37,19 +37,19 @@
       <div class="col-12">
         <nav class="main-nav">
           <!-- ***** Logo Start ***** -->
-          <a href="" class="logo">
+          <a href="#" class="logo">
             <img src="assets/images/purefylogo.png" alt="PUREFY">
           </a>
           <!-- ***** Logo End ***** -->
           <!-- ***** Menu Start ***** -->
           <ul class="nav">
-            <li><a href="">Home</a></li>
+            <li><a href="#">Home</a></li>
             <li><a href="index.html">Challenges</a></li>
-            <li><a href="">Mood Journal</a></li>
-            <li><a href="" class="active">Habit Tracker</a></li> <!-- Changed active class to Habit Tracker -->
-            <li><a href="">Leaderboard</a></li>
-            <li><a href="">About us</a></li>
-            <li><a href="" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt=""></a></li>
+            <li><a href="#">Mood Journal</a></li>
+            <li><a href="#" class="active">Habit Tracker</a></li>
+            <li><a href="#">Leaderboard</a></li>
+            <li><a href="#">About us</a></li>
+            <li><a href="#" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt=""></a></li>
           </ul>
           <a class='menu-trigger'>
             <span>Menu</span>
@@ -63,47 +63,62 @@
 <!-- ***** Header Area End ***** -->
 
 <body class="container">
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="page-content header-text">
-        <!-- ***** Habit Tracker Start ***** -->
-        <div class="habit-tracker-container">
-        </div><div class="habit-tracker">
-        <div class="heading-section">
-          <!-- Added space for the image -->
-          <img src="assets/images/axe.png" alt="Picture of an axe" class="axe">
-          <h4>Habit Tracker</h4>
-        </div>
-        <!-- Button to add new weekly habit tracker -->
-        <button class="new-weekly-habit-tracker">NEW WEEKLY HABIT TRACKER</button>
-        <!-- Text box to show the week starting date -->
-        <div class="week-starting">
-          <p>Week Starting @March 18, 2024</p> <!-- Placeholder for the week starting date -->
-        </div>
-        <div class="habit-grid">
-          <div *ngFor="let day of daysOfWeek" class="habit-item" style="margin-top: 20px;">
-            <p>{{ day }}</p>
-            <ul>
-              <li *ngFor="let habit of habits[day]; let i = index">
-                <input type="checkbox" [(ngModel)]="habit.done">
-                <!-- Editable habit name -->
-                <input type="text" [(ngModel)]="habit.name" class="habit-name" [ngClass]="{'strike-through': habit.done}">
-              </li>
-            </ul>
-            <button class="new-weekly-habit-tracker" (click)="addNewHabit(day)">Add Habit</button>
-            <button class="new-weekly-habit-tracker" (click)="removeHabit(day)">Remove Habit</button>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="page-content header-text">
+      <!-- ***** Habit Tracker Start ***** -->
+      <div class="habit-tracker-container">
+        <div class="habit-tracker">
+          <div class="heading-section">
+            <img src="assets/images/axe.png" alt="Picture of an axe" class="axe">
+            <h4>Habit Tracker</h4>
+          </div>
+          <button class="new-weekly-habit-tracker" (click)="generateNewWeekHabitTracker()">NEW WEEKLY HABIT TRACKER</button>
+          <div class="week-starting">
+            <p>Week Starting {{ formatDate(weeklyHabits[0].nextMonday) }}</p>
+          </div>
+          <div class="habit-grid">
+            <div *ngFor="let day of daysOfWeek" class="habit-item" style="margin-top: 20px;">
+              <p>{{ day }}</p>
+              <ul>
+                <li *ngFor="let habit of weeklyHabits[0].habits[day]; let i = index">
+                  <input type="checkbox" [(ngModel)]="habit.done">
+                  <input type="text" [(ngModel)]="habit.name" class="habit-name" [ngClass]="{'strike-through': habit.done}">
+                </li>
+              </ul>
+              <button class="new-weekly-habit-tracker" (click)="addNewHabit(day)">Add Habit</button>
+              <button class="new-weekly-habit-tracker" (click)="removeHabit(day)">Remove Habit</button>
+            </div>
+            <div class="habit-item weekly-summary">
+              <h4>Weekly Summary</h4>
+              <textarea placeholder="Summarize your text here..." [(ngModel)]="weeklyHabits[0].weeklySummary"></textarea>
+            </div>
           </div>
         </div>
-        <!-- Weekly Summary -->
-        <div class="habit-item">
-          <h4>Weekly Summary</h4>
-          <textarea placeholder="Summarize your text here..."></textarea>
+        <div *ngFor="let weekData of weeklyHabits.slice(1)" class="previous-weeks-container">
+          <h4>Week Starting {{ formatDate(weekData.nextMonday) }}</h4>
+          <div class="habit-grid">
+            <div *ngFor="let day of daysOfWeek" class="habit-item">
+              <p>{{ day }}</p>
+              <ul>
+                <li *ngFor="let habit of weekData.habits[day]; let i = index">
+                  <input type="checkbox" [(ngModel)]="habit.done" disabled>
+                  <span [ngClass]="{'strike-through': habit.done}">{{ habit.name }}</span>
+                </li>
+              </ul>
+            </div>
+            <div class="habit-item weekly-summary">
+              <h4>Weekly Summary</h4>
+              <textarea placeholder="Summarize your text here..." [(ngModel)]="weekData.weeklySummary" disabled></textarea>
+            </div>
+          </div>
         </div>
-        <!-- ***** Habit Tracker End ***** -->
       </div>
+      <!-- ***** Habit Tracker End ***** -->
     </div>
   </div>
 </div>
+</body>
 
 <footer>
   <div class="container">
@@ -115,8 +130,6 @@
     </div>
   </div>
 </footer>
-
-</body>
 
 </html>
 
