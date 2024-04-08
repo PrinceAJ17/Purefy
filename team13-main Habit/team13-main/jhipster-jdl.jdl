@@ -1,8 +1,0 @@
-entity Habitstracking {
-  nameOfHabit String,
-  dayOfHabit String,
-  weekOfHabit Integer,
-  completedHabit Boolean,
-  usernameHabit String,
-  habitIDEN Long
-}
