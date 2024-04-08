@@ -23,17 +23,10 @@ import { NavbarComponent } from './layouts/navbar/navbar.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { PageRibbonComponent } from './layouts/profiles/page-ribbon.component';
 import { ErrorComponent } from './layouts/error/error.component';
-import { LevelsComponent } from './levels/levels.component';
-import { BeginnerComponent } from './beginner/beginner.component';
 import { ProfilepageComponent } from './profilepage/profilepage.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { SupportComponent } from './support/support.component';
-import { EmailComponent } from './email/email.component';
 import { SignoutComponent } from './signout/signout.component';
-import { DeleteComponent } from './delete/delete.component';
-import { NumberComponent } from './number/number.component';
-import { PasswordComponent } from './password/password.component';
-import { HabitTrackerComponent } from './habit-tracker/habit-tracker.component';
 import { TeamComponent } from './team/team.component';
 import { AboutComponent } from './about/about.component';
 import { FormsModule } from '@angular/forms';
@@ -63,17 +56,10 @@ import { FormsModule } from '@angular/forms';
     ErrorComponent,
     PageRibbonComponent,
     FooterComponent,
-    LevelsComponent,
-    BeginnerComponent,
     ProfilepageComponent,
     FeedbackComponent,
     SupportComponent,
-    EmailComponent,
     SignoutComponent,
-    DeleteComponent,
-    NumberComponent,
-    PasswordComponent,
-    HabitTrackerComponent,
     TeamComponent,
     AboutComponent,
   ],

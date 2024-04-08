@@ -1,13 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 import { errorRoute } from './layouts/error/error.route';
 import { navbarRoute } from './layouts/navbar/navbar.route';
 import { DEBUG_INFO_ENABLED } from 'app/app.constants';
 import { Authority } from 'app/config/authority.constants';
 import { UserRouteAccessService } from 'app/core/auth/user-route-access.service';
-import { LevelsComponent } from './levels/levels.component';
-import { BeginnerComponent } from './beginner/beginner.component';
 import { ProfilepageComponent } from './profilepage/profilepage.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { SupportComponent } from './support/support.component';
@@ -19,10 +16,6 @@ import { PasswordResetFinishComponent } from './account/password-reset/finish/pa
 
 const routes: Routes = [
   {
-    path: 'levels',
-    component: LevelsComponent,
-  },
-  {
     path: 'About',
     component: AboutComponent,
   },
@@ -33,10 +26,6 @@ const routes: Routes = [
   {
     path: 'Password',
     component: PasswordResetFinishComponent,
-  },
-  {
-    path: 'Beginner',
-    component: BeginnerComponent,
   },
   {
     path: 'Login',
@@ -81,16 +70,8 @@ const routes: Routes = [
           loadChildren: () => import('./login/login.module').then(m => m.LoginModule),
         },
         {
-          path: 'levels',
-          component: LevelsComponent,
-        },
-        {
           path: 'Password',
           component: PasswordResetFinishComponent,
-        },
-        {
-          path: 'beginner',
-          component: BeginnerComponent,
         },
         {
           path: 'Login',
