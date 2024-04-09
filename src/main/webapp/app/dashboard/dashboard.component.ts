@@ -45,8 +45,15 @@ export class DashboardComponent implements OnInit {
   tempMoodPicker?: NewNewMoodPicker;
 
   TIPSINDEX = [
+    {
+      Md: 'Content',
+      tips: [
+        'Try setting aside 10 minutes for meditation',
+        "Make sure to stand up and walk around if you're sat for long periods of time",
+        'Remember to stay hydrated!',
+      ],
+    },
     { Md: 'Motivated', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
-    { Md: 'Content', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
     { Md: 'Optimistic', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
     { Md: 'Bored', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
     { Md: 'Tempted', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
@@ -57,7 +64,7 @@ export class DashboardComponent implements OnInit {
   ];
 
   MOODINDEX = [
-    { Em: 'Happy', Md: ['Motivated', 'Content', 'Optimistic'] },
+    { Em: 'Happy', Md: ['Content', 'Motivated', 'Optimistic'] },
     { Em: 'Neutral', Md: ['Bored', 'Tempted', 'Unmotivated'] },
     { Em: 'Sad', Md: ['Irritable', 'Anxious', 'Tired'] },
   ];
