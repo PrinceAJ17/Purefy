@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
     <title>LEADERBOARD</title>
   </head>
@@ -24,16 +24,16 @@
               <ul class="nav">
                 <div class="group-selection">
                   <select [(ngModel)]="selectedGroupId" (change)="onGroupChange()">
-                    <option value="0">Select Group</option>
+                    <option [value]="addGroupId">Select Group</option>
                     <option *ngFor="let group of options" [value]="group.groupID">{{ group.groupID }}</option>
-                    <option value="0">Add New Group</option>
+                    <option [value]="addGroupId">Add New Group</option>
                   </select>
                 </div>
                 <li><a href="">Home</a></li>
-                <li><a href="">Challenges</a></li>
+                <li><a href="/">Challenges</a></li>
                 <li><a href="">Mood Journal</a></li>
                 <li><a href="">Habit Tracker</a></li>
-                <li><a href="/Leaderboard" class="active">Leaderboard</a></li>
+                <li><a href="/leaderboard" class="active">Leaderboard</a></li>
                 <li><a href="">About</a></li>
                 <li>
                   <a href="" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
@@ -63,7 +63,6 @@
             <div class="nameBadge">
               <div class="teamName">
                 <h2>Welcome to Groups and Leaderboards!</h2>
-
                 <p>
                   You can use groups and leaderboards to connect and compete with friends (or enemies). <br />
                   Complete challenges to earn points and see how you stack up!
@@ -87,7 +86,7 @@
                   <br />
                   <button type="submit" class="createGroupButton">Create Group</button>
                 </form>
-                S
+
                 <br />
               </div>
 
@@ -212,7 +211,7 @@
               <div class="topbox" *ngIf="sortedByTotalPoints.length > 0">
                 <div *ngFor="let entry of sortedByTotalPoints | slice: 0:1; let i = index" [ngClass]="getOrdinalIndicator(1)">
                   <div class="Avatar">
-                    <img src="{{ entry.imageUrl }}" alt="Avatar" />
+                    <img src="{{ entry.imageUrl }}" alt="Avatar" style="color: white" />
                     <div class="name">{{ entry.login }}</div>
                   </div>
                   <div class="points">{{ entry.totalPoints }}</div>

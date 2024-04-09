@@ -61,6 +61,7 @@ export class LeaderboardComponent implements OnInit {
 
   options: groups[] = [];
   selectedGroupId: number = 0;
+  addGroupId: number = 0;
 
   createGroup: newGroup = { groupName: '' };
   newGrouping: Group = {
@@ -87,6 +88,7 @@ export class LeaderboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadScript('vendor/jquery/jquery.min.js')
+      .then(() => this.checkForAddGroup())
       .then(() => this.getGroupsData())
       .then(() => this.addNewGroupWindow())
       .then(() => {
@@ -107,6 +109,19 @@ export class LeaderboardComponent implements OnInit {
       script.onerror = error => reject(error);
       body.appendChild(script);
     });
+  }
+
+  private async checkForAddGroup() {
+    try {
+      const response = await this.http.get<Group>(`/api/groupings/by-name/ADDGROUP`).toPromise();
+      if (response) {
+        this.selectedGroupId = response.id;
+        this.addGroupId = response.id;
+      }
+    } catch (error) {
+      console.error('Error fetching group "ADDGROUP":', error);
+      this.showCreateGroup = true;
+    }
   }
 
   getOrdinalIndicator(rank: number): string {
@@ -213,7 +228,7 @@ export class LeaderboardComponent implements OnInit {
   onGroupChange(): void {
     console.log('Group Selected', this.selectedGroupId);
     this.updateCurrentUserLeadershipStatus(this.selectedGroupId);
-    if (this.selectedGroupId == 0) {
+    if (this.selectedGroupId == this.addGroupId) {
       this.showCreateGroup = true;
       this.addNewGroupWindow();
     } else {
@@ -224,13 +239,13 @@ export class LeaderboardComponent implements OnInit {
   }
 
   private addNewGroupWindow() {
-    const url = `http://localhost:8080/api/members/group/0/points`;
+    const url = `http://localhost:8080/api/members/group/${this.addGroupId}/points`;
 
     this.http.get<LeaderboardEntry[]>(url).subscribe({
       next: data => {
         this.leaderboardData = data;
-        this.sortLeaderboardData();
         this.updateCountdown();
+        this.sortLeaderboardData();
       },
     });
   }
@@ -242,8 +257,8 @@ export class LeaderboardComponent implements OnInit {
     this.http.get<LeaderboardEntry[]>(url).subscribe({
       next: data => {
         this.leaderboardData = data;
-        this.sortLeaderboardData();
         this.updateCountdown();
+        this.sortLeaderboardData();
       },
       error: error => {
         console.error('Error fetching leaderboard data:', error);
@@ -296,7 +311,7 @@ export class LeaderboardComponent implements OnInit {
   }
 
   onCreate(): void {
-    if (this.createGroup.groupName !== null) {
+    if (this.createGroup.groupName !== null && this.createGroup.groupName !== 'ADDGROUP') {
       console.log('Group Created:', this.createGroup);
       this.CreateGroup(this.createGroup).subscribe({
         next: (newGrouping: Group) => {
@@ -322,7 +337,7 @@ export class LeaderboardComponent implements OnInit {
   }
 
   onJoin(): void {
-    if (this.joinGroup.groupID !== null) {
+    if (this.joinGroup.groupID !== null && this.joinGroup.groupID != this.addGroupId) {
       console.log('Joining Group:', this.joinGroup);
 
       var joinDTO = { id: this.joinGroup.groupID, leader: false };
