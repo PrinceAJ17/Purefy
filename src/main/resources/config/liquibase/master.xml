@@ -55,7 +55,7 @@
     <include file="config/liquibase/changelog/20240329215607_added_entity_Points.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20240329180500_added_entity_EntriesFeature.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20240404005839_added_entity_PromptsFeature.xml" relativeToChangelogFile="false"/>
-
+    <include file="config/liquibase/changelog/20240328134501_added_entity_NewMoodPicker.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20240305141206_added_entity_constraints_Challenges.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20240305141209_added_entity_constraints_ScreenTime.xml" relativeToChangelogFile="false"/>

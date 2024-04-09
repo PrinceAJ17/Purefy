@@ -104,6 +104,7 @@ public class CacheConfiguration {
             createCache(cm, team.bham.domain.PromptsFeature.class.getName());
             createCache(cm, team.bham.domain.Timer.class.getName());
             createCache(cm, team.bham.domain.Points.class.getName());
+            createCache(cm, team.bham.domain.NewMoodPicker.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

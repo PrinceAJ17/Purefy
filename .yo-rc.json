@@ -57,7 +57,8 @@
       "History",
       "Points",
       "EntriesFeature",
-      "PromptsFeature"
+      "PromptsFeature",
+      "NewMoodPicker"
     ],
     "entitySuffix": "",
     "jhiPrefix": "jhi",

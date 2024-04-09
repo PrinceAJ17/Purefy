@@ -23,17 +23,6 @@ import { NavbarComponent } from './layouts/navbar/navbar.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { PageRibbonComponent } from './layouts/profiles/page-ribbon.component';
 import { ErrorComponent } from './layouts/error/error.component';
-import { ChallengesIndexComponent } from './challenges-index/challenges-index.component';
-import { AllChallengesComponent } from './all-challenges/all-challenges.component';
-import { CoffeeLevelsComponent } from './coffee-levels/coffee-levels.component';
-import { SociaLevelsComponent } from './socia-levels/socia-levels.component';
-import { FoodLevelsComponent } from './food-levels/food-levels.component';
-import { AlcoholLevelsComponent } from './alcohol-levels/alcohol-levels.component';
-import { SmokingLevelsComponent } from './smoking-levels/smoking-levels.component';
-import { MusicLevelsComponent } from './music-levels/music-levels.component';
-import { GamesLevelsComponent } from './games-levels/games-levels.component';
-import { VideoLevelsComponent } from './video-levels/video-levels.component';
-import { CoffeeStartComponent } from './coffee-start/coffee-start.component';
 import { AlcoholStartComponent } from './alcohol-start/alcohol-start.component';
 import { FoodStartComponent } from './food-start/food-start.component';
 import { GamesStartComponent } from './games-start/games-start.component';
@@ -73,17 +62,6 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
     ErrorComponent,
     PageRibbonComponent,
     FooterComponent,
-    ChallengesIndexComponent,
-    AllChallengesComponent,
-    CoffeeLevelsComponent,
-    SociaLevelsComponent,
-    FoodLevelsComponent,
-    AlcoholLevelsComponent,
-    SmokingLevelsComponent,
-    MusicLevelsComponent,
-    GamesLevelsComponent,
-    VideoLevelsComponent,
-    CoffeeStartComponent,
     AlcoholStartComponent,
     FoodStartComponent,
     GamesStartComponent,

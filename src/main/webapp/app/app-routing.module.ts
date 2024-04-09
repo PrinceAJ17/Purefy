@@ -6,17 +6,6 @@ import { navbarRoute } from './layouts/navbar/navbar.route';
 import { DEBUG_INFO_ENABLED } from 'app/app.constants';
 import { Authority } from 'app/config/authority.constants';
 import { UserRouteAccessService } from 'app/core/auth/user-route-access.service';
-import { ChallengesIndexComponent } from './challenges-index/challenges-index.component';
-import { AllChallengesComponent } from './all-challenges/all-challenges.component';
-import { CoffeeLevelsComponent } from './coffee-levels/coffee-levels.component';
-import { CoffeeStartComponent } from './coffee-start/coffee-start.component';
-import { SociaLevelsComponent } from './socia-levels/socia-levels.component';
-import { FoodLevelsComponent } from './food-levels/food-levels.component';
-import { AlcoholLevelsComponent } from './alcohol-levels/alcohol-levels.component';
-import { SmokingLevelsComponent } from './smoking-levels/smoking-levels.component';
-import { MusicLevelsComponent } from './music-levels/music-levels.component';
-import { GamesLevelsComponent } from './games-levels/games-levels.component';
-import { VideoLevelsComponent } from './video-levels/video-levels.component';
 import { AlcoholStartComponent } from './alcohol-start/alcohol-start.component';
 import { HistoryComponent } from './history/history.component';
 import { FoodStartComponent } from './food-start/food-start.component';
@@ -30,47 +19,12 @@ import { MoodJournalPageComponent } from './mood-journal-page/mood-journal-page.
 import { EntriesComponent } from './entries/entries.component';
 import { PromptsComponent } from './prompts/prompts.component';
 import { EmotionsComponent } from './emotions/emotions.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
   {
-    path: 'All-Challenges',
-    component: AllChallengesComponent,
-  },
-  {
-    path: 'Music',
-    component: MusicLevelsComponent,
-  },
-  {
-    path: 'Video',
-    component: VideoLevelsComponent,
-  },
-  {
-    path: 'Social',
-    component: SociaLevelsComponent,
-  },
-  {
-    path: 'Smoking',
-    component: SmokingLevelsComponent,
-  },
-  {
-    path: 'JunkFood',
-    component: FoodLevelsComponent,
-  },
-  {
-    path: 'Alcohol',
-    component: AlcoholLevelsComponent,
-  },
-  {
-    path: 'VideoGames',
-    component: GamesLevelsComponent,
-  },
-  {
-    path: 'Coffee',
-    component: CoffeeLevelsComponent,
-  },
-  {
-    path: 'Coffee-Start/:state',
-    component: CoffeeStartComponent,
+    path: 'Dashboard',
+    component: DashboardComponent,
   },
   {
     path: 'Alcohol-Start/:state',
@@ -151,46 +105,6 @@ const routes: Routes = [
           loadChildren: () => import(`./entities/entity-routing.module`).then(m => m.EntityRoutingModule),
         },
         {
-          path: 'All-Challenges',
-          component: AllChallengesComponent,
-        },
-        {
-          path: 'Coffee',
-          component: CoffeeLevelsComponent,
-        },
-        {
-          path: 'Coffee-Start/:state',
-          component: CoffeeStartComponent,
-        },
-        {
-          path: 'Music',
-          component: MusicLevelsComponent,
-        },
-        {
-          path: 'Video',
-          component: VideoLevelsComponent,
-        },
-        {
-          path: 'Social',
-          component: SociaLevelsComponent,
-        },
-        {
-          path: 'Smoking',
-          component: SmokingLevelsComponent,
-        },
-        {
-          path: 'JunkFood',
-          component: FoodLevelsComponent,
-        },
-        {
-          path: 'Alcohol',
-          component: AlcoholLevelsComponent,
-        },
-        {
-          path: 'VideoGames',
-          component: GamesLevelsComponent,
-        },
-        {
           path: 'Alcohol-Start/:state',
           component: AlcoholStartComponent,
         },
@@ -241,6 +155,10 @@ const routes: Routes = [
         {
           path: 'Emotions',
           component: EmotionsComponent,
+        },
+        {
+          path: 'Dashboard',
+          component: DashboardComponent,
         },
         navbarRoute,
         ...errorRoute,
