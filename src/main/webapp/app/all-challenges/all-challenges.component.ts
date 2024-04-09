@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CoffeeStartComponent } from '../coffee-start/coffee-start.component';
 import { Router } from '@angular/router';
+import { AccountService } from 'app/core/auth/account.service';
+import { Account } from 'app/core/auth/account.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'jhi-all-challenges',
@@ -8,7 +11,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./all-challenges.component.scss'],
 })
 export class AllChallengesComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private accountService: AccountService) {}
+  fontSizeMultiplier: number = 1;
+  account$?: Observable<Account | null>;
+  currentUsername?: string;
 
   ngOnInit(): void {
     this.loadScript('vendor/jquery/jquery.min.js')
@@ -26,6 +32,18 @@ export class AllChallengesComponent implements OnInit {
       .catch(error => {
         console.error('Script loading error:', error);
       });
+
+    this.account$ = this.accountService.identity();
+    this.account$.subscribe(account => {
+      if (account) {
+        this.currentUsername = account.login;
+        // Use username-specific key to fetch font size
+        const storedFontSize = localStorage.getItem(this.getFontSizeKey());
+        if (storedFontSize) {
+          this.fontSizeMultiplier = parseFloat(storedFontSize);
+        }
+      }
+    });
   }
 
   private loadScript(scriptUrl: string): Promise<void> {
@@ -38,5 +56,15 @@ export class AllChallengesComponent implements OnInit {
       script.onerror = error => reject(error);
       body.appendChild(script);
     });
+  }
+
+  getFontSizeKey(): string {
+    // Ensure there's a default key if username is not yet available
+    return `fontSizeMultiplier_${this.currentUsername || 'default'}`;
+  }
+
+  updateFontSize(): void {
+    // Save font size to local storage with username-specific key
+    localStorage.setItem(this.getFontSizeKey(), this.fontSizeMultiplier.toString());
   }
 }
