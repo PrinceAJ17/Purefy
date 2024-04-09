@@ -21,6 +21,7 @@ export class FeedbackComponent implements OnInit {
   fontSizeMultiplier: number = 1;
   account$?: Observable<Account | null>;
   currentUsername?: string;
+  theme: 'light' | 'dark' = 'dark';
 
   contact: ContactForm = {
     name: '',
@@ -36,10 +37,13 @@ export class FeedbackComponent implements OnInit {
     this.account$.subscribe(account => {
       if (account) {
         this.currentUsername = account.login;
-        // Use username-specific key to fetch font size
         const storedFontSize = localStorage.getItem(this.getFontSizeKey());
         if (storedFontSize) {
           this.fontSizeMultiplier = parseFloat(storedFontSize);
+        }
+        const storedTheme = localStorage.getItem(this.getThemeKey());
+        if (storedTheme) {
+          this.theme = storedTheme as 'light' | 'dark';
         }
       }
     });
@@ -53,6 +57,15 @@ export class FeedbackComponent implements OnInit {
   updateFontSize(): void {
     // Save font size to local storage with username-specific key
     localStorage.setItem(this.getFontSizeKey(), this.fontSizeMultiplier.toString());
+  }
+
+  getThemeKey(): string {
+    return `theme_${this.currentUsername || 'default'}`;
+  }
+
+  toggleTheme(): void {
+    this.theme = this.theme === 'dark' ? 'light' : 'dark';
+    localStorage.setItem(this.getThemeKey(), this.theme);
   }
 
   onSubmit(form: NgForm): void {

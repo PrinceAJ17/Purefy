@@ -6,7 +6,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <title>Our Team</title>
   </head>
-  <body>
+  <body [ngClass]="theme">
     <div id="js-preloader" class="js-preloader">
       <div class="preloader-inner">
         <span class="dot"></span>
@@ -39,7 +39,9 @@
                   style="margin-top: 5px"
                 />
               </li>
-
+              <button class="theme-toggle-button" (click)="toggleTheme()">
+                <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+              </button>
               <ul class="nav">
                 <li><a href="">Home</a></li>
                 <li><a href="">Challenges</a></li>
@@ -96,7 +98,11 @@
                       <span style="color: white; text-decoration: underline">Get to know</span>
                       <span style="color: #e75e8d">Us!</span>
                     </h4>
-                    <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                    <p
+                      [ngStyle]="{ color: theme === 'light' ? '#fff' : '#666' }"
+                      class="dynamic-text-size"
+                      [style.fontSize]="fontSizeMultiplier + 'rem'"
+                    >
                       We understand what it's like to struggle with always wanting more dopamine hits. We're here to help you deal with that
                       too.
                     </p>

@@ -123,3 +123,85 @@ $base-font-size: 16px; /* Adjusted base font size to 16px */
 .dynamic-heading {
   font-size: 150%; /* Default heading font size, adjusted relative to parent element */
 }
+
+// Existing styles...
+
+.light {
+  background: #f0f0f0;
+  color: #000;
+  // Define more styles for the light theme as needed
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  a {
+    color: #000; // Ensure all text elements are also explicitly set to black
+  }
+
+  a {
+    &:hover {
+      color: #555; // Lighter color for hover state, if desired
+    }
+  }
+
+  .item:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); // Darker shadow for light mode, adjust as necessary
+  }
+}
+
+.dark {
+  background: #1f2122;
+  color: #ccc;
+  // Define or adjust your existing dark theme styles as needed
+}
+
+.theme-toggle-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.theme-toggle-button {
+  background-color: #444;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.theme-toggle-button:hover {
+  background-color: #666;
+}
+
+.theme-toggle-button {
+  background: none; // No background
+  border: none; // No border
+  padding: 0; // No padding
+  cursor: pointer;
+  font-size: 35px; // Slightly larger icons, adjust as needed
+  line-height: 1;
+  display: flex; // Use flex to center the icon
+  justify-content: center; // Center horizontally
+  align-items: center; // Center vertically
+  height: 50px; // Explicit height for the button
+  width: 50px; // Explicit width for the button
+  margin-left: 10px; // Space from the scrollbar
+  margin-top: 0px; // Move away from the scrollbar by adding left margin, adjust as needed
+
+  &:hover {
+    color: #ccc; // Change color on hover
+  }
+
+  .fas {
+    // Directly target the icon for any specific styles
+    display: block; // Ensure the icon itself is a block to fill the button area
+    color: #ffcc00; // Set the icon color to yellow
+  }
+}

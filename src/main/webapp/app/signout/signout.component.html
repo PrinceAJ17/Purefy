@@ -6,7 +6,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <title>Sign Out</title>
   </head>
-  <body>
+  <body [ngClass]="theme">
     <div id="js-preloader" class="js-preloader">
       <div class="preloader-inner">
         <span class="dot"></span>
@@ -39,6 +39,9 @@
                   style="margin-top: 5px"
                 />
               </li>
+              <button class="theme-toggle-button" (click)="toggleTheme()">
+                <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+              </button>
               <ul class="nav">
                 <li><a href="">Home</a></li>
                 <li><a href="">Challenges</a></li>
@@ -75,9 +78,10 @@
           >
             <!-- Heading Section -->
             <div class="heading-section">
-              <h1 style="color: white; margin: 0; text-align: center; margin-top: -30px; margin-bottom: 30px">
-                <span style="color: #e75e8d">Are you sure you want to </span>
-                <span style="color: white; text-decoration: underline">Sign Out?</span>
+              <h1 style="margin: 0; text-align: center; margin-top: -30px; margin-bottom: 30px">
+                <span>Are you sure you want to </span>
+                <!-- Apply pink color and underline for 'Sign Out?' in light mode, pink color in dark mode -->
+                <span [style.color]="'#e75e8d'" [style.textDecoration]="'underline'">Sign Out?</span>
               </h1>
               <h2>Please <em>click</em> below to sign out!</h2>
               <br />

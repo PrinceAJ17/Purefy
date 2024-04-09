@@ -7,7 +7,7 @@
     <title>Profile Page Main</title>
   </head>
 
-  <body>
+  <body [ngClass]="theme">
     <div id="js-preloader" class="js-preloader">
       <div class="preloader-inner">
         <span class="dot"></span>
@@ -40,6 +40,9 @@
                   style="margin-top: 5px"
                 />
               </li>
+              <button class="theme-toggle-button" (click)="toggleTheme()">
+                <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+              </button>
               <ul class="nav">
                 <li><a href="">Home</a></li>
                 <li><a href="">Challenges</a></li>
