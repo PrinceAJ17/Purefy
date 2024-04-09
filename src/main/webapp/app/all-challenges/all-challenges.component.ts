@@ -39,4 +39,8 @@ export class AllChallengesComponent implements OnInit {
       body.appendChild(script);
     });
   }
+
+  redirectToCoffee() {
+    this.router.navigate(['/All-Challenges']);
+  }
 }

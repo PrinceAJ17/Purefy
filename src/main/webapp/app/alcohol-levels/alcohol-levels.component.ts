@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'jhi-alcohol-levels',
@@ -7,7 +6,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./alcohol-levels.component.scss'],
 })
 export class AlcoholLevelsComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.loadScript('vendor/jquery/jquery.min.js')
@@ -36,9 +35,5 @@ export class AlcoholLevelsComponent implements OnInit {
       script.onerror = error => reject(error);
       body.appendChild(script);
     });
-  }
-
-  navigateToTarget(state: string) {
-    this.router.navigate(['/Alcohol-Start', state]);
   }
 }

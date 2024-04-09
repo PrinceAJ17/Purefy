@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'jhi-smoking-levels',
@@ -7,7 +6,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./smoking-levels.component.scss'],
 })
 export class SmokingLevelsComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor() {}
   ngOnInit(): void {
     this.loadScript('vendor/jquery/jquery.min.js')
       .then(() => this.loadScript('vendor/bootstrap/js/bootstrap.min.js'))
@@ -35,8 +34,5 @@ export class SmokingLevelsComponent implements OnInit {
       script.onerror = error => reject(error);
       body.appendChild(script);
     });
-  }
-  navigateToTarget(state: string) {
-    this.router.navigate(['/Smoking-Start', state]);
   }
 }
