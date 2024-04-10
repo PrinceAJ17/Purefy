@@ -9,8 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import team.bham.domain.Points;
-import team.bham.repository.PointsRepository;
+import team.bham.domain.User;
+import team.bham.domain.UserPoints;
+import team.bham.repository.UserPointsRepository;
+import team.bham.repository.UserRepository;
+import team.bham.security.SecurityUtils;
 
 /**
  * Service Implementation for managing {@link Points}.
@@ -21,32 +24,40 @@ public class PointsService {
 
     private final Logger log = LoggerFactory.getLogger(PointsService.class);
 
-    private final PointsRepository pointsRepository;
+    private final UserPointsRepository userPointsRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public PointsService(PointsRepository pointsRepository) {
-        this.pointsRepository = pointsRepository;
+    public PointsService(UserPointsRepository userPointsRepository, UserRepository userRepository) {
+        this.userPointsRepository = userPointsRepository;
+        this.userRepository = userRepository;
     }
 
-    public Points addPoints(String username, int pointsToAdd) {
-        Points points = pointsRepository
-            .findByUsername(username)
+    public UserPoints addPoints(String username, int pointsToAdd) {
+        User user = userRepository.findOneByLogin(username).orElse(null);
+        Long ID = user.getId();
+
+        UserPoints points = userPointsRepository
+            .findByUserID(ID)
             .orElseGet(() -> {
-                Points newPoints = new Points();
-                newPoints.setUsername(username); // Set username
+                UserPoints newPoints = new UserPoints();
+                newPoints.setUserID(ID); // Set username
                 newPoints.setCurrentPoints(0); // Initialize current points
                 newPoints.setTotalPoints(0); // Initialize total points
                 newPoints.setPreviousPoints(0); //Initialize previous points.
                 return newPoints;
             });
 
-        points.setCurrentPoints(pointsToAdd); // Overwrite current points
+        points.setCurrentPoints(points.getCurrentPoints() + pointsToAdd); // Overwrite current points
         points.setTotalPoints(points.getTotalPoints() + pointsToAdd); // Increment total points
-        return pointsRepository.save(points);
+        return userPointsRepository.save(points);
     }
 
-    public Points deductPoints(String username, int pointsToDeduct) {
-        Points points = pointsRepository.findByUsername(username).orElseThrow(() -> new EntityNotFoundException("User not found"));
+    public UserPoints deductPoints(String username, int pointsToDeduct) {
+        User user = userRepository.findOneByLogin(username).orElse(null);
+        Long ID = user.getId();
+
+        UserPoints points = userPointsRepository.findByUserID(ID).orElseThrow(() -> new EntityNotFoundException("User not found"));
 
         // Calculate new current points ensuring it doesn't go below 0
         int newCurrentPoints = Math.max(0, points.getCurrentPoints() - pointsToDeduct);
@@ -57,7 +68,7 @@ public class PointsService {
         points.setCurrentPoints(newCurrentPoints);
         points.setTotalPoints(newTotalPoints);
 
-        return pointsRepository.save(points);
+        return userPointsRepository.save(points);
     }
 
     /**
@@ -66,9 +77,9 @@ public class PointsService {
      * @param points the entity to save.
      * @return the persisted entity.
      */
-    public Points save(Points points) {
+    public UserPoints save(UserPoints points) {
         log.debug("Request to save Points : {}", points);
-        return pointsRepository.save(points);
+        return userPointsRepository.save(points);
     }
 
     /**
@@ -77,9 +88,9 @@ public class PointsService {
      * @param points the entity to save.
      * @return the persisted entity.
      */
-    public Points update(Points points) {
+    public UserPoints update(UserPoints points) {
         log.debug("Request to update Points : {}", points);
-        return pointsRepository.save(points);
+        return userPointsRepository.save(points);
     }
 
     /**
@@ -88,14 +99,14 @@ public class PointsService {
      * @param points the entity to update partially.
      * @return the persisted entity.
      */
-    public Optional<Points> partialUpdate(Points points) {
+    public Optional<UserPoints> partialUpdate(UserPoints points) {
         log.debug("Request to partially update Points : {}", points);
 
-        return pointsRepository
+        return userPointsRepository
             .findById(points.getId())
             .map(existingPoints -> {
-                if (points.getUsername() != null) {
-                    existingPoints.setUsername(points.getUsername());
+                if (points.getUserID() != null) {
+                    existingPoints.setUserID(points.getUserID());
                 }
                 if (points.getCurrentPoints() != null) {
                     existingPoints.setCurrentPoints(points.getCurrentPoints());
@@ -109,7 +120,7 @@ public class PointsService {
 
                 return existingPoints;
             })
-            .map(pointsRepository::save);
+            .map(userPointsRepository::save);
     }
 
     /**
@@ -118,9 +129,9 @@ public class PointsService {
      * @return the list of entities.
      */
     @Transactional(readOnly = true)
-    public List<Points> findAll() {
+    public List<UserPoints> findAll() {
         log.debug("Request to get all Points");
-        return pointsRepository.findAll();
+        return userPointsRepository.findAll();
     }
 
     /**
@@ -130,9 +141,9 @@ public class PointsService {
      * @return the entity.
      */
     @Transactional(readOnly = true)
-    public Optional<Points> findOne(Long id) {
+    public Optional<UserPoints> findOne(Long id) {
         log.debug("Request to get Points : {}", id);
-        return pointsRepository.findById(id);
+        return userPointsRepository.findById(id);
     }
 
     /**
@@ -142,6 +153,6 @@ public class PointsService {
      */
     public void delete(Long id) {
         log.debug("Request to delete Points : {}", id);
-        pointsRepository.deleteById(id);
+        userPointsRepository.deleteById(id);
     }
 }

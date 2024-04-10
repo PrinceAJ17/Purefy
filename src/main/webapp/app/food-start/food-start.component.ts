@@ -5,13 +5,20 @@ import { HistoryService } from '../entities/history/service/history.service';
 import { AccountService } from '../core/auth/account.service';
 import { catchError, tap } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { PointsService } from '../entities/points/service/points.service';
+
 @Component({
   selector: 'jhi-food-start',
   templateUrl: './food-start.component.html',
   styleUrls: ['./food-start.component.scss'],
 })
 export class FoodStartComponent implements OnInit {
-  constructor(private route: ActivatedRoute, private accountService: AccountService, private historyService: HistoryService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private accountService: AccountService,
+    private historyService: HistoryService,
+    private pointsService: PointsService
+  ) {}
 
   currentState: string | undefined;
   timers: { [timerId: string]: string } = {};
@@ -172,5 +179,19 @@ export class FoodStartComponent implements OnInit {
     const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
     return `${hours}h ${minutes}m ${seconds}s`;
+  }
+
+  sendPoints(points: number): void {
+    this.pointsService.addPoints(points).subscribe({
+      next: () => console.log('Points updated successfully'),
+      error: error => console.error('Failed to update points:', error),
+    });
+  }
+
+  deductPoints(pointsToDeduct: number): void {
+    this.pointsService.deductPoints(pointsToDeduct).subscribe({
+      next: () => console.log(`Deducted ${pointsToDeduct} points successfully.`),
+      error: error => console.error('Failed to deduct points:', error),
+    });
   }
 }

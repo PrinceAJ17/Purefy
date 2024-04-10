@@ -208,4 +208,11 @@ public class GroupingResource {
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString()))
             .build();
     }
+
+    @GetMapping("/groupings/by-name/{groupingName}")
+    public ResponseEntity<Grouping> getGroupingByName(@PathVariable String groupingName) {
+        log.debug("REST request to get Grouping by name: {}", groupingName);
+        Optional<Grouping> grouping = groupingRepository.findOneByGroupingName(groupingName);
+        return ResponseUtil.wrapOrNotFound(grouping);
+    }
 }

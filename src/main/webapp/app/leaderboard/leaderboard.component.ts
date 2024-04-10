@@ -60,6 +60,7 @@ export class LeaderboardComponent implements OnInit {
 
   options: groups[] = [];
   selectedGroupId: number = 0;
+  addGroupId: number = 0;
 
   createGroup: newGroup = { groupName: '' };
   newGrouping: Group = {
@@ -86,6 +87,7 @@ export class LeaderboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadScript('vendor/jquery/jquery.min.js')
+      .then(() => this.checkForAddGroup())
       .then(() => this.getGroupsData())
       .then(() => this.addNewGroupWindow())
       .then(() => {
@@ -106,6 +108,19 @@ export class LeaderboardComponent implements OnInit {
       script.onerror = error => reject(error);
       body.appendChild(script);
     });
+  }
+
+  private async checkForAddGroup() {
+    try {
+      const response = await this.http.get<Group>(`/api/groupings/by-name/ADDGROUP`).toPromise();
+      if (response) {
+        this.selectedGroupId = response?.id || 0;
+        this.addGroupId = response?.id || 0;
+      }
+    } catch (error) {
+      console.error('Error fetching group "ADDGROUP":', error);
+      this.showCreateGroup = true;
+    }
   }
 
   getOrdinalIndicator(rank: number): string {
@@ -211,38 +226,34 @@ export class LeaderboardComponent implements OnInit {
 
   onGroupChange(): void {
     console.log('Group Selected', this.selectedGroupId);
+    this.confirmAction();
+    this.updateCountdown();
     this.updateCurrentUserLeadershipStatus(this.selectedGroupId);
-    if (this.selectedGroupId == 0) {
+    if (this.selectedGroupId == this.addGroupId) {
       this.showCreateGroup = true;
       this.addNewGroupWindow();
     } else {
-      this.confirmAction();
       this.showCreateGroup = false;
       this.loadAndPopulateLeaderboard();
     }
   }
 
   private addNewGroupWindow() {
-    const url = `http://localhost:8080/api/members/group/0/points`;
-
-    this.http.get<LeaderboardEntry[]>(url).subscribe({
+    this.http.get<LeaderboardEntry[]>(`/api/members/group/${this.addGroupId}/points`).subscribe({
       next: data => {
         this.leaderboardData = data;
         this.sortLeaderboardData();
-        this.updateCountdown();
       },
     });
   }
 
   private loadAndPopulateLeaderboard(): void {
     const groupId = this.selectedGroupId;
-    const url = `http://localhost:8080/api/members/group/${groupId}/points`;
 
-    this.http.get<LeaderboardEntry[]>(url).subscribe({
+    this.http.get<LeaderboardEntry[]>(`/api/members/group/${groupId}/points`).subscribe({
       next: data => {
         this.leaderboardData = data;
         this.sortLeaderboardData();
-        this.updateCountdown();
       },
       error: error => {
         console.error('Error fetching leaderboard data:', error);
@@ -295,7 +306,7 @@ export class LeaderboardComponent implements OnInit {
   }
 
   onCreate(): void {
-    if (this.createGroup.groupName !== null) {
+    if (this.createGroup.groupName !== null && this.createGroup.groupName !== 'ADDGROUP') {
       console.log('Group Created:', this.createGroup);
       this.CreateGroup(this.createGroup).subscribe({
         next: (newGrouping: Group) => {
@@ -321,7 +332,7 @@ export class LeaderboardComponent implements OnInit {
   }
 
   onJoin(): void {
-    if (this.joinGroup.groupID !== null) {
+    if (this.joinGroup.groupID !== null && this.joinGroup.groupID != this.addGroupId) {
       console.log('Joining Group:', this.joinGroup);
 
       var joinDTO = { id: this.joinGroup.groupID, leader: false };
@@ -345,7 +356,7 @@ export class LeaderboardComponent implements OnInit {
       response => {
         console.log('Left Group Succesfully');
         this.getGroupsData();
-        this.selectedGroupId = 0;
+        this.selectedGroupId = this.addGroupId;
         this.onGroupChange();
       },
       error => {
@@ -361,7 +372,7 @@ export class LeaderboardComponent implements OnInit {
       response => {
         console.log('Deleted Succesfully');
         this.getGroupsData();
-        this.selectedGroupId = 0;
+        this.selectedGroupId = this.addGroupId;
         this.onGroupChange();
       },
       error => {
