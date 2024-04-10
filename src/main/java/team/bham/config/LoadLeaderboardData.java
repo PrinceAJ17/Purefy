@@ -46,7 +46,7 @@ public class LoadLeaderboardData {
                             newUser.setPassword("$2a$10$VEjxo0jq2YG9Rbk2HmX9S.k1uZBGYUHdUcid3g/vfiEl7lwWgOH/K");
                             newUser.setEmail(username + "@localhost.com");
                             newUser.setActivated(true);
-                            newUser.setImageUrl(index % 2 == 0 ? "assets/images/Avatar.png" : "assets/images/Avatar2.png");
+                            newUser.setImageUrl(index % 2 == 0 ? "assets/images/Avatars/Avatar.png" : "assets/images/Avatars/Avatar2.png");
 
                             return userRepository.save(newUser);
                         });
