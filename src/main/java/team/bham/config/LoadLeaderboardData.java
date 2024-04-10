@@ -64,12 +64,12 @@ public class LoadLeaderboardData {
                     member.setLeader(false);
                     membersRepository.save(member);
                 }
-                UserPoints userPoints = new UserPoints();
-                userPoints.setUserID(1L);
-                userPoints.setCurrentPoints(0);
-                userPoints.setPreviousPoints(0);
-                userPoints.setTotalPoints(0);
-                userPointsRepository.save(userPoints);
+                UserPoints adminPoints = new UserPoints();
+                adminPoints.setUserID(1L);
+                adminPoints.setCurrentPoints(0);
+                adminPoints.setPreviousPoints(0);
+                adminPoints.setTotalPoints(0);
+                userPointsRepository.save(adminPoints);
 
                 UserPoints userPoints = new UserPoints();
                 userPoints.setUserID(2L);
