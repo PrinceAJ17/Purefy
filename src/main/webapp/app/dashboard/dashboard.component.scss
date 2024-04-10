@@ -1,0 +1,63 @@
+@import 'vendor/bootstrap/css/bootstrap.min';
+@import 'assets/css/templatemo-cyborg-gaming';
+@import 'assets/css/animate';
+
+.image-container {
+  display: flex;
+  text-align: center;
+}
+
+.image-container img {
+  width: 80%;
+  cursor: pointer;
+}
+
+.image-test {
+  //text-align: center;
+  //float: right;
+  //max-width: 80%;
+  //cursor:pointer;
+  width: 80%;
+  cursor: pointer;
+}
+
+#mood-title {
+  margin-bottom: 30px;
+}
+
+#mood-title-text {
+  margin-bottom: -3px;
+}
+
+.back-button {
+  float: right;
+}
+
+.main-button a:hover {
+  cursor: pointer;
+}
+
+.currentMood {
+  float: left;
+}
+
+.centered-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.centered-text-container {
+  position: relative;
+}
+
+.centered-text:hover {
+  cursor: pointer;
+}
+
+.extra-line-space {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  text-align: left;
+}

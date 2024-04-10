@@ -36,8 +36,7 @@
                 <li><a href="#">Challenges</a></li>
                 <li><a href="#" routerLink="/MoodJournalPage">Mood Journal</a></li>
                 <li><a href="#">Habit Tracker</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Team</a></li>
+                <li><a href="#">Leaderboard</a></li>
                 <li>
                   <a href="#" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
                 </li>
@@ -80,19 +79,26 @@
                 <!-- ***** Search Bar Start ***** -->
                 <div class="journal-search">
                   <form id="journalSearch" action="#">
-                    <input type="text" placeholder="Search Entries" id="journalSearchText" name="searchKeyword" />
-                    <button type="submit" class="search-button"><i class="fa fa-search"></i></button>
+                    <input
+                      type="text"
+                      placeholder="Search Entries"
+                      id="journalSearchText"
+                      name="searchKeyword"
+                      [(ngModel)]="searchTerm"
+                      (input)="filterEntries()"
+                    />
                   </form>
                 </div>
                 <!-- ***** Search Bar End ***** -->
-                <!-- Place this inside the <div id="journal-content"> where hardcoded entries used to be -->
-                <div *ngFor="let entry of entries" class="card mb-4 normal-entry">
+                <!-- Entry card -->
+                <div *ngFor="let entry of filteredEntries" class="card mb-4 normal-entry entry-container">
                   <div class="card-body">
                     <h6 class="card-title">{{ entry.title }}</h6>
                     <p class="card-text">{{ entry.content }}</p>
                     <p class="card-text">
                       <small>Entry Date: {{ formatDate(entry.date) | date }}</small>
                     </p>
+                    <button class="delete-button" (click)="deleteEntry(entry.id)">Delete</button>
                   </div>
                 </div>
                 <!-- ***** Add Entry Button Start **** -->

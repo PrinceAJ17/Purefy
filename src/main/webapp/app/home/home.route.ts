@@ -1,10 +1,11 @@
 import { Route } from '@angular/router';
-import { ChallengesIndexComponent } from '../challenges-index/challenges-index.component';
+import { DashboardComponent } from '../dashboard/dashboard.component';
+import { HomeComponent } from './home.component';
 
 export const HOME_ROUTE: Route = {
   path: '',
-  component: ChallengesIndexComponent,
+  component: DashboardComponent,
   data: {
-    pageTitle: 'Welcome, Java Hipster!',
+    pageTitle: 'Dashboard',
   },
 };

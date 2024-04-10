@@ -1,7 +1,7 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
-import { EntriesFeatureService } from '../entities/entries-feature/service/entries-feature.service'; // Adjust the path as necessary
-import { EntriesFeature, NewEntriesFeature } from '../entities/entries-feature/entries-feature.model'; // Adjust the path as necessary
+import { EntriesFeatureService } from '../entities/entries-feature/service/entries-feature.service';
+import { EntriesFeature, NewEntriesFeature } from '../entities/entries-feature/entries-feature.model';
 import { default as dayjs } from 'dayjs';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 
@@ -12,22 +12,22 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 })
 export class EntriesComponent implements OnInit {
   entryFeature: EntriesFeature = {
-    id: 0, // Assuming 0 is not a valid ID and will be replaced by the backend
+    id: 0,
     title: null,
     content: null,
-    date: null, // Initialize all fields to null or their default state
+    date: null,
   };
-  entries: EntriesFeature[] = []; // Store fetched entries
+  entries: EntriesFeature[] = [];
+  filteredEntries: EntriesFeature[] = [];
+  searchTerm: string = '';
+
   formatDate(date: string | dayjs.Dayjs | null | undefined): string | null {
-    if (!date) return null; // Handle null or undefined
-    const formattedDate = dayjs(date).isValid() ? dayjs(date) : dayjs(); // If date is a valid string, parse it; otherwise, create a new Dayjs object
-    return formattedDate.toDate().toISOString(); // Convert to ISO string, or use toDate() for a Date object
+    if (!date) return null;
+    const formattedDate = dayjs(date).isValid() ? dayjs(date) : dayjs();
+    return formattedDate.toDate().toISOString();
   }
-  constructor(
-    private router: Router,
-    private renderer: Renderer2,
-    private entriesFeatureService: EntriesFeatureService // Inject your service
-  ) {}
+
+  constructor(private router: Router, private renderer: Renderer2, private entriesFeatureService: EntriesFeatureService) {}
 
   ngOnInit(): void {
     this.loadScript('vendor/jquery/jquery.min.js')
@@ -38,16 +38,22 @@ export class EntriesComponent implements OnInit {
       .then(() => this.loadScript('assets/js/MoodJournal.js'))
       .then(() => {
         console.log('All scripts loaded successfully');
-        // Initialization or callback functions that depend on these scripts can go here
       })
       .catch(error => {
         console.error('Script loading error:', error);
       });
-    this.loadEntries(); // Call this method to load entries
+    this.loadEntries();
+    this.filteredEntries = this.entries;
   }
+
   loadEntries(): void {
     this.entriesFeatureService.getAll().subscribe((data: EntriesFeature[]) => {
-      this.entries = data;
+      this.entries = data.sort((a, b) => {
+        const dateA = dayjs(a.date);
+        const dateB = dayjs(b.date);
+        return dateB.valueOf() - dateA.valueOf(); // Sort in descending order
+      });
+      this.filteredEntries = this.entries;
     });
   }
 
@@ -56,7 +62,7 @@ export class EntriesComponent implements OnInit {
       const body = document.body as HTMLDivElement;
       const script = document.createElement('script');
       script.src = scriptUrl;
-      script.async = false; // Important for sequential loading
+      script.async = false;
       script.onload = () => resolve();
       script.onerror = error => reject(error);
       body.appendChild(script);
@@ -70,19 +76,18 @@ export class EntriesComponent implements OnInit {
         console.log('Entry saved:', res.body);
         if (res.body) {
           this.entries.push(res.body);
+          this.filteredEntries = this.entries;
           this.resetForm();
           this.closePopup();
         }
       },
       error: err => console.error('Error saving entry:', err),
       complete: () => {
-        // Display a success message
         alert('Entry saved successfully!');
       },
     });
   }
 
-  // Method to open the popup
   openPopup(): void {
     const popup = document.getElementById('addEntryPopup');
     if (popup) {
@@ -90,20 +95,48 @@ export class EntriesComponent implements OnInit {
     }
   }
 
-  // Method to close the popup
   closePopup(): void {
     const popup = document.getElementById('addEntryPopup');
     if (popup) {
       this.renderer.setStyle(popup, 'display', 'none');
     }
   }
+
   resetForm(): void {
-    // Reset entryFeature to its initial state to clear the form
     this.entryFeature = {
-      id: 0, // Or as appropriate for your initial state
+      id: 0,
       title: null,
       content: null,
       date: null,
     };
+  }
+
+  deleteEntry(id: number): void {
+    if (confirm('Are you sure you want to delete this entry?')) {
+      this.entriesFeatureService.delete(id).subscribe(
+        () => {
+          this.entries = this.entries.filter(entry => entry.id !== id);
+          this.filteredEntries = this.filteredEntries.filter(entry => entry.id !== id);
+          console.log('Entry deleted successfully');
+        },
+        error => {
+          console.error('Error deleting entry:', error);
+        }
+      );
+    }
+  }
+
+  filterEntries(): void {
+    this.filteredEntries = this.entries
+      .filter(
+        entry =>
+          entry.title?.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+          entry.content?.toLowerCase().includes(this.searchTerm.toLowerCase())
+      )
+      .sort((a, b) => {
+        const dateA = dayjs(a.date);
+        const dateB = dayjs(b.date);
+        return dateB.valueOf() - dateA.valueOf(); // Sort in descending order
+      });
   }
 }

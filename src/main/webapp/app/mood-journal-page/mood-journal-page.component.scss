@@ -896,6 +896,7 @@ LandingPage Style
 }
 
 .journal-search {
+  margin-left: 550px;
   margin-bottom: 20px;
 }
 
@@ -932,6 +933,23 @@ LandingPage Style
 
 .search-button i {
   margin-right: 0;
+}
+
+.delete-button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: inherit; /* Inherit the background color of the parent entry */
+  color: #fff; /* Set the text color to white for better visibility */
+  border: none;
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #d32f2f; /* Change the background color on hover */
 }
 
 /*

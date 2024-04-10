@@ -22,10 +22,9 @@
               <ul class="nav">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Challenges</a></li>
-                <li><a href="#" routerLink="/MoodJournalPage" class="active">Mood Journal</a></li>
+                <li><a href="#" routerLink="/MoodJournalPage">Mood Journal</a></li>
                 <li><a href="#">Habit Tracker</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Team</a></li>
+                <li><a href="#">Leaderboard</a></li>
                 <li>
                   <a href="#" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
                 </li>
@@ -55,55 +54,36 @@
             </div>
             <!-- AI Prompts Carousel Here -->
             <div class="owl-features owl-carousel">
-              <!-- First Prompt -->
-              <div class="item">
+              <div class="item" *ngFor="let prompt of promptOptions; let i = index" (click)="updateSelectedPrompt(i)">
                 <div class="thumb">
-                  <h4>How does your sadness manifest in your thoughts, body, and relationships?</h4>
-                </div>
-              </div>
-              <!-- Second Prompt -->
-              <div class="item">
-                <div class="thumb">
-                  <h4>Reflect on a recent experience of sadness. What triggered it, and how did you cope?</h4>
-                </div>
-              </div>
-              <!-- Third Prompt -->
-              <div class="item">
-                <div class="thumb">
-                  <h4>What messages might your sadness be trying to communicate to you?</h4>
-                </div>
-              </div>
-              <!-- Fourth Prompt -->
-              <div class="item">
-                <div class="thumb">
-                  <h4>How can you reframe your sadness as an opportunity for personal growth and resilience?</h4>
-                </div>
-              </div>
-              <!-- Fifth Prompt -->
-              <div class="item">
-                <div class="thumb">
-                  <h4>Identify three things that bring you comfort or joy during moments of sadness.</h4>
-                </div>
-              </div>
-              <!-- Sixth Prompt -->
-              <div class="item">
-                <div class="thumb">
-                  <h4>Contemplate a moment when sadness felt overwhelming. How did you find light in that darkness?</h4>
+                  <h4>{{ prompt.prompt }}</h4>
                 </div>
               </div>
             </div>
             <div class="journal-entry-form">
-              <form id="journalForm">
+              <form id="journalForm" (ngSubmit)="savePromptedEntry()">
                 <div class="form-group">
                   <label for="promptTitle">Title:</label>
-                  <input type="text" id="promptTitle" name="promptTitle" />
+                  <input type="text" id="promptTitle" [(ngModel)]="promptFeature.title" name="promptTitle" required />
                 </div>
                 <div class="form-group">
-                  <p>Selected Prompt: <span id="selectedPrompt"></span></p>
+                  <p>
+                    Selected Prompt: <span id="selectedPrompt">{{ promptFeature.prompt }}</span>
+                  </p>
                 </div>
                 <div class="form-group">
                   <label for="promptContent">Content:</label>
-                  <textarea id="promptContent" name="promptContent" placeholder="What's on your mind?"></textarea>
+                  <textarea
+                    id="promptContent"
+                    [(ngModel)]="promptFeature.content"
+                    name="promptContent"
+                    required
+                    placeholder="What's on your mind?"
+                  ></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="promptedEntryDate">Date:</label>
+                  <input type="date" id="promptedEntryDate" [(ngModel)]="promptFeature.date" name="promptedEntryDate" required />
                 </div>
                 <button type="submit">Submit</button>
               </form>

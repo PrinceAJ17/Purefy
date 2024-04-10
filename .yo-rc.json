@@ -56,7 +56,9 @@
       "Timer",
       "History",
       "Points",
-      "EntriesFeature"
+      "EntriesFeature",
+      "PromptsFeature",
+      "NewMoodPicker"
     ],
     "entitySuffix": "",
     "jhiPrefix": "jhi",
