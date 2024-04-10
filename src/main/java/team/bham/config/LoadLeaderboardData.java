@@ -64,6 +64,19 @@ public class LoadLeaderboardData {
                     member.setLeader(false);
                     membersRepository.save(member);
                 }
+                UserPoints userPoints = new UserPoints();
+                userPoints.setUserID(1L);
+                userPoints.setCurrentPoints(0);
+                userPoints.setPreviousPoints(0);
+                userPoints.setTotalPoints(0);
+                userPointsRepository.save(userPoints);
+
+                UserPoints userPoints = new UserPoints();
+                userPoints.setUserID(2L);
+                userPoints.setCurrentPoints(0);
+                userPoints.setPreviousPoints(0);
+                userPoints.setTotalPoints(0);
+                userPointsRepository.save(userPoints);
             } else {
                 System.out.println("'ADDGROUP' group already exists. Skipping data initialization.");
             }
