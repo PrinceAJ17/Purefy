@@ -176,16 +176,6 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
-body .page-content {
-  margin-top: 110px;
-  background-color: #27292a;
-  padding: 60px;
-  border-radius: 23px;
-  align-items: center;
-  justify-content: center;
-  height: auto;
-}
-
 p {
   font-size: 13px;
   color: #b5b5b5;
@@ -201,81 +191,6 @@ p {
 ::-moz-selection {
   background: #e86491;
   color: #fff;
-}
-
-.templatemo-item {
-  max-width: 80px;
-  border-radius: 23px;
-}
-
-.main-button a {
-  font-size: 14px;
-  color: #fff;
-  background-color: #e86491;
-  padding: 12px 30px;
-  display: inline-block;
-  border-radius: 25px;
-  font-weight: 400;
-  text-transform: capitalize;
-  letter-spacing: 0.5px;
-  transition: all 0.3s;
-  position: relative;
-  overflow: hidden;
-}
-
-.main-button a:hover {
-  background-color: #fff;
-  color: #e86491;
-}
-
-.main-border-button a {
-  font-size: 14px;
-  color: #ec6090;
-  background-color: transparent;
-  border: 1px solid #ec6090;
-  padding: 12px 30px;
-  display: inline-block;
-  border-radius: 25px;
-  font-weight: 400;
-  text-transform: capitalize;
-  letter-spacing: 0.5px;
-  transition: all 0.3s;
-  position: relative;
-  overflow: hidden;
-}
-
-.main-border-button a:hover {
-  border-color: #fff;
-  background-color: #fff;
-  color: #e86491;
-}
-
-.border-no-active a {
-  border-color: #666;
-  color: #666;
-}
-
-.border-no-active a:hover {
-  border-color: #666;
-  color: #666;
-  background-color: transparent;
-}
-
-section {
-  margin-top: 120px;
-}
-
-.heading-section h4 {
-  color: #ec6090;
-  font-size: 34px;
-  text-decoration: none;
-  margin-bottom: 30px;
-}
-
-.heading-section h4 em {
-  color: #fff;
-  font-style: normal;
-  text-decoration: underline;
 }
 
 .light {
@@ -832,22 +747,19 @@ Header Style
 }
 
 .theme-toggle-button {
-  background: none; // No background
-  border: none; // No border
-  padding: 0; // No padding
+  background: none;
   cursor: pointer;
-  font-size: 35px; // Slightly larger icons, adjust as needed
+  font-size: 35px;
   line-height: 1;
-  display: flex; // Use flex to center the icon
-  justify-content: center; // Center horizontally
-  align-items: center; // Center vertically
-  height: 50px; // Explicit height for the button
-  width: 50px; // Explicit width for the button
-  margin-left: 10px; // Space from the scrollbar
-  margin-top: 0px; // Move away from the scrollbar by adding left margin, adjust as needed
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 50px;
+  margin-left: 10px;
 
   &:hover {
-    color: #ccc; // Change color on hover
+    color: #ccc;
   }
 
   .fas {
@@ -889,16 +801,8 @@ footer p {
   text-align: center;
   padding: 30px 0px;
   color: #fff;
-  font-weight: 300;
-}
-
-footer p a {
-  color: #fff;
-  transition: all 0.3s;
-}
-
-footer p a:hover {
-  color: #ec6090;
+  font-weight: 400;
+  font-size: 13px;
 }
 
 /*
