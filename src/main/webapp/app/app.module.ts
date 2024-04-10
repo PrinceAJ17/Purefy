@@ -36,6 +36,13 @@ import { EntriesComponent } from './entries/entries.component';
 import { PromptsComponent } from './prompts/prompts.component';
 import { EmotionsComponent } from './emotions/emotions.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
+import { ProfilepageComponent } from './profilepage/profilepage.component';
+import { FeedbackComponent } from './feedback/feedback.component';
+import { SupportComponent } from './support/support.component';
+import { SignoutComponent } from './signout/signout.component';
+import { TeamComponent } from './team/team.component';
+import { AboutComponent } from './about/about.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -49,6 +56,7 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: false }),
     HttpClientModule,
     NgxWebstorageModule.forRoot({ prefix: 'jhi', separator: '-', caseSensitive: true }),
+    FormsModule,
   ],
   providers: [
     Title,
@@ -75,6 +83,12 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
     PromptsComponent,
     EmotionsComponent,
     LeaderboardComponent,
+    ProfilepageComponent,
+    FeedbackComponent,
+    SupportComponent,
+    SignoutComponent,
+    TeamComponent,
+    AboutComponent,
   ],
   bootstrap: [MainComponent],
 })
