@@ -2,8 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TrackedHabitService } from '../entities/tracked-habit/service/tracked-habit.service';
 import { ITrackedHabit, NewTrackedHabit } from '../entities/tracked-habit/tracked-habit.model';
+import { HabitService } from '../entities/habit/service/habit.service';
+import { IHabit, NewHabit } from '../entities/habit/habit.model';
 import { default as dayjs } from 'dayjs';
+import { AccountService } from '../core/auth/account.service';
 import { HttpClient, HttpResponse } from '@angular/common/http';
+import { WeeklySummaryService } from '../entities/weekly-summary/service/weekly-summary.service';
+import { IWeeklySummary, NewWeeklySummary } from '../entities/weekly-summary/weekly-summary.model';
 
 interface Habit {
   name: string;
@@ -11,6 +16,7 @@ interface Habit {
 }
 
 interface WeeklyHabits {
+  weekID?: number | null; // Allow weekID to be null
   nextMonday: Date;
   habits: { [key: string]: Habit[] };
   weeklySummary: string;
@@ -25,6 +31,14 @@ export class HabitTrackerComponent implements OnInit {
   daysOfWeek: string[] = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
   weeklyHabits: WeeklyHabits[] = [];
   currentWeekIndex = 0;
+
+  constructor(
+    private router: Router,
+    private trackedHabitService: TrackedHabitService,
+    private habitService: HabitService,
+    private account: AccountService,
+    private weeklySummaryService: WeeklySummaryService
+  ) {}
 
   ngOnInit(): void {
     this.generateNewWeekHabitTracker();
@@ -80,6 +94,40 @@ export class HabitTrackerComponent implements OnInit {
   removeHabit(day: string): void {
     if (this.weeklyHabits[0].habits[day] && this.weeklyHabits[0].habits[day].length > 0) {
       this.weeklyHabits[0].habits[day].pop();
+    }
+  }
+
+  saveSummary(weekIndex: number): void {
+    // Access the specific week's data using weekIndex
+    const weekData = this.weeklyHabits[weekIndex];
+    const summaryToSave: NewWeeklySummary | IWeeklySummary = {
+      id: weekData.weekID ?? null, // Use null if weekID is undefined
+      summaryText: weekData.weeklySummary,
+      // Any other properties needed
+    };
+
+    if (summaryToSave.id !== null) {
+      this.weeklySummaryService.update(summaryToSave as IWeeklySummary).subscribe({
+        next: res => {
+          console.log('Summary updated', res.body);
+          // Update the weekID with the ID from the response
+          this.weeklyHabits[weekIndex].weekID = res.body?.id ?? null;
+        },
+        error: () => {
+          console.error('Error updating summary');
+        },
+      });
+    } else {
+      this.weeklySummaryService.create(summaryToSave as NewWeeklySummary).subscribe({
+        next: res => {
+          console.log('Summary created', res.body);
+          // Assign the newly created ID to weekID
+          this.weeklyHabits[weekIndex].weekID = res.body?.id ?? null;
+        },
+        error: () => {
+          console.error('Error creating summary');
+        },
+      });
     }
   }
 

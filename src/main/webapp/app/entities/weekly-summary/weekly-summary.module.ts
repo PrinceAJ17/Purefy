@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { SharedModule } from 'app/shared/shared.module';
 import { WeeklySummaryComponent } from './list/weekly-summary.component';
 import { WeeklySummaryDetailComponent } from './detail/weekly-summary-detail.component';

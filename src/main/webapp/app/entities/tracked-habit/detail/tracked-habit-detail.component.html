@@ -16,7 +16,17 @@
         </dd>
         <dt><span>Completed</span></dt>
         <dd>
-          <span>{{ trackedHabit.completed }}</span>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              [(ngModel)]="trackedHabit.completed"
+              (change)="toggleCompletion(trackedHabit)"
+            />
+            <label class="form-check-label">
+              {{ trackedHabit.completed ? 'Yes' : 'No' }}
+            </label>
+          </div>
         </dd>
         <dt><span>Tracked Habit ID</span></dt>
         <dd>

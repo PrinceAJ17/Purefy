@@ -101,14 +101,14 @@
                   <p>{{ day }}</p>
                   <ul>
                     <li *ngFor="let habit of weekData.habits[day]; let i = index">
-                      <input type="checkbox" [(ngModel)]="habit.done" disabled />
+                      <input type="checkbox" [(ngModel)]="habit.done" />
                       <span [ngClass]="{ 'strike-through': habit.done }">{{ habit.name }}</span>
                     </li>
                   </ul>
                 </div>
                 <div class="habit-item weekly-summary">
                   <h4>Weekly Summary</h4>
-                  <textarea placeholder="Summarize your text here..." [(ngModel)]="weekData.weeklySummary" disabled></textarea>
+                  <textarea placeholder="Summarize your text here..." [(ngModel)]="weekData.weeklySummary"></textarea>
                 </div>
               </div>
             </div>

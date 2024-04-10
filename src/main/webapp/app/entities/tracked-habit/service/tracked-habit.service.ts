@@ -8,6 +8,7 @@ import { isPresent } from 'app/core/util/operators';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
 import { ITrackedHabit, NewTrackedHabit } from '../tracked-habit.model';
+import { IHabit } from '../../habit/habit.model';
 
 export type PartialUpdateTrackedHabit = Partial<ITrackedHabit> & Pick<ITrackedHabit, 'id'>;
 
