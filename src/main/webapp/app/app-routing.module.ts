@@ -27,11 +27,66 @@ import { AboutComponent } from './about/about.component';
 import { SignoutComponent } from './signout/signout.component';
 import { LoginComponent } from './login/login.component';
 import { PasswordResetFinishComponent } from './account/password-reset/finish/password-reset-finish.component';
+import { AllChallengesComponent } from './all-challenges/all-challenges.component';
+import { CoffeeLevelsComponent } from './coffee-levels/coffee-levels.component';
+import { MusicLevelsComponent } from './music-levels/music-levels.component';
+import { VideoLevelsComponent } from './video-levels/video-levels.component';
+import { SociaLevelsComponent } from './socia-levels/socia-levels.component';
+import { SmokingLevelsComponent } from './smoking-levels/smoking-levels.component';
+import { FoodLevelsComponent } from './food-levels/food-levels.component';
+import { AlcoholLevelsComponent } from './alcohol-levels/alcohol-levels.component';
+import { GamesLevelsComponent } from './games-levels/games-levels.component';
+import { CoffeeStartComponent } from './coffee-start/coffee-start.component';
+import { ChallengesIndexComponent } from './challenges-index/challenges-index.component';
 
 const routes: Routes = [
   {
     path: 'Dashboard',
     component: DashboardComponent,
+  },
+  {
+    path: 'Challenges',
+    component: ChallengesIndexComponent,
+  },
+  {
+    path: 'All-Challenges',
+    component: AllChallengesComponent,
+  },
+  {
+    path: 'Coffee',
+    component: CoffeeLevelsComponent,
+  },
+  {
+    path: 'Music',
+    component: MusicLevelsComponent,
+  },
+  {
+    path: 'Video',
+    component: VideoLevelsComponent,
+  },
+  {
+    path: 'Social',
+    component: SociaLevelsComponent,
+  },
+  {
+    path: 'Smoking',
+    component: SmokingLevelsComponent,
+  },
+  {
+    path: 'JunkFood',
+    component: FoodLevelsComponent,
+  },
+  {
+    path: 'Alcohol',
+    component: AlcoholLevelsComponent,
+  },
+  {
+    path: 'VideoGames',
+    component: GamesLevelsComponent,
+  },
+  {
+    path: 'Coffee-Start/:state',
+    component: CoffeeStartComponent,
   },
   {
     path: 'Alcohol-Start/:state',
@@ -152,6 +207,10 @@ const routes: Routes = [
           component: TeamComponent,
         },
         {
+          path: 'Challenges',
+          component: ChallengesIndexComponent,
+        },
+        {
           path: 'Profilepage',
           component: ProfilepageComponent,
         },
@@ -231,6 +290,46 @@ const routes: Routes = [
         {
           path: 'Dashboard',
           component: DashboardComponent,
+        },
+        {
+          path: 'All-Challenges',
+          component: AllChallengesComponent,
+        },
+        {
+          path: 'Coffee',
+          component: CoffeeLevelsComponent,
+        },
+        {
+          path: 'Music',
+          component: MusicLevelsComponent,
+        },
+        {
+          path: 'Video',
+          component: VideoLevelsComponent,
+        },
+        {
+          path: 'Social',
+          component: SociaLevelsComponent,
+        },
+        {
+          path: 'Smoking',
+          component: SmokingLevelsComponent,
+        },
+        {
+          path: 'JunkFood',
+          component: FoodLevelsComponent,
+        },
+        {
+          path: 'Alcohol',
+          component: AlcoholLevelsComponent,
+        },
+        {
+          path: 'VideoGames',
+          component: GamesLevelsComponent,
+        },
+        {
+          path: 'Coffee-Start/:state',
+          component: CoffeeStartComponent,
         },
         navbarRoute,
         ...errorRoute,
