@@ -239,9 +239,7 @@ export class LeaderboardComponent implements OnInit {
   }
 
   private addNewGroupWindow() {
-    const url = `http://localhost:8080/api/members/group/${this.addGroupId}/points`;
-
-    this.http.get<LeaderboardEntry[]>(url).subscribe({
+    this.http.get<LeaderboardEntry[]>(`/api/members/group/${this.addGroupId}/points`).subscribe({
       next: data => {
         this.leaderboardData = data;
         this.updateCountdown();
@@ -252,9 +250,8 @@ export class LeaderboardComponent implements OnInit {
 
   private loadAndPopulateLeaderboard(): void {
     const groupId = this.selectedGroupId;
-    const url = `http://localhost:8080/api/members/group/${groupId}/points`;
 
-    this.http.get<LeaderboardEntry[]>(url).subscribe({
+    this.http.get<LeaderboardEntry[]>(`/api/members/group/${groupId}/points`).subscribe({
       next: data => {
         this.leaderboardData = data;
         this.updateCountdown();
