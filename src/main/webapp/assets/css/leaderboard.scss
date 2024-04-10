@@ -977,7 +977,7 @@ Your Group Style
 .your-group:hover {
   transform: translateZ(2px) translateX(2px) translateY(-2px);
   transition: transform 0.3s ease-out;
-  animation: growShadow 0.4s forwards;
+  animation: growShadowDark 0.4s forwards;
 }
 
 .light .your-group {
@@ -985,10 +985,8 @@ Your Group Style
   box-shadow: 0 2px 0 2px grey;
 }
 
-.light.your-group:hover {
-  transform: translateZ(2px) translateX(2px) translateY(-2px);
-  transition: transform 0.3s ease-out;
-  animation: growShadow 0.4s forwards;
+.light .your-group:hover {
+  animation: growShadowLight 0.4s forwards;
 }
 
 .your-group .nameBadge {
@@ -1210,8 +1208,13 @@ Current Leaderboard Style
 .weekly-stats:hover {
   transform: translateZ(3px) translateX(3px) translateY(-3px);
   transition: transform 0.3s ease-out;
-  animation: growShadow 0.4s forwards;
+  animation: growShadowDark 0.4s forwards;
 }
+
+.light .weekly-stats:hover {
+  animation: growShadowLight 0.4s forwards;
+}
+
 .weekly-stats .current-leaderboard {
   display: flex;
   justify-content: start;
@@ -1380,7 +1383,11 @@ Previous Leaderboard Style
 .previous-leaderboard:hover {
   transform: translateZ(3px) translateX(3px) translateY(-3px);
   transition: transform 0.3s ease-out;
-  animation: growShadow 0.4s forwards;
+  animation: growShadowDark 0.4s forwards;
+}
+
+.light .previous-leaderboard:hover {
+  animation: growShadowLight 0.4s forwards;
 }
 
 .previous-leaderboard .pleaderboard {
@@ -1513,12 +1520,21 @@ Previous Leaderboard Style
 Overall Leaderboard Style
 ---------------------------------------------
 */
-@keyframes growShadow {
+@keyframes growShadowDark {
   from {
     box-shadow: 0 2px 0 2px #000;
   }
   to {
     box-shadow: 0 5px 0 5px #000;
+  }
+}
+
+@keyframes growShadowLight {
+  from {
+    box-shadow: 0 2px 0 2px grey;
+  }
+  to {
+    box-shadow: 0 5px 0 5px grey;
   }
 }
 
@@ -1540,7 +1556,13 @@ Overall Leaderboard Style
 .overall-leaderboard:hover {
   transform: translateZ(3px) translateX(3px) translateY(-3px);
   transition: transform 0.3s ease-out;
-  animation: growShadow 0.4s forwards;
+  animation: growShadowDark 0.4s forwards;
+}
+
+.light .overall-leaderboard:hover {
+  transform: translateZ(3px) translateX(3px) translateY(-3px);
+  transition: transform 0.3s ease-out;
+  animation: growShadowLight 0.4s forwards;
 }
 
 .overall-leaderboard .oleaderboard {
