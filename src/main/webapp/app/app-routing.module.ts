@@ -173,7 +173,6 @@ const routes: Routes = [
     component: SupportComponent,
   },
 ];
-
 @NgModule({
   imports: [
     RouterModule.forRoot(
