@@ -267,7 +267,7 @@ const routes: Routes = [
           component: VideoStartComponent,
         },
         {
-          path: 'leaderboard',
+          path: 'Leaderboard',
           component: LeaderboardComponent,
         },
         {
