@@ -18,6 +18,8 @@ before_script:
 
 nohttp:
   stage: check
+  tags:
+    - compile
   script:
     - ./mvnw -ntp checkstyle:check -Dmaven.repo.local=$MAVEN_USER_HOME
 
