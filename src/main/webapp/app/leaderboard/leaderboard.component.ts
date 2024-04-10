@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { PointsService } from '../entities/points/service/points.service';
 
 interface groups {
   id: number;
@@ -84,7 +83,7 @@ export class LeaderboardComponent implements OnInit {
   timeLeft: any;
   countdownDisplay: string = '';
 
-  constructor(private http: HttpClient, private router: Router, private pointsService: PointsService) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
     this.loadScript('vendor/jquery/jquery.min.js')
@@ -115,8 +114,8 @@ export class LeaderboardComponent implements OnInit {
     try {
       const response = await this.http.get<Group>(`/api/groupings/by-name/ADDGROUP`).toPromise();
       if (response) {
-        this.selectedGroupId = response.id;
-        this.addGroupId = response.id;
+        this.selectedGroupId = response?.id || 0;
+        this.addGroupId = response?.id || 0;
       }
     } catch (error) {
       console.error('Error fetching group "ADDGROUP":', error);
@@ -227,12 +226,13 @@ export class LeaderboardComponent implements OnInit {
 
   onGroupChange(): void {
     console.log('Group Selected', this.selectedGroupId);
+    this.confirmAction();
+    this.updateCountdown();
     this.updateCurrentUserLeadershipStatus(this.selectedGroupId);
     if (this.selectedGroupId == this.addGroupId) {
       this.showCreateGroup = true;
       this.addNewGroupWindow();
     } else {
-      this.confirmAction();
       this.showCreateGroup = false;
       this.loadAndPopulateLeaderboard();
     }
@@ -242,7 +242,6 @@ export class LeaderboardComponent implements OnInit {
     this.http.get<LeaderboardEntry[]>(`/api/members/group/${this.addGroupId}/points`).subscribe({
       next: data => {
         this.leaderboardData = data;
-        this.updateCountdown();
         this.sortLeaderboardData();
       },
     });
@@ -254,7 +253,6 @@ export class LeaderboardComponent implements OnInit {
     this.http.get<LeaderboardEntry[]>(`/api/members/group/${groupId}/points`).subscribe({
       next: data => {
         this.leaderboardData = data;
-        this.updateCountdown();
         this.sortLeaderboardData();
       },
       error: error => {
@@ -358,7 +356,7 @@ export class LeaderboardComponent implements OnInit {
       response => {
         console.log('Left Group Succesfully');
         this.getGroupsData();
-        this.selectedGroupId = 0;
+        this.selectedGroupId = this.addGroupId;
         this.onGroupChange();
       },
       error => {
@@ -374,7 +372,7 @@ export class LeaderboardComponent implements OnInit {
       response => {
         console.log('Deleted Succesfully');
         this.getGroupsData();
-        this.selectedGroupId = 0;
+        this.selectedGroupId = this.addGroupId;
         this.onGroupChange();
       },
       error => {
