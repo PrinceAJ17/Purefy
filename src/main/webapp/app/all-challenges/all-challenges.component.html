@@ -33,6 +33,20 @@
               <a href="" class="logo">
                 <img src="assets/images/purefy-removebg-preview.png" alt="" />
               </a>
+
+              <li class="font-size-slider-container" style="display: flex; align-items: center; margin-top: -60px">
+                <input
+                  type="range"
+                  min="0.5"
+                  max="2"
+                  step="0.1"
+                  [(ngModel)]="fontSizeMultiplier"
+                  (ngModelChange)="updateFontSize()"
+                  class="font-size-slider"
+                  style="margin-top: 5px"
+                />
+              </li>
+
               <!-- ***** Logo End ***** -->
               <!-- ***** Menu Start ***** -->
               <ul class="nav">
@@ -67,8 +81,8 @@
               <div class="row">
                 <div class="col-lg-7">
                   <div class="header-text">
-                    <h5>Welcome to All Challenges</h5>
-                    <h4>Browse All our challenges here</h4>
+                    <h5 class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">Welcome to All Challenges</h5>
+                    <h4 class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">Browse All our challenges here</h4>
                   </div>
                 </div>
               </div>
@@ -79,13 +93,15 @@
               <div class="row">
                 <div class="col-lg-12">
                   <div class="heading-section">
-                    <h4><em>All</em> Challenges</h4>
+                    <h4 class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'"><em>All</em> Challenges</h4>
                   </div>
                   <div class="row">
                     <div class="col-lg-3 col-sm-6">
                       <div class="item">
                         <a routerLink="/Music"> <img src="assets/images/ezgif-5-12525bdbf9.jpg" alt="" /> </a>
-                        <h4>MUSIC<br /><span>Time to hear the birds sing.</span></h4>
+                        <h4 class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                          MUSIC<br /><span>Time to hear the birds sing.</span>
+                        </h4>
                       </div>
                     </div>
                     <!--Music End-->
@@ -93,7 +109,9 @@
                     <div class="col-lg-3 col-sm-6">
                       <div class="item">
                         <a routerLink="/Video"> <img src="assets/images/ezgif-5-39f2aa5540.jpg" alt="" /> </a>
-                        <h4>VIDEOS<br /><span>Time to watch more lectures and less comedy shows.</span></h4>
+                        <h4 class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                          VIDEOS<br /><span>Time to watch more lectures and less comedy shows.</span>
+                        </h4>
                       </div>
                     </div>
                     <!--Vdieos end-->
@@ -101,7 +119,9 @@
                     <div class="col-lg-3 col-sm-6">
                       <div class="item">
                         <a routerLink="/Social"> <img src="assets/images/ezgif-5-824304a687.jpg" alt="" /> </a>
-                        <h4>SOCIAL MEDIA<br /><span>Stop ruining your eyes.</span></h4>
+                        <h4 class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                          SOCIAL MEDIA<br /><span>Stop ruining your eyes.</span>
+                        </h4>
                       </div>
                     </div>
                     <!--Screen time end-->
@@ -109,7 +129,9 @@
                     <div class="col-lg-3 col-sm-6">
                       <div class="item">
                         <a routerLink="/Coffee"> <img src="assets/images/ezgif-3-7bce49003a.jpg" alt="" /> </a>
-                        <h4>COFFEE<br /><span>Caffeine? Really?</span></h4>
+                        <h4 class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                          COFFEE<br /><span>Caffeine? Really?</span>
+                        </h4>
                       </div>
                     </div>
                     <!--Coffee end-->
@@ -117,7 +139,9 @@
                     <div class="col-lg-3 col-sm-6">
                       <div class="item">
                         <a routerLink="/JunkFood"> <img src="assets/images/ezgif-3-b502c5a43e.jpg" alt="" /> </a>
-                        <h4>JUNK FOOD<br /><span>Being overweight is a choice.</span></h4>
+                        <h4 class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                          JUNK FOOD<br /><span>Being overweight is a choice.</span>
+                        </h4>
                       </div>
                     </div>
                     <!--Junk Food-->
@@ -125,7 +149,9 @@
                     <div class="col-lg-3 col-sm-6">
                       <div class="item">
                         <a routerLink="/Alcohol"> <img src="assets/images/ezgif-3-71e1ac0804.jpg" alt="" /> </a>
-                        <h4>ALCOHOL<br /><span>Sobriety delivers everything alcohol promised.</span></h4>
+                        <h4 class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                          ALCOHOL<br /><span>Sobriety delivers everything alcohol promised.</span>
+                        </h4>
                       </div>
                     </div>
                     <!--Alcohol done-->
@@ -133,7 +159,9 @@
                     <div class="col-lg-3 col-sm-6">
                       <div class="item">
                         <a routerLink="/Smoking"> <img src="assets/images/ezgif-3-6115d20092.jpg" alt="" /> </a>
-                        <h4>SMOKING<br /><span>How about we learn how to inhale oxygen?</span></h4>
+                        <h4 class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                          SMOKING<br /><span>How about we learn how to inhale oxygen?</span>
+                        </h4>
                       </div>
                     </div>
                     <!--Smoking done-->
@@ -141,7 +169,9 @@
                     <div class="col-lg-3 col-sm-6">
                       <div class="item">
                         <a routerLink="/VideoGames"> <img src="assets/images/ezgif-3-483407749c.jpg" alt="" /> </a>
-                        <h4>VIDEO GAMES<br /><span>Play less and live more!</span></h4>
+                        <h4 class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                          VIDEO GAMES<br /><span>Play less and live more!</span>
+                        </h4>
                       </div>
                     </div>
                     <!--Video Games-->
