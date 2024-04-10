@@ -1577,6 +1577,14 @@ Overall Leaderboard Style
   color: #27292a;
 }
 
+.fa-moon::before {
+  content: '\f186';
+}
+
+.fa-sun::before {
+  content: '\f185';
+}
+
 /*
 ---------------------------------------------
 
