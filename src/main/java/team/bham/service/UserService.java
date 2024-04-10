@@ -16,7 +16,9 @@ import org.springframework.transaction.annotation.Transactional;
 import team.bham.config.Constants;
 import team.bham.domain.Authority;
 import team.bham.domain.User;
+import team.bham.domain.UserPoints;
 import team.bham.repository.AuthorityRepository;
+import team.bham.repository.UserPointsRepository;
 import team.bham.repository.UserRepository;
 import team.bham.security.AuthoritiesConstants;
 import team.bham.security.SecurityUtils;
@@ -34,6 +36,7 @@ public class UserService {
     private final Logger log = LoggerFactory.getLogger(UserService.class);
 
     private final UserRepository userRepository;
+    private final UserPointsRepository userPointsRepository;
 
     private final PasswordEncoder passwordEncoder;
 
@@ -43,11 +46,13 @@ public class UserService {
 
     public UserService(
         UserRepository userRepository,
+        UserPointsRepository userPointsRepository,
         PasswordEncoder passwordEncoder,
         AuthorityRepository authorityRepository,
         CacheManager cacheManager
     ) {
         this.userRepository = userRepository;
+        this.userPointsRepository = userPointsRepository;
         this.passwordEncoder = passwordEncoder;
         this.authorityRepository = authorityRepository;
         this.cacheManager = cacheManager;
@@ -130,6 +135,21 @@ public class UserService {
         authorityRepository.findById(AuthoritiesConstants.USER).ifPresent(authorities::add);
         newUser.setAuthorities(authorities);
         userRepository.save(newUser);
+
+        final Long ID = newUser.getId();
+
+        UserPoints points = userPointsRepository
+            .findByUserID(ID)
+            .orElseGet(() -> {
+                UserPoints newPoints = new UserPoints();
+                newPoints.setUserID(ID);
+                newPoints.setCurrentPoints(0);
+                newPoints.setTotalPoints(0);
+                newPoints.setPreviousPoints(0);
+                return newPoints;
+            });
+        userPointsRepository.save(points);
+
         this.clearUserCaches(newUser);
         log.debug("Created Information for User: {}", newUser);
         return newUser;
@@ -175,6 +195,21 @@ public class UserService {
             user.setAuthorities(authorities);
         }
         userRepository.save(user);
+
+        final Long ID = user.getId();
+
+        UserPoints points = userPointsRepository
+            .findByUserID(ID)
+            .orElseGet(() -> {
+                UserPoints newPoints = new UserPoints();
+                newPoints.setUserID(ID);
+                newPoints.setCurrentPoints(0);
+                newPoints.setTotalPoints(0);
+                newPoints.setPreviousPoints(0);
+                return newPoints;
+            });
+        userPointsRepository.save(points);
+
         this.clearUserCaches(user);
         log.debug("Created Information for User: {}", user);
         return user;
