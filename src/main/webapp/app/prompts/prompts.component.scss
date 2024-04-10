@@ -1154,9 +1154,16 @@ PromptsPage Style
   color: black;
 }
 
-.emotion-link:hover,
+.emotion-link:hover {
+  color: #aaa;
+  cursor: pointer;
+}
 .emotion-link:focus {
   color: black;
+}
+.emotion-link {
+  color: black;
+  text-transform: lowercase;
 }
 
 .delete-button {
@@ -1175,6 +1182,7 @@ PromptsPage Style
 .delete-button:hover {
   background-color: #d32f2f; /* Change the background color on hover */
 }
+
 /*
 
 /*

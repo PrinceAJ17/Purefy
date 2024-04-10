@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Router, RouterLinkWithHref } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 
@@ -18,7 +18,7 @@ export type EntityArrayResponseType = HttpResponse<INewMoodPicker[]>;
 @Component({
   selector: 'jhi-dashboard',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLinkWithHref],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
@@ -56,7 +56,7 @@ export class DashboardComponent implements OnInit {
     { Md: 'Motivated', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
     { Md: 'Optimistic', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
     { Md: 'Bored', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
-    { Md: 'Tempted', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
+    { Md: 'Distracted', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
     { Md: 'Unmotivated', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
     { Md: 'Irritable', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
     { Md: 'Anxious', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
@@ -65,7 +65,7 @@ export class DashboardComponent implements OnInit {
 
   MOODINDEX = [
     { Em: 'Happy', Md: ['Content', 'Motivated', 'Optimistic'] },
-    { Em: 'Neutral', Md: ['Bored', 'Tempted', 'Unmotivated'] },
+    { Em: 'Neutral', Md: ['Bored', 'Distracted', 'Unmotivated'] },
     { Em: 'Sad', Md: ['Irritable', 'Anxious', 'Tired'] },
   ];
 
@@ -178,5 +178,8 @@ export class DashboardComponent implements OnInit {
       this.currentView = 'None';
       this.chosenMood = 'None';
     }
+  }
+  goToPromptsPage(): void {
+    this.router.navigate(['/Prompts']);
   }
 }

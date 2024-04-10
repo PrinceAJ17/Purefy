@@ -100,12 +100,23 @@
                   <div class="prompt-popup-content">
                     <span class="prompt-close-button" (click)="closePromptPopup()">&times;</span>
                     <h3>Add New Prompt</h3>
-                    <p>
-                      It appears you might be feeling <a href="#" routerLink="/Emotions" class="emotion-link"><u>sad</u></a> today. Let us
-                      help you navigate through your emotions with AI-generated prompts, thoughtfully designed to resonate with your current
-                      state of mind. Our goal is to provide a comforting space for reflection and understanding, tailored specifically to
-                      your feelings.
-                    </p>
+                    <div *ngIf="chosenMood === 'None' || chosenMood === null">
+                      <p>
+                        It seems like you haven't chosen how you're feeling from your home page, please go back and choose a mood to be able
+                        to write a prompted entry.
+                      </p>
+                    </div>
+                    <div *ngIf="chosenMood !== 'None' && chosenMood !== null">
+                      <p>
+                        It appears you might be feeling
+                        <a href="#" routerLink="/Emotions" class="emotion-link"
+                          ><u>{{ chosenMood }}</u></a
+                        >
+                        today. Let us help you navigate through your emotions with AI-generated prompts, thoughtfully designed to resonate
+                        with your current state of mind. Our goal is to provide a comforting space for reflection and understanding,
+                        tailored specifically to your feelings.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>

@@ -1,9 +1,22 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, Renderer2, Output, EventEmitter, Input } from '@angular/core';
 import { PromptsFeatureService } from '../entities/prompts-feature/service/prompts-feature.service';
 import { PromptsFeature, NewPromptsFeature } from '../entities/prompts-feature/prompts-feature.model';
 import { default as dayjs } from 'dayjs';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Router, RouterLinkWithHref } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+
+import { NewMoodPickerService, PartialUpdateNewMoodPicker } from '../entities/new-mood-picker/service/new-mood-picker.service';
+
+import { Observable } from 'rxjs';
+import { HttpResponse } from '@angular/common/http';
+import { INewMoodPicker, NewNewMoodPicker } from '../entities/new-mood-picker/new-mood-picker.model';
+
+import { AccountService } from '../core/auth/account.service';
+import { finalize } from 'rxjs/operators';
+
+export type EntityResponseType = HttpResponse<INewMoodPicker>;
+export type EntityArrayResponseType = HttpResponse<INewMoodPicker[]>;
 
 @Component({
   selector: 'jhi-prompts',
@@ -28,10 +41,26 @@ export class PromptsComponent implements OnInit {
     return formattedDate.toDate().toISOString();
   }
 
-  constructor(private router: Router, private renderer: Renderer2, private promptsFeatureService: PromptsFeatureService) {}
+  constructor(
+    private router: Router,
+    private renderer: Renderer2,
+    private promptsFeatureService: PromptsFeatureService,
+    private moodpickerService: NewMoodPickerService,
+    private http: HttpClient,
+    private accountService: AccountService
+  ) {}
+
+  loggedin?: string;
+  currentView?: string;
+  chosenMood: string | null | undefined;
+  firstName?: string | null = '';
+  moodData?: INewMoodPicker[] | null;
+  userMoodData?: INewMoodPicker | null;
+  tempMoodPicker?: NewNewMoodPicker;
 
   ngOnInit(): void {
     this.loadScript('vendor/jquery/jquery.min.js')
+      .then(() => this.loadMood())
       .then(() => this.loadScript('vendor/bootstrap/js/bootstrap.min.js'))
       .then(() => this.loadScript('assets/js/tabs.js'))
       .then(() => this.loadScript('assets/js/popup.js'))
@@ -113,5 +142,59 @@ export class PromptsComponent implements OnInit {
     if (popup) {
       this.renderer.setStyle(popup, 'display', 'none');
     }
+  }
+
+  loadMood(): void {
+    this.accountService.identity().subscribe(account => {
+      if (account !== null) {
+        this.loggedin = 'true';
+        this.firstName = account.firstName;
+        const username = account.login; // Assuming the user ID is stored in 'id' property
+        console.log(username);
+        this.moodpickerService.query().subscribe(response => {
+          this.moodData = response.body;
+          if (this.moodData) {
+            let result = this.moodData.find(item => item.username === username);
+
+            if (result) {
+              if (result.mood == 'None') {
+                this.currentView = 'None';
+                this.chosenMood = 'None';
+              } else {
+                this.currentView = 'MoodChosen';
+                this.chosenMood = result.mood;
+              }
+
+              this.userMoodData = result;
+            } else {
+              //create new newMoodPicker
+
+              this.tempMoodPicker = {
+                id: null,
+                username: username,
+                mood: 'None',
+              };
+
+              console.log('User mood not found, creating new newMoodPicker...');
+
+              this.moodpickerService.create(this.tempMoodPicker).subscribe(newMood => {
+                this.userMoodData = newMood.body;
+
+                console.log('Created new newMoodPicker successfully:', this.userMoodData);
+              });
+
+              this.currentView = 'None';
+              this.chosenMood = 'None';
+            }
+
+            console.log(this.moodData[0].username);
+            console.log(this.moodData[0].mood);
+          }
+          console.log(response.body);
+        });
+      } else {
+        console.error('User account not found.');
+      }
+    });
   }
 }
