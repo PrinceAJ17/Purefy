@@ -9,7 +9,7 @@
     <title>LEADERBOARD</title>
   </head>
 
-  <body>
+  <body [ngClass]="theme">
     <header class="header-area header-sticky">
       <div class="container">
         <div class="row">
@@ -20,6 +20,10 @@
                 <img src="assets/images/purefy-removebg-preview.webp" alt="" />
               </a>
               <!-- ***** Logo End ***** -->
+              <button class="theme-toggle-button" (click)="toggleTheme()">
+                <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+              </button>
+
               <!-- ***** Menu Start ***** -->
               <ul class="nav">
                 <div class="group-selection">
@@ -29,12 +33,11 @@
                     <option [value]="addGroupId">Add New Group</option>
                   </select>
                 </div>
-                <li><a href="">Home</a></li>
+                <li><a href="/Dashboard">Home</a></li>
                 <li><a href="/Challenges">Challenges</a></li>
                 <li><a href="/Mood">Mood Journal</a></li>
                 <li><a href="">Habit Tracker</a></li>
                 <li><a href="/Leaderboard" class="active">Leaderboard</a></li>
-                <li><a href="">About</a></li>
                 <li>
                   <a href="/ProfilePage" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
                 </li>
