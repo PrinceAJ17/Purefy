@@ -8,7 +8,7 @@ import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import dayjs from 'dayjs/esm';
 import { NgbDateAdapter, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
-
+import { CommonModule } from '@angular/common';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import './config/dayjs';
 import { SharedModule } from 'app/shared/shared.module';
@@ -43,6 +43,17 @@ import { SignoutComponent } from './signout/signout.component';
 import { TeamComponent } from './team/team.component';
 import { AboutComponent } from './about/about.component';
 import { FormsModule } from '@angular/forms';
+import { CoffeeStartComponent } from './coffee-start/coffee-start.component';
+import { AllChallengesComponent } from './all-challenges/all-challenges.component';
+import { ChallengesIndexComponent } from './challenges-index/challenges-index.component';
+import { AlcoholLevelsComponent } from './alcohol-levels/alcohol-levels.component';
+import { CoffeeLevelsComponent } from './coffee-levels/coffee-levels.component';
+import { MusicLevelsComponent } from './music-levels/music-levels.component';
+import { SmokingLevelsComponent } from './smoking-levels/smoking-levels.component';
+import { SociaLevelsComponent } from './socia-levels/socia-levels.component';
+import { GamesLevelsComponent } from './games-levels/games-levels.component';
+import { VideoLevelsComponent } from './video-levels/video-levels.component';
+import { FoodLevelsComponent } from './food-levels/food-levels.component';
 
 @NgModule({
   imports: [
@@ -57,6 +68,7 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     NgxWebstorageModule.forRoot({ prefix: 'jhi', separator: '-', caseSensitive: true }),
     FormsModule,
+    CommonModule,
   ],
   providers: [
     Title,
@@ -70,6 +82,17 @@ import { FormsModule } from '@angular/forms';
     ErrorComponent,
     PageRibbonComponent,
     FooterComponent,
+    CoffeeStartComponent,
+    AllChallengesComponent,
+    ChallengesIndexComponent,
+    AlcoholLevelsComponent,
+    CoffeeLevelsComponent,
+    MusicLevelsComponent,
+    SmokingLevelsComponent,
+    SociaLevelsComponent,
+    GamesLevelsComponent,
+    VideoLevelsComponent,
+    FoodLevelsComponent,
     AlcoholStartComponent,
     FoodStartComponent,
     GamesStartComponent,
