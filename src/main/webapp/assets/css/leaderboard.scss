@@ -824,9 +824,9 @@ Main Boxes Style
 
 .mainBox {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: 1fr;
   grid-template-rows: 2fr;
-  width: 1700px;
+  width: 1200px;
   height: auto;
   justify-content: center;
   align-items: start;
