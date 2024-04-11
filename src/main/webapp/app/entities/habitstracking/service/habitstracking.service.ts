@@ -6,6 +6,7 @@ import { isPresent } from 'app/core/util/operators';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
 import { IHabitstracking, NewHabitstracking } from '../habitstracking.model';
+import { IHabit } from '../../habit/habit.model';
 
 export type PartialUpdateHabitstracking = Partial<IHabitstracking> & Pick<IHabitstracking, 'id'>;
 
@@ -22,10 +23,19 @@ export class HabitstrackingService {
     return this.http.post<IHabitstracking>(this.resourceUrl, habitstracking, { observe: 'response' });
   }
 
+  getAllHabitstrackings(): Observable<IHabitstracking[]> {
+    return this.http.get<IHabitstracking[]>(this.resourceUrl);
+  }
+
   update(habitstracking: IHabitstracking): Observable<EntityResponseType> {
     return this.http.put<IHabitstracking>(`${this.resourceUrl}/${this.getHabitstrackingIdentifier(habitstracking)}`, habitstracking, {
       observe: 'response',
     });
+  }
+
+  toggleCompletedHabit(habit: IHabitstracking): Observable<EntityResponseType> {
+    const updatedHabit = { ...habit, completedHabit: habit.completedHabit };
+    return this.update(updatedHabit);
   }
 
   partialUpdate(habitstracking: PartialUpdateHabitstracking): Observable<EntityResponseType> {
