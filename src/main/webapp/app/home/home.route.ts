@@ -1,11 +1,9 @@
 import { Route } from '@angular/router';
-
-import { HomeComponent } from './home.component';
-import { HabitTrackerComponent } from '../habit-tracker/habit-tracker.component';
+import { HabitsComponent } from '../habits/habits.component';
 
 export const HOME_ROUTE: Route = {
   path: '',
-  component: HabitTrackerComponent,
+  component: HabitsComponent,
   data: {
     pageTitle: 'Welcome, Java Hipster!',
   },

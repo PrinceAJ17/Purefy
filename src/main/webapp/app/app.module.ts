@@ -25,7 +25,7 @@ import { PageRibbonComponent } from './layouts/profiles/page-ribbon.component';
 import { ErrorComponent } from './layouts/error/error.component';
 import { LevelsComponent } from './levels/levels.component';
 import { BeginnerComponent } from './beginner/beginner.component';
-import { HabitTrackerComponent } from './habit-tracker/habit-tracker.component';
+import { HabitsComponent } from './habits/habits.component';
 
 @NgModule({
   imports: [
@@ -45,7 +45,16 @@ import { HabitTrackerComponent } from './habit-tracker/habit-tracker.component';
     { provide: NgbDateAdapter, useClass: NgbDateDayjsAdapter },
     httpInterceptorProviders,
   ],
-  declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent, LevelsComponent, BeginnerComponent, HabitTrackerComponent],
+  declarations: [
+    MainComponent,
+    NavbarComponent,
+    ErrorComponent,
+    PageRibbonComponent,
+    FooterComponent,
+    LevelsComponent,
+    BeginnerComponent,
+    HabitsComponent,
+  ],
   bootstrap: [MainComponent],
 })
 export class AppModule {

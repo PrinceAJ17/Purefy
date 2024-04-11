@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
+import { HabitstrackingComponent } from './entities/habitstracking/list/habitstracking.component';
 import { errorRoute } from './layouts/error/error.route';
 import { navbarRoute } from './layouts/navbar/navbar.route';
 import { DEBUG_INFO_ENABLED } from 'app/app.constants';
@@ -17,6 +17,10 @@ const routes: Routes = [
   {
     path: 'Beginner',
     component: BeginnerComponent,
+  },
+  {
+    path: 'Habit',
+    component: HabitstrackingComponent,
   },
 ];
 
@@ -47,6 +51,10 @@ const routes: Routes = [
         {
           path: 'beginner',
           component: BeginnerComponent,
+        },
+        {
+          path: 'Habit',
+          component: HabitstrackingComponent,
         },
         {
           path: '',

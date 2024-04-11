@@ -25,6 +25,11 @@ export class AccountService {
     return this.http.post(this.applicationConfigService.getEndpointFor('api/account'), account);
   }
 
+  public getAccount(): Observable<Account> {
+    // Potentially perform other logic here
+    return this.fetch();
+  }
+
   authenticate(identity: Account | null): void {
     this.userIdentity = identity;
     this.authenticationState.next(this.userIdentity);
