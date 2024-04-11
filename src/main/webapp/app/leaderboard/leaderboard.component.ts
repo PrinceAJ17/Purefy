@@ -312,13 +312,13 @@ export class LeaderboardComponent implements OnInit {
     const seconds = Math.floor(totalSeconds % 60);
 
     if (days > 0) {
-      this.countdownDisplay = `${days} Day${days > 1 ? 's' : ''}`;
+      this.countdownDisplay = `${days} Day${days > 1 ? 's' : ''} left`;
     } else if (hours > 0) {
-      this.countdownDisplay = `${hours} Hour${hours > 1 ? 's' : ''}`;
+      this.countdownDisplay = `${hours} Hour${hours > 1 ? 's' : ''} left`;
     } else if (minutes > 0) {
-      this.countdownDisplay = `${minutes} Minute${minutes > 1 ? 's' : ''}`;
+      this.countdownDisplay = `${minutes} Minute${minutes > 1 ? 's' : ''} left`;
     } else {
-      this.countdownDisplay = `${seconds} Second${seconds > 1 ? 's' : ''}`;
+      this.countdownDisplay = `${seconds} Second${seconds > 1 ? 's' : ''} left`;
     }
   }
 

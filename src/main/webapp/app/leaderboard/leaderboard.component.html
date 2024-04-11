@@ -20,6 +20,21 @@
                 <img src="assets/images/purefy-removebg-preview.webp" alt="" />
               </a>
               <!-- ***** Logo End ***** -->
+
+              <li class="font-size-slider-container" style="display: flex; align-items: center; margin-top: -60px">
+                <input
+                  type="range"
+                  W
+                  min="1"
+                  max="2"
+                  step="0.1"
+                  [(ngModel)]="fontSizeMultiplier"
+                  (ngModelChange)="updateFontSize()"
+                  class="font-size-slider"
+                  style="margin-top: 5px"
+                />
+              </li>
+
               <button class="theme-toggle-button" (click)="toggleTheme()">
                 <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
               </button>
@@ -55,7 +70,7 @@
 
     <!-- ***** Main Section Start ***** -->
     <div class="mainBox">
-      <div class="parentBox header-text">
+      <div class="parentBox">
         <div class="titleBox">
           <h4>Your Group</h4>
         </div>
@@ -65,9 +80,9 @@
           <div *ngIf="showCreateGroup">
             <div class="nameBadge">
               <div class="teamName">
-                <h2>Welcome to Groups and Leaderboards!</h2>
-                <p>
-                  You can use groups and leaderboards to connect and compete with friends (or enemies). <br />
+                <h2 class="dynamic-heading" [style.fontSize]="fontSizeMultiplier * 1.3 + 'rem'">Welcome to Groups and Leaderboards!</h2>
+                <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier * 0.7 + 'rem'">
+                  You can use groups and leaderboards to connect and compete with friends.<br />
                   Complete challenges to earn points and see how you stack up!
                 </p>
               </div>
@@ -75,8 +90,8 @@
             <div class="cojGroup">
               <div class="createGroup">
                 <form (ngSubmit)="onCreate()" #contactForm="ngForm" class="create">
-                  <h4>Please enter your</h4>
-                  <h4>new name to create:</h4>
+                  <h4 class="dynamic-heading" [style.fontSize]="fontSizeMultiplier * 1.3 + 'rem'">Please enter your</h4>
+                  <h4 class="dynamic-heading" [style.fontSize]="fontSizeMultiplier * 1.3 + 'rem'">new name to create:</h4>
                   <input
                     type="text"
                     id="groupNameInput"
@@ -87,7 +102,7 @@
                     maxlength="20"
                   />
                   <br />
-                  <button type="submit" class="createGroupButton">Create Group</button>
+                  <button type="submit" class="createGroupButton" [style.fontSize]="fontSizeMultiplier + 'rem'">Create Group</button>
                 </form>
 
                 <br />
@@ -99,8 +114,8 @@
 
               <div class="joinGroup">
                 <form (ngSubmit)="onJoin()" #contactForm="ngForm" class="join">
-                  <h4>Please enter your</h4>
-                  <h4>group code to join:</h4>
+                  <h4 class="dynamic-heading" [style.fontSize]="fontSizeMultiplier * 1.3 + 'rem'">Please enter your</h4>
+                  <h4 class="dynamic-heading" [style.fontSize]="fontSizeMultiplier * 1.3 + 'rem'">group code to join:</h4>
                   <input
                     type="text"
                     id="groupCodeInput"
@@ -111,7 +126,7 @@
                     minlength="1"
                   />
                   <br />
-                  <button type="submit" class="joinGroupButton">Join Group</button>
+                  <button type="submit" class="joinGroupButton" [style.fontSize]="fontSizeMultiplier + 'rem'">Join Group</button>
                 </form>
                 <br />
               </div>
@@ -124,9 +139,9 @@
             <div *ngFor="let entry of leaderboardData | slice: 0:1; let i = index">
               <div class="nameBadge">
                 <div class="teamName">
-                  <h1>
+                  <h1 class="dynamic-heading" [style.fontSize]="fontSizeMultiplier * 2 + 'rem'">
                     {{ entry.groupName }} <br />
-                    <p>Code: {{ entry.groupID }}</p>
+                    <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">Code: {{ entry.groupID }}</p>
                   </h1>
                 </div>
                 <div class="Badge">
@@ -134,38 +149,50 @@
                 </div>
               </div>
               <div class="Points">
-                <h3>Total Weekly Points:</h3>
-                <h3>{{ calculateGroupPoints() }}</h3>
-                <h3>Next Badge:</h3>
+                <h3 [style.fontSize]="fontSizeMultiplier * 1.2 + 'rem'">Total Weekly Points:</h3>
+                <h3 [style.fontSize]="fontSizeMultiplier * 1.2 + 'rem'">{{ calculateGroupPoints() }}</h3>
+                <h3 [style.fontSize]="fontSizeMultiplier * 1.2 + 'rem'">Next Badge:</h3>
                 <img [src]="getBadgeImage(calculateGroupPoints() + 10)" alt="Next Badge" />
               </div>
               <div class="Buttons">
                 <div class="leaveGroup">
                   <form (ngSubmit)="onLeave()" #contactForm="ngForm" class="leave">
-                    <button *ngIf="!showLeaveConfirmation" (click)="triggerConfirmation('leave')" type="button" class="leaveGroupButton">
+                    <button
+                      *ngIf="!showLeaveConfirmation"
+                      (click)="triggerConfirmation('leave')"
+                      type="button"
+                      class="leaveGroupButton"
+                      [style.fontSize]="fontSizeMultiplier + 'rem'"
+                    >
                       Leave Group
                     </button>
 
                     <div *ngIf="showLeaveConfirmation" class="confirmation">
                       Are you sure?
                       <br />
-                      <button class="yes" type="submit">Leave</button>
-                      <button class="no" (click)="confirmAction()">Cancel</button>
+                      <button class="yes" [style.fontSize]="fontSizeMultiplier + 'rem'" type="submit">Leave</button>
+                      <button class="no" [style.fontSize]="fontSizeMultiplier + 'rem'" (click)="confirmAction()">Cancel</button>
                     </div>
                   </form>
                   <br />
                 </div>
                 <div class="deleteGroup" *ngIf="isCurrentUserLeader">
                   <form (ngSubmit)="onDelete()" #contactForm="ngForm" class="delete">
-                    <button *ngIf="!showDeleteConfirmation" (click)="triggerConfirmation('delete')" type="button" class="deleteGroupButton">
+                    <button
+                      *ngIf="!showDeleteConfirmation"
+                      (click)="triggerConfirmation('delete')"
+                      type="button"
+                      class="deleteGroupButton"
+                      [style.fontSize]="fontSizeMultiplier + 'rem'"
+                    >
                       Delete Group
                     </button>
 
                     <div *ngIf="showDeleteConfirmation" class="confirmation">
                       Are you sure?
                       <br />
-                      <button class="yes" type="submit">Delete</button>
-                      <button class="no" (click)="confirmAction()">Cancel</button>
+                      <button class="yes" [style.fontSize]="fontSizeMultiplier + 'rem'" type="submit">Delete</button>
+                      <button class="no" [style.fontSize]="fontSizeMultiplier + 'rem'" (click)="confirmAction()">Cancel</button>
                     </div>
                   </form>
                   <br />
@@ -182,17 +209,20 @@
           <!-- ***** Previous Leaderboard Section Start ***** -->
           <div class="previous-leaderboard">
             <h4>Last Weeks Top 3</h4>
+            <br />
             <div class="pleaderboard">
               <div *ngFor="let entry of sortedByPreviousPoints | slice: 0:3; let i = index">
                 <img *ngIf="getMedalImage(i + 1)" [src]="getMedalImage(i + 1)" alt="Medal" style="margin-left: 0" />
                 <div class="Avatar">
                   <img src="{{ entry.imageUrl }}" alt="Avatar" style="color: white" />
-                  <div class="name">{{ entry.login }}</div>
+                  <div class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier * 0.8 + 'rem'">{{ entry.login }}</div>
                 </div>
                 <div class="bar">
                   <div class="progress" [style.width]="calculatePreviousWidth(entry)">
                     <div class="animation">
-                      <h2>{{ entry.previousPoints }}</h2>
+                      <h2 class="dynamic-heading" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                        {{ entry.previousPoints }}
+                      </h2>
                     </div>
                   </div>
                 </div>
@@ -210,14 +240,19 @@
           <!-- ***** Overall Leaderboard Section Start ***** -->
           <div class="overall-leaderboard">
             <h4>Overall Top 3</h4>
+            <br />
             <div class="oleaderboard">
               <div class="topbox" *ngIf="sortedByTotalPoints.length > 0">
                 <div *ngFor="let entry of sortedByTotalPoints | slice: 0:1; let i = index" [ngClass]="getOrdinalIndicator(1)">
                   <div class="Avatar">
                     <img src="{{ entry.imageUrl }}" alt="Avatar" style="color: white" />
-                    <div class="name">{{ entry.login }}</div>
+                    <div class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                      {{ entry.login }}
+                    </div>
                   </div>
-                  <div class="points">{{ entry.totalPoints }}</div>
+                  <h4 class="dynamic-heading" [style.fontSize]="fontSizeMultiplier * 1.6 + 'rem'">
+                    {{ entry.totalPoints }}
+                  </h4>
                 </div>
               </div>
 
@@ -228,7 +263,9 @@
                     <img src="{{ entry.imageUrl }}" alt="Avatar" style="color: white" />
                     <div class="name">{{ entry.login }}</div>
                   </div>
-                  <div class="points">{{ entry.totalPoints }}</div>
+                  <h4 class="dynamic-heading" [style.fontSize]="fontSizeMultiplier * 1.4 + 'rem'">
+                    {{ entry.totalPoints }}
+                  </h4>
                 </div>
                 <div *ngIf="sortedByCurrentPoints.length < 3" class="addMore">
                   <div class="plus-sign">+</div>
@@ -244,20 +281,20 @@
           <!-- ***** Overall Leaderboard Section End ***** -->
         </div>
       </div>
-      <div class="parentBox">
+      <div class="parentBoxR">
         <!-- ***** Current Leaderboard Section Start ***** -->
         <div class="titleBox">
           <h4>Weekly Stats</h4>
         </div>
         <div class="weekly-stats">
           <div class="current-leaderboard">
-            <h2>
+            <h2 class="dynamic-heading" [style.fontSize]="fontSizeMultiplier * 1.5 + 'rem'">
               Leaderboard <br />
-              <p>Points will reset every monday</p>
+              <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier * 0.7 + 'rem'">Points will reset every monday</p>
             </h2>
 
             <div class="time-remaining">
-              <h3>{{ countdownDisplay }} left</h3>
+              <h3 [style.fontSize]="fontSizeMultiplier * 1.3 + 'rem'">{{ countdownDisplay }}</h3>
             </div>
             <br />
           </div>
@@ -271,12 +308,16 @@
               <h3>{{ i + 1 }}{{ getOrdinalIndicator(i + 1) }}</h3>
               <div class="avatar">
                 <img src="{{ entry.imageUrl }}" alt="Avatar" style="color: white" />
-                <div class="name">{{ entry.login }}</div>
+                <div class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                  {{ entry.login }}
+                </div>
               </div>
               <div class="bar">
                 <div class="progress" [style.width]="calculateWidth(entry)">
                   <div class="animation">
-                    <h2>{{ entry.currentPoints }}</h2>
+                    <h2 class="dynamic-heading" [style.fontSize]="fontSizeMultiplier * 2 + 'rem'">
+                      {{ entry.currentPoints }}
+                    </h2>
                   </div>
                 </div>
               </div>
