@@ -233,7 +233,7 @@ p {
 /* Align Tuesday horizontally */
 .habit-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Two columns */
+  grid-template-columns: repeat(7, 1fr) 300px; /* Two columns */
   grid-gap: 20px; /* Adjust the gap between items */
 }
 
@@ -255,7 +255,11 @@ p {
 .habit-item li {
   /* Align the text vertically */
   display: outline-block;
-  vertical-align: middle;
+  vertical-align: left;
+  display: flex; /* Use flexbox for layout */
+  align-items: center; /* Center align the items */
+  margin-bottom: 10px; /* Add space between list items */
+  overflow: visible;
 }
 
 .habit-name {
@@ -263,6 +267,10 @@ p {
   background: transparent;
   border: none;
   outline: none;
+  white-space: normal; /* Allow text to wrap if necessary */
+  overflow: visible; /* Let the text extend to necessary width */
+  text-overflow: clip; /* Remove ellipsis to show all text */
+  margin-right: 70px; /* Add a bit of margin before the 'Remove' button */
 
   &.strike-through {
     text-decoration: line-through;
@@ -276,14 +284,44 @@ p {
 .weekly-summary {
   display: grid;
   grid-column: span 1; /* Span across both columns */
+  align-items: center;
+  padding: 20px;
+  border-radius: 10px;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.weekly-summary:hover {
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.6); /* Adjust color and size as needed */
+  transition: box-shadow 0.2s ease-in-out; /* Smooth transition */
+}
+
+.weekly-summary h4 {
+  margin-bottom: 20px; /* Space between heading and textarea */
+  color: white;
 }
 
 .weekly-summary textarea {
-  width: 25%;
+  width: 180%;
   box-sizing: border-box;
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
+  margin-bottom: 10px;
+  min-height: 100px; /* Minimum height for the textarea */
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.weekly-summary button {
+  padding: 10px 20px;
+  width: 180%; /* Full width of the summary block */
+  background-color: #e75e8d; /* Background color for the button */
+  color: white; /* Text color for the button */
+  border: none; /* No border for the button */
+  border-radius: 5px; /* Rounded corners for the button */
+  cursor: pointer; /* Cursor change for button hover */
+  align-self: stretch;
 }
 
 /* Add styles for checked habits */
@@ -339,15 +377,6 @@ p {
   text-decoration: line-through;
 }
 
-/* Hide the "Add Habit" and "Remove Habit" buttons by default */
-.add-habit {
-  display: none;
-}
-
-.remove-habit {
-  display: none;
-}
-
 /* Show the "Add Habit" and "Remove Habit" buttons when hovering over the habit item */
 .habit-item:hover .add-habit {
   display: inline-block;
@@ -357,11 +386,25 @@ p {
   display: inline-block;
 }
 
+.remove-habit {
+  background-color: #e75e8d; /* same pink color */
+  color: #fff; /* same white text */
+  border: none;
+  padding: 5px 10px; /* smaller padding for a smaller button */
+  border-radius: 5px; /* same border radius */
+  cursor: pointer;
+  font-size: 12px; /* slightly smaller font size */
+  margin: 5px; /* This will add space around the buttons */
+  display: inline-block; /* This ensures the buttons flow with the text */
+  white-space: nowrap; /* Prevent the text inside the button from wrapping */
+  /* other styles to match the "Add Habit" button */
+}
+
 .weekly-summary {
   margin-top: 20px;
   display: flex;
   justify-content: center;
-  width: 70%;
+  width: 100%;
 }
 
 .main-button a {

@@ -83,53 +83,45 @@
             <button class="new-weekly-habit-tracker" (click)="generateNewWeeklyHabitTracker()">Get Predefined Habits</button>
             <!-- Text box to show the week starting date -->
             <div class="week-starting">
-              <p>Current Week Staring @{{ date }}</p>
+              <p>Current Week Starting @{{ date }}</p>
               <!-- Displays the calculated week number -->
             </div>
 
             <div class="habit-grid">
-              <div *ngFor="let day of daysOfWeek" class="habit-item" style="margin-top: 20px">
+              <div *ngFor="let day of daysOfWeek" class="habit-item">
                 <p>{{ day }}</p>
                 <ul>
                   <li *ngFor="let habit of habits[day]; let i = index">
-                    <!-- Existing Habit Display Here -->
                     <input type="checkbox" [(ngModel)]="habit.completedHabit" (ngModelChange)="toggleHabitCompletion(habit)" />
-                    <!-- Editable habit name -->
-                    <form (ngSubmit)="onHabitNameChange(habit.nameOfHabit, habit.id)">
-                      <input
-                        type="text"
-                        [(ngModel)]="habit.nameOfHabit"
-                        name="habitName{{ i }}"
-                        class="habit-name"
-                        [ngClass]="{ 'strike-through': habit.completedHabit }"
-                      />
-                      <button type="submit" *ngIf="isNameFinalized(habit.id)">Submit</button>
-                    </form>
-                    <!-- Remove Habit Button -->
-                    <button class="new-weekly-habit-tracker" (click)="removeHabit(day, habit.id)">Remove Habit</button>
+                    <input
+                      type="text"
+                      [(ngModel)]="habit.nameOfHabit"
+                      name="habitName{{ i }}"
+                      class="habit-name"
+                      [ngClass]="{ 'strike-through': habit.completedHabit }"
+                    />
+                    <button type="submit" *ngIf="isNameFinalized(habit.id)">Submit</button>
+                    <button class="remove-habit" (click)="removeHabit(day, habit.id)">Remove</button>
                   </li>
-                  <!-- Add Habit UI -->
                   <li *ngIf="addingHabit[day]">
                     <form (ngSubmit)="submitNewHabit(newHabitName[day], day)">
                       <input type="text" [(ngModel)]="newHabitName[day]" name="newHabitName{{ day }}" />
                       <button type="submit" class="new-weekly-habit-tracker">Submit</button>
                     </form>
                   </li>
-                  <!-- Add Habit Button -->
                   <li>
                     <button (click)="startAddingHabit(day)" class="new-weekly-habit-tracker">Add Habit</button>
                   </li>
                 </ul>
               </div>
-            </div>
-
-            <!-- Weekly Summary -->
-            <div class="habit-item">
-              <h4>Weekly Summary</h4>
-              <form (ngSubmit)="saveSum(summaryInput.value)">
-                <textarea #summaryInput placeholder="Summarize your text here..."></textarea>
-                <button type="submit">Submit</button>
-              </form>
+              <!-- Weekly Summary added here -->
+              <div class="weekly-summary">
+                <h4>Weekly Summary</h4>
+                <form (ngSubmit)="saveSum(summaryInput.value)">
+                  <textarea #summaryInput placeholder="Summarize your text here..."></textarea>
+                  <button type="submit">Submit</button>
+                </form>
+              </div>
             </div>
             <!-- ***** Habit Tracker End ***** -->
           </div>
