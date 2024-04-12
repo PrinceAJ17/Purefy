@@ -81,7 +81,7 @@ export class HabitsComponent implements OnInit {
   }
 
   user(): void {
-    this.account.getAccount().subscribe({
+    this.accountService.getAccount().subscribe({
       next: (account: any) => {
         this.username = account.login;
         console.log('Account fetched:', account);
