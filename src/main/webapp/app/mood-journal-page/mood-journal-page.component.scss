@@ -37,69 +37,6 @@ font & reset css
 reset
 ---------------------------------------------
 */
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-div pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-font,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-figure,
-header,
-nav,
-section,
-article,
-aside,
-footer,
-figcaption {
-  margin: 0px;
-  padding: 0px;
-  border: 0;
-  outline: 0;
-}
 
 .clearfix:after {
   content: '.';
@@ -167,6 +104,7 @@ a:hover {
 h1,
 h2,
 h3,
+h4,
 h5,
 h6 {
   margin-top: 0px;
@@ -182,7 +120,7 @@ ul {
 p {
   font-size: 15px;
   line-height: 30px;
-  color: #ffffff;
+  color: #fff;
 }
 
 img {
@@ -203,16 +141,9 @@ body {
 
 body .page-content {
   margin-top: 110px;
-  margin-right: -60px;
-  margin-left: -10px;
   background-color: #27292a;
   padding: 60px;
   border-radius: 23px;
-}
-
-.page-content h4 {
-  text-align: center;
-  margin-top: -50px; /* Adjust as necessary to move the text up */
 }
 
 p {
@@ -294,15 +225,14 @@ section {
   margin-top: 120px;
 }
 
-h4 {
+.heading-section h4 {
   color: #ec6090;
   font-size: 34px;
   text-decoration: none;
   margin-bottom: 30px;
-  font-weight: bold;
 }
 
-h4 em {
+.heading-section h4 em {
   color: #fff;
   font-style: normal;
   text-decoration: underline;
@@ -356,6 +286,33 @@ Header Style
   background-color: transparent;
 }
 
+.header-area .main-nav #search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 200%;
+}
+
+.header-area .main-nav #search input {
+  background-color: #27292a;
+  height: 46px;
+  border-radius: 23px;
+  border: none;
+  color: #666;
+  font-size: 14px;
+  padding: 0px 15px 0px 45px;
+  flex: auto;
+}
+
+.header-area .main-nav #search i {
+  position: absolute;
+  color: #666;
+  left: 20px;
+  top: 16px;
+  font-size: 16px;
+}
+
 .header-area .main-nav .logo {
   border-right: 0px solid #27292a;
   -webkit-transition: all 0.3s ease 0s;
@@ -387,7 +344,7 @@ Header Style
   vertical-align: middle;
   text-align: right;
   margin-top: 0px;
-  margin-right: -80px;
+  margin-right: 30px;
   -webkit-transition: all 0.3s ease 0s;
   -moz-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
@@ -627,7 +584,9 @@ Header Style
     color: #e75e8d !important;
     opacity: 1;
   }
-
+  .header-area.header-sticky .nav li.search-icon a {
+    width: 100%;
+  }
   .header-area {
     background-color: #f7f7f7;
     padding: 0px 15px;
@@ -754,6 +713,14 @@ LandingPage Style
 ---------------------------------------------
 */
 
+.welcome-title {
+  color: #ec6090;
+  font-size: 34px;
+  text-align: center;
+  padding-bottom: 60px;
+  font-weight: bold;
+}
+
 .light {
   background: #f0f0f0;
   color: #000;
@@ -838,7 +805,6 @@ LandingPage Style
   background-color: #2c2f33;
   padding: 20px;
   border-radius: 8px;
-  margin-left: 930px;
   width: 160px;
 }
 

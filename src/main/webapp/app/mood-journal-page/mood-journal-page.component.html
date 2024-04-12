@@ -6,7 +6,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <title>MOOD JOURNAL</title>
   </head>
-  <body>
+  <body [ngClass]="theme">
     <div class="app-container" [ngClass]="theme">
       <!-- ***** Preloader Start ***** -->
       <div id="js-preloader" class="js-preloader">
@@ -65,108 +65,111 @@
       </header>
       <!-- ***** Header Area End ***** -->
 
-      <!-- ***** Page Content Start ***** -->
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="page-content">
-              <h4>Welcome to Your Mood Journal</h4>
-              <!-- ***** Introductory Section Expanded ***** -->
-              <div class="intro-section">
-                <h2>What is the <u>Mood Journal</u>?</h2>
-                <p [style.fontSize]="fontSizeMultiplier + 'rem'">
-                  Mood Journal is a personal space for you to express your thoughts, emotions, and daily experiences. It's designed to help
-                  you track your mood over time, discover patterns, and reflect on your mental well-being. Whether you're looking to manage
-                  stress, enhance self-awareness, or simply keep a record of your days, Mood Journal is here to support you on your journey.
-                </p>
-                <!-- Subsection for Entries -->
-                <div class="intro-subsection">
-                  <h3>Entries</h3>
+      <!-- ***** Main Banner Area End ***** -->
+      <div class="categories-collections">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="page-content" [ngClass]="theme">
+                <h4 class="welcome-title">Welcome to Your Mood Journal</h4>
+                <!-- ***** Introductory Section Expanded ***** -->
+                <div class="intro-section">
+                  <h2>What is the <u>Mood Journal</u>?</h2>
                   <p [style.fontSize]="fontSizeMultiplier + 'rem'">
-                    'Entries' allow you to freely jot down your daily experiences, thoughts, and feelings. This is your space to write
-                    without constraints, making it perfect for keeping track of day-to-day activities, introspection, or expressing
-                    creativity. It's your personal diary for whatever you wish to record.
+                    Mood Journal is a personal space for you to express your thoughts, emotions, and daily experiences. It's designed to
+                    help you track your mood over time, discover patterns, and reflect on your mental well-being. Whether you're looking to
+                    manage stress, enhance self-awareness, or simply keep a record of your days, Mood Journal is here to support you on your
+                    journey.
+                  </p>
+                  <!-- Subsection for Entries -->
+                  <div class="intro-subsection">
+                    <h3>Entries</h3>
+                    <p [style.fontSize]="fontSizeMultiplier + 'rem'">
+                      'Entries' allow you to freely jot down your daily experiences, thoughts, and feelings. This is your space to write
+                      without constraints, making it perfect for keeping track of day-to-day activities, introspection, or expressing
+                      creativity. It's your personal diary for whatever you wish to record.
+                    </p>
+                  </div>
+                  <!-- Subsection for Prompts -->
+                  <div class="intro-subsection">
+                    <h3>Prompts</h3>
+                    <p [style.fontSize]="fontSizeMultiplier + 'rem'">
+                      'Prompts' offer guided prompts to inspire your writing. They are designed to help you explore your thoughts and
+                      feelings more deeply, providing a starting point for reflection and self-discovery. These prompts are generated based
+                      on your chosen mood from the 'Mood Picker' thus engaging your mind and encouraging meaningful entries based on your
+                      feelings.
+                    </p>
+                  </div>
+                  <p [style.fontSize]="fontSizeMultiplier + 'rem'">
+                    Start by selecting 'Entries' to log your daily experiences or 'Prompts' to explore guided reflections.
                   </p>
                 </div>
-                <!-- Subsection for Prompts -->
-                <div class="intro-subsection">
-                  <h3>Prompts</h3>
-                  <p [style.fontSize]="fontSizeMultiplier + 'rem'">
-                    'Prompts' offer guided prompts to inspire your writing. They are designed to help you explore your thoughts and feelings
-                    more deeply, providing a starting point for reflection and self-discovery. These prompts are generated based on your
-                    chosen mood from the 'Mood Picker' thus engaging your mind and encouraging meaningful entries based on your feelings.
-                  </p>
-                </div>
-                <p [style.fontSize]="fontSizeMultiplier + 'rem'">
-                  Start by selecting 'Entries' to log your daily experiences or 'Prompts' to explore guided reflections.
-                </p>
-              </div>
-              <!-- ***** MoodJournal Section Start ***** -->
-              <div class="col-lg-2 sidebar-container">
-                <!-- ***** Sidebar Start ***** -->
-                <div class="sidebar" id="sidebar">
-                  <ul>
-                    <li><a href="#" routerLink="/MoodJournalPage">All</a></li>
-                    <li><a href="#" routerLink="/Entries">Entries</a></li>
-                    <li><a href="#" routerLink="/Prompts">Prompts</a></li>
-                  </ul>
+                <!-- ***** MoodJournal Section Start ***** -->
+                <div class="col-lg-2 sidebar-container">
+                  <!-- ***** Sidebar Start ***** -->
+                  <div class="sidebar" id="sidebar">
+                    <ul>
+                      <li><a href="#" routerLink="/MoodJournalPage">All</a></li>
+                      <li><a href="#" routerLink="/Entries">Entries</a></li>
+                      <li><a href="#" routerLink="/Prompts">Prompts</a></li>
+                    </ul>
+                  </div>
                 </div>
                 <!-- ***** Sidebar End ***** -->
-              </div>
-              <div class="col-lg-10 mood-journal-section">
-                <div id="journal-content">
-                  <!-- ***** Search Bar Added Here ***** -->
-                  <div class="journal-search">
-                    <form id="journalSearch" action="#">
-                      <input
-                        type="text"
-                        placeholder="Search Mood Journal"
-                        id="journalSearchText"
-                        name="searchKeyword"
-                        [(ngModel)]="searchTerm"
-                        (input)="filterEntries(); filterPromptedEntries()"
-                      />
-                    </form>
-                  </div>
-                  <!-- Display Entries -->
-                  <div *ngFor="let entry of filteredEntries" class="card mb-4 normal-entry entry-container">
-                    <div class="card-body">
-                      <h6 class="card-title">{{ entry.title }}</h6>
-                      <p class="card-text">{{ entry.content }}</p>
-                      <p class="card-text">
-                        <small>Entry Date: {{ formatDate(entry.date) | date }}</small>
-                      </p>
-                      <button class="delete-button" (click)="deleteEntry(entry.id)">Delete</button>
+                <div class="col-lg-10 mood-journal-section">
+                  <div id="journal-content">
+                    <!-- ***** Search Bar Added Here ***** -->
+                    <div class="journal-search">
+                      <form id="journalSearch" action="#">
+                        <input
+                          type="text"
+                          placeholder="Search Mood Journal"
+                          id="journalSearchText"
+                          name="searchKeyword"
+                          [(ngModel)]="searchTerm"
+                          (input)="filterEntries(); filterPromptedEntries()"
+                        />
+                      </form>
                     </div>
-                  </div>
-                  <!-- Display Prompted Entries -->
-                  <div class="card mb-4 prompted-entry" *ngFor="let promptedEntry of filteredPromptedEntries">
-                    <div class="card-body">
-                      <h6 class="card-title">{{ promptedEntry.title }}</h6>
-                      <p class="card-text">Prompt: {{ promptedEntry.prompt }}</p>
-                      <p class="card-text">{{ promptedEntry.content }}</p>
-                      <p class="card-text">
-                        <small>Entry Date: {{ formatDate(promptedEntry.date) | date: 'longDate' }}</small>
-                      </p>
-                      <button class="delete-button" (click)="deletePromptedEntry(promptedEntry.id)">Delete</button>
+                    <!-- Display Entries -->
+                    <div *ngFor="let entry of filteredEntries" class="card mb-4 normal-entry entry-container">
+                      <div class="card-body">
+                        <h6 class="card-title">{{ entry.title }}</h6>
+                        <p class="card-text">{{ entry.content }}</p>
+                        <p class="card-text">
+                          <small>Entry Date: {{ formatDate(entry.date) | date }}</small>
+                        </p>
+                        <button class="delete-button" (click)="deleteEntry(entry.id)">Delete</button>
+                      </div>
                     </div>
+                    <!-- Display Prompted Entries -->
+                    <div class="card mb-4 prompted-entry" *ngFor="let promptedEntry of filteredPromptedEntries">
+                      <div class="card-body">
+                        <h6 class="card-title">{{ promptedEntry.title }}</h6>
+                        <p class="card-text">Prompt: {{ promptedEntry.prompt }}</p>
+                        <p class="card-text">{{ promptedEntry.content }}</p>
+                        <p class="card-text">
+                          <small>Entry Date: {{ formatDate(promptedEntry.date) | date: 'longDate' }}</small>
+                        </p>
+                        <button class="delete-button" (click)="deletePromptedEntry(promptedEntry.id)">Delete</button>
+                      </div>
+                    </div>
+                    <!-- ***** MoodJournal Section End ***** -->
                   </div>
-                  <!-- ***** MoodJournal Section End ***** -->
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <!-- ***** Page Content End ***** -->
 
       <footer>
         <div class="container">
           <div class="row">
             <div class="col-lg-12">
-              <p [style.fontSize]="fontSizeMultiplier + 'rem'">
-                Copyright © 2024, Purefy. All rights reserved. <br />You are accessing an experimental web application developed by
-                participants (Team 13) of the Team Project 2024 module.
+              <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                Copyright © 2024, Purefy. All rights reserved.
+                <br />You are accessing an experimental web application developed by participants (Team 13) of the Team Project 2024 module.
               </p>
             </div>
           </div>
