@@ -52,9 +52,9 @@ export class HabitsComponent implements OnInit {
   }
 
   onWeekSelected(newWeek: string): void {
-    this.week = parseInt(newWeek, 10);
     this.loadAllHabits();
     this.loadSummary();
+    this.loadAllHabitsForWeek(this.week);
   }
 
   getCurrentWeekNumber(): number {
