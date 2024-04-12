@@ -3,6 +3,8 @@
 @import 'assets/css/owl';
 @import 'assets/css/swiper';
 @import 'assets/css/flex-slider';
+@import 'vendor/bootstrap/css/bootstrap.min';
+@import 'assets/css/templatemo-cyborg-gaming';
 
 /*
 
@@ -37,69 +39,6 @@ font & reset css
 reset
 ---------------------------------------------
 */
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-div pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-font,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-figure,
-header,
-nav,
-section,
-article,
-aside,
-footer,
-figcaption {
-  margin: 0px;
-  padding: 0px;
-  border: 0;
-  outline: 0;
-}
 
 .clearfix:after {
   content: '.';
@@ -167,6 +106,7 @@ a:hover {
 h1,
 h2,
 h3,
+h4,
 h5,
 h6 {
   margin-top: 0px;
@@ -182,7 +122,7 @@ ul {
 p {
   font-size: 15px;
   line-height: 30px;
-  color: #ffffff;
+  color: #fff;
 }
 
 img {
@@ -203,16 +143,9 @@ body {
 
 body .page-content {
   margin-top: 110px;
-  margin-right: -60px;
-  margin-left: -10px;
   background-color: #27292a;
   padding: 60px;
   border-radius: 23px;
-}
-
-.page-content h4 {
-  text-align: center;
-  margin-top: -50px; /* Adjust as necessary to move the text up */
 }
 
 p {
@@ -294,15 +227,14 @@ section {
   margin-top: 120px;
 }
 
-h4 {
+.heading-section h4 {
   color: #ec6090;
   font-size: 34px;
   text-decoration: none;
   margin-bottom: 30px;
-  font-weight: bold;
 }
 
-h4 em {
+.heading-section h4 em {
   color: #fff;
   font-style: normal;
   text-decoration: underline;
@@ -356,6 +288,33 @@ Header Style
   background-color: transparent;
 }
 
+.header-area .main-nav #search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 200%;
+}
+
+.header-area .main-nav #search input {
+  background-color: #27292a;
+  height: 46px;
+  border-radius: 23px;
+  border: none;
+  color: #666;
+  font-size: 14px;
+  padding: 0px 15px 0px 45px;
+  flex: auto;
+}
+
+.header-area .main-nav #search i {
+  position: absolute;
+  color: #666;
+  left: 20px;
+  top: 16px;
+  font-size: 16px;
+}
+
 .header-area .main-nav .logo {
   border-right: 0px solid #27292a;
   -webkit-transition: all 0.3s ease 0s;
@@ -387,7 +346,7 @@ Header Style
   vertical-align: middle;
   text-align: right;
   margin-top: 0px;
-  margin-right: -80px;
+  margin-right: 30px;
   -webkit-transition: all 0.3s ease 0s;
   -moz-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
@@ -627,7 +586,9 @@ Header Style
     color: #e75e8d !important;
     opacity: 1;
   }
-
+  .header-area.header-sticky .nav li.search-icon a {
+    width: 100%;
+  }
   .header-area {
     background-color: #f7f7f7;
     padding: 0px 15px;
@@ -753,6 +714,14 @@ footer p a:hover {
 LandingPage Style
 ---------------------------------------------
 */
+
+.welcome-title {
+  color: #ec6090;
+  font-size: 34px;
+  text-align: center;
+  padding-bottom: 60px;
+  font-weight: bold;
+}
 
 .sidebar {
   background-color: #2c2f33;
@@ -1159,7 +1128,6 @@ PromptsPage Style
 EmotionsPage Style
 ---------------------------------------------
 */
-
 .owl-carousel .item {
   background-color: #fa9ea6;
   border-left: 5px solid #da0303;
@@ -1168,7 +1136,7 @@ EmotionsPage Style
   margin-top: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   height: 200px;
-  transition: background-color 0.3s ease; /* Smooth transition for background color */
+  transition: background-color 0.3s ease;
 }
 
 .owl-carousel .item h4 {
@@ -1180,31 +1148,31 @@ EmotionsPage Style
 
 .owl-carousel .item:hover {
   cursor: pointer;
-  background-color: #8e5658; /* Highlight color for the whole item */
+  background-color: #8e5658;
 }
 
 .owl-carousel .owl-nav {
   display: flex;
-  justify-content: flex-end; /* Align the navigation buttons to the right */
+  justify-content: flex-end;
   position: absolute;
-  top: -50px; /* Adjust as needed to position above the carousel */
-  right: 0px; /* Right-aligned with some spacing */
-  font-size: 50px; /* Increase the font size for bigger arrows */
+  top: -50px;
+  right: 0px;
+  font-size: 50px;
 }
 
 .owl-carousel .owl-nav .owl-prev,
 .owl-carousel .owl-nav .owl-next {
-  color: #fff; /* Initial color */
-  background-color: transparent; /* Make background transparent */
-  margin-left: 5px; /* Space between the buttons */
-  padding: 10px; /* Remove padding to minimize the clickable area around the arrow */
-  font-size: 24px; /* Size of the arrow */
-  transition: color 0.3s ease; /* Smooth transition for color change */
+  color: #fff;
+  background-color: transparent;
+  margin-left: 5px;
+  padding: 10px;
+  font-size: 24px;
+  transition: color 0.3s ease;
 }
 
 .owl-carousel .owl-nav .owl-prev:hover,
 .owl-carousel .owl-nav .owl-next:hover {
-  color: #fa9ea6; /* Color changes on hover, giving the effect of the arrow being highlighted */
+  color: #fa9ea6;
 }
 
 .journal-entry-form {
@@ -1257,4 +1225,35 @@ EmotionsPage Style
 
 .journal-entry-form button:hover {
   background-color: #f9626e;
+}
+
+.prompt-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.prompt-container .prompt-item {
+  width: 300px;
+  background-color: #fa9ea6;
+  border-left: 5px solid #da0303;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 200px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.prompt-container .prompt-item:hover {
+  background-color: #8e5658;
+}
+
+.prompt-container .prompt-item h4 {
+  color: #333;
+  text-align: center;
+  margin: 0;
+  font-size: 1.25rem;
 }

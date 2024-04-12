@@ -153,6 +153,7 @@ export class EmotionsComponent implements OnInit, AfterViewInit {
               } else {
                 this.currentView = 'MoodChosen';
                 this.chosenMood = result.mood;
+                this.updatePromptOptions(this.chosenMood);
               }
 
               this.userMoodData = result;
@@ -194,8 +195,10 @@ export class EmotionsComponent implements OnInit, AfterViewInit {
     }
   }
 
-  updatePromptOptions(mood: string | null): void {
-    this.promptOptions = this.getPromptsForMood(mood);
+  updatePromptOptions(mood: string | null | undefined): void {
+    if (mood != undefined) {
+      this.promptOptions = this.getPromptsForMood(mood);
+    }
   }
   getPromptsForMood(mood: string | null): { prompt: string }[] {
     switch (mood) {
