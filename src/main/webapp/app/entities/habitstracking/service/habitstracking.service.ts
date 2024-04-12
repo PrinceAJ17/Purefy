@@ -61,6 +61,10 @@ export class HabitstrackingService {
     return habitstracking.id;
   }
 
+  getHabitsByWeek(weekOfHabit: number): Observable<IHabitstracking[]> {
+    return this.http.get<IHabitstracking[]>(`${this.resourceUrl}/week/${weekOfHabit}`);
+  }
+
   compareHabitstracking(o1: Pick<IHabitstracking, 'id'> | null, o2: Pick<IHabitstracking, 'id'> | null): boolean {
     return o1 && o2 ? this.getHabitstrackingIdentifier(o1) === this.getHabitstrackingIdentifier(o2) : o1 === o2;
   }

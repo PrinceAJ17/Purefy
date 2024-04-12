@@ -11,7 +11,6 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Table(name = "habitstracking")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@SuppressWarnings("common-java:DuplicatedBlocks")
 public class Habitstracking implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,15 +42,9 @@ public class Habitstracking implements Serializable {
     @Column(name = "summary")
     private String summary;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here
-
+    // Getters and setters
     public Long getId() {
         return this.id;
-    }
-
-    public Habitstracking id(Long id) {
-        this.setId(id);
-        return this;
     }
 
     public void setId(Long id) {
@@ -164,7 +157,6 @@ public class Habitstracking implements Serializable {
 
     @Override
     public int hashCode() {
-        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
         return getClass().hashCode();
     }
 

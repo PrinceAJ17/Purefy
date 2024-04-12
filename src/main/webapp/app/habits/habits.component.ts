@@ -10,8 +10,6 @@ import { IHabitstracking, NewHabitstracking } from '../entities/habitstracking/h
   styleUrls: ['./habits.component.scss'],
 })
 export class HabitsComponent implements OnInit {
-  constructor(private router: Router, private weeklyService: HabitstrackingService, private account: AccountService) {}
-
   week: number = 1;
   addDay: string | undefined;
   daysOfWeek: string[] = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
@@ -24,6 +22,8 @@ export class HabitsComponent implements OnInit {
   date: string | undefined;
   weekNumbers = Array.from({ length: 52 }, (_, i) => i + 1);
 
+  constructor(private router: Router, private weeklyService: HabitstrackingService, private accountService: AccountService) {}
+
   ngOnInit(): void {
     this.loadScript('vendor/jquery/jquery.min.js')
       .then(() => this.loadScript('src/main/webapp/vendor/bootstrap/js/bootstrap.min.js'))
@@ -35,7 +35,6 @@ export class HabitsComponent implements OnInit {
       .then(() => this.loadScript('src/main/webapp/assets/js/custom.js'))
       .then(() => {
         console.log('All scripts loaded successfully');
-        // Initialization or callback functions that depend on these scripts can go here
       })
       .catch(error => {
         console.error('Script loading error:', error);
@@ -43,8 +42,7 @@ export class HabitsComponent implements OnInit {
 
     this.user();
     this.week = this.getCurrentWeekNumber();
-    this.loadAllHabits();
-
+    this.loadAllHabitsForWeek(this.week);
     this.daysOfWeek.forEach(day => {
       this.addingHabit[day] = false;
       this.newHabitName[day] = '';
@@ -53,12 +51,10 @@ export class HabitsComponent implements OnInit {
     this.getStartOfCurrentWeekMondayFirstAsString();
   }
 
-  onWeekSelected(): void {
-    console.log('Week selected:', this.week);
-    this.daysOfWeek.forEach(day => {
-      this.habits[day] = [];
-    });
+  onWeekSelected(newWeek: string): void {
+    this.week = parseInt(newWeek, 10);
     this.loadAllHabits();
+    this.loadSummary();
   }
 
   getCurrentWeekNumber(): number {
@@ -86,11 +82,11 @@ export class HabitsComponent implements OnInit {
 
   user(): void {
     this.account.getAccount().subscribe({
-      next: account => {
+      next: (account: any) => {
         this.username = account.login;
         console.log('Account fetched:', account);
       },
-      error: error => {
+      error: (error: any) => {
         console.error('Error fetching account:', error);
       },
     });
@@ -112,6 +108,19 @@ export class HabitsComponent implements OnInit {
           console.log(this.week);
         }
       });
+    });
+  }
+
+  loadAllHabitsForWeek(weekNumber: number): void {
+    this.weeklyService.getHabitsByWeek(weekNumber).subscribe({
+      next: (data: IHabitstracking[]) => {
+        this.daysOfWeek.forEach(day => {
+          this.habits[day] = data.filter(habit => habit.dayOfHabit === day);
+        });
+      },
+      error: (error: any) => {
+        console.error('Failed to load habits for week:', weekNumber, error);
+      },
     });
   }
 

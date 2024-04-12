@@ -1,5 +1,6 @@
 package team.bham.repository;
 
+import java.util.List;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 import team.bham.domain.Habitstracking;
@@ -9,4 +10,6 @@ import team.bham.domain.Habitstracking;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface HabitstrackingRepository extends JpaRepository<Habitstracking, Long> {}
+public interface HabitstrackingRepository extends JpaRepository<Habitstracking, Long> {
+    List<Habitstracking> findByWeekOfHabit(Integer weekOfHabit);
+}

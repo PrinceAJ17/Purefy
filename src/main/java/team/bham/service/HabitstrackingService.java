@@ -17,7 +17,6 @@ import team.bham.repository.HabitstrackingRepository;
 public class HabitstrackingService {
 
     private final Logger log = LoggerFactory.getLogger(HabitstrackingService.class);
-
     private final HabitstrackingRepository habitstrackingRepository;
 
     public HabitstrackingService(HabitstrackingRepository habitstrackingRepository) {
@@ -106,6 +105,18 @@ public class HabitstrackingService {
     public Optional<Habitstracking> findOne(Long id) {
         log.debug("Request to get Habitstracking : {}", id);
         return habitstrackingRepository.findById(id);
+    }
+
+    /**
+     * Get all habitstrackings by week number.
+     *
+     * @param weekOfHabit the week number of the entity.
+     * @return the list of entities.
+     */
+    @Transactional(readOnly = true)
+    public List<Habitstracking> findByWeekOfHabit(Integer weekOfHabit) {
+        log.debug("Request to get all Habitstrackings for week : {}", weekOfHabit);
+        return habitstrackingRepository.findByWeekOfHabit(weekOfHabit);
     }
 
     /**

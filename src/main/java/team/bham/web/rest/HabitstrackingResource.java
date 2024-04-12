@@ -155,6 +155,22 @@ public class HabitstrackingResource {
     }
 
     /**
+     * {@code GET  /habitstrackings/week/:weekOfHabit} : get all the habitstrackings by week number.
+     *
+     * @param weekOfHabit the week number of the habits to retrieve.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of habitstrackings in body, or with status {@code 404 (Not Found)}.
+     */
+    @GetMapping("/habitstrackings/week/{weekOfHabit}")
+    public ResponseEntity<List<Habitstracking>> getHabitstrackingsByWeek(@PathVariable Integer weekOfHabit) {
+        log.debug("REST request to get Habitstrackings by week : {}", weekOfHabit);
+        List<Habitstracking> list = habitstrackingService.findByWeekOfHabit(weekOfHabit);
+        if (list.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(list);
+    }
+
+    /**
      * {@code DELETE  /habitstrackings/:id} : delete the "id" habitstracking.
      *
      * @param id the id of the habitstracking to delete.
