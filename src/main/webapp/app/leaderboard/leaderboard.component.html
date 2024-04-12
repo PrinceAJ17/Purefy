@@ -80,8 +80,8 @@
           <div *ngIf="showCreateGroup">
             <div class="nameBadge">
               <div class="teamName">
-                <h2 class="dynamic-heading" [style.fontSize]="fontSizeMultiplier * 1.3 + 'rem'">Welcome to Groups and Leaderboards!</h2>
-                <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier * 0.7 + 'rem'">
+                <h2 class="dynamic-heading" [style.fontSize]="fontSizeMultiplier * 1.6 + 'rem'">Welcome to Groups and Leaderboards!</h2>
+                <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
                   You can use groups and leaderboards to connect and compete with friends.<br />
                   Complete challenges to earn points and see how you stack up!
                 </p>
@@ -90,8 +90,8 @@
             <div class="cojGroup">
               <div class="createGroup">
                 <form (ngSubmit)="onCreate()" #contactForm="ngForm" class="create">
-                  <h4 class="dynamic-heading" [style.fontSize]="fontSizeMultiplier * 1.3 + 'rem'">Please enter your</h4>
-                  <h4 class="dynamic-heading" [style.fontSize]="fontSizeMultiplier * 1.3 + 'rem'">new name to create:</h4>
+                  <h4 class="dynamic-heading" [style.fontSize]="fontSizeMultiplier * 1.5 + 'rem'">Please enter your</h4>
+                  <h4 class="dynamic-heading" [style.fontSize]="fontSizeMultiplier * 1.5 + 'rem'">new name to create:</h4>
                   <input
                     type="text"
                     id="groupNameInput"
@@ -100,22 +100,23 @@
                     [(ngModel)]="createGroup.groupName"
                     name="groupName"
                     maxlength="20"
+                    [style.fontSize]="fontSizeMultiplier * 0.8 + 'rem'"
                   />
                   <br />
-                  <button type="submit" class="createGroupButton" [style.fontSize]="fontSizeMultiplier + 'rem'">Create Group</button>
+                  <button type="submit" class="createGroupButton" [style.fontSize]="fontSizeMultiplier * 1.2 + 'rem'">Create Group</button>
                 </form>
 
                 <br />
               </div>
 
               <div class="Or">
-                <h3>OR</h3>
+                <h2 [style.fontSize]="fontSizeMultiplier * 2 + 'rem'">OR</h2>
               </div>
 
               <div class="joinGroup">
                 <form (ngSubmit)="onJoin()" #contactForm="ngForm" class="join">
-                  <h4 class="dynamic-heading" [style.fontSize]="fontSizeMultiplier * 1.3 + 'rem'">Please enter your</h4>
-                  <h4 class="dynamic-heading" [style.fontSize]="fontSizeMultiplier * 1.3 + 'rem'">group code to join:</h4>
+                  <h4 class="dynamic-heading" [style.fontSize]="fontSizeMultiplier * 1.5 + 'rem'">Please enter your</h4>
+                  <h4 class="dynamic-heading" [style.fontSize]="fontSizeMultiplier * 1.5 + 'rem'">group code to join:</h4>
                   <input
                     type="text"
                     id="groupCodeInput"
@@ -124,9 +125,10 @@
                     [(ngModel)]="joinGroup.groupID"
                     name="groupID"
                     minlength="1"
+                    [style.fontSize]="fontSizeMultiplier * 0.8 + 'rem'"
                   />
                   <br />
-                  <button type="submit" class="joinGroupButton" [style.fontSize]="fontSizeMultiplier + 'rem'">Join Group</button>
+                  <button type="submit" class="joinGroupButton" [style.fontSize]="fontSizeMultiplier * 1.2 + 'rem'">Join Group</button>
                 </form>
                 <br />
               </div>
@@ -139,9 +141,9 @@
             <div *ngFor="let entry of leaderboardData | slice: 0:1; let i = index">
               <div class="nameBadge">
                 <div class="teamName">
-                  <h1 class="dynamic-heading" [style.fontSize]="fontSizeMultiplier * 2 + 'rem'">
+                  <h1 class="dynamic-heading" [style.fontSize]="fontSizeMultiplier * 2.2 + 'rem'">
                     {{ entry.groupName }} <br />
-                    <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">Code: {{ entry.groupID }}</p>
+                    <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier * 1.2 + 'rem'">Code: {{ entry.groupID }}</p>
                   </h1>
                 </div>
                 <div class="Badge">
@@ -149,9 +151,9 @@
                 </div>
               </div>
               <div class="Points">
-                <h3 [style.fontSize]="fontSizeMultiplier * 1.2 + 'rem'">Total Weekly Points:</h3>
-                <h3 [style.fontSize]="fontSizeMultiplier * 1.2 + 'rem'">{{ calculateGroupPoints() }}</h3>
-                <h3 [style.fontSize]="fontSizeMultiplier * 1.2 + 'rem'">Next Badge:</h3>
+                <h3 [style.fontSize]="fontSizeMultiplier * 1.5 + 'rem'">Total Weekly Points:</h3>
+                <h3 [style.fontSize]="fontSizeMultiplier * 1.5 + 'rem'">{{ calculateGroupPoints() }}</h3>
+                <h3 [style.fontSize]="fontSizeMultiplier * 1.5 + 'rem'">Next Badge:</h3>
                 <img [src]="getBadgeImage(calculateGroupPoints() + 10)" alt="Next Badge" />
               </div>
               <div class="Buttons">
@@ -162,7 +164,7 @@
                       (click)="triggerConfirmation('leave')"
                       type="button"
                       class="leaveGroupButton"
-                      [style.fontSize]="fontSizeMultiplier + 'rem'"
+                      [style.fontSize]="fontSizeMultiplier * 1.2 + 'rem'"
                     >
                       Leave Group
                     </button>
@@ -170,8 +172,8 @@
                     <div *ngIf="showLeaveConfirmation" class="confirmation">
                       Are you sure?
                       <br />
-                      <button class="yes" [style.fontSize]="fontSizeMultiplier + 'rem'" type="submit">Leave</button>
-                      <button class="no" [style.fontSize]="fontSizeMultiplier + 'rem'" (click)="confirmAction()">Cancel</button>
+                      <button class="yes" [style.fontSize]="fontSizeMultiplier * 1.2 + 'rem'" type="submit">Leave</button>
+                      <button class="no" [style.fontSize]="fontSizeMultiplier * 1.2 + 'rem'" (click)="confirmAction()">Cancel</button>
                     </div>
                   </form>
                   <br />
@@ -183,7 +185,7 @@
                       (click)="triggerConfirmation('delete')"
                       type="button"
                       class="deleteGroupButton"
-                      [style.fontSize]="fontSizeMultiplier + 'rem'"
+                      [style.fontSize]="fontSizeMultiplier * 1.2 + 'rem'"
                     >
                       Delete Group
                     </button>
@@ -220,7 +222,7 @@
                 <div class="bar">
                   <div class="progress" [style.width]="calculatePreviousWidth(entry)">
                     <div class="animation">
-                      <h2 class="dynamic-heading" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                      <h2 class="dynamic-heading" [style.fontSize]="fontSizeMultiplier * 1.2 + 'rem'">
                         {{ entry.previousPoints }}
                       </h2>
                     </div>
@@ -229,8 +231,8 @@
               </div>
               <div *ngIf="sortedByCurrentPoints.length < 3" class="addMore">
                 <div class="content">
-                  <div class="plus-sign">+</div>
-                  <div class="text">Invite more friends</div>
+                  <i class="fa-solid fa-plus" [style.fontSize]="fontSizeMultiplier * 1.5 + 'rem'"></i>
+                  <div class="text" [style.fontSize]="fontSizeMultiplier * 1.2 + 'rem'">Invite more friends</div>
                 </div>
               </div>
             </div>
@@ -267,14 +269,14 @@
                     {{ entry.totalPoints }}
                   </h4>
                 </div>
-                <div *ngIf="sortedByCurrentPoints.length < 3" class="addMore">
-                  <div class="plus-sign">+</div>
-                </div>
+                <div
+                  *ngIf="sortedByCurrentPoints.length < 3"
+                  class="fa-solid fa-plus"
+                  [style.fontSize]="fontSizeMultiplier * 1.5 + 'rem'"
+                ></div>
               </div>
               <div *ngIf="sortedByCurrentPoints.length < 2" class="bottombox">
-                <div class="addMore">
-                  <div class="plus-sign">+</div>
-                </div>
+                <div class="fa-solid fa-plus" [style.fontSize]="fontSizeMultiplier * 1.5 + 'rem'"></div>
               </div>
             </div>
           </div>
@@ -304,9 +306,11 @@
               *ngFor="let entry of sortedByCurrentPoints | slice: 0:6; let i = index"
               class="{{ i + 1 }}{{ getOrdinalIndicator(i + 1) }}"
             >
-              <img *ngIf="getMedalImage(i + 1)" [src]="getMedalImage(i + 1)" alt="Medal" style="margin-left: 0" />
+              <div class="medal">
+                <img *ngIf="getMedalImage(i + 1)" [src]="getMedalImage(i + 1)" alt="Medal" style="margin-left: 0" />
+              </div>
               <h3>{{ i + 1 }}{{ getOrdinalIndicator(i + 1) }}</h3>
-              <div class="avatar">
+              <div class="Avatar">
                 <img src="{{ entry.imageUrl }}" alt="Avatar" style="color: white" />
                 <div class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
                   {{ entry.login }}
@@ -326,8 +330,10 @@
             <div *ngIf="sortedByCurrentPoints.length < 6" class="addMore">
               <div *ngFor="let entry of leaderboardData | slice: 0:1; let i = index">
                 <div class="content">
-                  <div class="plus-sign">+</div>
-                  <div class="text">Invite friends with the code: {{ entry.groupID }}</div>
+                  <i class="fa-solid fa-plus" [style.fontSize]="fontSizeMultiplier * 1.5 + 'rem'"></i>
+                  <div class="text" [style.fontSize]="fontSizeMultiplier * 1.5 + 'rem'">
+                    Invite friends with the code: {{ entry.groupID }}
+                  </div>
                 </div>
               </div>
             </div>
