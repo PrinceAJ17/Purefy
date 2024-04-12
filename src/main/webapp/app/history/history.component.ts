@@ -3,6 +3,8 @@ import { AccountService } from '../core/auth/account.service';
 import { HistoryService } from '../entities/history/service/history.service';
 import { IHistory } from '../entities/history/history.model';
 import dayjs from 'dayjs/esm';
+import { Observable } from 'rxjs';
+import { Account } from '../core/auth/account.model';
 @Component({
   selector: 'jhi-history',
   templateUrl: './history.component.html',
@@ -15,6 +17,11 @@ export class HistoryComponent implements OnInit {
     private historyService: HistoryService,
     private accountService: AccountService // Inject AccountService
   ) {}
+
+  fontSizeMultiplier: number = 1;
+  account$?: Observable<Account | null>;
+  currentUsername?: string;
+  theme: 'light' | 'dark' = 'dark';
 
   ngOnInit(): void {
     this.loadScript('vendor/jquery/jquery.min.js')
@@ -30,6 +37,40 @@ export class HistoryComponent implements OnInit {
         console.error('Script loading error:', error);
       });
     this.loadHistory();
+
+    this.account$ = this.accountService.identity();
+    this.account$.subscribe(account => {
+      if (account) {
+        this.currentUsername = account.login;
+        const storedFontSize = localStorage.getItem(this.getFontSizeKey());
+        if (storedFontSize) {
+          this.fontSizeMultiplier = parseFloat(storedFontSize);
+        }
+        const storedTheme = localStorage.getItem(this.getThemeKey());
+        if (storedTheme) {
+          this.theme = storedTheme as 'light' | 'dark';
+        }
+      }
+    });
+  }
+
+  getFontSizeKey(): string {
+    // Ensure there's a default key if username is not yet available
+    return `fontSizeMultiplier_${this.currentUsername || 'default'}`;
+  }
+
+  updateFontSize(): void {
+    // Save font size to local storage with username-specific key
+    localStorage.setItem(this.getFontSizeKey(), this.fontSizeMultiplier.toString());
+  }
+
+  getThemeKey(): string {
+    return `theme_${this.currentUsername || 'default'}`;
+  }
+
+  toggleTheme(): void {
+    this.theme = this.theme === 'dark' ? 'light' : 'dark';
+    localStorage.setItem(this.getThemeKey(), this.theme);
   }
 
   private loadScript(scriptUrl: string): Promise<void> {

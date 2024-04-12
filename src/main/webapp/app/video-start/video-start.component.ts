@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AccountService } from '../core/auth/account.service';
 import { HistoryService } from '../entities/history/service/history.service';
-import { tap, throwError } from 'rxjs';
+import { Observable, tap, throwError } from 'rxjs';
 import dayjs from 'dayjs/esm';
 import { catchError } from 'rxjs/operators';
 import { PointsService } from '../entities/points/service/points.service';
+import { Account } from '../core/auth/account.model';
 
 @Component({
   selector: 'jhi-video-start',
@@ -24,6 +25,10 @@ export class VideoStartComponent implements OnInit {
   timers: { [timerId: string]: string } = {};
   challengeCompleted: { [timerId: string]: boolean } = {};
   timerIntervals: { [timerId: string]: any } = {};
+  fontSizeMultiplier: number = 1;
+  account$?: Observable<Account | null>;
+  currentUsername?: string;
+  theme: 'light' | 'dark' = 'dark';
 
   ngOnInit(): void {
     this.loadScript('vendor/jquery/jquery.min.js')
@@ -51,8 +56,42 @@ export class VideoStartComponent implements OnInit {
       }
     });
 
+    this.account$ = this.accountService.identity();
+    this.account$.subscribe(account => {
+      if (account) {
+        this.currentUsername = account.login;
+        const storedFontSize = localStorage.getItem(this.getFontSizeKey());
+        if (storedFontSize) {
+          this.fontSizeMultiplier = parseFloat(storedFontSize);
+        }
+        const storedTheme = localStorage.getItem(this.getThemeKey());
+        if (storedTheme) {
+          this.theme = storedTheme as 'light' | 'dark';
+        }
+      }
+    });
+
     // Timer code
     this.checkTimers();
+  }
+
+  getFontSizeKey(): string {
+    // Ensure there's a default key if username is not yet available
+    return `fontSizeMultiplier_${this.currentUsername || 'default'}`;
+  }
+
+  updateFontSize(): void {
+    // Save font size to local storage with username-specific key
+    localStorage.setItem(this.getFontSizeKey(), this.fontSizeMultiplier.toString());
+  }
+
+  getThemeKey(): string {
+    return `theme_${this.currentUsername || 'default'}`;
+  }
+
+  toggleTheme(): void {
+    this.theme = this.theme === 'dark' ? 'light' : 'dark';
+    localStorage.setItem(this.getThemeKey(), this.theme);
   }
 
   private loadScript(scriptUrl: string): Promise<void> {

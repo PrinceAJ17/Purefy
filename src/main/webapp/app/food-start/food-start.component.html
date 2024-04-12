@@ -9,7 +9,7 @@
     <title>Junk Food Start</title>
   </head>
 
-  <body>
+  <body [ngClass]="theme">
     <!-- ***** Preloader Start ***** -->
     <div id="js-preloader" class="js-preloader">
       <div class="preloader-inner">
@@ -31,18 +31,30 @@
               <a href="" class="logo">
                 <img src="assets/images/purefy-removebg-preview.png" alt="" />
               </a>
-              <!-- ***** Logo End ***** -->
-              <!-- ***** Menu Start ***** -->
+              <
+              <li class="font-size-slider-container" style="display: flex; align-items: center; margin-top: -60px">
+                <input
+                  type="range"
+                  min="0.5"
+                  max="2"
+                  step="0.1"
+                  [(ngModel)]="fontSizeMultiplier"
+                  (ngModelChange)="updateFontSize()"
+                  class="font-size-slider"
+                  style="margin-top: 5px"
+                />
+              </li>
+              <button class="theme-toggle-button" (click)="toggleTheme()">
+                <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+              </button>
               <ul class="nav">
-                <li><a href="">Home</a></li>
-                <li><a href="index.html" class="active">Challenges</a></li>
+                <li><a routerLink="/Dashboard">Home</a></li>
+                <li><a routerLink="/Challenges" class="active">Challenges</a></li>
                 <li><a routerLink="/MoodJournalPage">Mood Journal</a></li>
                 <li><a href="">Habit Tracker</a></li>
-                <li><a href="">Leaderboards</a></li>
-                <li><a href="">About</a></li>
-                <li><a href="">Team</a></li>
+                <li><a routerLink="/Leaderboard">Leaderboards</a></li>
                 <li>
-                  <a href="" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
+                  <a routerLink="/Profilepage" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
                 </li>
               </ul>
               <a class="menu-trigger">
@@ -95,7 +107,7 @@
                           <div class="col-lg-12">
                             <br />
 
-                            <p>
+                            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
                               Commit to not eating junk food for the entire day. This short-term goal is a great way to kickstart a
                               healthier eating pattern, reducing your intake of high-calorie, low-nutrient foods. Focus on nourishing your
                               body with whole foods like fruits, vegetables, lean proteins, and whole grains. Notice how you feel at the end
@@ -180,7 +192,7 @@
                           <div class="col-lg-12">
                             <br />
 
-                            <p>
+                            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
                               Challenge yourself to avoid junk food for an entire week. This week-long period allows your body to adjust to
                               a diet without heavily processed foods, potentially leading to noticeable benefits such as improved energy
                               levels and better digestion. Plan your meals and snacks ahead of time to avoid the temptation of convenience
@@ -265,7 +277,7 @@
                           <div class="col-lg-12">
                             <br />
 
-                            <p>
+                            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
                               Extend your commitment to not consuming junk food to two weeks. This timeframe encourages deeper habits of
                               mindful eating and gives you the chance to fully experience the positive effects of a diet free from processed
                               foods. You might notice significant changes in your cravings, a decrease in sugar dependence, and even weight
@@ -350,7 +362,7 @@
                           <div class="col-lg-12">
                             <br />
 
-                            <p>
+                            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
                               Embark on a month-long journey to eliminate junk food from your diet. This longer commitment can transform
                               your relationship with food, leading to sustainable healthy eating habits. Over the course of a month, your
                               taste preferences can adjust to favor natural flavors over artificial ones, making whole foods more appealing.
@@ -405,7 +417,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
-            <p>
+            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
               Copyright © 2024, Purefy. All rights reserved.
 
               <br />You are accessing an experimental web application developed by participants (Team 13) of the Team Project 2024 module.
