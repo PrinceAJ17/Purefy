@@ -51,7 +51,7 @@ export class HabitsComponent implements OnInit {
     this.getStartOfWeekMondayFirstAsString(this.week);
   }
 
-  onWeekSelected(newWeek: string): void {
+  onWeekSelected(): void {
     this.loadAllHabits();
     this.loadSummary();
     this.loadAllHabitsForWeek(this.week);
