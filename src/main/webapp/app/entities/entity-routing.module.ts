@@ -80,11 +80,6 @@ import { RouterModule } from '@angular/router';
         loadChildren: () => import('./joined-teams/joined-teams.module').then(m => m.JoinedTeamsModule),
       },
       {
-        path: 'habit',
-        data: { pageTitle: 'Habits' },
-        loadChildren: () => import('./habit/habit.module').then(m => m.HabitModule),
-      },
-      {
         path: 'new-weekly-habit-tracker',
         data: { pageTitle: 'NewWeeklyHabitTrackers' },
         loadChildren: () => import('./new-weekly-habit-tracker/new-weekly-habit-tracker.module').then(m => m.NewWeeklyHabitTrackerModule),

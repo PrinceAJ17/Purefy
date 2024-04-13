@@ -83,6 +83,22 @@ export class MoodJournalPageComponent implements OnInit {
       .catch(error => {
         console.error('Script loading error:', error);
       });
+
+    this.account$ = this.accountService.identity();
+    this.account$.subscribe(account => {
+      if (account) {
+        this.currentUsername = account.login;
+        const storedFontSize = localStorage.getItem(this.getFontSizeKey());
+        if (storedFontSize) {
+          this.fontSizeMultiplier = parseFloat(storedFontSize);
+        }
+        const storedTheme = localStorage.getItem(this.getThemeKey());
+        if (storedTheme) {
+          this.theme = storedTheme as 'light' | 'dark';
+        }
+      }
+    });
+
     this.loadEntries();
     this.filteredEntries = this.entries;
     this.loadPromptedEntries();
