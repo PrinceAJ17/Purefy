@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HabitstrackingComponent } from './entities/habitstracking/list/habitstracking.component';
 import { errorRoute } from './layouts/error/error.route';
 import { navbarRoute } from './layouts/navbar/navbar.route';
 import { DEBUG_INFO_ENABLED } from 'app/app.constants';
@@ -172,6 +173,10 @@ const routes: Routes = [
     path: 'Support',
     component: SupportComponent,
   },
+  {
+    path: 'Habit',
+    component: HabitstrackingComponent,
+  },
 ];
 @NgModule({
   imports: [
@@ -229,6 +234,10 @@ const routes: Routes = [
         {
           path: 'Signout',
           component: SignoutComponent,
+        },
+        {
+          path: 'Habit',
+          component: HabitstrackingComponent,
         },
         {
           path: '',

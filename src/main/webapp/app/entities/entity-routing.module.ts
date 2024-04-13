@@ -194,6 +194,11 @@ import { RouterModule } from '@angular/router';
         data: { pageTitle: 'NewMoodPickers' },
         loadChildren: () => import('./new-mood-picker/new-mood-picker.module').then(m => m.NewMoodPickerModule),
       },
+      {
+        path: 'habitstracking',
+        data: { pageTitle: 'Habitstrackings' },
+        loadChildren: () => import('./habitstracking/habitstracking.module').then(m => m.HabitstrackingModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],
