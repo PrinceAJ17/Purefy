@@ -125,7 +125,11 @@ public class UserService {
         if (userDTO.getEmail() != null) {
             newUser.setEmail(userDTO.getEmail().toLowerCase());
         }
-        newUser.setImageUrl(userDTO.getImageUrl());
+        if (userDTO.getImageUrl() != null && !userDTO.getImageUrl().isEmpty()) {
+            newUser.setImageUrl(userDTO.getImageUrl());
+        } else {
+            newUser.setImageUrl("assets/images/Avatars/Avatar.png");
+        }
         newUser.setLangKey(userDTO.getLangKey());
         // new user is not active
         newUser.setActivated(true);
@@ -173,7 +177,11 @@ public class UserService {
         if (userDTO.getEmail() != null) {
             user.setEmail(userDTO.getEmail().toLowerCase());
         }
-        user.setImageUrl(userDTO.getImageUrl());
+        if (userDTO.getImageUrl() != null && !userDTO.getImageUrl().isEmpty()) {
+            user.setImageUrl(userDTO.getImageUrl());
+        } else {
+            user.setImageUrl("assets/images/Avatars/Avatar.png");
+        }
         if (userDTO.getLangKey() == null) {
             user.setLangKey(Constants.DEFAULT_LANGUAGE); // default language
         } else {
