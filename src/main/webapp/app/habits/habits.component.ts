@@ -48,11 +48,21 @@ export class HabitsComponent implements OnInit {
       this.newHabitName[day] = '';
     });
     this.loadSummary();
-    this.getStartOfCurrentWeekMondayFirstAsString();
+    this.getStartOfWeekMondayFirstAsString(this.week);
   }
 
+<<<<<<< HEAD
+  onWeekSelected(): void {
+    console.log('Week selected:', this.week);
+    this.daysOfWeek.forEach(day => {
+      this.habits[day] = [];
+    });
+    this.loadAllHabitsForWeek(this.week);
+    this.getStartOfWeekMondayFirstAsString(this.week);
+=======
   onWeekSelected(newWeek: string): void {
     this.loadAllHabits();
+>>>>>>> a097b17035efff7e4266cf493e7ede175d8f5075
     this.loadSummary();
     this.loadAllHabitsForWeek(this.week);
   }
@@ -78,6 +88,21 @@ export class HabitsComponent implements OnInit {
     const dayPadded = day.toString().padStart(2, '0');
 
     this.date = `${year}-${monthPadded}-${dayPadded}`;
+  }
+
+  getStartOfWeekMondayFirstAsString(weekNumber: number): void {
+    const startOfYear = new Date(new Date().getFullYear(), 0, 1);
+    // Adjust if the start of the year is not a Monday
+
+    // Calculate the Monday of the given week number
+    const daysToAdd = (weekNumber - 1) * 7;
+    startOfYear.setDate(startOfYear.getDate() + daysToAdd);
+
+    const year = startOfYear.getFullYear();
+    const month = startOfYear.getMonth() + 1;
+    const day = startOfYear.getDate();
+
+    this.date = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
   }
 
   user(): void {
