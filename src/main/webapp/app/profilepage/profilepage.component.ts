@@ -59,8 +59,9 @@ export class ProfilepageComponent implements OnInit {
     this.currentImageIndex = (this.currentImageIndex + 1) % this.images.length;
   }
 
-  capitalizeFirstLetter(username: string): string {
-    return username.charAt(0).toUpperCase() + username.slice(1);
+  capitalizeFirstLetter(input: string): string {
+    if (!input) return input;
+    return input.charAt(0).toUpperCase() + input.slice(1).toLowerCase();
   }
 
   getCurrentImage(): string {
