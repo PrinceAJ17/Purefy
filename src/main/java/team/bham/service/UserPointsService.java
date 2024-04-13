@@ -1,6 +1,7 @@
 package team.bham.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -17,8 +18,15 @@ public class UserPointsService {
     @Scheduled(cron = "0 0 0 * * MON")
     @Transactional
     public void updatePoints() {
+        List<Long> exemptUserIds = userPointsRepository.findUserIdsByGroupName("ADDGROUP");
         List<UserPoints> allUserPoints = userPointsRepository.findAll();
-        for (UserPoints userPoints : allUserPoints) {
+
+        List<UserPoints> filteredUserPoints = allUserPoints
+            .stream()
+            .filter(userPoints -> !exemptUserIds.contains(userPoints.getUserID()))
+            .collect(Collectors.toList());
+
+        for (UserPoints userPoints : filteredUserPoints) {
             userPoints.setPreviousPoints(userPoints.getCurrentPoints());
             userPoints.setCurrentPoints(0);
         }
