@@ -253,7 +253,7 @@ Header Style
   -moz-transition: all 0.5s ease 0s;
   -o-transition: all 0.5s ease 0s;
   transition: all 0.5s ease 0s;
-  width: 80%;
+  width: 65%;
   margin-left: auto;
   margin-right: auto;
   display: flex;
@@ -273,64 +273,9 @@ Header Style
   background-color: transparent;
 }
 
-.header-area .main-nav .group-selection {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 20%;
-}
-
-.header-area .main-nav .group-selection select {
-  background-color: #27292a;
-  color: #b5b5b5;
-  border: none;
-  font-family: 'Poppins', sans-serif;
-  font-size: 14px;
-  height: 46px;
-  border-radius: 23px;
-  padding: 0 15px;
-  appearance: none;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  background-repeat: no-repeat;
-  background-position: right 10px center;
-  background-size: 20px;
-  width: 100%;
-}
-
-.header-area .main-nav .group-selection select:focus {
-  outline: none;
-}
-
-.header-area .main-nav .group-selection::after {
-  content: '\25BC';
-  position: absolute;
-  right: 20px;
-  top: 10px;
-  color: #666;
-  pointer-events: none;
-  font-size: 16px;
-}
-
-.light .header-area,
-.light .header-area .main-nav .group-selection select {
-  background-color: #f0f0f0;
-  color: #000000;
-}
-
-.light .header-area .main-nav .group-selection select {
-  background-color: #fff;
-  color: #1e1e1e;
-}
-
 .light .header-area .main-nav .nav li a,
 .light .header-area .main-nav .logo img {
   color: #1e1e1e;
-}
-
-.light .header-area .main-nav .group-selection::after {
-  color: #666;
 }
 
 .light .header-area .main-nav .nav li a:hover,
@@ -880,7 +825,7 @@ Main Boxes Style
 }
 
 .titleBox {
-  display: grid;
+  display: flex;
   grid-area: title;
   margin-bottom: 1%;
   margin-left: 2%;
@@ -888,8 +833,68 @@ Main Boxes Style
   flex-shrink: 1;
   margin-top: 1%;
   max-width: 100%;
+  justify-content: space-between;
+  align-items: center;
 }
 
+/*
+---------------------------------------------
+Group Select Style
+---------------------------------------------
+*/
+
+.titleBox .group-selection {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20%;
+}
+.titleBox .group-selection select {
+  background-color: #1f2122;
+  color: #b5b5b5;
+  border: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  height: 46px;
+  border-radius: 23px;
+  padding: 0 15px;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 20px;
+  width: 100%;
+}
+
+.titleBox .group-selection select:focus {
+  outline: none;
+}
+
+.titleBox .group-selection::after {
+  content: '\25BC';
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  color: #666;
+  pointer-events: none;
+  font-size: 16px;
+}
+
+.light .header-area {
+  background-color: #f0f0f0;
+  color: #000000;
+}
+
+.light .titleBox .group-selection select {
+  background-color: #f0f0f0;
+  color: #1e1e1e;
+}
+
+.light .titleBox .group-selection::after {
+  color: #666;
+}
 /*
 ---------------------------------------------
 Your Group Style
@@ -1558,30 +1563,11 @@ Overall Leaderboard Style
 
 .overall-leaderboard .oleaderboard .topbox .Avatar img {
   width: 12ch;
+  display: block;
 }
 
 .overall-leaderboard .oleaderboard .bottombox .Avatar img {
   width: 10ch;
-}
-
-.overall-leaderboard .oleaderboard .topbox > div .points {
-  font-size: 30px;
-  color: #fff;
-  text-align: center;
-}
-
-.light .overall-leaderboard .oleaderboard .topbox > div .points {
-  color: #000;
-}
-
-.overall-leaderboard .oleaderboard .bottombox > div .points {
-  font-size: 20px;
-  color: #fff;
-  text-align: center;
-}
-
-.light .overall-leaderboard .oleaderboard .bottombox > div .points {
-  color: #000;
 }
 
 :root {

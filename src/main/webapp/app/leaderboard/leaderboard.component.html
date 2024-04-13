@@ -41,17 +41,10 @@
 
               <!-- ***** Menu Start ***** -->
               <ul class="nav">
-                <div class="group-selection">
-                  <select [(ngModel)]="selectedGroupId" (change)="onGroupChange()">
-                    <option [value]="addGroupId">Select Group</option>
-                    <option *ngFor="let group of options" [value]="group.groupID">{{ group.groupID }}</option>
-                    <option [value]="addGroupId">Add New Group</option>
-                  </select>
-                </div>
                 <li><a href="/Dashboard">Home</a></li>
                 <li><a href="/Challenges">Challenges</a></li>
                 <li><a href="/MoodJournalPage">Mood Journal</a></li>
-                <li><a href="">Habit Tracker</a></li>
+                <li><a href="/Habit">Habit Tracker</a></li>
                 <li><a href="/Leaderboard" class="active">Leaderboard</a></li>
                 <li>
                   <a href="/ProfilePage" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
@@ -73,6 +66,13 @@
       <div class="parentBox">
         <div class="titleBox">
           <h4>Your Group</h4>
+          <div class="group-selection">
+            <select [(ngModel)]="selectedGroupId" (change)="onGroupChange()">
+              <option [value]="addGroupId">Select Group</option>
+              <option *ngFor="let group of options" [value]="group.groupID">{{ group.groupID }}</option>
+              <option [value]="addGroupId">Add New Group</option>
+            </select>
+          </div>
         </div>
         <!-- ***** Your Group Section Start ***** -->
         <div class="your-group">
@@ -222,7 +222,7 @@
                 <div class="bar">
                   <div class="progress" [style.width]="calculatePreviousWidth(entry)">
                     <div class="animation">
-                      <h2 class="dynamic-heading" [style.fontSize]="fontSizeMultiplier * 1.2 + 'rem'">
+                      <h2 class="dynamic-heading" [style.fontSize]="fontSizeMultiplier * 1.4 + 'rem'">
                         {{ entry.previousPoints }}
                       </h2>
                     </div>
@@ -349,7 +349,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
-            <p>
+            <p [style.fontSize]="fontSizeMultiplier * 0.8 + 'rem'">
               Copyright © 2024, Purefy. All rights reserved.
 
               <br />You are accessing an experimental web application developed by participants (Team 13) of the Team Project 2024 module.
