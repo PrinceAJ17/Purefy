@@ -13,6 +13,26 @@ export class ProfilepageComponent implements OnInit {
   account$?: Observable<Account | null>;
   currentUsername?: string;
   theme: 'light' | 'dark' = 'dark';
+  showGDPR: boolean = false;
+  showDPIA: boolean = false;
+  animatingGDPR: boolean = false;
+  animatingDPIA: boolean = false;
+
+  togglePDF(documentType: string): void {
+    if (documentType === 'GDPR') {
+      this.animatingGDPR = true;
+      setTimeout(() => {
+        this.animatingGDPR = false;
+        this.showGDPR = !this.showGDPR;
+      }, 1000); // Delay of 1000 milliseconds (1 second)
+    } else if (documentType === 'DPIA') {
+      this.animatingDPIA = true;
+      setTimeout(() => {
+        this.animatingDPIA = false;
+        this.showDPIA = !this.showDPIA;
+      }, 1000);
+    }
+  }
 
   constructor(private accountService: AccountService) {}
 

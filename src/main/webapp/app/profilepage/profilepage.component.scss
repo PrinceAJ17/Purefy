@@ -209,3 +209,81 @@ $base-font-size: 16px; /* Adjusted base font size to 16px */
     color: #ffcc00; // Set the icon color to yellow
   }
 }
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item {
+  text-align: center;
+  margin-bottom: 20px; // Adjust as needed for spacing
+}
+
+.fa-envelope {
+  color: #ec6090; // Adjust color as needed
+  font-size: 150px; /* Increase or adjust this value to change the icon size */
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and shadow */
+}
+
+.custom-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Slightly darker overlay for better focus on modal */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050;
+}
+
+.custom-modal {
+  background: white;
+  padding: 30px; /* Increased padding for better layout */
+  border-radius: 8px; /* Slightly larger border radius for aesthetics */
+  width: 90%; /* Larger width percentage */
+  max-width: 800px; /* Increased max width */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); /* Enhanced shadow for 3D effect */
+}
+
+.custom-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px; /* More space between header and body */
+}
+
+.custom-modal-body {
+  max-height: 600px; /* Increased height for better content display */
+  overflow-y: auto;
+}
+
+.close {
+  cursor: pointer;
+  font-size: 1.6rem; /* Larger close button */
+}
+
+@keyframes envelopeOpen {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.envelope-icon {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.envelope-icon.animating {
+  animation: envelopeOpen 1s forwards;
+}

@@ -167,28 +167,71 @@
                     </div>
                   </div>
                 </div>
-                <!-- Add spacing for the second line -->
-                <div class="w-100 item-spacing"></div>
-                <!-- Second Line of Items (2 items centered) -->
-                <div class="offset-lg-3 col-lg-3 col-sm-4">
-                  <div class="item">
-                    <div class="icon">
-                      <a routerLink="/Team"><img src="assets/images/team.jpg" alt="" style="border-radius: 10px" /></a>
-                    </div>
-                    <h4>Our Team</h4>
-                    <div class="icon-button">
-                      <a routerLink="/Team"><i class="fa fa-angle-right"></i></a>
+                <div class="row justify-content-center">
+                  <div class="col-lg-2 col-sm-4">
+                    <div class="item" (click)="togglePDF('GDPR')">
+                      <div class="icon envelope-icon" [class.animating]="animatingGDPR">
+                        <i class="fa fa-envelope fa-2x" style="cursor: pointer"></i>
+                      </div>
+                      <h4>Our GDPR</h4>
+                      <i class="fa fa-angle-right"></i>
                     </div>
                   </div>
-                </div>
-                <div class="col-lg-3 col-sm-4">
-                  <div class="item">
-                    <div class="icon">
-                      <a routerLink="/About"><img src="assets/images/about32.jpg" alt="" style="border-radius: 10px" /></a>
+
+                  <!-- GDPR Modal -->
+                  <div *ngIf="showGDPR" class="custom-modal-overlay" (click)="togglePDF('GDPR')">
+                    <div class="custom-modal" (click)="$event.stopPropagation()">
+                      <div class="custom-modal-header">
+                        <h5>GDPR Document</h5>
+                        <button type="button" class="close" (click)="togglePDF('GDPR')">&times;</button>
+                      </div>
+                      <div class="custom-modal-body">
+                        <embed src="assets/images/GDPR.pdf" type="application/pdf" width="100%" height="500px" />
+                      </div>
                     </div>
-                    <h4>About us</h4>
-                    <div class="icon-button">
-                      <a routerLink="/About"><i class="fa fa-angle-right"></i></a>
+                  </div>
+                  <div class="col-lg-2 col-sm-4">
+                    <div class="item">
+                      <div class="icon">
+                        <a routerLink="/About"><img src="assets/images/about32.jpg" alt="" style="border-radius: 10px" /></a>
+                      </div>
+                      <h4>About us</h4>
+                      <div class="icon-button">
+                        <a routerLink="/About"><i class="fa fa-angle-right"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-2 col-sm-4">
+                    <div class="item">
+                      <div class="icon">
+                        <a routerLink="/Team"><img src="assets/images/team.jpg" alt="" style="border-radius: 10px" /></a>
+                      </div>
+                      <h4>Our Team</h4>
+                      <div class="icon-button">
+                        <a routerLink="/Team"><i class="fa fa-angle-right"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-2 col-sm-4">
+                    <div class="item" (click)="togglePDF('DPIA')">
+                      <div class="icon envelope-icon" [class.animating]="animatingDPIA">
+                        <i class="fa fa-envelope fa-2x" style="cursor: pointer"></i>
+                      </div>
+                      <h4>Our DPIA</h4>
+                      <i class="fa fa-angle-right"></i>
+                    </div>
+                  </div>
+
+                  <!-- DPIA Modal -->
+                  <div *ngIf="showDPIA" class="custom-modal-overlay" (click)="togglePDF('DPIA')">
+                    <div class="custom-modal" (click)="$event.stopPropagation()">
+                      <div class="custom-modal-header">
+                        <h5>DPIA Document</h5>
+                        <button type="button" class="close" (click)="togglePDF('DPIA')">&times;</button>
+                      </div>
+                      <div class="custom-modal-body">
+                        <embed src="assets/images/DPIA.pdf" type="application/pdf" width="100%" height="500px" />
+                      </div>
                     </div>
                   </div>
                 </div>
