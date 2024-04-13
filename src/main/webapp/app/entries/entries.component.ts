@@ -4,6 +4,9 @@ import { EntriesFeatureService } from '../entities/entries-feature/service/entri
 import { EntriesFeature, NewEntriesFeature } from '../entities/entries-feature/entries-feature.model';
 import { default as dayjs } from 'dayjs';
 import { HttpClient, HttpResponse } from '@angular/common/http';
+import { AccountService } from 'app/core/auth/account.service';
+import { Account } from 'app/core/auth/account.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'jhi-entries',
@@ -11,6 +14,10 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
   styleUrls: ['./entries.component.scss'],
 })
 export class EntriesComponent implements OnInit {
+  account$?: Observable<Account | null>;
+  currentUsername?: string;
+  theme: 'light' | 'dark' = 'dark';
+  fontSizeMultiplier: number = 1;
   entryFeature: EntriesFeature = {
     id: 0,
     title: null,
@@ -27,7 +34,12 @@ export class EntriesComponent implements OnInit {
     return formattedDate.toDate().toISOString();
   }
 
-  constructor(private router: Router, private renderer: Renderer2, private entriesFeatureService: EntriesFeatureService) {}
+  constructor(
+    private router: Router,
+    private renderer: Renderer2,
+    private entriesFeatureService: EntriesFeatureService,
+    private accountService: AccountService
+  ) {}
 
   ngOnInit(): void {
     this.loadScript('vendor/jquery/jquery.min.js')
@@ -42,10 +54,40 @@ export class EntriesComponent implements OnInit {
       .catch(error => {
         console.error('Script loading error:', error);
       });
+    this.account$ = this.accountService.identity();
+    this.account$.subscribe(account => {
+      if (account) {
+        this.currentUsername = account.login;
+        const storedFontSize = localStorage.getItem(this.getFontSizeKey());
+        if (storedFontSize) {
+          this.fontSizeMultiplier = parseFloat(storedFontSize);
+        }
+        const storedTheme = localStorage.getItem(this.getThemeKey());
+        if (storedTheme) {
+          this.theme = storedTheme as 'light' | 'dark';
+        }
+      }
+    });
     this.loadEntries();
     this.filteredEntries = this.entries;
   }
 
+  getFontSizeKey(): string {
+    return `fontSizeMultiplier_${this.currentUsername || 'default'}`;
+  }
+
+  updateFontSize(): void {
+    localStorage.setItem(this.getFontSizeKey(), this.fontSizeMultiplier.toString());
+  }
+
+  getThemeKey(): string {
+    return `theme_${this.currentUsername || 'default'}`;
+  }
+
+  toggleTheme(): void {
+    this.theme = this.theme === 'dark' ? 'light' : 'dark';
+    localStorage.setItem(this.getThemeKey(), this.theme);
+  }
   loadEntries(): void {
     this.entriesFeatureService.getAll().subscribe((data: EntriesFeature[]) => {
       this.entries = data.sort((a, b) => {

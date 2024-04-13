@@ -4,33 +4,46 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-    <title>ENTRIES</title>
+    <title>Entries</title>
   </head>
-  <!-- ***** Preloader Start ***** -->
-  <div id="js-preloader" class="js-preloader">
-    <div class="preloader-inner">
-      <span class="dot"></span>
-      <div class="dots">
-        <span></span>
-        <span></span>
-        <span></span>
+  <body [ngClass]="theme">
+    <!-- ***** Preloader Start ***** -->
+    <div id="js-preloader" class="js-preloader">
+      <div class="preloader-inner">
+        <span class="dot"></span>
+        <div class="dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
     </div>
-  </div>
-  <!-- ***** Preloader End ***** -->
-  <body>
+    <!-- ***** Preloader End ***** -->
+
     <!-- ***** Header Area Start ***** -->
     <header class="header-area header-sticky">
       <div class="container">
         <div class="row">
           <div class="col-12">
             <nav class="main-nav">
-              <!-- ***** Logo Start ***** -->
               <a href="#" class="logo">
-                <img src="assets/images/purefy-removebg-preview.png" alt="" />
+                <img src="assets/images/purefy-removebg-preview.png" alt="" style="margin-top: 5px" />
               </a>
-              <!-- ***** Logo End ***** -->
-              <!-- ***** Menu Start ***** -->
+              <li class="font-size-slider-container" style="display: flex; align-items: center; margin-top: -60px">
+                <input
+                  type="range"
+                  min="0.5"
+                  max="2"
+                  step="0.1"
+                  [(ngModel)]="fontSizeMultiplier"
+                  (ngModelChange)="updateFontSize()"
+                  class="font-size-slider"
+                  style="margin-top: 5px"
+                />
+              </li>
+              <button class="theme-toggle-button" (click)="toggleTheme()">
+                <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+              </button>
               <ul class="nav">
                 <li><a routerLink="/Dashboard">Home</a></li>
                 <li><a routerLink="/Challenges">Challenges</a></li>
@@ -38,13 +51,12 @@
                 <li><a href="#">Habit Tracker</a></li>
                 <li><a routerLink="/Leaderboard">Leaderboard</a></li>
                 <li>
-                  <a href="#" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
+                  <a routerLink="/Profilepage" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
                 </li>
               </ul>
               <a class="menu-trigger">
                 <span>Menu</span>
               </a>
-              <!-- ***** Menu End ***** -->
             </nav>
           </div>
         </div>
@@ -57,15 +69,17 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="page-content">
-            <strong><h4>Entries</h4></strong>
+            <h4 class="welcome-title">Entries</h4>
             <!-- ***** Introductory Section Expanded ***** -->
             <div class="intro-section-entries">
-              <p>Explore your added entries below or add a new entry simply by pressing the "+" button below!</p>
+              <p [style.fontSize]="fontSizeMultiplier + 'rem'">
+                Explore your added entries below or add a new entry simply by pressing the "+" button below!
+              </p>
             </div>
             <!-- ***** MoodJournal Section Start ***** -->
-            <div class="col-lg-2">
+            <div class="MJ_SECTION" [ngClass]="theme">
               <!-- ***** Sidebar Start ***** -->
-              <div class="sidebar" id="sidebar">
+              <div class="sidebar" id="sidebar" [ngClass]="theme">
                 <ul>
                   <li><a href="#" routerLink="/MoodJournalPage">All</a></li>
                   <li><a href="#" routerLink="/Entries">Entries</a></li>
@@ -73,12 +87,10 @@
                 </ul>
               </div>
               <!-- ***** Sidebar End ***** -->
-            </div>
-            <div class="col-lg-10 mood-journal-section">
-              <div id="journal-content">
+              <div id="journal-content" [ngClass]="theme">
                 <!-- ***** Search Bar Start ***** -->
-                <div class="journal-search">
-                  <form id="journalSearch" action="#">
+                <div class="journal-search" [ngClass]="theme">
+                  <form id="journalSearch" action="#" [ngClass]="theme">
                     <input
                       type="text"
                       placeholder="Search Entries"
@@ -139,9 +151,9 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
-            <p>
-              Copyright © 2024, Purefy. All rights reserved. <br />You are accessing an experimental web application developed by
-              participants (Team 13) of the Team Project 2024 module.
+            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+              Copyright © 2024, Purefy. All rights reserved.
+              <br />You are accessing an experimental web application developed by participants (Team 13) of the Team Project 2024 module.
             </p>
           </div>
         </div>

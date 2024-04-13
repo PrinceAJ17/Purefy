@@ -4,21 +4,46 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-    <title>EMOTIONS</title>
+    <title>PROMPTS</title>
   </head>
-  <body>
+  <body [ngClass]="theme">
+    <!-- ***** Preloader Start ***** -->
+    <div id="js-preloader" class="js-preloader">
+      <div class="preloader-inner">
+        <span class="dot"></span>
+        <div class="dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+    <!-- ***** Preloader End ***** -->
+
     <!-- ***** Header Area Start ***** -->
     <header class="header-area header-sticky">
       <div class="container">
         <div class="row">
           <div class="col-12">
             <nav class="main-nav">
-              <!-- ***** Logo Start ***** -->
               <a href="#" class="logo">
-                <img src="assets/images/purefy-removebg-preview.png" alt="" />
+                <img src="assets/images/purefy-removebg-preview.png" alt="" style="margin-top: 5px" />
               </a>
-              <!-- ***** Logo End ***** -->
-              <!-- ***** Menu Start ***** -->
+              <li class="font-size-slider-container" style="display: flex; align-items: center; margin-top: -60px">
+                <input
+                  type="range"
+                  min="0.5"
+                  max="2"
+                  step="0.1"
+                  [(ngModel)]="fontSizeMultiplier"
+                  (ngModelChange)="updateFontSize()"
+                  class="font-size-slider"
+                  style="margin-top: 5px"
+                />
+              </li>
+              <button class="theme-toggle-button" (click)="toggleTheme()">
+                <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+              </button>
               <ul class="nav">
                 <li><a routerLink="/Dashboard">Home</a></li>
                 <li><a routerLink="/Challenges">Challenges</a></li>
@@ -26,13 +51,12 @@
                 <li><a href="#">Habit Tracker</a></li>
                 <li><a routerLink="/Leaderboard">Leaderboard</a></li>
                 <li>
-                  <a href="#" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
+                  <a routerLink="/Profilepage" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
                 </li>
               </ul>
               <a class="menu-trigger">
                 <span>Menu</span>
               </a>
-              <!-- ***** Menu End ***** -->
             </nav>
           </div>
         </div>
@@ -47,7 +71,7 @@
           <div class="page-content">
             <h4 class="welcome-title">Journal in your emotions using prompts!</h4>
             <div class="intro-section-prompts">
-              <p>
+              <p [style.fontSize]="fontSizeMultiplier + 'rem'">
                 Below are some AI generated prompts specifically chosen according to your emotions. Feel free to use them to help you
                 reflect and contemplate on your feelings.
               </p>

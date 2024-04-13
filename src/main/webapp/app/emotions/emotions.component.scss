@@ -3,8 +3,6 @@
 @import 'assets/css/owl';
 @import 'assets/css/swiper';
 @import 'assets/css/flex-slider';
-@import 'vendor/bootstrap/css/bootstrap.min';
-@import 'assets/css/templatemo-cyborg-gaming';
 
 /*
 
@@ -723,12 +721,173 @@ LandingPage Style
   font-weight: bold;
 }
 
+.light {
+  background: #f0f0f0;
+  color: #000;
+
+  .page-content {
+    background-color: #fff !important; // Ensure the background is white
+    color: #000 !important; // Ensure the text is black
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    a,
+    span,
+    em,
+    .dynamic-text-size,
+    .dynamic-heading,
+    .text-container {
+      color: #000 !important; // Ensures all text elements are also explicitly set to black
+    }
+    .intro-subsection {
+      background-color: darkgrey;
+      color: #fff;
+      padding: 15px;
+      margin: 15px 0px;
+      border-radius: 8px;
+    }
+
+    .intro-section {
+      background-color: grey;
+      color: #fff;
+      padding: 20px;
+      margin-bottom: 30px;
+      border-radius: 8px;
+    }
+
+    a {
+      color: #e75e8d !important; // Links in pink
+      &:hover {
+        color: darken(#e75e8d, 10%) !important; // Pink hover effect
+      }
+    }
+
+    .MJ_SECTION {
+      background-color: #ffffff;
+    }
+
+    .sidebar {
+      background-color: #b7b9bb;
+      padding: 20px;
+      border-radius: 8px;
+      width: 160px;
+      float: right;
+      margin-left: 20px;
+    }
+
+    #journal-content {
+      padding: 20px;
+      background-color: #f0f0f0;
+      border-radius: 8px;
+      max-width: 900px;
+      height: 500px;
+      overflow-y: scroll;
+    }
+
+    .sidebar ul li a {
+      color: #000000;
+      text-align: center;
+      text-decoration: none;
+      display: block;
+      transition: color 0.3s ease;
+    }
+
+    .intro-section-entries {
+      background-color: #afadad;
+      padding: 20px;
+      margin-bottom: 30px;
+      border-radius: 8px;
+    }
+
+    .intro-section-prompts {
+      background-color: #afadad;
+      padding: 20px;
+      margin-bottom: 30px;
+      border-radius: 8px;
+    }
+
+    .most-popular .item {
+      background-color: darkgrey;
+      padding: 30px 15px;
+      border-radius: 23px;
+      margin-bottom: 30px;
+    }
+
+    .heading-section h4 span:not(.text-decoration-underline) {
+      color: #e75e8d !important; // Non-underline span in pink
+    }
+
+    .heading-section h4 span.text-decoration-underline {
+      text-decoration: underline;
+      color: #fff !important; // Underlined span in white
+    }
+  }
+}
+
+.dark {
+  background: #1f2122;
+  color: #ccc;
+}
+
+.theme-toggle-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.theme-toggle-button {
+  background-color: #444;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.theme-toggle-button:hover {
+  background-color: #666;
+}
+
+.theme-toggle-button {
+  background: none; // No background
+  border: none; // No border
+  padding: 0; // No padding
+  cursor: pointer;
+  font-size: 35px; // Slightly larger icons, adjust as needed
+  line-height: 1;
+  display: flex; // Use flex to center the icon
+  justify-content: center; // Center horizontally
+  align-items: center; // Center vertically
+  height: 50px; // Explicit height for the button
+  width: 50px; // Explicit width for the button
+  margin-left: 10px; // Space from the scrollbar
+  margin-top: 0px; // Move away from the scrollbar by adding left margin, adjust as needed
+
+  &:hover {
+    color: #ccc; // Change color on hover
+  }
+
+  .fas {
+    // Directly target the icon for any specific styles
+    display: block; // Ensure the icon itself is a block to fill the button area
+    color: #ffcc00; // Set the icon color to yellow
+  }
+}
+
 .sidebar {
   background-color: #2c2f33;
   padding: 20px;
   border-radius: 8px;
-  margin-left: 930px;
   width: 160px;
+  float: right;
+  margin-left: 20px;
 }
 
 .sidebar ul {
@@ -755,10 +914,8 @@ LandingPage Style
 
 #journal-content {
   padding: 20px;
-  background-color: #2c2f33;
+  background-color: #1f2122;
   border-radius: 8px;
-  margin-left: 20px;
-  margin-top: 0px;
   max-width: 900px;
   height: 500px;
   overflow-y: scroll;
@@ -781,9 +938,8 @@ LandingPage Style
   background: #cf6679;
 }
 
-.mood-journal-section {
-  margin-top: -170px;
-  margin-left: -20px;
+.MJ_SECTION {
+  background-color: #27292a;
 }
 
 .card {
@@ -843,28 +999,31 @@ LandingPage Style
 }
 .intro-section p {
   color: #fff;
-  margin-top: 10px;
+  margin-top: 30px;
 }
 
 .intro-subsection {
   background-color: #424242;
   color: #fff;
   padding: 15px;
-  margin: 15px 0px;
+  margin: 35px 0px;
   border-radius: 8px;
 }
 
 .intro-subsection h3 {
+  margin-top: 15px;
   font-size: 20px;
   color: #ec6090;
 }
 
 .intro-subsection p {
+  margin-top: 15px;
   color: #fff;
   font-size: 16px;
 }
 
 .journal-search {
+  margin-left: 550px;
   margin-bottom: 20px;
 }
 
@@ -901,6 +1060,23 @@ LandingPage Style
 
 .search-button i {
   margin-right: 0;
+}
+
+.delete-button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: inherit; /* Inherit the background color of the parent entry */
+  color: #fff; /* Set the text color to white for better visibility */
+  border: none;
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #d32f2f; /* Change the background color on hover */
 }
 
 /*
@@ -965,7 +1141,7 @@ EntriesPage Style
   border-left: 5px solid #20058b;
   width: 80%;
   max-width: 600px;
-  height: 430px;
+  height: 500px;
   border-radius: 10px;
 }
 
@@ -1012,7 +1188,14 @@ EntriesPage Style
   width: 100%;
 }
 
+#entryDate {
+  color: black;
+  background-color: #bae0fb;
+  border: 1px solid #ccc;
+}
+
 .form-group {
+  color: black;
   margin-bottom: 15px;
   display: block;
 }
@@ -1032,6 +1215,26 @@ EntriesPage Style
   background-color: #92caf3;
 }
 
+.entry-container {
+  position: relative;
+}
+
+.delete-button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: inherit; /* Inherit the background color of the parent entry */
+  color: #fff; /* Set the text color to white for better visibility */
+  border: none;
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #d32f2f; /* Change the background color on hover */
+}
 /*
 ---------------------------------------------
 PromptsPage Style
@@ -1105,6 +1308,9 @@ PromptsPage Style
   color: #000000;
 }
 
+.prompt-popup-content h3 {
+  font-size: 20px;
+}
 .prompt-close-button {
   color: #aaa;
   float: right;
@@ -1112,15 +1318,41 @@ PromptsPage Style
   font-weight: bold;
 }
 
-.prompt-close-button:hover,
-.prompt-close-button:focus {
+.prompt-close-button:hover {
+  color: black;
   cursor: pointer;
+}
+.prompt-close-button:focus {
   color: black;
 }
 
-.emotion-link:hover,
+.emotion-link:hover {
+  color: #aaa;
+  cursor: pointer;
+}
 .emotion-link:focus {
   color: black;
+}
+.emotion-link {
+  color: black;
+  text-transform: lowercase;
+}
+
+.delete-button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: inherit; /* Inherit the background color of the parent entry */
+  color: #fff; /* Set the text color to white for better visibility */
+  border: none;
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #d32f2f; /* Change the background color on hover */
 }
 
 /*
@@ -1128,6 +1360,7 @@ PromptsPage Style
 EmotionsPage Style
 ---------------------------------------------
 */
+
 .owl-carousel .item {
   background-color: #fa9ea6;
   border-left: 5px solid #da0303;
