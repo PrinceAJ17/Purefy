@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2, RendererFactory2, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Renderer2, RendererFactory2, AfterViewInit, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { PromptsFeatureService } from '../entities/prompts-feature/service/prompts-feature.service';
 import { PromptsFeature, NewPromptsFeature } from '../entities/prompts-feature/prompts-feature.model';
@@ -47,7 +47,8 @@ export class EmotionsComponent implements OnInit, AfterViewInit {
     private promptsFeatureService: PromptsFeatureService,
     private moodpickerService: NewMoodPickerService,
     private http: HttpClient,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private elementRef: ElementRef
   ) {
     this.renderer = rendererFactory.createRenderer(null, null);
   }
@@ -62,7 +63,6 @@ export class EmotionsComponent implements OnInit, AfterViewInit {
     this.loadScript('vendor/jquery/jquery.min.js')
       .then(() => this.loadMood())
       .then(() => this.loadScript('vendor/bootstrap/js/bootstrap.min.js'))
-      .then(() => this.loadScript('assets/js/isotope.min.js'))
       .then(() => this.loadScript('assets/js/owl-carousel.js'))
       .then(() => this.loadScript('assets/js/tabs.js'))
       .then(() => this.loadScript('assets/js/popup.js'))
@@ -90,6 +90,16 @@ export class EmotionsComponent implements OnInit, AfterViewInit {
     });
     this.loadPromptedEntries();
     this.filteredPromptedEntries = this.allPrompts;
+    this.preventCarouselChangeOnClick();
+  }
+
+  preventCarouselChangeOnClick() {
+    const prompts = this.elementRef.nativeElement.querySelectorAll('.prompt-select');
+    prompts.forEach((prompt: any) => {
+      this.renderer.listen(prompt, 'click', (event: Event) => {
+        event.stopPropagation();
+      });
+    });
   }
 
   getFontSizeKey(): string {
@@ -225,9 +235,6 @@ export class EmotionsComponent implements OnInit, AfterViewInit {
   }
   updateSelectedPrompt(promptIndex: number): void {
     this.setPrompt(promptIndex);
-    if (this.chosenMood !== undefined) {
-      this.updatePromptOptions(this.chosenMood);
-    }
   }
 
   updatePromptOptions(mood: string | null | undefined): void {
