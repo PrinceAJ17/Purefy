@@ -54,6 +54,7 @@
         </div>
       </div>
     </header>
+
     <!-- ***** Header Area End ***** -->
 
     <div class="container">
@@ -65,10 +66,10 @@
                 <div class="featured-games header-text">
                   <div class="heading-section">
                     <h1 *ngIf="loggedin == 'true'" class="animate__animated animate__bounce">
-                      <em style="color: #e75e8d">Welcome,</em> {{ firstName }}
+                      <span class="pink-text">Welcome,</span> {{ firstName }}
                     </h1>
                     <h1 *ngIf="loggedin == 'false'" class="animate__animated animate__bounce">
-                      <em style="color: #e75e8d">Welcome </em> to the hub of <em style="color: #e75e8d">dopamine detoxing.</em>
+                      <span class="pink-text">Welcome </span> to the hub of <span class="pink-text">dopamine detoxing.</span>
                     </h1>
                   </div>
                 </div>
@@ -81,12 +82,19 @@
               <div class="col-lg-12">
                 <div class="featured-games header-text">
                   <div class="heading-section">
-                    <h1>Progress loading..</h1>
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
+                    <h1 *ngIf="loggedin == 'false'" class="animate__animated animate__bounce">
+                      To easily track your progress, <span class="pink-text">log in</span>
+                    </h1>
+                    <ng-container *ngIf="loggedin == 'true'">
+                      <h1 class="animate__animated animate__bounce">Current points: {{ userCurrentPoints }}</h1>
+                      <br />
+                      <h1 *ngIf="habitsfound == 'true'" class="animate__animated animate__bounce">
+                        Habits completed today: {{ userHabits[0] }} / {{ userHabits[1] }}
+                      </h1>
+                      <h1 *ngIf="habitsfound == 'false'" class="animate__animated animate__bounce">
+                        No habits found for today. Get tracking now!
+                      </h1>
+                    </ng-container>
                   </div>
                 </div>
               </div>

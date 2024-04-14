@@ -4,10 +4,17 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 
 import { NewMoodPickerService, PartialUpdateNewMoodPicker } from '../entities/new-mood-picker/service/new-mood-picker.service';
+import { PointsService } from '../entities/points/service/points.service';
+import { HabitstrackingService } from '../entities/habitstracking/service/habitstracking.service';
+import { UserService } from '../entities/user/user.service';
 
 import { Observable } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
 import { INewMoodPicker, NewNewMoodPicker } from '../entities/new-mood-picker/new-mood-picker.model';
+import { IPoints } from '../entities/points/points.model';
+import { IUserPoints } from '../entities/user-points/user-points.model';
+import { IHabitstracking } from '../entities/habitstracking/habitstracking.model';
+import { IUser, getUserIdentifier } from '../entities/user/user.model';
 
 import { AccountService } from '../core/auth/account.service';
 import { finalize } from 'rxjs/operators';
@@ -27,7 +34,10 @@ export class DashboardComponent implements OnInit {
     private router: Router,
     private moodpickerService: NewMoodPickerService,
     private http: HttpClient,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private pointsService: PointsService,
+    private habittrackingService: HabitstrackingService,
+    private userService: UserService
   ) {}
 
   loggedin?: string;
@@ -38,11 +48,31 @@ export class DashboardComponent implements OnInit {
 
   firstName?: string | null = '';
 
+  userID?: number;
+
   moodData?: INewMoodPicker[] | null;
 
   userMoodData?: INewMoodPicker | null;
 
   tempMoodPicker?: NewNewMoodPicker;
+
+  pointsData?: IUserPoints[] | null;
+
+  userPointsData?: IUserPoints | null;
+
+  userCurrentPoints?: number | null | undefined;
+
+  HTData?: IHabitstracking[] | null;
+
+  userHTData?: IHabitstracking | null;
+
+  userHabits: number[] = [0, 0];
+
+  habitsfound?: string;
+
+  week?: number;
+
+  daysOfWeek: string[] = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
   TIPSINDEX = [
     {
@@ -91,7 +121,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadScript('vendor/jquery/jquery.min.js')
-      .then(() => this.loadMood())
       .then(() => this.loadScript('vendor/bootstrap/js/bootstrap.min.js'))
       .then(() => this.loadScript('assets/js/isotope.min.js'))
       .then(() => this.loadScript('assets/js/owl-carousel.js'))
@@ -105,6 +134,9 @@ export class DashboardComponent implements OnInit {
       .catch(error => {
         console.error('Script loading error:', error);
       });
+
+    this.week = this.getCurrentWeekNumber();
+    this.loadMoodandProgress();
   }
 
   private loadScript(scriptUrl: string): Promise<void> {
@@ -119,53 +151,129 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  loadMood(): void {
+  getCurrentWeekNumber(): number {
+    const now = new Date();
+    const startOfYear = new Date(now.getFullYear(), 0, 1);
+    const pastDaysOfYear = (now.valueOf() - startOfYear.valueOf()) / 86400000;
+    return Math.ceil((pastDaysOfYear + startOfYear.getDay() + 1) / 7);
+  }
+
+  getCurrentDay(): string {
+    const now = new Date();
+    return this.daysOfWeek[now.getDay()];
+  }
+
+  loadMoodandProgress(): void {
     this.accountService.identity().subscribe(account => {
       if (account !== null) {
         this.loggedin = 'true';
         this.firstName = account.firstName;
-        const username = account.login; // Assuming the user ID is stored in 'id' property
+        const username = account.login;
         console.log(username);
-        this.moodpickerService.query().subscribe(response => {
-          this.moodData = response.body;
-          if (this.moodData) {
-            let result = this.moodData.find(item => item.username === username);
+
+        //gets user ID of logged-in user
+        this.userService.query().subscribe(users => {
+          if (users.body) {
+            let result = users.body.find(user => user.login === username);
 
             if (result) {
-              if (result.mood == 'None') {
+              this.userID = result.id;
+            } else {
+              this.userID = 0;
+            }
+          }
+          console.log('Request ran:', users.body);
+
+          console.log(this.userID);
+
+          this.moodpickerService.query().subscribe(response => {
+            this.moodData = response.body;
+            if (this.moodData) {
+              let result = this.moodData.find(item => item.username === username);
+
+              if (result) {
+                if (result.mood == 'None') {
+                  this.currentView = 'None';
+                  this.chosenMood = 'None';
+                } else {
+                  this.currentView = 'MoodChosen';
+                  this.chosenMood = result.mood;
+                }
+
+                this.userMoodData = result;
+              } else {
+                //create new newMoodPicker
+
+                this.tempMoodPicker = {
+                  id: null,
+                  username: username,
+                  mood: 'None',
+                };
+
+                console.log('User mood not found, creating new newMoodPicker...');
+
+                this.moodpickerService.create(this.tempMoodPicker).subscribe(newMood => {
+                  this.userMoodData = newMood.body;
+
+                  console.log('Created new newMoodPicker successfully:', this.userMoodData);
+                });
+
                 this.currentView = 'None';
                 this.chosenMood = 'None';
-              } else {
-                this.currentView = 'MoodChosen';
-                this.chosenMood = result.mood;
               }
 
-              this.userMoodData = result;
-            } else {
-              //create new newMoodPicker
-
-              this.tempMoodPicker = {
-                id: null,
-                username: username,
-                mood: 'None',
-              };
-
-              console.log('User mood not found, creating new newMoodPicker...');
-
-              this.moodpickerService.create(this.tempMoodPicker).subscribe(newMood => {
-                this.userMoodData = newMood.body;
-
-                console.log('Created new newMoodPicker successfully:', this.userMoodData);
-              });
-
-              this.currentView = 'None';
-              this.chosenMood = 'None';
+              console.log(this.moodData[0].username);
+              console.log(this.moodData[0].mood);
             }
+            console.log(response.body);
+          });
 
-            console.log(this.moodData[0].username);
-            console.log(this.moodData[0].mood);
-          }
-          console.log(response.body);
+          this.pointsService.query().subscribe(response => {
+            this.pointsData = response.body;
+            if (this.pointsData) {
+              let result = this.pointsData.find(item => item.userID === this.userID);
+
+              if (result) {
+                this.userPointsData = result;
+
+                this.userCurrentPoints = this.userPointsData.currentPoints;
+              } else {
+                //create new newMoodPicker
+
+                this.userCurrentPoints = 0;
+              }
+            }
+            console.log(this.pointsData);
+            console.log(this.userPointsData);
+            console.log(response.body);
+          });
+
+          this.habittrackingService.query().subscribe(response => {
+            this.HTData = response.body;
+            if (this.HTData) {
+              let result = this.HTData.filter(
+                item =>
+                  item['usernameHabit'] === username && item['weekOfHabit'] === this.week && item['dayOfHabit'] === this.getCurrentDay()
+              );
+
+              console.log(result);
+
+              if (result.length !== 0) {
+                this.habitsfound = 'true';
+
+                this.userHabits[1] = result.length;
+
+                this.userHabits[0] = result.filter(item => item['completedHabit'] === true).length;
+              } else {
+                //create new newMoodPicker
+
+                this.habitsfound = 'false';
+              }
+            }
+            console.log(response.body);
+
+            console.log(this.userHabits);
+          });
         });
       } else {
         console.error('User account not found.');
@@ -177,6 +285,10 @@ export class DashboardComponent implements OnInit {
       this.loggedin = 'false';
       this.currentView = 'None';
       this.chosenMood = 'None';
+    }
+
+    if (!this.habitsfound) {
+      this.habitsfound = 'false';
     }
   }
   goToPromptsPage(): void {
