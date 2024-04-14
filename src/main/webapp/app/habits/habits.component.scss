@@ -302,7 +302,7 @@ p {
 }
 
 .weekly-summary textarea {
-  width: 180%;
+  width: 100%;
   box-sizing: border-box;
   padding: 10px;
   border-radius: 5px;
@@ -315,7 +315,7 @@ p {
 
 .weekly-summary button {
   padding: 10px 20px;
-  width: 180%; /* Full width of the summary block */
+  width: 44%; /* Full width of the summary block */
   background-color: #e75e8d; /* Background color for the button */
   color: white; /* Text color for the button */
   border: none; /* No border for the button */
@@ -335,8 +335,6 @@ p {
   }
 }
 
-/* Styling for buttons */
-.new-weekly-habit-tracker,
 .add-habit {
   background-color: #e75e8d;
   color: #fff;
@@ -347,12 +345,23 @@ p {
   margin-bottom: 30px;
   cursor: pointer;
 }
+.new-weekly-habit-tracker {
+  background-color: #e75e8d;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-top: 23px;
+  margin-bottom: 30px;
+  cursor: pointer;
+}
 
 .week-starting {
   background-color: #e75e8d;
   padding: 10px; /* Adjust padding as needed */
   border-radius: 5px; /* Add rounded corners */
   color: #fff;
+  margin-bottom: 30px;
 }
 
 .week-starting p {
@@ -370,7 +379,7 @@ p {
 }
 
 .habit-item:hover p {
-  color: white; /* Change text color to white on hover */
+  color: #e75e8d; /* Change text color to white on hover */
 }
 
 .habit-item .checked {
@@ -401,7 +410,6 @@ p {
 }
 
 .weekly-summary {
-  margin-top: 20px;
   display: flex;
   justify-content: center;
   width: 100%;
@@ -946,4 +954,100 @@ footer p a {
 
 footer p a:hover {
   color: #ec6090;
+}
+
+$base-font-size: 16px; /* Adjusted base font size to 16px */
+
+.dynamic-text-size {
+  font-size: 100%; /* Default font size relative to parent element */
+}
+
+.dynamic-heading {
+  font-size: 150%; /* Default heading font size, adjusted relative to parent element */
+}
+
+.light {
+  background: #f0f0f0;
+  color: #000;
+  background-color: #ffffff; // White background for light theme
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  a {
+    color: #000; // Ensure all text elements are also explicitly set to black
+  }
+
+  .page-content {
+    background-color: #ffffff;
+  }
+
+  .habit-item {
+    background-color: #fff; // A light grey that is deeper than white
+    // Adjust the text color if necessary for better contrast
+    color: #333;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+
+  color: #000;
+  * {
+    color: inherit;
+  }
+}
+
+.dark {
+  background: #1f2122;
+  color: #ccc;
+  // Define or adjust your existing dark theme styles as needed
+}
+
+.theme-toggle-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.theme-toggle-button {
+  background-color: #444;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.theme-toggle-button:hover {
+  background-color: #666;
+}
+
+.theme-toggle-button {
+  background: none; // No background
+  border: none; // No border
+  padding: 0; // No padding
+  cursor: pointer;
+  font-size: 35px; // Slightly larger icons, adjust as needed
+  line-height: 1;
+  display: flex; // Use flex to center the icon
+  justify-content: center; // Center horizontally
+  align-items: center; // Center vertically
+  height: 50px; // Explicit height for the button
+  width: 50px; // Explicit width for the button
+  margin-left: 10px; // Space from the scrollbar
+  margin-top: 0px; // Move away from the scrollbar by adding left margin, adjust as needed
+
+  &:hover {
+    color: #ccc; // Change color on hover
+  }
+
+  .fas {
+    // Directly target the icon for any specific styles
+    display: block; // Ensure the icon itself is a block to fill the button area
+    color: #ffcc00; // Set the icon color to yellow
+  }
 }
