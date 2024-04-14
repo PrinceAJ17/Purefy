@@ -225,9 +225,6 @@ export class EmotionsComponent implements OnInit, AfterViewInit {
   }
   updateSelectedPrompt(promptIndex: number): void {
     this.setPrompt(promptIndex);
-    if (this.chosenMood !== undefined) {
-      this.updatePromptOptions(this.chosenMood);
-    }
   }
 
   updatePromptOptions(mood: string | null | undefined): void {
