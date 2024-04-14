@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/auth/account.model';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, ignoreElements } from 'rxjs';
 
 interface groups {
   id: number;
@@ -86,6 +86,8 @@ export class LeaderboardComponent implements OnInit {
   countdownDisplay: string = '';
 
   fontSizeMultiplier: number = 1;
+  minFontSize: number = 0.5;
+  maxFontSize: number = 2;
   account$?: Observable<Account | null>;
   currentUsername?: string;
   theme: 'light' | 'dark' = 'dark';
@@ -94,6 +96,7 @@ export class LeaderboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.account$ = this.accountService.identity();
+    this.adjustSliderValues();
     this.account$.subscribe(account => {
       if (account) {
         this.currentUsername = account.login;
@@ -108,6 +111,12 @@ export class LeaderboardComponent implements OnInit {
       }
     });
     this.loadScript('vendor/jquery/jquery.min.js')
+      .then(() => this.loadScript('vendor/bootstrap/js/bootstrap.min.js'))
+      .then(() => this.loadScript('assets/js/isotope.min.js'))
+      .then(() => this.loadScript('assets/js/owl-carousel.js'))
+      .then(() => this.loadScript('assets/js/tabs.js'))
+      .then(() => this.loadScript('assets/js/popup.js'))
+      .then(() => this.loadScript('assets/js/custom.js'))
       .then(() => this.checkForAddGroup())
       .then(() => this.getGroupsData())
       .then(() => this.addNewGroupWindow())
@@ -129,6 +138,34 @@ export class LeaderboardComponent implements OnInit {
       script.onerror = error => reject(error);
       body.appendChild(script);
     });
+  }
+
+  adjustSliderValues() {
+    const screenWidth = window.innerWidth;
+    if (screenWidth <= 1200 && screenWidth >= 993) {
+      this.minFontSize = 0.3;
+      this.maxFontSize = 1.3;
+    } else if (screenWidth <= 992 && screenWidth >= 769) {
+      this.minFontSize = 0.3;
+      this.maxFontSize = 1;
+    } else if (screenWidth <= 768 && screenWidth >= 577) {
+      this.minFontSize = 0.3;
+      this.maxFontSize = 0.7;
+    } else if (screenWidth <= 576 && screenWidth >= 451) {
+      this.minFontSize = 0.3;
+      this.maxFontSize = 0.7;
+    } else if (screenWidth <= 450 && screenWidth >= 351) {
+      this.minFontSize = 0.2;
+      this.maxFontSize = 0.5;
+    } else if (screenWidth <= 350) {
+      this.minFontSize = 0.1;
+      this.maxFontSize = 0.4;
+    }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.adjustSliderValues();
   }
 
   private async checkForAddGroup() {

@@ -55,6 +55,7 @@ import { GamesLevelsComponent } from './games-levels/games-levels.component';
 import { VideoLevelsComponent } from './video-levels/video-levels.component';
 import { FoodLevelsComponent } from './food-levels/food-levels.component';
 import { HabitsComponent } from './habits/habits.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   imports: [
@@ -114,6 +115,7 @@ import { HabitsComponent } from './habits/habits.component';
     TeamComponent,
     AboutComponent,
     HabitsComponent,
+    DashboardComponent,
   ],
   bootstrap: [MainComponent],
 })

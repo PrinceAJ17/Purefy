@@ -30,6 +30,7 @@ abbr,
 acronym,
 address,
 big,
+big,
 cite,
 code,
 del,
@@ -253,11 +254,6 @@ Header Style
   -moz-transition: all 0.5s ease 0s;
   -o-transition: all 0.5s ease 0s;
   transition: all 0.5s ease 0s;
-  width: 65%;
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-  justify-content: center;
 }
 
 .header-area .main-nav {
@@ -295,6 +291,8 @@ Header Style
 
 .header-area .main-nav .logo {
   border-right: 0px solid #27292a;
+  flex-basis: 10%;
+  margin-right: 5%;
   -webkit-transition: all 0.3s ease 0s;
   -moz-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
@@ -319,8 +317,8 @@ Header Style
 
 .header-area .main-nav .nav {
   display: inline-flex;
-  flex-basis: 100%;
-  justify-content: flex-end;
+  flex-basis: 70%;
+  justify-content: center;
   vertical-align: middle;
   text-align: right;
   margin-top: 0px;
@@ -329,14 +327,12 @@ Header Style
   -moz-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
-  position: relative;
   z-index: 999;
 }
 
 .header-area .main-nav .nav li {
   padding: 0 1%;
   display: inline-block;
-  position: relative;
 }
 
 .header-area .main-nav .nav li a {
@@ -453,6 +449,7 @@ Header Style
   width: 30px;
   height: 2px;
   left: 0;
+  width: 75%;
 }
 
 .background-header .main-nav .menu-trigger span:before,
@@ -523,6 +520,19 @@ Header Style
 
 .header-area.header-sticky .nav li a.active {
   color: #fff;
+}
+
+.light .header-area .main-nav .nav li a.profile-link {
+  color: #000;
+  background-color: white;
+}
+
+.light .header-area .main-nav .nav li a.profile-link:hover {
+  color: #555;
+}
+
+.light .header-area .main-nav .nav li a.profile-link img {
+  border: 1px solid #ddd;
 }
 
 @media (max-width: 1200px) {
@@ -670,62 +680,6 @@ Header Style
   }
 }
 
-.theme-toggle-container {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 1000;
-}
-
-.theme-toggle-button {
-  background-color: #444;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-}
-
-.theme-toggle-button:hover {
-  background-color: #666;
-}
-
-.theme-toggle-button {
-  background: none;
-  cursor: pointer;
-  font-size: 35px;
-  line-height: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50px;
-  width: 50px;
-  margin-left: 10px;
-
-  &:hover {
-    color: #ccc;
-  }
-
-  .fas {
-    display: block;
-    color: #ffcc00;
-  }
-}
-
-.light .header-area .main-nav .nav li a.profile-link {
-  color: #000;
-  background-color: white;
-}
-
-.light .header-area .main-nav .nav li a.profile-link:hover {
-  color: #555;
-}
-
-.light .header-area .main-nav .nav li a.profile-link img {
-  border: 1px solid #ddd;
-}
-
 /*
 ---------------------------------------------
 Footer Style
@@ -778,7 +732,7 @@ Main Boxes Style
   margin: 0 auto;
   background-color: #27292a;
   border: 10px solid #27292a;
-  border-radius: 3vh;
+  border-radius: 24px;
 }
 
 .light .mainBox {
@@ -796,7 +750,7 @@ Main Boxes Style
     'yourgroup'
     'children';
   max-width: 98%;
-  height: 95%;
+  max-height: 95%;
   overflow: visible;
   align-items: center;
 }
@@ -810,7 +764,7 @@ Main Boxes Style
     'title'
     'leaderboard';
   max-width: 98%;
-  height: 95%;
+  max-height: 95%;
   overflow: visible;
   align-items: start;
 }
@@ -830,11 +784,15 @@ Main Boxes Style
   margin-bottom: 1%;
   margin-left: 2%;
   white-space: nowrap;
-  flex-shrink: 1;
-  margin-top: 1%;
-  max-width: 100%;
   justify-content: space-between;
   align-items: center;
+}
+
+.titleBox .selectors {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 80%;
 }
 
 /*
@@ -843,12 +801,65 @@ Group Select Style
 ---------------------------------------------
 */
 
+.font-size-slider-container {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.theme-toggle-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.theme-toggle-button {
+  background-color: #444;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle-button:hover {
+  background-color: #666;
+}
+
+.theme-toggle-button {
+  background: none;
+  cursor: pointer;
+  font-size: 35px;
+  line-height: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 50px;
+  margin-left: 10px;
+
+  &:hover {
+    color: #ccc;
+  }
+
+  .fas {
+    display: block;
+    color: #ffcc00;
+  }
+}
+
 .titleBox .group-selection {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 20%;
+  width: 30%;
 }
 .titleBox .group-selection select {
   background-color: #1f2122;
@@ -911,24 +922,10 @@ Your Group Style
   height: 99%;
   display: grid;
   grid-area: yourgroup;
-  margin-bottom: 2%;
-  margin-top: 1%;
-  //box-shadow: 0 2px 0 2px #000;
-}
-
-.your-group:hover {
-  //transform: translateZ(2px) translateX(2px) translateY(-2px);
-  //transition: transform 0.3s ease-out;
-  //animation: growShadowDark 0.4s forwards;
 }
 
 .light .your-group {
   background-color: #f0f0f0;
-  //box-shadow: 0 2px 0 2px grey;
-}
-
-.light .your-group:hover {
-  //animation: growShadowLight 0.4s forwards;
 }
 
 .your-group .nameBadge {
@@ -1079,7 +1076,7 @@ Your Group Style
   background-color: darkslategray;
   border-radius: 15px;
   color: white;
-  padding: 6px 6px 6px 10px;
+  padding: 6px 6px 6px 6px;
   width: 30%;
 }
 
@@ -1138,22 +1135,10 @@ Current Leaderboard Style
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
-  //box-shadow: 0 2px 0 2px #000;
 }
 
 .light .weekly-stats {
   background-color: #f0f0f0;
-  //box-shadow: 0 2px 0 2px grey;
-}
-
-.weekly-stats:hover {
-  //transform: translateZ(3px) translateX(3px) translateY(-3px);
-  //transition: transform 0.3s ease-out;
-  //animation: growShadowDark 0.4s forwards;
-}
-
-.light .weekly-stats:hover {
-  //animation: growShadowLight 0.4s forwards;
 }
 
 .weekly-stats .current-leaderboard {
@@ -1190,7 +1175,6 @@ Current Leaderboard Style
 
 .weekly-stats .leaderboard > div:hover {
   transform: perspective(500px) translateZ(20px);
-  //box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 .weekly-stats .leaderboard > div .name {
@@ -1310,7 +1294,6 @@ Previous Leaderboard Style
   padding: 20px;
   width: 98.5%;
   height: 98.5%;
-  //box-shadow: 0 2px 0 2px #000;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -1319,21 +1302,10 @@ Previous Leaderboard Style
 
 .light .previous-leaderboard {
   background-color: #f0f0f0;
-  //box-shadow: 0 2px 0 2px grey;
-}
-
-.previous-leaderboard:hover {
-  //transform: translateZ(3px) translateX(3px) translateY(-3px);
-  //transition: transform 0.3s ease-out;
-  //animation: growShadowDark 0.4s forwards;
-}
-
-.light .previous-leaderboard:hover {
-  //animation: growShadowLight 0.4s forwards;
 }
 
 .previous-leaderboard .pleaderboard {
-  margin-top: 2%;
+  margin-top: 1%;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -1475,24 +1447,10 @@ Overall Leaderboard Style
   padding: 20px;
   width: 98.5%;
   height: 98.5%;
-  //box-shadow: 0 2px 0 2px #000;
 }
 
 .light .overall-leaderboard {
   background-color: #f0f0f0;
-  //box-shadow: 0 2px 0 2px grey;
-}
-
-.overall-leaderboard:hover {
-  //transform: translateZ(3px) translateX(3px) translateY(-3px);
-  //transition: transform 0.3s ease-out;
-  //animation: growShadowDark 0.4s forwards;
-}
-
-.light .overall-leaderboard:hover {
-  //transform: translateZ(3px) translateX(3px) translateY(-3px);
-  //transition: transform 0.3s ease-out;
-  //animation: growShadowLight 0.4s forwards;
 }
 
 .overall-leaderboard .oleaderboard {
@@ -1581,3 +1539,206 @@ $base-font-size: 16px;
 
 ---------------------------------------------
 */
+@media (max-width: 1200px) {
+  .mainBox {
+    width: 800px;
+  }
+
+  .weekly-stats .leaderboard .medal img {
+    width: 8ch;
+  }
+
+  .weekly-stats .leaderboard .Avatar img {
+    width: 7ch;
+  }
+
+  .previous-leaderboard .pleaderboard > div img {
+    width: 7ch;
+  }
+
+  .previous-leaderboard .pleaderboard > div .Avatar img {
+    width: 5ch;
+  }
+
+  .overall-leaderboard .oleaderboard .topbox .Avatar img {
+    width: 10ch;
+  }
+
+  .overall-leaderboard .oleaderboard .bottombox .Avatar img {
+    width: 8ch;
+  }
+}
+
+@media (max-width: 992px) {
+  .mainBox {
+    width: 700px;
+  }
+
+  .weekly-stats .leaderboard .medal img {
+    width: 7ch;
+  }
+
+  .weekly-stats .leaderboard .Avatar img {
+    width: 5ch;
+  }
+
+  .previous-leaderboard .pleaderboard > div img {
+    width: 6ch;
+  }
+
+  .previous-leaderboard .pleaderboard > div .Avatar img {
+    width: 4ch;
+  }
+
+  .overall-leaderboard .oleaderboard .topbox .Avatar img {
+    width: 9ch;
+  }
+
+  .overall-leaderboard .oleaderboard .bottombox .Avatar img {
+    width: 7ch;
+  }
+}
+
+@media (max-width: 768px) {
+  .mainBox {
+    width: 600px;
+  }
+
+  .weekly-stats .leaderboard .medal img {
+    width: 5.5ch;
+  }
+
+  .weekly-stats .leaderboard .Avatar img {
+    width: 4ch;
+  }
+
+  .previous-leaderboard .pleaderboard > div img {
+    width: 5ch;
+  }
+
+  .previous-leaderboard .pleaderboard > div .Avatar img {
+    width: 3ch;
+  }
+
+  .overall-leaderboard .oleaderboard .topbox .Avatar img {
+    width: 8ch;
+  }
+
+  .overall-leaderboard .oleaderboard .bottombox .Avatar img {
+    width: 6ch;
+  }
+}
+
+@media (max-width: 576px) {
+  .mainBox {
+    width: 450px;
+  }
+
+  .weekly-stats .leaderboard .medal img {
+    width: 4ch;
+  }
+
+  .weekly-stats .leaderboard .Avatar img {
+    width: 3ch;
+  }
+  .weekly-stats .leaderboard .bar {
+    height: 90%;
+    width: 60%;
+    margin-left: 1%;
+    margin-right: 2%;
+  }
+
+  .previous-leaderboard .pleaderboard > div img {
+    width: 4ch;
+  }
+
+  .previous-leaderboard .pleaderboard > div .Avatar img {
+    width: 3ch;
+  }
+
+  .overall-leaderboard .oleaderboard .topbox .Avatar img {
+    width: 7ch;
+  }
+
+  .overall-leaderboard .oleaderboard .bottombox .Avatar img {
+    width: 5ch;
+  }
+}
+
+@media (max-width: 450px) {
+  .mainBox {
+    width: 350px;
+  }
+
+  .weekly-stats .leaderboard .medal img {
+    width: 3ch;
+  }
+
+  .weekly-stats .leaderboard .Avatar img {
+    width: 2.5ch;
+  }
+  .weekly-stats .leaderboard .bar {
+    height: 90%;
+    width: 60%;
+    margin-left: 1%;
+    margin-right: 2%;
+  }
+
+  .previous-leaderboard .pleaderboard > div img {
+    width: 3ch;
+  }
+
+  .previous-leaderboard .pleaderboard > div .Avatar img {
+    width: 2.5ch;
+  }
+
+  .overall-leaderboard .oleaderboard .topbox .Avatar img {
+    width: 6ch;
+  }
+
+  .overall-leaderboard .oleaderboard .bottombox .Avatar img {
+    width: 4ch;
+  }
+}
+
+@media (max-width: 350px) {
+  .mainBox {
+    width: 300px;
+  }
+
+  .weekly-stats .leaderboard .medal img {
+    width: 3ch;
+  }
+
+  .weekly-stats .leaderboard .Avatar img {
+    width: 2.5ch;
+  }
+  .weekly-stats .leaderboard .bar {
+    height: 90%;
+    width: 60%;
+    margin-left: 1%;
+    margin-right: 2%;
+  }
+
+  .previous-leaderboard .pleaderboard > div img {
+    width: 3ch;
+  }
+
+  .previous-leaderboard .pleaderboard > div .Avatar img {
+    width: 2.5ch;
+  }
+  .previous-leaderboard .pleaderboard > div .bar {
+    height: 90%;
+    width: 70%;
+    margin-right: 2%;
+    margin-left: 1%;
+  }
+
+  .overall-leaderboard .oleaderboard .topbox .Avatar img {
+    width: 4ch;
+  }
+
+  .overall-leaderboard .oleaderboard .bottombox .Avatar img {
+    width: 3ch;
+  }
+}
