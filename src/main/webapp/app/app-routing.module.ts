@@ -174,7 +174,7 @@ const routes: Routes = [
     component: SupportComponent,
   },
   {
-    path: 'Habit',
+    path: 'Habits',
     component: HabitsComponent,
   },
 ];
@@ -200,43 +200,53 @@ const routes: Routes = [
         },
         {
           path: 'Password',
+          data: { pageTitle: 'Password' },
           component: PasswordResetFinishComponent,
         },
         {
           path: 'Login',
+          data: { pageTitle: 'Login' },
           component: LoginComponent,
         },
         {
           path: 'Team',
+          data: { pageTitle: 'Team' },
           component: TeamComponent,
         },
         {
-          path: 'Challenges',
+          path: 'Challenges-Index',
+          data: { pageTitle: 'Challenges' },
           component: ChallengesIndexComponent,
         },
         {
           path: 'Profilepage',
+          data: { pageTitle: 'Profile' },
           component: ProfilepageComponent,
         },
 
         {
           path: 'Feedback',
+          data: { pageTitle: 'Feedback' },
           component: FeedbackComponent,
         },
         {
           path: 'Support',
+          data: { pageTitle: 'Support' },
           component: SupportComponent,
         },
         {
           path: 'About',
+          data: { pageTitle: 'About' },
           component: AboutComponent,
         },
         {
           path: 'Signout',
+          data: { pageTitle: 'Signout' },
           component: SignoutComponent,
         },
         {
-          path: 'Habit',
+          path: 'Habits',
+          data: { pageTitle: 'Habit' },
           component: HabitsComponent,
         },
         {
@@ -245,98 +255,122 @@ const routes: Routes = [
         },
         {
           path: 'Alcohol-Start/:state',
+          data: { pageTitle: 'Alcohol' },
           component: AlcoholStartComponent,
         },
         {
           path: 'History',
+          data: { pageTitle: 'History' },
           component: HistoryComponent,
         },
         {
           path: 'Food-Start/:state',
+          data: { pageTitle: 'Junk Food' },
           component: FoodStartComponent,
         },
         {
           path: 'Games-Start/:state',
+          data: { pageTitle: 'Video Games' },
           component: GamesStartComponent,
         },
         {
           path: 'Music-Start/:state',
+          data: { pageTitle: 'Music' },
           component: MusicStartComponent,
         },
         {
           path: 'Smoking-Start/:state',
+          data: { pageTitle: 'Smoking' },
           component: SmokingStartComponent,
         },
         {
           path: 'Social-Start/:state',
+          data: { pageTitle: 'Social Media' },
           component: SocialStartComponent,
         },
         {
           path: 'Videos-Start/:state',
+          data: { pageTitle: 'Videos' },
           component: VideoStartComponent,
         },
         {
           path: 'Leaderboard',
+          data: { pageTitle: 'Leaderboard' },
           component: LeaderboardComponent,
         },
         {
           path: 'MoodJournalPage',
+          data: { pageTitle: 'Mood Journal' },
           component: MoodJournalPageComponent,
         },
         {
           path: 'Entries',
+          data: { pageTitle: 'Entries' },
           component: EntriesComponent,
         },
         {
           path: 'Prompts',
+          data: { pageTitle: 'Prompts' },
           component: PromptsComponent,
         },
         {
           path: 'Emotions',
+          data: { pageTitle: 'Emotions' },
           component: EmotionsComponent,
         },
         {
           path: 'Dashboard',
+          data: { pageTitle: 'Dashboard' },
           component: DashboardComponent,
         },
         {
           path: 'All-Challenges',
+          data: { pageTitle: 'Challenges' },
           component: AllChallengesComponent,
         },
         {
           path: 'Coffee',
+          data: { pageTitle: 'Coffee' },
           component: CoffeeLevelsComponent,
         },
         {
           path: 'Music',
+          data: { pageTitle: 'Music' },
           component: MusicLevelsComponent,
         },
         {
           path: 'Video',
+          data: { pageTitle: 'Video' },
           component: VideoLevelsComponent,
         },
         {
           path: 'Social',
+          data: { pageTitle: 'Social Media' },
           component: SociaLevelsComponent,
         },
         {
           path: 'Smoking',
+          data: { pageTitle: 'Smoking' },
           component: SmokingLevelsComponent,
         },
         {
           path: 'JunkFood',
+          data: { pageTitle: 'Junk Food' },
           component: FoodLevelsComponent,
         },
         {
           path: 'Alcohol',
+          data: { pageTitle: 'Alcohol' },
           component: AlcoholLevelsComponent,
         },
         {
           path: 'VideoGames',
+          data: { pageTitle: 'Video Games' },
           component: GamesLevelsComponent,
         },
         {
           path: 'Coffee-Start/:state',
+          data: { pageTitle: 'Coffee' },
           component: CoffeeStartComponent,
         },
         navbarRoute,
