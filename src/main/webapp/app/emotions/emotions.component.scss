@@ -1380,28 +1380,14 @@ EmotionsPage Style
   background-color: #8e5658;
 }
 
-.owl-carousel .owl-nav {
-  display: flex;
-  justify-content: flex-end;
-  position: absolute;
-  top: -50px;
-  right: 0px;
-  font-size: 50px;
-}
-
-.owl-carousel .owl-nav .owl-prev,
-.owl-carousel .owl-nav .owl-next {
-  color: #fff;
-  background-color: transparent;
-  margin-left: 5px;
-  padding: 10px;
-  font-size: 24px;
-  transition: color 0.3s ease;
-}
-
-.owl-carousel .owl-nav .owl-prev:hover,
-.owl-carousel .owl-nav .owl-next:hover {
-  color: #fa9ea6;
+.owl-carousel .owl-nav button.owl-prev,
+.owl-carousel .owl-nav button.owl-next,
+.owl-carousel button.owl-dot {
+  background: none;
+  color: black;
+  font-size: xx-large;
+  border: none;
+  padding: 0 !important;
 }
 
 .journal-entry-form {
