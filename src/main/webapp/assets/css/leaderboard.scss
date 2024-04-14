@@ -522,6 +522,11 @@ Header Style
   color: #fff;
 }
 
+.light .header-area {
+  background-color: #f0f0f0;
+  color: #000000;
+}
+
 .light .header-area .main-nav .nav li a.profile-link {
   color: #000;
   background-color: white;
@@ -891,11 +896,6 @@ Group Select Style
   color: #666;
   pointer-events: none;
   font-size: 16px;
-}
-
-.light .header-area {
-  background-color: #f0f0f0;
-  color: #000000;
 }
 
 .light .titleBox .group-selection select {
