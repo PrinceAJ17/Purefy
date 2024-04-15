@@ -11,6 +11,34 @@
   cursor: pointer;
 }
 
+.progress-container {
+  display: flex;
+  gap: 30px;
+}
+
+.centered-progress-container {
+  flex: 1;
+  border-radius: 23px;
+  background: #2c2d2f;
+  height: 200px;
+  display: flex; /* Use flexbox for content alignment */
+  align-items: center; /* Center content vertically */
+  justify-content: center;
+  flex-direction: column;
+}
+
+.progress-header {
+  text-align: center; /* Center text horizontally */
+  padding: 10px; /* Add padding for spacing */
+  width: 100%; /* Make the header take up full width */
+  box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.progress-content {
+  align-items: center; /* Center content vertically */
+  justify-content: center;
+}
+
 .image-test {
   //text-align: center;
   //float: right;
@@ -126,6 +154,10 @@ $base-font-size: 16px; /* Adjusted base font size to 16px */
   background: #f0f0f0;
   color: #000;
 
+  .centered-progress-container {
+    background: #d9d9d9;
+  }
+
   .page-content {
     background-color: #fff !important; // Ensure the background is white
     color: #000 !important; // Ensure the text is black
@@ -167,6 +199,10 @@ $base-font-size: 16px; /* Adjusted base font size to 16px */
 .dark {
   background: #1f2122;
   color: #ccc;
+
+  .centered-progress-container {
+    background: #2c2d2f;
+  }
 }
 
 .theme-toggle-container {

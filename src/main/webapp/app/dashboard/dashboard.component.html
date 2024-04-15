@@ -110,26 +110,58 @@
                     >
                       To easily track your progress, <span class="pink-text">log in</span>
                     </h1>
-                    <ng-container *ngIf="loggedin == 'true'">
-                      <h1 class="animate__animated animate__bounce" [style.fontSize]="1.25 + fontSizeMultiplier + 'rem'">
-                        Current points: {{ userCurrentPoints }}
-                      </h1>
-                      <br />
-                      <h1
-                        *ngIf="habitsfound == 'true'"
-                        class="animate__animated animate__bounce dynamic-text-size"
-                        [style.fontSize]="1.25 + fontSizeMultiplier + 'rem'"
-                      >
-                        Habits completed today: {{ userHabits[0] }} / {{ userHabits[1] }}
-                      </h1>
-                      <h1
-                        *ngIf="habitsfound == 'false'"
-                        class="animate__animated animate__bounce dynamic-text-size"
-                        [style.fontSize]="1.25 + fontSizeMultiplier + 'rem'"
-                      >
-                        No habits found for today. Get tracking now!
-                      </h1>
-                    </ng-container>
+
+                    <div class="progress-container" *ngIf="loggedin == 'true'">
+                      <div class="centered-progress-container" [ngClass]="theme">
+                        <div class="progress-header">
+                          <h1 class="dynamic-text-size" [style.fontSize]="0.3 + fontSizeMultiplier + 'rem'">Current points:</h1>
+                        </div>
+
+                        <div class="progress-content">
+                          <br />
+                          <h1 class="dynamic-text-size" [style.fontSize]="3 + fontSizeMultiplier + 'rem'">
+                            &nbsp;
+                            <span class="pink-text dynamic-text-size" [style.fontSize]="3 + fontSizeMultiplier + 'rem'">
+                              {{ userCurrentPoints }}
+                            </span>
+                            <span class="dynamic-text-size" [style.fontSize]="0.3 + fontSizeMultiplier + 'rem'"> pts </span>
+                          </h1>
+
+                          <br />
+                          <br />
+                        </div>
+                      </div>
+
+                      <div class="centered-progress-container" [ngClass]="theme" *ngIf="habitsfound == 'true'">
+                        <div class="progress-header">
+                          <h1 class="dynamic-text-size" [style.fontSize]="0.3 + fontSizeMultiplier + 'rem'">Habits completed today:</h1>
+                        </div>
+
+                        <div class="progress-content">
+                          <br />
+                          <h1 class="dynamic-text-size" [style.fontSize]="3 + fontSizeMultiplier + 'rem'">
+                            &nbsp;
+                            <span class="pink-text dynamic-text-size" [style.fontSize]="3 + fontSizeMultiplier + 'rem'">
+                              {{ userHabits[0] }}
+                            </span>
+                            <span class="dynamic-text-size" [style.fontSize]="0.3 + fontSizeMultiplier + 'rem'">
+                              / {{ userHabits[1] }}
+                            </span>
+                          </h1>
+
+                          <br />
+                          <br />
+                        </div>
+                      </div>
+
+                      <div class="centered-progress-container" [ngClass]="theme" *ngIf="habitsfound == 'false'">
+                        <h1 class="dynamic-text-size" [style.fontSize]="1.5 + fontSizeMultiplier * 0.5 + 'rem'">
+                          No habits found for today.
+                        </h1>
+
+                        <h1 class="dynamic-text-size" [style.fontSize]="1.5 + fontSizeMultiplier * 0.5 + 'rem'">Get tracking now!</h1>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
