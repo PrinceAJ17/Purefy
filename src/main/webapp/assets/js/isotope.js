@@ -27,7 +27,7 @@
           var h = a.data(u, i);
           if (!h) return void r(i + ' not initialized. Cannot call methods, i.e. ' + s);
           var d = h[e];
-          if (!d || '_' == e.charAt(0)) return void r(s + ' is not a valid method');
+          if (!d || '_' === e.charAt(0)) return void r(s + ' is not a valid method');
           var l = d.apply(h, o);
           n = void 0 === n ? l : n;
         }),
@@ -97,7 +97,7 @@
         var i = this._events && this._events[t];
         if (i && i.length) {
           var o = i.indexOf(e);
-          return o != -1 && i.splice(o, 1), this;
+          return o !== -1 && i.splice(o, 1), this;
         }
       }),
       (e.emitEvent = function (t, e) {

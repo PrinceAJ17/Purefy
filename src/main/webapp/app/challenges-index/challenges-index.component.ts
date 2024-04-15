@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { Account } from '../core/auth/account.model';
-import { AccountService } from '../core/auth/account.service';
 
 @Component({
   selector: 'jhi-challenges-index',
@@ -10,12 +7,7 @@ import { AccountService } from '../core/auth/account.service';
   styleUrls: ['./challenges-index.component.scss'],
 })
 export class ChallengesIndexComponent implements OnInit {
-  constructor(private router: Router, private accountService: AccountService) {}
-
-  fontSizeMultiplier: number = 1;
-  account$?: Observable<Account | null>;
-  currentUsername?: string;
-  theme: 'light' | 'dark' = 'dark';
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.loadScript('vendor/jquery/jquery.min.js')
@@ -32,39 +24,6 @@ export class ChallengesIndexComponent implements OnInit {
       .catch(error => {
         console.error('Script loading error:', error);
       });
-    this.account$ = this.accountService.identity();
-    this.account$.subscribe(account => {
-      if (account) {
-        this.currentUsername = account.login;
-        const storedFontSize = localStorage.getItem(this.getFontSizeKey());
-        if (storedFontSize) {
-          this.fontSizeMultiplier = parseFloat(storedFontSize);
-        }
-        const storedTheme = localStorage.getItem(this.getThemeKey());
-        if (storedTheme) {
-          this.theme = storedTheme as 'light' | 'dark';
-        }
-      }
-    });
-  }
-
-  getFontSizeKey(): string {
-    // Ensure there's a default key if username is not yet available
-    return `fontSizeMultiplier_${this.currentUsername || 'default'}`;
-  }
-
-  updateFontSize(): void {
-    // Save font size to local storage with username-specific key
-    localStorage.setItem(this.getFontSizeKey(), this.fontSizeMultiplier.toString());
-  }
-
-  getThemeKey(): string {
-    return `theme_${this.currentUsername || 'default'}`;
-  }
-
-  toggleTheme(): void {
-    this.theme = this.theme === 'dark' ? 'light' : 'dark';
-    localStorage.setItem(this.getThemeKey(), this.theme);
   }
 
   private loadScript(scriptUrl: string): Promise<void> {
@@ -77,5 +36,9 @@ export class ChallengesIndexComponent implements OnInit {
       script.onerror = error => reject(error);
       body.appendChild(script);
     });
+  }
+
+  redirectToLevels() {
+    this.router.navigate(['/All-Challenges']);
   }
 }

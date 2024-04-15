@@ -6,15 +6,6 @@
     $('#js-preloader').addClass('loaded');
   });
 
-  // Initialize $grid
-  var $grid = $('.grid').isotope({
-    itemSelector: '.all',
-    percentPosition: true,
-    masonry: {
-      columnWidth: '.all',
-    },
-  });
-
   // WOW JS
   $(window).on('load', function () {
     if ($('.wow').length) {
@@ -26,18 +17,6 @@
         live: true, // Act on asynchronously loaded content (default is true)
       });
       wow.init();
-    }
-  });
-
-  $(window).scroll(function () {
-    var scroll = $(window).scrollTop();
-    var box = $('.header-text').height();
-    var header = $('header').height();
-
-    if (scroll >= box - header) {
-      $('header').addClass('background-header');
-    } else {
-      $('header').removeClass('background-header');
     }
   });
 
