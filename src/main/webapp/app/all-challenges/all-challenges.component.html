@@ -9,7 +9,7 @@
     <title>All CHALLENGES</title>
   </head>
 
-  <body [ngClass]="theme">
+  <body>
     <!-- ***** Preloader Start ***** -->
     <div id="js-preloader" class="js-preloader">
       <div class="preloader-inner">
@@ -33,14 +33,32 @@
               <a href="" class="logo">
                 <img src="assets/images/purefy-removebg-preview.png" alt="" />
               </a>
+
+              <li class="font-size-slider-container" style="display: flex; align-items: center; margin-top: -60px">
+                <input
+                  type="range"
+                  min="0.5"
+                  max="2"
+                  step="0.1"
+                  [(ngModel)]="fontSizeMultiplier"
+                  (ngModelChange)="updateFontSize()"
+                  class="font-size-slider"
+                  style="margin-top: 5px"
+                />
+              </li>
+
+              <!-- ***** Logo End ***** -->
+              <!-- ***** Menu Start ***** -->
               <ul class="nav">
-                <li><a routerLink="/Dashboard">Home</a></li>
-                <li><a routerLink="/Challenges-Index" class="active">Challenges</a></li>
-                <li><a routerLink="/MoodJournalPage">Mood Journal</a></li>
-                <li><a routerLink="/Habits">Habit Tracker</a></li>
-                <li><a routerLink="/Leaderboard">Leaderboards</a></li>
+                <li><a href="">Home</a></li>
+                <li><a href="index.html" class="active">Challenges</a></li>
+                <li><a href="">Mood Journal</a></li>
+                <li><a href="">Habit Tracker</a></li>
+                <li><a href="">Leaderboards</a></li>
+                <li><a href="">About</a></li>
+                <li><a href="">Team</a></li>
                 <li>
-                  <a routerLink="/Profilepage" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
+                  <a href="" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
                 </li>
               </ul>
               <a class="menu-trigger">
@@ -54,46 +72,32 @@
     </header>
     <!-- ***** Header Area End ***** -->
 
-    <div class="container" [ngClass]="theme">
+    <div class="container">
       <div class="row">
         <div class="col-lg-12">
           <div class="page-content">
-            <div class="font-size-slider-container" style="display: flex; align-items: center; justify-content: flex-end">
-              <input
-                type="range"
-                min="0.5"
-                max="2"
-                step="0.1"
-                [(ngModel)]="fontSizeMultiplier"
-                (ngModelChange)="updateFontSize()"
-                class="font-size-slider"
-                style="margin-top: 2px; margin-right: 5px"
-              />
-              <button class="theme-toggle-button" (click)="toggleTheme()" style="margin-top: 2px">
-                <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
-              </button>
-            </div>
+            <!-- ***** Banner Start ***** -->
             <div class="main-banner">
               <div class="row">
                 <div class="col-lg-7">
                   <div class="header-text">
-                    <h5>Welcome to All Challenges</h5>
-                    <h4>Browse All our challenges here</h4>
+                    <h5 class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">Welcome to All Challenges</h5>
+                    <h4 class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">Browse All our challenges here</h4>
                   </div>
                 </div>
               </div>
             </div>
             <!-- ***** Banner End ***** -->
 
-            <div class="most-popular" [ngClass]="theme">
+            <div class="most-popular">
               <div class="row">
-                <div class="col-lg-12" [ngClass]="theme">
+                <div class="col-lg-12">
                   <div class="heading-section">
-                    <h4 class="dynamic-text-size"><em>All</em> Challenges</h4>
+                    <h4 class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'"><em>All</em> Challenges</h4>
                   </div>
-                  <div class="row" [ngClass]="theme">
-                    <div class="col-lg-3 col-sm-6" [ngClass]="theme">
-                      <div class="item" [ngClass]="theme">
+                  <div class="row">
+                    <div class="col-lg-3 col-sm-6">
+                      <div class="item">
                         <a routerLink="/Music"> <img src="assets/images/ezgif-5-12525bdbf9.jpg" alt="" /> </a>
                         <h4 class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
                           MUSIC<br /><span>Time to hear the birds sing.</span>
@@ -185,7 +189,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
-            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+            <p>
               Copyright © 2024, Purefy. All rights reserved.
 
               <br />You are accessing an experimental web application developed by participants (Team 13) of the Team Project 2024 module.
