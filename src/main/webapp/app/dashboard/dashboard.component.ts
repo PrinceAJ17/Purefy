@@ -70,6 +70,8 @@ export class DashboardComponent implements OnInit {
 
   week?: number;
 
+  timeOfDay?: string = 'Welcome,';
+
   daysOfWeek: string[] = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
   TIPSINDEX = [
@@ -83,17 +85,63 @@ export class DashboardComponent implements OnInit {
     },
     {
       Md: 'Motivated',
-      tips: ['Try to step outside of your comfort zone and get into a new hobby', '', 'Tip 3'],
+      tips: [
+        'Try to step outside of your comfort zone and get into a new hobby',
+        'Use your motivation to better yourself further, think of what else you could detox from in your lifestyle',
+      ],
     },
-    { Md: 'Optimistic', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
-    { Md: 'Bored', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
-    { Md: 'Distracted', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
-    { Md: 'Unmotivated', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
-    { Md: 'Irritable', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
-    { Md: 'Anxious', tips: ['Tip 1', 'Tip 2', ''] },
+    {
+      Md: 'Optimistic',
+      tips: [
+        'Set yourself some goals for the future, so you can hold your future-self accountable',
+        'Note down what makes you feel this way, no matter how small!',
+      ],
+    },
+    {
+      Md: 'Bored',
+      tips: [
+        'Meet up with friends or family, having someone to bounce energy off of can help',
+        "Try something new, whether that'd be taking up a new hobby or exploring a new part of town",
+      ],
+    },
+    {
+      Md: 'Distracted',
+      tips: [
+        'Practice mindfulness techniques such as deep breathing and meditation',
+        'Try to optimise the environment around you, to minimise the chances of your attention being pulled away from what your doing',
+        'Take a more methodical approach to tasks and chores; doing things one by one will ensure each task gets your full attention',
+      ],
+    },
+    {
+      Md: 'Unmotivated',
+      tips: [
+        'Spend some time outdoors connecting with nature, even something like taking a stroll in the park can help inspire you',
+        'Set small and achievable goals, and take pride in yourself when you completed them',
+      ],
+    },
+    {
+      Md: 'Irritable',
+      tips: [
+        'Take part in stress-relief activities, such as light exercise like yoga',
+        'Try to identify what situations are triggers for you, and take steps to avoid them ',
+        "Don't be too hard on yourself; understand that it's okay to feel irritable at times",
+      ],
+    },
+    {
+      Md: 'Anxious',
+      tips: [
+        "Try journaling about your mood, it can help you understand what's making you feel that way",
+        'Call someone you know well and catch up, doing so can help shift your perspective on your own problems',
+        'Meditating and focusing on deep breathing can help reduce feelings of tension and help you relax',
+      ],
+    },
     {
       Md: 'Tired',
-      tips: ['Make sure to keep a regular sleep schedule', 'Set an alarm to remind you to go to bed', 'Ensure to eat a variety of foods'],
+      tips: [
+        'Make sure to keep a regular sleep schedule',
+        'Try setting an alarm to remind you to go to bed',
+        'Ensure to eat a variety of foods, lack of nutrients can cause fatigue',
+      ],
     },
   ];
 
@@ -146,7 +194,9 @@ export class DashboardComponent implements OnInit {
         console.error('Script loading error:', error);
       });
 
+    this.timeOfDay = this.getCurrentTime();
     this.week = this.getCurrentWeekNumber();
+
     this.loadMoodandProgress();
 
     this.account$ = this.accountService.identity();
@@ -201,6 +251,22 @@ export class DashboardComponent implements OnInit {
     const startOfYear = new Date(now.getFullYear(), 0, 1);
     const pastDaysOfYear = (now.valueOf() - startOfYear.valueOf()) / 86400000;
     return Math.ceil((pastDaysOfYear + startOfYear.getDay() + 1) / 7);
+  }
+
+  getCurrentTime(): string {
+    const now = new Date();
+    const currentHour = now.getHours();
+    if (currentHour >= 0 && currentHour <= 4) {
+      return 'Welcome,';
+    } else if (currentHour >= 5 && currentHour <= 11) {
+      return 'Good morning,';
+    } else if (currentHour >= 12 && currentHour <= 16) {
+      return 'Good afternoon,';
+    } else if (currentHour >= 17 && currentHour <= 23) {
+      return 'Good evening,';
+    } else {
+      return 'Welcome,';
+    }
   }
 
   getCurrentDay(): string {

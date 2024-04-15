@@ -83,7 +83,7 @@
                       class="animate__animated animate__bounce dynamic-text-size"
                       [style.fontSize]="1.75 + fontSizeMultiplier + 'rem'"
                     >
-                      <span class="pink-text">Welcome,</span> {{ firstName }}
+                      <span class="pink-text">{{ timeOfDay }}</span> {{ firstName }}
                     </h1>
                     <h1
                       *ngIf="loggedin == 'false'"
@@ -111,7 +111,9 @@
                       To easily track your progress, <span class="pink-text">log in</span>
                     </h1>
                     <ng-container *ngIf="loggedin == 'true'">
-                      <h1 class="animate__animated animate__bounce">Current points: {{ userCurrentPoints }}</h1>
+                      <h1 class="animate__animated animate__bounce" [style.fontSize]="1.25 + fontSizeMultiplier + 'rem'">
+                        Current points: {{ userCurrentPoints }}
+                      </h1>
                       <br />
                       <h1
                         *ngIf="habitsfound == 'true'"
