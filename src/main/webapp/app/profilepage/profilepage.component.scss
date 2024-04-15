@@ -1,8 +1,61 @@
+@import 'vendor/bootstrap/css/bootstrap.min';
+@import 'assets/css/owl';
+@import 'assets/css/animate';
+@import 'assets/css/fontawesome';
+@import 'assets/css/flex-slider';
+@import 'assets/css/swiper';
+@import 'assets/css/templatemo-cyborg-gaming';
+
 .toggle-container {
   position: fixed;
   top: 20px;
   left: 20px;
   z-index: 1000;
+}
+
+.main-banner h6 {
+  font-size: 20px;
+  color: #fff;
+  font-weight: 400;
+  margin-bottom: 25px;
+}
+
+.main-banner h4 {
+  font-size: 45px;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+}
+
+.main-banner h4 em {
+  font-style: normal;
+  color: #ec6090;
+}
+
+.item:hover {
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.6); /* Adjust color and size as needed */
+  transition: box-shadow 0.3s ease-in-out; /* Smooth transition */
+}
+
+.main-info .main-border-button {
+  margin-top: 20px; /* Adjust this value as needed to move the button lower */
+}
+
+.main-banner h6 {
+  font-size: 20px;
+  color: #fff;
+  font-weight: 400;
+  margin-bottom: 25px;
+}
+
+.main-banner h4 {
+  font-size: 45px;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+}
+
+.main-banner h4 em {
+  font-style: normal;
+  color: #ec6090;
 }
 
 .item-spacing {
