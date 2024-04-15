@@ -29,21 +29,6 @@
               <a href="#" class="logo">
                 <img src="assets/images/purefy-removebg-preview.png" alt="" style="margin-top: 5px" />
               </a>
-              <li class="font-size-slider-container" style="display: flex; align-items: center; margin-top: -60px">
-                <input
-                  type="range"
-                  min="0.5"
-                  max="2"
-                  step="0.1"
-                  [(ngModel)]="fontSizeMultiplier"
-                  (ngModelChange)="updateFontSize()"
-                  class="font-size-slider"
-                  style="margin-top: 5px"
-                />
-              </li>
-              <button class="theme-toggle-button" (click)="toggleTheme()">
-                <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
-              </button>
               <ul class="nav">
                 <li><a routerLink="/Dashboard">Home</a></li>
                 <li><a routerLink="/Challenges-Index">Challenges</a></li>
@@ -70,9 +55,25 @@
         <div class="col-lg-12" [ngClass]="theme">
           <div class="page-content" [ngClass]="theme">
             <h4 class="welcome-title">Welcome to Your Mood Journal</h4>
+            <div class="font-size-slider-container" style="display: flex; align-items: center; justify-content: flex-end">
+              <input
+                type="range"
+                min="0.5"
+                max="2"
+                step="0.1"
+                [(ngModel)]="fontSizeMultiplier"
+                (ngModelChange)="updateFontSize()"
+                class="font-size-slider"
+                style="margin-top: 2px; margin-right: 5px"
+              />
+              <button class="theme-toggle-button" (click)="toggleTheme()" style="margin-top: 2px">
+                <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+              </button>
+            </div>
+
             <!-- ***** Introductory Section Expanded ***** -->
             <div class="intro-section" [ngClass]="theme">
-              <h2>What is the <u>Mood Journal</u>?</h2>
+              <h2 [style.fontSize]="fontSizeMultiplier * 1.2 + 'rem'">What is the <u>Mood Journal</u>?</h2>
               <p [style.fontSize]="fontSizeMultiplier + 'rem'">
                 Mood Journal is a personal space for you to express your thoughts, emotions, and daily experiences. It's designed to help
                 you track your mood over time, discover patterns, and reflect on your mental well-being. Whether you're looking to manage
@@ -80,7 +81,7 @@
               </p>
               <!-- Subsection for Entries -->
               <div class="intro-subsection" [ngClass]="theme">
-                <h3>Entries</h3>
+                <h3 [style.fontSize]="fontSizeMultiplier * 1.2 + 'rem'">Entries</h3>
                 <p [style.fontSize]="fontSizeMultiplier + 'rem'">
                   'Entries' allow you to freely jot down your daily experiences, thoughts, and feelings. This is your space to write without
                   constraints, making it perfect for keeping track of day-to-day activities, introspection, or expressing creativity. It's
@@ -89,14 +90,14 @@
               </div>
               <!-- Subsection for Prompts -->
               <div class="intro-subsection" [ngClass]="theme">
-                <h3>Prompts</h3>
+                <h3 [style.fontSize]="fontSizeMultiplier * 1.2 + 'rem'">Prompts</h3>
                 <p [style.fontSize]="fontSizeMultiplier + 'rem'">
                   'Prompts' offer guided prompts to inspire your writing. They are designed to help you explore your thoughts and feelings
                   more deeply, providing a starting point for reflection and self-discovery. These prompts are generated based on your
-                  chosen mood from the 'Mood Picker' thus engaging your mind and encouraging meaningful entries based on your feelings.
+                  chosen mood from your home page thus engaging your mind and encouraging meaningful entries based on your feelings.
                 </p>
               </div>
-              <p [style.fontSize]="fontSizeMultiplier + 'rem'">
+              <p [style.fontSize]="fontSizeMultiplier * 0.8 + 'rem'">
                 Start by selecting 'Entries' to log your daily experiences or 'Prompts' to explore guided reflections.
               </p>
             </div>
