@@ -35,7 +35,7 @@ maven-compile:
 
 maven-package:
   stage: package
-  tags: 
+  tags:
     - compile
   script:
     - echo "jhipster" | sudo -S apt-get update
@@ -50,8 +50,6 @@ maven-package:
 
 publish-docker:
   stage: release
-  tags: 
-    - compile
   services:
     - docker:dind
   variables:
