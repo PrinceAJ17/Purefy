@@ -174,15 +174,21 @@
                     <div [ngSwitch]="currentView" class="image-container">
                       <!-- Displays basic mood selection -->
                       <ng-container *ngSwitchCase="'None'">
-                        <ng-container *ngFor="let item of MOODINDEX">
+                        <ng-container *ngFor="let item of MOODINDEX; index as i">
                           <div class="centered-text-container">
                             <a (click)="switchView(item.Em)">
                               <img
                                 src="{{ '../../assets/images/' + theme + 'greybackground.jpg' }}"
                                 alt=""
                                 style="border-radius: 23px; border: 2px solid #e75e8d"
+                                class="hvr-glow fade-in-image preload"
+                                [ngStyle]="{ 'animation-delay.ms': (i + 1) * 100 }"
                               />
-                              <h1 class="centered-text dynamic-text-size" [style.fontSize]="2 + fontSizeMultiplier + 'rem'">
+                              <h1
+                                class="centered-text dynamic-text-size fade-in-image"
+                                [ngStyle]="{ 'animation-delay.ms': (i + 1) * 100 }"
+                                [style.fontSize]="2 + fontSizeMultiplier + 'rem'"
+                              >
                                 {{ item.Em }}
                               </h1>
                             </a>
@@ -194,14 +200,20 @@
                       <ng-container *ngSwitchDefault>
                         <ng-container *ngFor="let item of MOODINDEX">
                           <ng-container *ngIf="item.Em == currentView">
-                            <div class="centered-text-container" *ngFor="let md of item.Md">
+                            <div class="centered-text-container" *ngFor="let md of item.Md; index as i">
                               <a (click)="switchView('MoodChosen', md)">
                                 <img
                                   src="{{ '../../assets/images/' + theme + 'greybackground.jpg' }}"
                                   alt=""
                                   style="border-radius: 23px; border: 2px solid #e75e8d"
+                                  class="hvr-glow fade-in-image"
+                                  [ngStyle]="{ 'animation-delay.ms': (i + 1) * 100 }"
                                 />
-                                <h1 class="centered-text dynamic-text-size" [style.fontSize]="1.25 + fontSizeMultiplier + 'rem'">
+                                <h1
+                                  class="centered-text dynamic-text-size fade-in-image"
+                                  [ngStyle]="{ 'animation-delay.ms': (i + 1) * 100 }"
+                                  [style.fontSize]="1.25 + fontSizeMultiplier + 'rem'"
+                                >
                                   {{ md }}
                                 </h1>
                               </a>

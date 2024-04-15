@@ -81,14 +81,20 @@ export class DashboardComponent implements OnInit {
         'Remember to stay hydrated!',
       ],
     },
-    { Md: 'Motivated', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
+    {
+      Md: 'Motivated',
+      tips: ['Try to step outside of your comfort zone and get into a new hobby', '', 'Tip 3'],
+    },
     { Md: 'Optimistic', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
     { Md: 'Bored', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
     { Md: 'Distracted', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
     { Md: 'Unmotivated', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
     { Md: 'Irritable', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
-    { Md: 'Anxious', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
-    { Md: 'Tired', tips: ['Tip 1', 'Tip 2', 'Tip 3'] },
+    { Md: 'Anxious', tips: ['Tip 1', 'Tip 2', ''] },
+    {
+      Md: 'Tired',
+      tips: ['Make sure to keep a regular sleep schedule', 'Set an alarm to remind you to go to bed', 'Ensure to eat a variety of foods'],
+    },
   ];
 
   MOODINDEX = [
