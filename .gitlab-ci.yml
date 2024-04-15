@@ -50,6 +50,8 @@ maven-package:
 
 publish-docker:
   stage: release
+  tags: 
+    - compile
   services:
     - docker:dind
   variables:
@@ -68,6 +70,8 @@ publish-docker:
 deploy-dev:
   image: alpine:latest
   stage: deploy
+  tags: 
+    - compile
   when: on_success
   resource_group: deployment
   variables:
@@ -93,6 +97,8 @@ deploy-dev:
 deploy-prod:
   image: alpine:latest
   stage: deploy
+  tags: 
+    - compile
   when: on_success
   only:
     - tags
