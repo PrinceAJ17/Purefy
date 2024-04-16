@@ -32,21 +32,7 @@
               <a href="" class="logo">
                 <img src="assets/images/purefylogo.png" alt="PUREFY" />
               </a>
-              <li class="font-size-slider-container" style="display: flex; align-items: center; margin-top: -60px">
-                <input
-                  type="range"
-                  min="0.5"
-                  max="2"
-                  step="0.1"
-                  [(ngModel)]="fontSizeMultiplier"
-                  (ngModelChange)="updateFontSize()"
-                  class="font-size-slider"
-                  style="margin-top: 5px"
-                />
-              </li>
-              <button class="theme-toggle-button" (click)="toggleTheme()">
-                <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
-              </button>
+
               <ul class="nav">
                 <li><a routerLink="/Dashboard">Home</a></li>
                 <li><a routerLink="/Challenges-Index">Challenges</a></li>
@@ -73,10 +59,28 @@
         <div class="col-lg-12">
           <div class="page-content header-text">
             <!-- ***** Habit Tracker Start ***** -->
+            <div class="accessibility" style="display: flex; justify-content: flex-end; align-content: center; margin-top: -50px">
+              <li class="font-size-slider-container" style="display: flex; align-items: center">
+                <input
+                  type="range"
+                  min="0.5"
+                  max="2"
+                  step="0.1"
+                  [(ngModel)]="fontSizeMultiplier"
+                  (ngModelChange)="updateFontSize()"
+                  class="font-size-slider"
+                  style="margin-top: 5px"
+                />
+              </li>
+              <button class="theme-toggle-button" (click)="toggleTheme()">
+                <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+              </button>
+            </div>
             <div class="habit-tracker-container"></div>
             <div class="habit-tracker">
               <div class="heading-section">
                 <!-- Added space for the image -->
+
                 <img src="assets/images/axe.png" alt="Picture of an axe" class="axe" />
                 <h4>Habit Tracker</h4>
               </div>
