@@ -119,7 +119,7 @@ hgroup {
 html,
 body {
   font-family: 'Poppins', sans-serif;
-  font-weight: 400;
+  font-weight: 700;
   background-color: #000;
   font-size: 16px;
   -ms-text-size-adjust: 100%;
@@ -148,7 +148,7 @@ h6 {
   margin-top: 0px;
   margin-bottom: 0px;
   color: #fff;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 ul {
@@ -159,6 +159,7 @@ p {
   font-size: 15px;
   line-height: 30px;
   color: white;
+  font-weight: 700;
 }
 
 img {
@@ -716,37 +717,33 @@ Main Boxes Style
 */
 
 .light {
-  background-color: #f0f0f0;
-  padding-top: 120px;
-  padding-right: 20px;
+  padding-top: 110px;
 }
 
 .dark {
-  padding-top: 120px;
-  padding-right: 20px;
+  padding-top: 110px;
 }
 
 .mainBox {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 2fr;
-  width: 1200px;
+  width: 1298px;
   height: auto;
   justify-content: center;
   align-items: start;
   margin: 0 auto;
   background-color: #27292a;
-  border: 10px solid #27292a;
+  padding: 10px 60px 60px 60px;
   border-radius: 24px;
+  font-weight: 700;
 }
 
 .light .mainBox {
   background-color: white;
-  border: 10px solid white;
 }
 
 .parentBox {
-  margin-left: 1%;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr 1fr;
@@ -754,22 +751,21 @@ Main Boxes Style
     'title'
     'yourgroup'
     'children';
-  max-width: 98%;
-  max-height: 95%;
+  width: 100%;
+  height: 95%;
   overflow: visible;
   align-items: center;
 }
 
 .parentBoxR {
-  margin-left: 1%;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto 2fr;
   grid-template-areas:
     'title'
     'leaderboard';
-  max-width: 98%;
-  max-height: 95%;
+  width: 100%;
+  height: 95%;
   overflow: visible;
   align-items: start;
 }
@@ -786,11 +782,10 @@ Main Boxes Style
 .titleBox {
   display: flex;
   grid-area: title;
-  margin-bottom: 1%;
-  margin-left: 2%;
   white-space: nowrap;
   justify-content: space-between;
   align-items: center;
+  margin: 1% 0 1% 2%;
 }
 
 .titleBox .selectors {
@@ -1005,7 +1000,7 @@ Your Group Style
 .deleteGroupButton,
 .yes {
   border-radius: 2px;
-  background-color: orange;
+  background-color: red;
   border: none;
   box-shadow: 0 5px #000;
   font-size: 20px;
@@ -1013,7 +1008,7 @@ Your Group Style
 .leaveGroupButton,
 .no {
   border-radius: 2px;
-  background-color: orange;
+  background-color: red;
   border: none;
   box-shadow: 0 5px #000;
   font-size: 20px;
@@ -1042,24 +1037,24 @@ Your Group Style
 
 .createGroupButton {
   border-radius: 2px;
-  background-color: yellowgreen;
+  background-color: dodgerblue;
   border: none;
   box-shadow: 0 5px #000;
   font-size: 20px;
 }
 .joinGroupButton {
   border-radius: 2px;
-  background-color: yellowgreen;
+  background-color: dodgerblue;
   border: none;
   box-shadow: 0 5px #000;
   font-size: 20px;
 }
 .createGroupButton:hover {
-  background-color: darkgreen;
+  background-color: darkblue;
 }
 
 .joinGroupButton:hover {
-  background-color: darkgreen;
+  background-color: darkblue;
 }
 
 .createGroupButton:active {
@@ -1099,14 +1094,12 @@ Your Group Style
 }
 
 .confirmation {
-  margin-top: -20%;
-  font-size: 20px;
+  margin-top: -10%;
   color: white;
 }
 
 .light .confirmation {
-  margin-top: -20%;
-  font-size: 20px;
+  margin-top: -10%;
   color: black;
 }
 
@@ -1194,7 +1187,7 @@ Current Leaderboard Style
 }
 
 .weekly-stats .leaderboard .medal img {
-  width: 12ch;
+  width: 11ch;
 }
 
 .weekly-stats .leaderboard .Avatar {
@@ -1203,7 +1196,7 @@ Current Leaderboard Style
 }
 
 .weekly-stats .leaderboard .Avatar img {
-  width: 10ch;
+  width: 9ch;
   animation: none;
 }
 
@@ -1362,7 +1355,7 @@ Previous Leaderboard Style
 
 .previous-leaderboard .pleaderboard > div .bar {
   height: 100%;
-  width: 70%;
+  width: 60%;
   margin-right: 2%;
   margin-left: 1%;
 }
@@ -1541,15 +1534,15 @@ $base-font-size: 16px;
 */
 @media (max-width: 1200px) {
   .mainBox {
-    width: 800px;
+    width: 900px;
   }
 
   .weekly-stats .leaderboard .medal img {
-    width: 8ch;
+    width: 7ch;
   }
 
   .weekly-stats .leaderboard .Avatar img {
-    width: 7ch;
+    width: 6ch;
   }
 
   .previous-leaderboard .pleaderboard > div img {
@@ -1575,11 +1568,14 @@ $base-font-size: 16px;
   }
 
   .weekly-stats .leaderboard .medal img {
-    width: 7ch;
+    width: 6ch;
   }
 
   .weekly-stats .leaderboard .Avatar img {
-    width: 5ch;
+    width: 4ch;
+  }
+  .weekly-stats .leaderboard .bar {
+    width: 65%;
   }
 
   .previous-leaderboard .pleaderboard > div img {
@@ -1605,11 +1601,14 @@ $base-font-size: 16px;
   }
 
   .weekly-stats .leaderboard .medal img {
-    width: 5.5ch;
+    width: 5ch;
   }
 
   .weekly-stats .leaderboard .Avatar img {
-    width: 4ch;
+    width: 3.5ch;
+  }
+  .weekly-stats .leaderboard .bar {
+    width: 60%;
   }
 
   .previous-leaderboard .pleaderboard > div img {
@@ -1618,6 +1617,9 @@ $base-font-size: 16px;
 
   .previous-leaderboard .pleaderboard > div .Avatar img {
     width: 3ch;
+  }
+  .previous-leaderboard .pleaderboard > div .bar {
+    width: 50%;
   }
 
   .overall-leaderboard .oleaderboard .topbox .Avatar img {
@@ -1655,6 +1657,9 @@ $base-font-size: 16px;
   .previous-leaderboard .pleaderboard > div .Avatar img {
     width: 3ch;
   }
+  .previous-leaderboard .pleaderboard > div .bar {
+    width: 50%;
+  }
 
   .overall-leaderboard .oleaderboard .topbox .Avatar img {
     width: 7ch;
@@ -1690,6 +1695,9 @@ $base-font-size: 16px;
 
   .previous-leaderboard .pleaderboard > div .Avatar img {
     width: 2.5ch;
+  }
+  .previous-leaderboard .pleaderboard > div .bar {
+    width: 50%;
   }
 
   .overall-leaderboard .oleaderboard .topbox .Avatar img {
@@ -1729,16 +1737,16 @@ $base-font-size: 16px;
   }
   .previous-leaderboard .pleaderboard > div .bar {
     height: 90%;
-    width: 70%;
+    width: 50%;
     margin-right: 2%;
     margin-left: 1%;
   }
 
   .overall-leaderboard .oleaderboard .topbox .Avatar img {
-    width: 4ch;
+    width: 3.5ch;
   }
 
   .overall-leaderboard .oleaderboard .bottombox .Avatar img {
-    width: 3ch;
+    width: 2.5ch;
   }
 }
