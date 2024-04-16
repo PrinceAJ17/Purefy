@@ -58,23 +58,23 @@
           <div class="row">
             <div class="col-lg-12">
               <div class="page-content">
-                <div class="font-size-slider-container" style="display: flex; align-items: center; justify-content: flex-end">
-                  <input
-                    type="range"
-                    min="0.5"
-                    max="2"
-                    step="0.1"
-                    [(ngModel)]="fontSizeMultiplier"
-                    (ngModelChange)="updateFontSize()"
-                    class="font-size-slider"
-                    style="margin-top: 2px; margin-right: 5px"
-                  />
-                  <button class="theme-toggle-button" (click)="toggleTheme()" style="margin-top: 2px">
-                    <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
-                  </button>
-                </div>
                 <div class="game-details">
                   <div class="row">
+                    <div class="font-size-slider-container" style="display: flex; align-items: center; justify-content: flex-end">
+                      <input
+                        type="range"
+                        min="0.5"
+                        max="2"
+                        step="0.1"
+                        [(ngModel)]="fontSizeMultiplier"
+                        (ngModelChange)="updateFontSize()"
+                        class="font-size-slider"
+                        style="margin-top: 2px; margin-right: 5px"
+                      />
+                      <button class="theme-toggle-button" (click)="toggleTheme()" style="margin-top: 2px">
+                        <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+                      </button>
+                    </div>
                     <div class="col-lg-12">
                       <h2>Video Games</h2>
                     </div>

@@ -15,6 +15,7 @@ export class AllChallengesComponent implements OnInit {
   fontSizeMultiplier: number = 1;
   account$?: Observable<Account | null>;
   currentUsername?: string;
+  theme: 'light' | 'dark' = 'dark';
 
   ngOnInit(): void {
     this.loadScript('vendor/jquery/jquery.min.js')
@@ -44,6 +45,15 @@ export class AllChallengesComponent implements OnInit {
         }
       }
     });
+  }
+
+  getThemeKey(): string {
+    return `theme_${this.currentUsername || 'default'}`;
+  }
+
+  toggleTheme(): void {
+    this.theme = this.theme === 'dark' ? 'light' : 'dark';
+    localStorage.setItem(this.getThemeKey(), this.theme);
   }
 
   private loadScript(scriptUrl: string): Promise<void> {
