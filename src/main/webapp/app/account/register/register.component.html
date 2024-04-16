@@ -6,110 +6,115 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <title>Login</title>
     <style>
-                    body {
+      @import 'vendor/bootstrap/css/bootstrap.min';
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900');
+      @import url('https://unpkg.com/swiper@7/swiper-bundle.min.css');
+      @import 'assets/css/fontawesome';
 
-                .form-input,
-                input[type="email"],
-                input[type="password"],
-                input[type="text"] {
-                  background-color: #555; /* Grey background */
-                  color: #fff; /* White text */
-                  border: 1px solid #666; /* Slight border for definition */
-                  border-radius: 25px; /* Rounded corners */
-                  padding: 10px 20px; /* Padding inside the input boxes */
-                  width: calc(100% - 40px); /* Adjust width to fit container, accounting for padding */
-                  box-sizing: border-box; /* Ensures padding is included in total width/height */
-                }
+                     body {
 
-             h1 {
-                        font-weight: bold;
-                    }
-                /* Placeholder color */
-                ::placeholder {
-                  color: #bbb; /* Lighter grey for placeholder text */
-                }
+                 .form-input,
+                 input[type="email"],
+                 input[type="password"],
+                 input[type="text"] {
+                   background-color: #555; /* Grey background */
+                   color: #fff; /* White text */
+                   border: 1px solid #666; /* Slight border for definition */
+                   border-radius: 25px; /* Rounded corners */
+                   padding: 10px 20px; /* Padding inside the input boxes */
+                   width: calc(100% - 40px); /* Adjust width to fit container, accounting for padding */
+                   box-sizing: border-box; /* Ensures padding is included in total width/height */
+                 }
 
-                /* Hover effect for input fields */
-                .form-input:hover,
-                input[type="email"]:hover,
-                input[type="password"]:hover,
-                input[type="text"]:hover {
-                 outline: none;
-              box-shadow: 0 0 8px 2px #fff;
-                }
+              h1 {
+                         font-weight: bold;
+                     }
+                 /* Placeholder color */
+                 ::placeholder {
+                   color: #bbb; /* Lighter grey for placeholder text */
+                 }
 
-                  .form-button, button[type="submit"] {
-              background-color: #000; /* Black background */
-              color: #fff; /* White text */
-              border: none; /* No border */
-              border-radius: 25px; /* Rounded corners */
-              padding: 12px 24px; /* Vertical and horizontal padding */
-              cursor: pointer; /* Change cursor to indicate it's clickable */
-              font-size: 16px; /* Font size of the text */
-              display: flex; /* Use flexbox for alignment */
-              align-items: center; /* Align items vertically */
-              justify-content: center; /* Center content horizontally */
-              gap: 8px; /* Space between icon and text */
-            }
+                 /* Hover effect for input fields */
+                 .form-input:hover,
+                 input[type="email"]:hover,
+                 input[type="password"]:hover,
+                 input[type="text"]:hover {
+                  outline: none;
+               box-shadow: 0 0 8px 2px #fff;
+                 }
 
-            .form-button:hover, button[type="submit"]:hover {
-              background-color: #222; /* Slightly lighter black on hover */
-              transition: background-color 0.3s; /* Smooth transition for the background color */
-            }
+                   .form-button, button[type="submit"] {
+               background-color: #000; /* Black background */
+               color: #fff; /* White text */
+               border: none; /* No border */
+               border-radius: 25px; /* Rounded corners */
+               padding: 12px 24px; /* Vertical and horizontal padding */
+               cursor: pointer; /* Change cursor to indicate it's clickable */
+               font-size: 16px; /* Font size of the text */
+               display: flex; /* Use flexbox for alignment */
+               align-items: center; /* Align items vertically */
+               justify-content: center; /* Center content horizontally */
+               gap: 8px; /* Space between icon and text */
+             }
 
-            .form-button, button[type="submit"] {
-              width: 790px; /* Adjust as needed */
-              /* Other styles remain the same */
-            }
-
-                .form-text.text-danger {
-                    text-align: center; /* Center-align the validation messages */
-                    display: block; /* Display block to take the full width */
-                    margin-top: 10px; /* Add some space above the message */
-                }
-
-            .form-input,
-                input[type="email"],
-                input[type="password"],
-                input[type="text"] {
-              width: 790px; /* Adjust as needed */
-              /* Other styles remain the same */
-            }
+             .form-button:hover, button[type="submit"]:hover {
+               background-color: #222; /* Slightly lighter black on hover */
+               transition: background-color 0.3s; /* Smooth transition for the background color */
+             }
 
              .form-button, button[type="submit"] {
-                    /* ... other button styles ... */
-                    transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition for background color and shadow */
-                }
+               width: 830px; /* Adjust as needed */
+               /* Other styles remain the same */
+             }
 
-                .form-button:hover, button[type="submit"]:hover {
-                    background-color: #333; /* Darker background color on hover */
-                    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* White glow effect */
-                }
+                 .form-text.text-danger {
+                     text-align: center; /* Center-align the validation messages */
+                     display: block; /* Display block to take the full width */
+                     margin-top: 10px; /* Add some space above the message */
+                 }
 
-                /* Pink validation box */
-            /* Pink validation box */
-            .pink-validation-box {
-              background-color: #ffcccb; /* Light pink background */
-              color: black; /* Black text color */
-              text-align: center; /* Center text */
-              padding: 10px; /* Padding inside the box */
-              border-radius: 5px; /* Slightly rounded corners for the box */
-              margin: 10px auto; /* Top and bottom margin and auto left and right margin for centering */
-              width: 80%; /* Set width, you can adjust as needed */
-              max-width: 600px; /* Set a max-width to ensure it doesn't get too wide */
-              box-sizing: border-box; /* Include padding and border in the element's total width and height */
-            }
+             .form-input,
+                 input[type="email"],
+                 input[type="password"],
+                 input[type="text"] {
+               width: 830px; /* Adjust as needed */
+               /* Other styles remain the same */
+             }
 
-          .another-validation-box {
-        color: black; /* Black text color */
-        text-align: center; /* Center text */
-        padding: 10px; /* Padding inside the box */
-        border-radius: 5px; /* Slightly rounded corners for the box */
-        margin: 10px auto 60px 100px; /* Top and bottom margin 10px, auto left margin, 0 right margin */
-        width: 80%; /* Set width, you can adjust as needed */
-        max-width: 900px; /* Set a max-width to ensure it doesn't get too wide */
-        box-sizing: border-box; /* Include padding and border in the element's total width and height */
-      }
+              .form-button, button[type="submit"] {
+                     /* ... other button styles ... */
+                     transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition for background color and shadow */
+                 }
+
+                 .form-button:hover, button[type="submit"]:hover {
+                     background-color: #333; /* Darker background color on hover */
+                     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* White glow effect */
+                 }
+
+                 /* Pink validation box */
+             /* Pink validation box */
+             .pink-validation-box {
+               background-color: #ffcccb; /* Light pink background */
+               color: black; /* Black text color */
+               text-align: center; /* Center text */
+               padding: 10px; /* Padding inside the box */
+               border-radius: 5px; /* Slightly rounded corners for the box */
+               margin: 10px auto; /* Top and bottom margin and auto left and right margin for centering */
+               width: 80%; /* Set width, you can adjust as needed */
+               max-width: 600px; /* Set a max-width to ensure it doesn't get too wide */
+               box-sizing: border-box; /* Include padding and border in the element's total width and height */
+             }
+
+           .another-validation-box {
+         color: black; /* Black text color */
+         text-align: center; /* Center text */
+         padding: 10px; /* Padding inside the box */
+         border-radius: 5px; /* Slightly rounded corners for the box */
+         margin: 10px auto 60px 100px; /* Top and bottom margin 10px, auto left margin, 0 right margin */
+         width: 80%; /* Set width, you can adjust as needed */
+         max-width: 900px; /* Set a max-width to ensure it doesn't get too wide */
+         box-sizing: border-box; /* Include padding and border in the element's total width and height */
+       }
     </style>
   </head>
 

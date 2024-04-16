@@ -1,4 +1,5 @@
 @import 'assets/css/fontawesome';
+@import 'vendor/bootstrap/css/bootstrap.min';
 
 .header-sticky {
   position: fixed;
@@ -85,6 +86,17 @@ footer p {
   margin-bottom: 16px;
 }
 
+.form-input {
+  background-color: #555; /* Lighter shade for input background */
+  color: #fff; /* White text color */
+  border: 1px solid #666; /* Slight border */
+  padding-right: 5px; /* reduced padding */
+}
+
+.form-input::placeholder {
+  color: #bbb;
+}
+
 .form-input:hover,
 .form-button:hover {
   box-shadow: 0 0 10px #fff; /* Glow effect on hover */
@@ -98,27 +110,23 @@ footer p {
   padding: 10px 20px; /* Adjust padding for better button sizing */
 }
 
-/* Ensuring the button text and icon are aligned properly */
-.form-button i {
-  margin-right: 5px;
-}
-
-/* Adjusting input field text color for better visibility */
-.form-input {
-  background-color: #555; /* Lighter shade for input background */
-  color: #fff; /* White text color */
-  border: 1px solid #666; /* Slight border */
-}
-
-/* Optional: Changing the placeholder color for better visibility */
-.form-input::placeholder {
-  color: #bbb;
-}
-
 .error-message {
   margin-bottom: 10px;
   color: red;
   font-size: 0.8em;
+}
+
+/* Adjusting padding for page content */
+.page-content {
+  padding-left: 45px; /* reduced from 50px, or adjust as needed */
+  padding-right: 15px; /* already adjusted in your previous example */
+}
+
+/* Adjusting padding for form inputs and buttons for a uniform look */
+.form-input,
+.form-button {
+  padding-left: 8px; /* Decrease if needed */
+  padding-right: 8px; /* Decrease if needed */
 }
 
 $base-font-size: 16px; /* Adjusted base font size to 16px */

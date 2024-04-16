@@ -63,7 +63,7 @@
           >
             <div
               class="font-size-slider-container"
-              style="display: flex; align-items: center; justify-content: flex-end; margin-top: -45px; margin-bottom: 60px"
+              style="display: flex; align-items: center; justify-content: flex-end; margin-top: -40px; margin-bottom: 60px"
             >
               <input
                 type="range"
@@ -81,16 +81,16 @@
             </div>
             <!-- Heading Section -->
             <div class="heading-section">
-              <h1 style="color: white; margin: 0; text-align: center; margin-top: -30px; margin-bottom: 30px">
+              <h1 style="color: white; margin: 0; text-align: center; margin-top: -30px; margin-bottom: 30px; margin-right: 50px">
                 <span style="color: #e75e8d">Your </span>
                 <span [class.pink-text]="theme === 'light'" style="text-decoration: underline">Feedback</span>
                 <span style="color: #e75e8d"> is important to us. We want to know how we're doing.</span>
               </h1>
-              <h3>Please <em>feel free</em> to send a feedback!</h3>
+              <h3 style="margin-right: 50px">Please <em>feel free</em> to send a feedback!</h3>
             </div>
 
             <!-- Contact Information -->
-            <div class="contact-info" style="margin-top: 48px; text-align: center; margin-bottom: 30px">
+            <div class="contact-info" style="margin-top: 48px; text-align: center; margin-bottom: 30px; margin-right: 50px">
               <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
                 <i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i> Birmingham, United Kingdom
               </p>
@@ -102,7 +102,7 @@
               </p>
             </div>
 
-            <div class="contact-form" style="width: 100%">
+            <div class="contact-form" style="width: 100%; margin-left: -20px">
               <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm">
                 <div>
                   <input
