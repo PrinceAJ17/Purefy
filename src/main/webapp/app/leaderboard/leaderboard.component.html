@@ -347,6 +347,11 @@
                   </div>
                 </div>
               </div>
+              <div *ngIf="(account$ | async) === null" class="addMore">
+                <div class="content">
+                  <div class="text" [style.fontSize]="fontSizeMultiplier * 1.4 + 'rem'">Please Login To Use the Leaderboards Feature</div>
+                </div>
+              </div>
             </div>
           </div>
           <!-- ***** Current Leaderboard Section End ***** -->
