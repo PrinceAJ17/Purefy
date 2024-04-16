@@ -72,6 +72,14 @@ hgroup {
   display: block;
 }
 
+body .page-content {
+  margin-top: 110px;
+  background-color: #000;
+  margin-left: 120px;
+  padding: 60px;
+  border-radius: 23px;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -140,13 +148,6 @@ html,
 body {
   background: #1f2122;
   font-family: 'Poppins', sans-serif;
-}
-
-body .page-content {
-  margin-top: 110px;
-  background-color: #27292a;
-  padding: 60px;
-  border-radius: 23px;
 }
 
 p {
@@ -1566,13 +1567,6 @@ h6 {
   color: #fff;
   font-weight: 400;
   margin-bottom: 25px;
-}
-
-body .page-content {
-  margin-top: 110px;
-  background-color: #27292a;
-  padding: 60px;
-  border-radius: 23px;
 }
 
 p {
