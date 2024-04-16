@@ -131,7 +131,7 @@
                         <div class="progress-content">
                           <br />
                           <h1 class="dynamic-text-size" [style.fontSize]="3 + fontSizeMultiplier + 'rem'">
-                            &nbsp;
+                            &nbsp;&nbsp;&nbsp;
                             <span class="pink-text dynamic-text-size" [style.fontSize]="3 + fontSizeMultiplier + 'rem'">
                               {{ userCurrentPoints }}
                             </span>
@@ -151,7 +151,7 @@
                         <div class="progress-content">
                           <br />
                           <h1 class="dynamic-text-size" [style.fontSize]="3 + fontSizeMultiplier + 'rem'">
-                            &nbsp;
+                            &nbsp;&nbsp;
                             <span class="pink-text dynamic-text-size" [style.fontSize]="3 + fontSizeMultiplier + 'rem'">
                               {{ userHabits[0] }}
                             </span>
@@ -227,11 +227,11 @@
                                 alt=""
                                 style="border-radius: 23px; border: 2px solid #e75e8d"
                                 class="hvr-glow fade-in-image preload"
-                                [ngStyle]="{ 'animation-delay.ms': (i + 1) * 100 }"
+                                [ngStyle]="{ 'animation-delay.ms': i * 100 }"
                               />
                               <h1
                                 class="centered-text dynamic-text-size fade-in-image"
-                                [ngStyle]="{ 'animation-delay.ms': (i + 1) * 100 }"
+                                [ngStyle]="{ 'animation-delay.ms': i * 100 }"
                                 [style.fontSize]="2 + fontSizeMultiplier + 'rem'"
                               >
                                 {{ item.Em }}
@@ -252,11 +252,11 @@
                                   alt=""
                                   style="border-radius: 23px; border: 2px solid #e75e8d"
                                   class="hvr-glow fade-in-image"
-                                  [ngStyle]="{ 'animation-delay.ms': (i + 1) * 100 }"
+                                  [ngStyle]="{ 'animation-delay.ms': i * 100 }"
                                 />
                                 <h1
                                   class="centered-text dynamic-text-size fade-in-image"
-                                  [ngStyle]="{ 'animation-delay.ms': (i + 1) * 100 }"
+                                  [ngStyle]="{ 'animation-delay.ms': i * 100 }"
                                   [style.fontSize]="1.25 + fontSizeMultiplier + 'rem'"
                                 >
                                   {{ md }}
@@ -273,7 +273,9 @@
                           <ng-container *ngIf="item.Md == chosenMood">
                             <ul class="extra-line-space">
                               <li *ngFor="let tip of item.tips">
-                                <h4 class="dynamic-text-size" [style.fontSize]="0.75 + fontSizeMultiplier * 0.75 + 'rem'">- {{ tip }}</h4>
+                                <h4 class="dynamic-text-size" [style.fontSize]="0.75 + fontSizeMultiplier * 0.75 + 'rem'">
+                                  <span class="pink-text">-</span> &nbsp; {{ tip }}
+                                </h4>
                               </li>
                             </ul>
                           </ng-container>
