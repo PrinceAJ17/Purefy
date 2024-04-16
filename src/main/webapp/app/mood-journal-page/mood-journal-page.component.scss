@@ -89,7 +89,6 @@ body {
   -ms-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  max-width: 98%;
   margin: 0 auto;
 }
 
@@ -759,6 +758,7 @@ LandingPage Style
     .text-container {
       color: #000 !important; // Ensures all text elements are also explicitly set to black
     }
+
     .intro-subsection {
       background-color: darkgrey;
       color: #fff;
@@ -776,7 +776,7 @@ LandingPage Style
     }
 
     a {
-      color: #e75e8d !important; // Links in pink
+      color: #150208 !important; // Links in pink
       &:hover {
         color: darken(#e75e8d, 10%) !important; // Pink hover effect
       }
@@ -831,6 +831,13 @@ LandingPage Style
       padding: 30px 15px;
       border-radius: 23px;
       margin-bottom: 30px;
+    }
+
+    .footer p {
+      text-align: center;
+      padding: 30px 0px;
+      color: #000;
+      font-weight: 300;
     }
 
     .heading-section h4 span:not(.text-decoration-underline) {

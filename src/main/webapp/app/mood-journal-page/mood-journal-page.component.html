@@ -155,9 +155,9 @@
       </div>
     </div>
 
-    <footer>
-      <div class="container">
-        <div class="row">
+    <footer [ngClass]="theme">
+      <div class="container" [ngClass]="theme">
+        <div class="row" [ngClass]="theme">
           <div class="col-lg-12">
             <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
               Copyright © 2024, Purefy. All rights reserved.
