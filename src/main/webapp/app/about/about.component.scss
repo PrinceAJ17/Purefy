@@ -1,4 +1,5 @@
 @import 'assets/css/fontawesome';
+@import 'vendor/bootstrap/css/bootstrap.min';
 
 .float-right-image {
   float: right; /* This will make the text wrap around the left side of the image */
@@ -70,7 +71,7 @@ $base-font-size: 16px; /* Adjusted base font size to 16px */
       }
     }
 
-    .heading-section h4 span:not(.text-decoration-underline) {
+    .heading-section h1 span:not(.text-decoration-underline) {
       color: #e75e8d !important; // Non-underline span in pink
     }
 

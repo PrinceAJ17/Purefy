@@ -25,23 +25,8 @@
           <div class="col-12">
             <nav class="main-nav">
               <a href="" class="logo">
-                <img src="assets/images/purefy-removebg-preview.png" alt="" style="margin-top: 5px" />
+                <img src="assets/images/purefy-removebg-preview.png" alt="" style="margin-top: 5px; margin-left: 80px" />
               </a>
-              <li class="font-size-slider-container" style="display: flex; align-items: center; margin-top: -60px">
-                <input
-                  type="range"
-                  min="0.5"
-                  max="2"
-                  step="0.1"
-                  [(ngModel)]="fontSizeMultiplier"
-                  (ngModelChange)="updateFontSize()"
-                  class="font-size-slider"
-                  style="margin-top: 5px"
-                />
-              </li>
-              <button class="theme-toggle-button" (click)="toggleTheme()">
-                <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
-              </button>
               <ul class="nav">
                 <li><a routerLink="/Dashboard">Home</a></li>
                 <li><a routerLink="/Challenges-Index">Challenges</a></li>
@@ -67,6 +52,24 @@
         <div class="col-lg-12">
           <div class="page-content">
             <!-- ***** Banner Start ***** -->
+            <div
+              class="font-size-slider-container"
+              style="display: flex; align-items: center; justify-content: flex-end; align-items: center; margin-top: -40px"
+            >
+              <input
+                type="range"
+                min="0.5"
+                max="2"
+                step="0.1"
+                [(ngModel)]="fontSizeMultiplier"
+                (ngModelChange)="updateFontSize()"
+                class="font-size-slider"
+                style="margin-top: 2px; margin-right: 5px"
+              />
+              <button class="theme-toggle-button" (click)="toggleTheme()" style="margin-top: 2px">
+                <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+              </button>
+            </div>
             <div class="row">
               <div class="col-lg-12">
                 <div class="main-profile">
@@ -76,8 +79,10 @@
                     </div>
                     <div class="col-lg-4 align-self-center">
                       <div class="main-info header-text">
-                        <h1>Our <em style="color: #e75e8d; font-style: italic; text-decoration: underline">Team</em></h1>
-                        <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                        <h1 style="margin-left: 10px; margin-bottom: 30px; margin-bottom: 10px">
+                          Our <em style="color: #e75e8d; font-style: italic; text-decoration: underline">Team</em>
+                        </h1>
+                        <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'" style="margin-left: -10px">
                           Purefy: Crafting a digital oasis for mindful living. Our team pioneers dopamine detox solutions, guiding users
                           towards a balanced relationship with technology. We empower individuals to reclaim their lives, one mindful moment
                           at a time.
@@ -126,8 +131,7 @@
                         <h4>
                           CHALLENGES: ASA BIZENJO<br /><span
                             >I'm spearheading our Challenges feature, meticulously curating engaging tasks to motivate users to quit bad
-                            habits. It's centered on fostering a supportive community where individuals discover the inspiration they need
-                            to grow and thrive each day.
+                            habits. It's centered on fostering a community where individuals discover the inspiration they need to grow.
                           </span>
                         </h4>
                       </div>
@@ -139,8 +143,8 @@
                         <h4>
                           MOOD JOURNAL: PRINCE ALEXANDER<br /><span
                             >I'm spearheading the development of our Mood Journal feature, enabling users to track their emotional journey.
-                            This tool is instrumental in countering the negative impacts of excessive digital usage and also provide good
-                            prompts to go about your day.
+                            This tool counters the negative impacts of excessive digital usage and provides good prompts to go about your
+                            day.
                           </span>
                         </h4>
                       </div>
@@ -153,8 +157,7 @@
                         <h4>
                           LEADERBOARD: SAMUEL DAVIES<br /><span
                             >I thrive in collaborative situations and am dedicated to creating the Groups feature for a better digital
-                            experience along with peers to showcase the impact of reducing unnecessary stimuli and help them grow with their
-                            other peers and mates.
+                            experience along with peers to showcase the impact of reducing unnecessary stimuli and help them grow.
                           </span>
                         </h4>
                       </div>
@@ -168,7 +171,7 @@
                             <span
                               >I'm aiming to create a tool that allows users to express and track their emotions in an interactive way. I
                               want to create a space where individuals can find peace, learn to accept mistakes, not give up and achieve a
-                              better way of life.
+                              better way of life and wellbeing.
                             </span>
                           </h4>
                         </div>
@@ -203,7 +206,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
-            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'" style="margin-left: 50px">
               Copyright © 2024, Purefy. All rights reserved.
 
               <br />You are accessing an experimental web application developed by participants (Team 13) of the Team Project 2024 module.

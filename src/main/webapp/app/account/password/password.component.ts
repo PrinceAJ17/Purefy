@@ -7,6 +7,7 @@ import { Account } from 'app/core/auth/account.model';
 import { PasswordService } from './password.service';
 import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'jhi-password',

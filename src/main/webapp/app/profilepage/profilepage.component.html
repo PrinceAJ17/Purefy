@@ -28,21 +28,6 @@
               <a href="" class="logo">
                 <img src="assets/images/purefy-removebg-preview.png" alt="" style="margin-top: 5px" />
               </a>
-              <li class="font-size-slider-container" style="display: flex; align-items: center; margin-top: -60px">
-                <input
-                  type="range"
-                  min="0.5"
-                  max="2"
-                  step="0.1"
-                  [(ngModel)]="fontSizeMultiplier"
-                  (ngModelChange)="updateFontSize()"
-                  class="font-size-slider"
-                  style="margin-top: 5px"
-                />
-              </li>
-              <button class="theme-toggle-button" (click)="toggleTheme()">
-                <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
-              </button>
               <ul class="nav">
                 <li><a routerLink="/Dashboard">Home</a></li>
                 <li><a routerLink="/Challenges-Index">Challenges</a></li>
@@ -67,7 +52,22 @@
       <div class="row">
         <div class="col-lg-6 align-self-center">
           <div class="header-text">
-            <h6 class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'" style="margin-top: 180px">We're Purefy!</h6>
+            <li class="font-size-slider-container" style="display: flex; align-items: center; margin-top: 140px; margin-bottom: -130px">
+              <input
+                type="range"
+                min="0.5"
+                max="2"
+                step="0.1"
+                [(ngModel)]="fontSizeMultiplier"
+                (ngModelChange)="updateFontSize()"
+                class="font-size-slider"
+                style="margin-top: 5px"
+              />
+            </li>
+            <button class="theme-toggle-button" (click)="toggleTheme()" style="margin-left: 135px; margin-top: 95px; margin-bottom: -100px">
+              <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+            </button>
+            <h6 class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'" style="margin-top: 130px">We're Purefy!</h6>
             <h2 style="margin-top: 30px">
               Welcome<strong *ngIf="account$ | async as account">, {{ capitalizeFirstLetter(account.login) }}</strong
               >!

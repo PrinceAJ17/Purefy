@@ -1,7 +1,43 @@
 @import 'assets/css/templatemo-cyborg-gaming';
+@import 'assets/css/fontawesome';
+
+/* Main profile area */
+.main-profile .row {
+  align-items: center; /* Align image and text vertically */
+}
+
+/* Image column adjustments */
+.main-profile .col-lg-4 {
+  max-width: 35%; /* Reduce the width of the image column */
+  flex: 0 0 35%; /* Adjust the flex-basis to the same value as max-width */
+  padding-right: 15px; /* Add some padding to separate the image from the text */
+  margin-left: 10px;
+}
+
+/* Image style adjustments */
+.main-profile img {
+  width: 100%; /* Make the image responsive within its column */
+  border-radius: 23px; /* Keep the rounded corners as before */
+}
+
+/* Text column adjustments */
+.main-profile .col-lg-4.align-self-center {
+  max-width: 80%; /* Increase the width of the text column */
+  flex: 0 0 35%; /* Adjust the flex-basis to the same value as max-width */
+}
+
+/* Font size and theme toggle container adjustments */
+.font-size-slider-container {
+  margin-right: -15px; /* Move the container to the right */
+  /* Other styles as necessary */
+}
 
 .item {
-  border-radius: 10px;
+  padding: 10px; /* Adjust the padding to add space inside the container */
+  margin: 15px; /* Adjust the margin to add space outside the container */
+  border-radius: 10px; /* This is your existing border-radius */
+  text-align: center; /* Center the text inside the container */
+  background: #fff;
 }
 
 .item:hover {
@@ -42,6 +78,7 @@ h6 {
 body .page-content {
   margin-top: 110px;
   background-color: #27292a;
+  margin-left: 70px;
   padding: 60px;
   border-radius: 23px;
 }
@@ -104,7 +141,7 @@ $base-font-size: 16px; /* Adjusted base font size to 16px */
   .item p {
     color: #000;
   }
-
+  color
   // Update the glow or box-shadow effect for light mode if needed
   .item:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); // Darker shadow for light mode, adjust as necessary
