@@ -613,6 +613,10 @@ Header Style
   border: 1px solid #ddd;
 }
 
+.light footer p {
+  color: #000;
+}
+
 @media (max-width: 1200px) {
   .header-area .main-nav .nav li {
     padding-left: 10px;
