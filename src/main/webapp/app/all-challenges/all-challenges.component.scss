@@ -31,6 +31,20 @@
       }
     }
 
+    .most-popular {
+      margin-top: 60px;
+      padding: 30px;
+      background-color: whitesmoke;
+      border-radius: 23px;
+    }
+
+    .most-popular .item {
+      background-color: grey;
+      padding: 30px 15px;
+      border-radius: 23px;
+      margin-bottom: 30px;
+    }
+
     .heading-section h4 span:not(.text-decoration-underline) {
       color: #e75e8d !important; // Non-underline span in pink
     }
