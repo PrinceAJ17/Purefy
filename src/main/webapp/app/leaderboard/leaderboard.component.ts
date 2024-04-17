@@ -286,6 +286,7 @@ export class LeaderboardComponent implements OnInit {
     console.log('Group Selected', this.selectedGroupId);
     this.confirmAction();
     this.updateCountdown();
+    this.getGroupsData();
     this.updateCurrentUserLeadershipStatus(this.selectedGroupId);
     if (this.selectedGroupId == this.addGroupId) {
       this.showCreateGroup = true;
@@ -413,8 +414,8 @@ export class LeaderboardComponent implements OnInit {
     this.http.delete(`/api/members/${this.leaderboardData[0].groupID}`).subscribe(
       response => {
         console.log('Left Group Succesfully');
-        this.getGroupsData();
         this.selectedGroupId = this.addGroupId;
+        this.getGroupsData();
         this.onGroupChange();
       },
       error => {
@@ -429,8 +430,8 @@ export class LeaderboardComponent implements OnInit {
     this.http.delete(`/api/groupings/${this.leaderboardData[0].groupID}`).subscribe(
       response => {
         console.log('Deleted Succesfully');
-        this.getGroupsData();
         this.selectedGroupId = this.addGroupId;
+        this.getGroupsData();
         this.onGroupChange();
       },
       error => {
