@@ -101,7 +101,7 @@
                       class="animate__animated animate__bounce dynamic-text-size"
                       [style.fontSize]="1.75 + fontSizeMultiplier + 'rem'"
                     >
-                      <span class="pink-text">Welcome </span> to the hub of <span class="pink-text">dopamine detoxing.</span>
+                      <span class="pink-text">Welcome </span> to the hub of <span class="pink-text">dopamine detoxing!</span>
                     </h1>
                   </div>
                 </div>
@@ -119,7 +119,7 @@
                       class="animate__animated animate__bounce dynamic-text-size"
                       [style.fontSize]="1.25 + fontSizeMultiplier + 'rem'"
                     >
-                      To easily track your progress, <span class="pink-text">log in</span>
+                      To easily track your progress, please <span class="pink-text">log in!</span>
                     </h1>
 
                     <div class="progress-container" *ngIf="loggedin == 'true'">
@@ -207,7 +207,10 @@
                           <span class="dynamic-text-size" [style.fontSize]="0.35 + fontSizeMultiplier * 0.5 + 'rem'">Choose again</span>
                         </a>
                         <a class="write-prompt-button" (click)="goToPromptsPage()">
-                          <span class="dynamic-text-size" [style.fontSize]="0.35 + fontSizeMultiplier * 0.5 + 'rem'"
+                          <span
+                            class="dynamic-text-size"
+                            [style.fontSize]="0.35 + fontSizeMultiplier * 0.5 + 'rem'"
+                            style="margin-top: 10px"
                             >Write a prompted entry?</span
                           >
                         </a>
