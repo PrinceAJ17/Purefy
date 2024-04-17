@@ -94,14 +94,14 @@
                       class="animate__animated animate__bounce dynamic-text-size"
                       [style.fontSize]="1.75 + fontSizeMultiplier + 'rem'"
                     >
-                      <span class="pink-text">{{ timeOfDay }}</span> {{ firstName }}
+                      <span class="pink-text">{{ timeOfDay }}</span> {{ capitalizeFirstLetter(userName) }}
                     </h1>
                     <h1
                       *ngIf="loggedin == 'false'"
                       class="animate__animated animate__bounce dynamic-text-size"
                       [style.fontSize]="1.75 + fontSizeMultiplier + 'rem'"
                     >
-                      <span class="pink-text">Welcome </span> to the hub of <span class="pink-text">dopamine detoxing!</span>
+                      <span class="pink-text">Welcome </span> to <span class="pink-text">Purefy!</span>
                     </h1>
                   </div>
                 </div>
