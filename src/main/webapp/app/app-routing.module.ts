@@ -295,7 +295,7 @@ const routes: Routes = [
         },
         {
           path: 'Leaderboard',
-          data: { pageTitle: 'PUREFY | Leaderboard' },
+          data: { pageTitle: 'PUREFY | Leaderboards' },
           component: LeaderboardComponent,
         },
         {
