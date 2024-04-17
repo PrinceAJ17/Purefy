@@ -29,7 +29,7 @@
             <nav class="main-nav">
               <!-- ***** Logo Start ***** -->
               <a href="" class="logo">
-                <img src="assets/images/purefy-removebg-preview.png" alt="" />
+                <img src="assets/images/purefy-removebg-preview.png" alt="" style="margin-top: 5px" />
               </a>
 
               <ul class="nav">
@@ -79,16 +79,18 @@
                 <br />
                 <ul>
                   <li *ngFor="let history of histories">
-                    <h6 class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
-                      Challenge Name: {{ history.challengeName }}
-                    </h6>
-                    <h6 class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
-                      Challenge Level: {{ history.challengeLevel }}
-                    </h6>
-                    <h6 class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
-                      Date Started: {{ formatDate(history.dateStarted) }}
-                    </h6>
-                    <br /><br />
+                    <ng-container *ngIf="history.username === currentUsername">
+                      <h6 class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                        Challenge Name: {{ history.challengeName }}
+                      </h6>
+                      <h6 class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                        Challenge Level: {{ history.challengeLevel }}
+                      </h6>
+                      <h6 class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                        Date Started: {{ formatDate(history.dateStarted) }}
+                      </h6>
+                      <br /><br />
+                    </ng-container>
                   </li>
                 </ul>
               </div>
