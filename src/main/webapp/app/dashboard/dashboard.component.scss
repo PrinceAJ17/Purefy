@@ -33,12 +33,12 @@
   border-radius: 23px;
   border: 2px solid #e75e8d;
   background: #2c2d2f;
-  height: 300px;
   width: 300px;
   display: flex; /* Use flexbox for content alignment */
   align-items: center; /* Center content vertically */
   justify-content: center;
   flex-direction: column;
+  aspect-ratio: 1 / 1;
 }
 
 .progress-header {
@@ -63,12 +63,12 @@
 
 .back-button {
   float: right;
-  //margin-bottom: 10px;
+  margin-bottom: 15px;
+  margin-left: 15px;
 }
 
 .write-prompt-button {
   float: right;
-  margin-right: 15px;
 }
 
 .main-button a:hover {
