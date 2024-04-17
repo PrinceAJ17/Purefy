@@ -201,23 +201,20 @@ export class HabitsComponent implements OnInit {
   // functionality code
 
   generateNewWeeklyHabitTracker() {
-    const newHabits: NewHabitstracking[] = [];
-
-    this.daysOfWeek.forEach(day => {
-      this.predefinedHabits.forEach(habitName => {
-        const newHabit: NewHabitstracking = {
-          id: null,
-          nameOfHabit: habitName,
-          dayOfHabit: day,
-          weekOfHabit: this.week,
-          completedHabit: false,
-          usernameHabit: this.username,
-          habitIDEN: null,
-        };
-        this.weeklyService.create(newHabit).subscribe({
-          next: response => console.log('Habit created:', response),
-          error: error => console.error('Error creating habit:', error),
-        });
+    const day = 'Monday'; // Hard-code Monday
+    this.predefinedHabits.forEach(habitName => {
+      const newHabit: NewHabitstracking = {
+        id: null,
+        nameOfHabit: habitName,
+        dayOfHabit: day,
+        weekOfHabit: this.week,
+        completedHabit: false,
+        usernameHabit: this.username,
+        habitIDEN: null,
+      };
+      this.weeklyService.create(newHabit).subscribe({
+        next: response => console.log('Habit created:', response),
+        error: error => console.error('Error creating habit:', error),
       });
     });
     window.location.reload();
