@@ -94,14 +94,14 @@
                       class="animate__animated animate__bounce dynamic-text-size"
                       [style.fontSize]="1.75 + fontSizeMultiplier + 'rem'"
                     >
-                      <span class="pink-text">{{ timeOfDay }}</span> {{ firstName }}
+                      <span class="pink-text">{{ timeOfDay }}</span> {{ capitalizeFirstLetter(userName) }}
                     </h1>
                     <h1
                       *ngIf="loggedin == 'false'"
                       class="animate__animated animate__bounce dynamic-text-size"
                       [style.fontSize]="1.75 + fontSizeMultiplier + 'rem'"
                     >
-                      <span class="pink-text">Welcome </span> to the hub of <span class="pink-text">dopamine detoxing!</span>
+                      <span class="pink-text">Welcome </span> to <span class="pink-text">Purefy!</span>
                     </h1>
                   </div>
                 </div>
@@ -203,7 +203,7 @@
                             Here are some tailored suggestions:
                           </h3>
                         </div>
-                        <a class="back-button" (click)="switchView('None')">
+                        <a class="reset-button" (click)="switchView('None')">
                           <span class="dynamic-text-size" [style.fontSize]="0.35 + fontSizeMultiplier * 0.5 + 'rem'">Choose again</span>
                         </a>
                         <a class="write-prompt-button" (click)="goToPromptsPage()">
@@ -259,7 +259,7 @@
                     <ng-container *ngIf="currentView == 'MoodChosen'">
                       <ng-container *ngFor="let item of TIPSINDEX">
                         <div *ngIf="item.Md == chosenMood">
-                          <ul class="extra-line-space">
+                          <ul class="tips">
                             <li *ngFor="let tip of item.tips">
                               <h4 class="dynamic-text-size" [style.fontSize]="0.75 + fontSizeMultiplier * 0.75 + 'rem'">
                                 <span class="pink-text">-</span> &nbsp; {{ tip }}

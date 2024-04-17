@@ -28,6 +28,9 @@
   cursor: pointer;
 }
 
+ul {
+}
+
 .centered-mood-container {
   flex: 0 1 auto;
   border-radius: 23px;
@@ -61,10 +64,14 @@
   margin-bottom: 2px;
 }
 
-.back-button {
+.reset-button {
   float: right;
   margin-bottom: 15px;
   margin-left: 15px;
+}
+
+.back-button {
+  float: right;
 }
 
 .write-prompt-button {
@@ -93,11 +100,15 @@
   cursor: pointer;
 }
 
-.extra-line-space {
+.tips {
   display: flex;
   flex-direction: column;
   gap: 25px;
   text-align: left;
+  list-style: none outside none;
+  margin-left: 0;
+  padding-left: 2em;
+  text-indent: -2em;
 }
 
 .pink-text {

@@ -44,7 +44,7 @@ export class DashboardComponent implements OnInit {
 
   chosenMood: string | null | undefined;
 
-  firstName?: string | null = '';
+  userName?: string | null = '';
 
   userID?: number;
 
@@ -278,7 +278,7 @@ export class DashboardComponent implements OnInit {
     this.accountService.identity().subscribe(account => {
       if (account !== null) {
         this.loggedin = 'true';
-        this.firstName = account.firstName;
+        this.userName = account.login;
         const username = account.login;
         console.log(username);
 
@@ -404,5 +404,10 @@ export class DashboardComponent implements OnInit {
   }
   goToPromptsPage(): void {
     this.router.navigate(['/Prompts']);
+  }
+
+  capitalizeFirstLetter(input: string | null | undefined): string | null | undefined {
+    if (!input) return input;
+    return input.charAt(0).toUpperCase() + input.slice(1).toLowerCase();
   }
 }
