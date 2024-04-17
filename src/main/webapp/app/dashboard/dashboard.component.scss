@@ -2,16 +2,6 @@
 @import 'assets/css/templatemo-cyborg-gaming';
 @import 'assets/css/fontawesome';
 
-.image-container {
-  display: flex;
-  text-align: center;
-}
-
-.image-container img {
-  width: 80%;
-  cursor: pointer;
-}
-
 .progress-container {
   display: flex;
   gap: 30px;
@@ -28,6 +18,29 @@
   flex-direction: column;
 }
 
+.mood-container {
+  display: flex;
+  gap: 70px;
+  justify-content: center;
+}
+
+.mood-container a:hover {
+  cursor: pointer;
+}
+
+.centered-mood-container {
+  flex: 0 1 auto;
+  border-radius: 23px;
+  border: 2px solid #e75e8d;
+  background: #2c2d2f;
+  height: 300px;
+  width: 300px;
+  display: flex; /* Use flexbox for content alignment */
+  align-items: center; /* Center content vertically */
+  justify-content: center;
+  flex-direction: column;
+}
+
 .progress-header {
   text-align: center; /* Center text horizontally */
   padding: 10px; /* Add padding for spacing */
@@ -38,15 +51,6 @@
 .progress-content {
   align-items: center; /* Center content vertically */
   justify-content: center;
-}
-
-.image-test {
-  //text-align: center;
-  //float: right;
-  //max-width: 80%;
-  //cursor:pointer;
-  width: 80%;
-  cursor: pointer;
 }
 
 #mood-title {
@@ -123,7 +127,7 @@
 }
 @keyframes fadeIn {
   0% {
-    opacity: 0.01;
+    opacity: 0;
   }
   100% {
     opacity: 1;
@@ -132,7 +136,7 @@
 
 @-webkit-keyframes fadeIn {
   0% {
-    opacity: 0.01;
+    opacity: 0;
   }
   100% {
     opacity: 1;
@@ -155,7 +159,8 @@ $base-font-size: 16px; /* Adjusted base font size to 16px */
   background: #f0f0f0;
   color: #000;
 
-  .centered-progress-container {
+  .centered-progress-container,
+  .centered-mood-container {
     background: #d9d9d9;
   }
 

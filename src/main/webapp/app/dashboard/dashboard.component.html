@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-    <link rel="preload" href="../../assets/images/darkgreybackground.jpg" />
-    <link rel="preload" href="../../assets/images/lightgreybackground.jpg" />
+
     <title>DASHBOARD</title>
   </head>
 
@@ -217,28 +216,19 @@
 
                     <br />
 
-                    <div [ngSwitch]="currentView" class="image-container">
+                    <div [ngSwitch]="currentView" class="mood-container">
                       <!-- Displays basic mood selection -->
                       <ng-container *ngSwitchCase="'None'">
                         <ng-container *ngFor="let item of MOODINDEX; index as i">
-                          <div class="centered-text-container">
-                            <a (click)="switchView(item.Em)">
-                              <img
-                                src="{{ '../../assets/images/' + theme + 'greybackground.jpg' }}"
-                                alt=""
-                                style="border-radius: 23px; border: 2px solid #e75e8d"
-                                class="hvr-glow fade-in-image preload"
-                                [ngStyle]="{ 'animation-delay.ms': i * 100 }"
-                              />
-                              <h1
-                                class="centered-text dynamic-text-size fade-in-image"
-                                [ngStyle]="{ 'animation-delay.ms': i * 100 }"
-                                [style.fontSize]="2 + fontSizeMultiplier + 'rem'"
-                              >
-                                {{ item.Em }}
-                              </h1>
-                            </a>
-                          </div>
+                          <a
+                            (click)="switchView(item.Em)"
+                            class="centered-mood-container hvr-glow fade-in-image"
+                            [ngStyle]="{ 'animation-delay.ms': i * 100 }"
+                          >
+                            <h1 class="centered-text dynamic-text-size" [style.fontSize]="2 + fontSizeMultiplier + 'rem'">
+                              {{ item.Em }}
+                            </h1>
+                          </a>
                         </ng-container>
                       </ng-container>
 
@@ -246,43 +236,36 @@
                       <ng-container *ngSwitchDefault>
                         <ng-container *ngFor="let item of MOODINDEX">
                           <ng-container *ngIf="item.Em == currentView">
-                            <div class="centered-text-container" *ngFor="let md of item.Md; index as i">
-                              <a (click)="switchView('MoodChosen', md)">
-                                <img
-                                  src="{{ '../../assets/images/' + theme + 'greybackground.jpg' }}"
-                                  alt=""
-                                  style="border-radius: 23px; border: 2px solid #e75e8d"
-                                  class="hvr-glow fade-in-image"
-                                  [ngStyle]="{ 'animation-delay.ms': i * 100 }"
-                                />
-                                <h1
-                                  class="centered-text dynamic-text-size fade-in-image"
-                                  [ngStyle]="{ 'animation-delay.ms': i * 100 }"
-                                  [style.fontSize]="1.25 + fontSizeMultiplier + 'rem'"
-                                >
+                            <ng-container *ngFor="let md of item.Md; index as i">
+                              <a
+                                (click)="switchView('MoodChosen', md)"
+                                class="centered-mood-container hvr-glow fade-in-image"
+                                [ngStyle]="{ 'animation-delay.ms': i * 100 }"
+                              >
+                                <h1 class="centered-text dynamic-text-size" [style.fontSize]="1.25 + fontSizeMultiplier + 'rem'">
                                   {{ md }}
                                 </h1>
                               </a>
-                            </div>
-                          </ng-container>
-                        </ng-container>
-                      </ng-container>
-
-                      <!-- Displays tips -->
-                      <ng-container *ngSwitchCase="'MoodChosen'">
-                        <ng-container *ngFor="let item of TIPSINDEX">
-                          <ng-container *ngIf="item.Md == chosenMood">
-                            <ul class="extra-line-space">
-                              <li *ngFor="let tip of item.tips">
-                                <h4 class="dynamic-text-size" [style.fontSize]="0.75 + fontSizeMultiplier * 0.75 + 'rem'">
-                                  <span class="pink-text">-</span> &nbsp; {{ tip }}
-                                </h4>
-                              </li>
-                            </ul>
+                            </ng-container>
                           </ng-container>
                         </ng-container>
                       </ng-container>
                     </div>
+
+                    <!-- Displays tips -->
+                    <ng-container *ngIf="currentView == 'MoodChosen'">
+                      <ng-container *ngFor="let item of TIPSINDEX">
+                        <div *ngIf="item.Md == chosenMood">
+                          <ul class="extra-line-space">
+                            <li *ngFor="let tip of item.tips">
+                              <h4 class="dynamic-text-size" [style.fontSize]="0.75 + fontSizeMultiplier * 0.75 + 'rem'">
+                                <span class="pink-text">-</span> &nbsp; {{ tip }}
+                              </h4>
+                            </li>
+                          </ul>
+                        </div>
+                      </ng-container>
+                    </ng-container>
 
                     <br />
                     <br />
