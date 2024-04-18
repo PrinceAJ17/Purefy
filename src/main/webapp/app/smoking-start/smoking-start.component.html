@@ -113,30 +113,36 @@
                             </p>
                           </div>
                           <div class="col-lg-12">
-                            <div *ngIf="!timerRunning('S1')" class="main-border-button">
-                              <a href="#" (click)="startTimerAndChallenge('S1', 12, 'Smoking', '1'); $event.preventDefault(); sendPoints(1)"
-                                >START NOW!</a
-                              >
-                            </div>
+                            <div class="asa">
+                              <div *ngIf="!timerRunning('S1')" class="main-border-button">
+                                <a
+                                  href="#"
+                                  (click)="startTimerAndChallenge('S1', 12, 'Smoking', '1'); $event.preventDefault(); sendPoints(1)"
+                                  >START NOW!</a
+                                >
+                              </div>
 
-                            <!-- Display time remaining and stop challenge link -->
-                            <div *ngIf="timerRunning('S1')" class="main-border-button">
-                              <h4>Time Remaining: {{ timers['S1'] }}</h4>
-                              <br />
-                              <a
-                                href="#"
-                                (click)="
-                                  stopTimerAndChallenge(
-                                    'S1',
-                                    'Smoking (This challenge was called off, and the date of cancellation is indicated below.)',
-                                    '1'
-                                  );
-                                  $event.preventDefault();
-                                  deductPoints(1)
-                                "
-                                >QUIT!</a
-                              >
-                              <a routerLink="/History">History</a>
+                              <!-- Display time remaining and stop challenge link -->
+                              <div *ngIf="timerRunning('S1')" class="main-border-button">
+                                <h4>Time Remaining: {{ timers['S1'] }}</h4>
+                                <br />
+                                <div class="asa">
+                                  <a
+                                    href="#"
+                                    (click)="
+                                      stopTimerAndChallenge(
+                                        'S1',
+                                        'Smoking (This challenge was called off, and the date of cancellation is indicated below.)',
+                                        '1'
+                                      );
+                                      $event.preventDefault();
+                                      deductPoints(1)
+                                    "
+                                    >QUIT!</a
+                                  >
+                                  <a routerLink="/History">History</a>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -211,30 +217,36 @@
                             </p>
                           </div>
                           <div class="col-lg-12">
-                            <div *ngIf="!timerRunning('S2')" class="main-border-button">
-                              <a href="#" (click)="startTimerAndChallenge('S2', 24, 'Smoking', '2'); $event.preventDefault(); sendPoints(2)"
-                                >START NOW!</a
-                              >
-                            </div>
+                            <div class="asa">
+                              <div *ngIf="!timerRunning('S2')" class="main-border-button">
+                                <a
+                                  href="#"
+                                  (click)="startTimerAndChallenge('S2', 24, 'Smoking', '2'); $event.preventDefault(); sendPoints(2)"
+                                  >START NOW!</a
+                                >
+                              </div>
 
-                            <!-- Display time remaining and stop challenge link -->
-                            <div *ngIf="timerRunning('S2')" class="main-border-button">
-                              <h4>Time Remaining: {{ timers['S2'] }}</h4>
-                              <br />
-                              <a
-                                href="#"
-                                (click)="
-                                  stopTimerAndChallenge(
-                                    'S2',
-                                    'Smoking (This challenge was called off, and the date of cancellation is indicated below.)',
-                                    '2'
-                                  );
-                                  $event.preventDefault();
-                                  deductPoints(2)
-                                "
-                                >QUIT!</a
-                              >
-                              <a routerLink="/History">History</a>
+                              <!-- Display time remaining and stop challenge link -->
+                              <div *ngIf="timerRunning('S2')" class="main-border-button">
+                                <h4>Time Remaining: {{ timers['S2'] }}</h4>
+                                <br />
+                                <div class="asa">
+                                  <a
+                                    href="#"
+                                    (click)="
+                                      stopTimerAndChallenge(
+                                        'S2',
+                                        'Smoking (This challenge was called off, and the date of cancellation is indicated below.)',
+                                        '2'
+                                      );
+                                      $event.preventDefault();
+                                      deductPoints(2)
+                                    "
+                                    >QUIT!</a
+                                  >
+                                  <a routerLink="/History">History</a>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -309,30 +321,36 @@
                             </p>
                           </div>
                           <div class="col-lg-12">
-                            <div *ngIf="!timerRunning('S3')" class="main-border-button">
-                              <a href="#" (click)="startTimerAndChallenge('S3', 48, 'Smoking', '3'); $event.preventDefault(); sendPoints(3)"
-                                >START NOW!</a
-                              >
-                            </div>
+                            <div class="asa">
+                              <div *ngIf="!timerRunning('S3')" class="main-border-button">
+                                <a
+                                  href="#"
+                                  (click)="startTimerAndChallenge('S3', 48, 'Smoking', '3'); $event.preventDefault(); sendPoints(3)"
+                                  >START NOW!</a
+                                >
+                              </div>
 
-                            <!-- Display time remaining and stop challenge link -->
-                            <div *ngIf="timerRunning('S3')" class="main-border-button">
-                              <h4>Time Remaining: {{ timers['S3'] }}</h4>
-                              <br />
-                              <a
-                                href="#"
-                                (click)="
-                                  stopTimerAndChallenge(
-                                    'S3',
-                                    'Smoking (This challenge was called off, and the date of cancellation is indicated below.)',
-                                    '3'
-                                  );
-                                  $event.preventDefault();
-                                  deductPoints(3)
-                                "
-                                >QUIT!</a
-                              >
-                              <a routerLink="/History">History</a>
+                              <!-- Display time remaining and stop challenge link -->
+                              <div *ngIf="timerRunning('S3')" class="main-border-button">
+                                <h4>Time Remaining: {{ timers['S3'] }}</h4>
+                                <br />
+                                <div class="asa">
+                                  <a
+                                    href="#"
+                                    (click)="
+                                      stopTimerAndChallenge(
+                                        'S3',
+                                        'Smoking (This challenge was called off, and the date of cancellation is indicated below.)',
+                                        '3'
+                                      );
+                                      $event.preventDefault();
+                                      deductPoints(3)
+                                    "
+                                    >QUIT!</a
+                                  >
+                                  <a routerLink="/History">History</a>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -407,32 +425,36 @@
                             </p>
                           </div>
                           <div class="col-lg-12">
-                            <div *ngIf="!timerRunning('S4')" class="main-border-button">
-                              <a
-                                href="#"
-                                (click)="startTimerAndChallenge('S4', 336, 'Smoking', '4'); $event.preventDefault(); sendPoints(4)"
-                                >START NOW!</a
-                              >
-                            </div>
+                            <div class="asa">
+                              <div *ngIf="!timerRunning('S4')" class="main-border-button">
+                                <a
+                                  href="#"
+                                  (click)="startTimerAndChallenge('S4', 336, 'Smoking', '4'); $event.preventDefault(); sendPoints(4)"
+                                  >START NOW!</a
+                                >
+                              </div>
 
-                            <!-- Display time remaining and stop challenge link -->
-                            <div *ngIf="timerRunning('S4')" class="main-border-button">
-                              <h4>Time Remaining: {{ timers['S4'] }}</h4>
-                              <br />
-                              <a
-                                href="#"
-                                (click)="
-                                  stopTimerAndChallenge(
-                                    'S4',
-                                    'Smoking (This challenge was called off, and the date of cancellation is indicated below.)',
-                                    '4'
-                                  );
-                                  $event.preventDefault();
-                                  deductPoints(4)
-                                "
-                                >QUIT!</a
-                              >
-                              <a routerLink="/History">History</a>
+                              <!-- Display time remaining and stop challenge link -->
+                              <div *ngIf="timerRunning('S4')" class="main-border-button">
+                                <h4>Time Remaining: {{ timers['S4'] }}</h4>
+                                <br />
+                                <div class="asa">
+                                  <a
+                                    href="#"
+                                    (click)="
+                                      stopTimerAndChallenge(
+                                        'S4',
+                                        'Smoking (This challenge was called off, and the date of cancellation is indicated below.)',
+                                        '4'
+                                      );
+                                      $event.preventDefault();
+                                      deductPoints(4)
+                                    "
+                                    >QUIT!</a
+                                  >
+                                  <a routerLink="/History">History</a>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>

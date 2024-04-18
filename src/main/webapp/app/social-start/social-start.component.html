@@ -114,32 +114,36 @@
                             </p>
                           </div>
                           <div class="col-lg-12">
-                            <div *ngIf="!timerRunning('SM1')" class="main-border-button">
-                              <a
-                                href="#"
-                                (click)="startTimerAndChallenge('SM1', 12, 'Social Media', '1'); $event.preventDefault(); sendPoints(1)"
-                                >START NOW!</a
-                              >
-                            </div>
+                            <div class="asa">
+                              <div *ngIf="!timerRunning('SM1')" class="main-border-button">
+                                <a
+                                  href="#"
+                                  (click)="startTimerAndChallenge('SM1', 12, 'Social Media', '1'); $event.preventDefault(); sendPoints(1)"
+                                  >START NOW!</a
+                                >
+                              </div>
 
-                            <!-- Display time remaining and stop challenge link -->
-                            <div *ngIf="timerRunning('SM1')" class="main-border-button">
-                              <h4>Time Remaining: {{ timers['SM1'] }}</h4>
-                              <br />
-                              <a
-                                href="#"
-                                (click)="
-                                  stopTimerAndChallenge(
-                                    'SM1',
-                                    'Social Media (This challenge was called off, and the date of cancellation is indicated below.)',
-                                    '1'
-                                  );
-                                  $event.preventDefault();
-                                  deductPoints(1)
-                                "
-                                >QUIT!</a
-                              >
-                              <a routerLink="/History">History</a>
+                              <!-- Display time remaining and stop challenge link -->
+                              <div *ngIf="timerRunning('SM1')" class="main-border-button">
+                                <h4>Time Remaining: {{ timers['SM1'] }}</h4>
+                                <br />
+                                <div class="asa">
+                                  <a
+                                    href="#"
+                                    (click)="
+                                      stopTimerAndChallenge(
+                                        'SM1',
+                                        'Social Media (This challenge was called off, and the date of cancellation is indicated below.)',
+                                        '1'
+                                      );
+                                      $event.preventDefault();
+                                      deductPoints(1)
+                                    "
+                                    >QUIT!</a
+                                  >
+                                  <a routerLink="/History">History</a>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -214,32 +218,36 @@
                             </p>
                           </div>
                           <div class="col-lg-12">
-                            <div *ngIf="!timerRunning('SM2')" class="main-border-button">
-                              <a
-                                href="#"
-                                (click)="startTimerAndChallenge('SM2', 24, 'Social Media', '2'); $event.preventDefault(); sendPoints(2)"
-                                >START NOW!</a
-                              >
-                            </div>
+                            <div class="asa">
+                              <div *ngIf="!timerRunning('SM2')" class="main-border-button">
+                                <a
+                                  href="#"
+                                  (click)="startTimerAndChallenge('SM2', 24, 'Social Media', '2'); $event.preventDefault(); sendPoints(2)"
+                                  >START NOW!</a
+                                >
+                              </div>
 
-                            <!-- Display time remaining and stop challenge link -->
-                            <div *ngIf="timerRunning('SM2')" class="main-border-button">
-                              <h4>Time Remaining: {{ timers['SM2'] }}</h4>
-                              <br />
-                              <a
-                                href="#"
-                                (click)="
-                                  stopTimerAndChallenge(
-                                    'SM2',
-                                    'Social Media (This challenge was called off, and the date of cancellation is indicated below.)',
-                                    '2'
-                                  );
-                                  $event.preventDefault();
-                                  deductPoints(2)
-                                "
-                                >QUIT!</a
-                              >
-                              <a routerLink="/History">History</a>
+                              <!-- Display time remaining and stop challenge link -->
+                              <div *ngIf="timerRunning('SM2')" class="main-border-button">
+                                <h4>Time Remaining: {{ timers['SM2'] }}</h4>
+                                <br />
+                                <div class="asa">
+                                  <a
+                                    href="#"
+                                    (click)="
+                                      stopTimerAndChallenge(
+                                        'SM2',
+                                        'Social Media (This challenge was called off, and the date of cancellation is indicated below.)',
+                                        '2'
+                                      );
+                                      $event.preventDefault();
+                                      deductPoints(2)
+                                    "
+                                    >QUIT!</a
+                                  >
+                                  <a routerLink="/History">History</a>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -315,32 +323,36 @@
                             </p>
                           </div>
                           <div class="col-lg-12">
-                            <div *ngIf="!timerRunning('SM3')" class="main-border-button">
-                              <a
-                                href="#"
-                                (click)="startTimerAndChallenge('SM3', 48, 'Social Media', '3'); $event.preventDefault(); sendPoints(3)"
-                                >START NOW!</a
-                              >
-                            </div>
+                            <div class="asa">
+                              <div *ngIf="!timerRunning('SM3')" class="main-border-button">
+                                <a
+                                  href="#"
+                                  (click)="startTimerAndChallenge('SM3', 48, 'Social Media', '3'); $event.preventDefault(); sendPoints(3)"
+                                  >START NOW!</a
+                                >
+                              </div>
 
-                            <!-- Display time remaining and stop challenge link -->
-                            <div *ngIf="timerRunning('SM3')" class="main-border-button">
-                              <h4>Time Remaining: {{ timers['SM3'] }}</h4>
-                              <br />
-                              <a
-                                href="#"
-                                (click)="
-                                  stopTimerAndChallenge(
-                                    'SM3',
-                                    'Social Media (This challenge was called off, and the date of cancellation is indicated below.)',
-                                    '3'
-                                  );
-                                  $event.preventDefault();
-                                  deductPoints(3)
-                                "
-                                >QUIT!</a
-                              >
-                              <a routerLink="/History">History</a>
+                              <!-- Display time remaining and stop challenge link -->
+                              <div *ngIf="timerRunning('SM3')" class="main-border-button">
+                                <h4>Time Remaining: {{ timers['SM3'] }}</h4>
+                                <br />
+                                <div class="asa">
+                                  <a
+                                    href="#"
+                                    (click)="
+                                      stopTimerAndChallenge(
+                                        'SM3',
+                                        'Social Media (This challenge was called off, and the date of cancellation is indicated below.)',
+                                        '3'
+                                      );
+                                      $event.preventDefault();
+                                      deductPoints(3)
+                                    "
+                                    >QUIT!</a
+                                  >
+                                  <a routerLink="/History">History</a>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -416,32 +428,36 @@
                             </p>
                           </div>
                           <div class="col-lg-12">
-                            <div *ngIf="!timerRunning('SM4')" class="main-border-button">
-                              <a
-                                href="#"
-                                (click)="startTimerAndChallenge('SM4', 168, 'Social Media', '4'); $event.preventDefault(); sendPoints(4)"
-                                >START NOW!</a
-                              >
-                            </div>
+                            <div class="asa">
+                              <div *ngIf="!timerRunning('SM4')" class="main-border-button">
+                                <a
+                                  href="#"
+                                  (click)="startTimerAndChallenge('SM4', 168, 'Social Media', '4'); $event.preventDefault(); sendPoints(4)"
+                                  >START NOW!</a
+                                >
+                              </div>
 
-                            <!-- Display time remaining and stop challenge link -->
-                            <div *ngIf="timerRunning('SM4')" class="main-border-button">
-                              <h4>Time Remaining: {{ timers['SM4'] }}</h4>
-                              <br />
-                              <a
-                                href="#"
-                                (click)="
-                                  stopTimerAndChallenge(
-                                    'SM4',
-                                    'Social Media (This challenge was called off, and the date of cancellation is indicated below.)',
-                                    '4'
-                                  );
-                                  $event.preventDefault();
-                                  deductPoints(4)
-                                "
-                                >QUIT!</a
-                              >
-                              <a routerLink="/History">History</a>
+                              <!-- Display time remaining and stop challenge link -->
+                              <div *ngIf="timerRunning('SM4')" class="main-border-button">
+                                <h4>Time Remaining: {{ timers['SM4'] }}</h4>
+                                <br />
+                                <div class="asa">
+                                  <a
+                                    href="#"
+                                    (click)="
+                                      stopTimerAndChallenge(
+                                        'SM4',
+                                        'Social Media (This challenge was called off, and the date of cancellation is indicated below.)',
+                                        '4'
+                                      );
+                                      $event.preventDefault();
+                                      deductPoints(4)
+                                    "
+                                    >QUIT!</a
+                                  >
+                                  <a routerLink="/History">History</a>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
