@@ -145,21 +145,27 @@ export class LeaderboardComponent implements OnInit {
     if (screenWidth <= 1200 && screenWidth >= 993) {
       this.minFontSize = 0.3;
       this.maxFontSize = 1.3;
+      this.fontSizeMultiplier = 1.3;
     } else if (screenWidth <= 992 && screenWidth >= 769) {
       this.minFontSize = 0.3;
       this.maxFontSize = 1;
+      this.fontSizeMultiplier = 1;
     } else if (screenWidth <= 768 && screenWidth >= 577) {
       this.minFontSize = 0.3;
       this.maxFontSize = 0.7;
+      this.fontSizeMultiplier = 0.7;
     } else if (screenWidth <= 576 && screenWidth >= 451) {
       this.minFontSize = 0.3;
       this.maxFontSize = 0.7;
+      this.fontSizeMultiplier = 0.7;
     } else if (screenWidth <= 450 && screenWidth >= 351) {
       this.minFontSize = 0.2;
       this.maxFontSize = 0.5;
+      this.fontSizeMultiplier = 0.5;
     } else if (screenWidth <= 350) {
       this.minFontSize = 0.1;
       this.maxFontSize = 0.4;
+      this.fontSizeMultiplier = 0.4;
     }
   }
 
