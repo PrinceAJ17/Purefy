@@ -69,7 +69,7 @@ export class MoodJournalPageComponent implements OnInit {
     });
     this.loadScript('vendor/jquery/jquery.min.js')
       .then(() => this.loadScript('vendor/bootstrap/js/bootstrap.min.js'))
-
+      .then(() => this.loadScript('assets/js/isotope.min.js'))
       .then(() => this.loadScript('assets/js/owl-carousel.js'))
       .then(() => this.loadScript('assets/js/tabs.js'))
       .then(() => this.loadScript('assets/js/popup.js'))
