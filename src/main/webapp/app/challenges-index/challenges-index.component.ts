@@ -17,6 +17,10 @@ export class ChallengesIndexComponent implements OnInit {
   currentUsername?: string;
   theme: 'light' | 'dark' = 'dark';
 
+  handle(event: any, link: String) {
+    this.router.navigate([link]);
+  }
+
   ngOnInit(): void {
     this.loadScript('vendor/jquery/jquery.min.js')
       .then(() => this.loadScript('vendor/bootstrap/js/bootstrap.min.js'))

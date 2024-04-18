@@ -302,13 +302,35 @@ export class HabitsComponent implements OnInit {
   }
 
   saveSum(summary: string): void {
+    // Retrieve all habit trackings
     this.weeklyService.getAllHabitstrackings().subscribe(data => {
       const currentWeekNumber = this.week;
-      const currentWeekSummary = data.find(habit => habit.weekOfHabit === currentWeekNumber && habit.summary != null);
+      const currentWeekSummary = data.find(habit => habit.weekOfHabit === this.week && habit.summary);
+      const id = currentWeekSummary?.id;
 
-      if (currentWeekSummary?.id) this.weeklyService.delete(currentWeekSummary?.id);
+      // Check if an existing summary needs to be deleted
+      if (id) {
+        // Delete existing summary
+        this.weeklyService.delete(id).subscribe({
+          next: () => {
+            // Only create a new summary after successful deletion
+            this.createSummary(summary);
+          },
+          error: () => {
+            console.error('Error deleting the habit');
+          },
+        });
+      } else {
+        // Directly create new summary if no deletion is needed
+        this.createSummary(summary);
+      }
     });
 
+    window.location.reload();
+  }
+
+  // Helper function to create a new habit summary
+  private createSummary(summary: string): void {
     const newHabit: NewHabitstracking = {
       habitIDEN: null,
       nameOfHabit: null,
@@ -323,12 +345,12 @@ export class HabitsComponent implements OnInit {
     this.weeklyService.create(newHabit).subscribe({
       next: habit => {
         console.log('Saved successfully', habit);
+        window.location.reload(); // Consider handling this differently for a better user experience
       },
       error: () => {
         console.error('Error saving the habit');
       },
     });
-    window.location.reload();
   }
 
   @ViewChild('summaryInput') summaryInput: ElementRef | undefined;

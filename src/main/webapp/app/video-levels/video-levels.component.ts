@@ -17,6 +17,12 @@ export class VideoLevelsComponent implements OnInit {
   currentUsername?: string;
   theme: 'light' | 'dark' = 'dark';
 
+  handleKeyup(event: { key: string }, state: string) {
+    if (event.key === 'Enter') {
+      this.navigateToTarget(state);
+    }
+  }
+
   ngOnInit(): void {
     this.loadScript('vendor/jquery/jquery.min.js')
       .then(() => this.loadScript('vendor/bootstrap/js/bootstrap.min.js'))

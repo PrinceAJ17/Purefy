@@ -138,7 +138,8 @@
                   <h4 class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">Weekly Summary</h4>
                   <form (ngSubmit)="saveSum(summaryInput.value)">
                     <textarea #summaryInput class="textarea-fixed-font-size" placeholder="Summarize your text here..."></textarea>
-                    <button type="submit" [style.fontSize]="fontSizeMultiplier + 'rem'">Submit</button>
+                    <button *ngIf="summaryInput.value" type="submit" [style.fontSize]="fontSizeMultiplier + 'rem'">Delete</button>
+                    <button *ngIf="!summaryInput.value" type="submit" [style.fontSize]="fontSizeMultiplier + 'rem'">Submit</button>
                   </form>
                 </div>
               </div>

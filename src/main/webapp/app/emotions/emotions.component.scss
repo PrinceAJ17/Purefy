@@ -4,6 +4,11 @@
 @import 'assets/css/swiper';
 @import 'assets/css/flex-slider';
 
+.thumb h4:focus,
+.thumb .hover-effect h6:focus {
+  outline: 10px solid red;
+}
+
 /*
 
 TemplateMo 579 Cyborg Gaming

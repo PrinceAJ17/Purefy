@@ -10,6 +10,11 @@
   text-align: center;
 }
 
+.thumb img:focus,
+.thumb .hover-effect h6:focus {
+  outline: 10px solid pink;
+}
+
 $base-font-size: 16px; /* Adjusted base font size to 16px */
 
 .dynamic-text-size {
