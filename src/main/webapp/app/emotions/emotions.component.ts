@@ -38,6 +38,10 @@ export class EmotionsComponent implements OnInit, AfterViewInit {
   searchTerm: string = '';
   private renderer: Renderer2;
 
+  handle(event: any, i: any) {
+    this.updateSelectedPrompt(i);
+  }
+
   // Array of prompts
   promptOptions: { prompt: string }[] = [];
 

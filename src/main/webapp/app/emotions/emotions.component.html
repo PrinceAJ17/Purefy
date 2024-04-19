@@ -27,7 +27,7 @@
           <div class="col-12">
             <nav class="main-nav">
               <a href="#" class="logo">
-                <img src="assets/images/purefy-removebg-preview.png" alt="" style="margin-top: 5px" />
+                <img src="assets/images/purefy-removebg-preview.webp" alt="" style="margin-top: 5px" />
               </a>
               <ul class="nav">
                 <li><a routerLink="/Dashboard">Home</a></li>
@@ -80,7 +80,7 @@
             <div class="owl-features owl-carousel">
               <div class="item" *ngFor="let prompt of promptOptions; let i = index" (click)="updateSelectedPrompt(i)">
                 <div class="thumb">
-                  <h4>{{ prompt.prompt }}</h4>
+                  <h4 tabindex="0" role="tab" (keydown)="handle($event, i)">{{ prompt.prompt }}</h4>
                 </div>
               </div>
             </div>

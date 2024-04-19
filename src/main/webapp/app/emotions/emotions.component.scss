@@ -4,6 +4,11 @@
 @import 'assets/css/swiper';
 @import 'assets/css/flex-slider';
 
+.thumb h4:focus,
+.thumb .hover-effect h6:focus {
+  outline: 10px solid red;
+}
+
 /*
 
 TemplateMo 579 Cyborg Gaming
@@ -739,6 +744,10 @@ LandingPage Style
   background: #f0f0f0;
   color: #000;
 
+  footer p {
+    color: #000000;
+  }
+
   .page-content {
     background-color: #fff !important; // Ensure the background is white
     color: #000 !important; // Ensure the text is black
@@ -780,10 +789,6 @@ LandingPage Style
       &:hover {
         color: darken(#e75e8d, 10%) !important; // Pink hover effect
       }
-    }
-
-    footer p {
-      color: #000000;
     }
 
     .MJ_SECTION {
@@ -835,13 +840,6 @@ LandingPage Style
       padding: 30px 15px;
       border-radius: 23px;
       margin-bottom: 30px;
-    }
-
-    .footer p {
-      text-align: center;
-      padding: 30px 0px;
-      color: #000;
-      font-weight: 300;
     }
 
     .heading-section h4 span:not(.text-decoration-underline) {
@@ -1221,6 +1219,7 @@ EntriesPage Style
 }
 
 .form-group {
+  color: black;
   margin-bottom: 15px;
   display: block;
 }

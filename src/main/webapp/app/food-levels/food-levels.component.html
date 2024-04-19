@@ -31,7 +31,7 @@
             <nav class="main-nav">
               <!-- ***** Logo Start ***** -->
               <a href="" class="logo">
-                <img src="assets/images/purefy-removebg-preview.png" alt="" />
+                <img src="assets/images/purefy-removebg-preview.webp" alt="" style="margin-top: 5px" />
               </a>
               <ul class="nav">
                 <li><a routerLink="/Dashboard">Home</a></li>
@@ -73,6 +73,7 @@
                 <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
               </button>
             </div>
+            <!-- ***** Featured Challenge Start ***** -->
             <div class="row">
               <div class="col-lg-12">
                 <div class="featured-games header-text" [ngClass]="theme">
@@ -83,7 +84,14 @@
                     <!-- ***** Level 1 ***** -->
                     <div class="item">
                       <div class="thumb">
-                        <img src="assets/images/ezgif-3-ff7c873609.jpg" alt="" />
+                        <img
+                          src="assets/images/ezgif-3-ff7c873609.jpg"
+                          aria-label="Navigate to state 1"
+                          (click)="navigateToTarget('state1')"
+                          (keyup)="handleKeyup($event, 'state1')"
+                          tabindex="0"
+                          role="button"
+                        />
                         <div class="hover-effect">
                           <h6 (click)="navigateToTarget('state1')">Start</h6>
                         </div>
@@ -99,7 +107,14 @@
                     <!--Level 2-->
                     <div class="item">
                       <div class="thumb">
-                        <img src="assets/images/ezgif-3-5800aa8b9e.jpg" alt="" />
+                        <img
+                          src="assets/images/ezgif-3-5800aa8b9e.jpg"
+                          aria-label="Navigate to state 2"
+                          (click)="navigateToTarget('state2')"
+                          (keyup)="handleKeyup($event, 'state2')"
+                          tabindex="0"
+                          role="button"
+                        />
                         <div class="hover-effect">
                           <h6 (click)="navigateToTarget('state2')">Start</h6>
                         </div>
@@ -115,7 +130,14 @@
                     <!--Level 3-->
                     <div class="item">
                       <div class="thumb">
-                        <img src="assets/images/ezgif-3-889b0f5a8d.jpg" alt="" />
+                        <img
+                          src="assets/images/ezgif-3-889b0f5a8d.jpg"
+                          aria-label="Navigate to state 3"
+                          (click)="navigateToTarget('state3')"
+                          (keyup)="handleKeyup($event, 'state3')"
+                          tabindex="0"
+                          role="button"
+                        />
                         <div class="hover-effect">
                           <h6 (click)="navigateToTarget('state3')">Start</h6>
                         </div>
@@ -130,7 +152,14 @@
 
                     <div class="item">
                       <div class="thumb">
-                        <img src="assets/images/ezgif-3-040872034a.jpg" alt="" />
+                        <img
+                          src="assets/images/ezgif-3-040872034a.jpg"
+                          aria-label="Navigate to state 4"
+                          (click)="navigateToTarget('state4')"
+                          (keyup)="handleKeyup($event, 'state4')"
+                          tabindex="0"
+                          role="button"
+                        />
                         <div class="hover-effect">
                           <h6 (click)="navigateToTarget('state4')">Start</h6>
                         </div>
@@ -143,7 +172,14 @@
                     <!-- ***** Level 1 ***** -->
                     <div class="item">
                       <div class="thumb">
-                        <img src="assets/images/ezgif-3-ff7c873609.jpg" alt="" />
+                        <img
+                          src="assets/images/ezgif-3-ff7c873609.jpg"
+                          aria-label="Navigate to state 1"
+                          (click)="navigateToTarget('state1')"
+                          (keyup)="handleKeyup($event, 'state1')"
+                          tabindex="0"
+                          role="button"
+                        />
                         <div class="hover-effect">
                           <h6 (click)="navigateToTarget('state1')">Start</h6>
                         </div>
@@ -159,7 +195,14 @@
                     <!--Level 2-->
                     <div class="item">
                       <div class="thumb">
-                        <img src="assets/images/ezgif-3-5800aa8b9e.jpg" alt="" />
+                        <img
+                          src="assets/images/ezgif-3-5800aa8b9e.jpg"
+                          aria-label="Navigate to state 2"
+                          (click)="navigateToTarget('state2')"
+                          (keyup)="handleKeyup($event, 'state2')"
+                          tabindex="0"
+                          role="button"
+                        />
                         <div class="hover-effect">
                           <h6 (click)="navigateToTarget('state2')">Start</h6>
                         </div>
@@ -175,7 +218,14 @@
                     <!--Level 3-->
                     <div class="item">
                       <div class="thumb">
-                        <img src="assets/images/ezgif-3-889b0f5a8d.jpg" alt="" />
+                        <img
+                          src="assets/images/ezgif-3-889b0f5a8d.jpg"
+                          aria-label="Navigate to state 3"
+                          (click)="navigateToTarget('state3')"
+                          (keyup)="handleKeyup($event, 'state3')"
+                          tabindex="0"
+                          role="button"
+                        />
                         <div class="hover-effect">
                           <h6 (click)="navigateToTarget('state3')">Start</h6>
                         </div>
@@ -190,7 +240,14 @@
 
                     <div class="item">
                       <div class="thumb">
-                        <img src="assets/images/ezgif-3-040872034a.jpg" alt="" />
+                        <img
+                          src="assets/images/ezgif-3-040872034a.jpg"
+                          aria-label="Navigate to state 4"
+                          (click)="navigateToTarget('state4')"
+                          (keyup)="handleKeyup($event, 'state4')"
+                          tabindex="0"
+                          role="button"
+                        />
                         <div class="hover-effect">
                           <h6 (click)="navigateToTarget('state4')">Start</h6>
                         </div>

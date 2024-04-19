@@ -2,6 +2,11 @@
 @import 'assets/css/templatemo-cyborg-gaming';
 @import 'assets/css/fontawesome';
 
+.thumb img:focus,
+.thumb .hover-effect h6:focus {
+  outline: 10px solid pink;
+}
+
 .light {
   background: #f0f0f0;
   color: #000;

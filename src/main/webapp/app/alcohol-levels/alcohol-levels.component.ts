@@ -67,6 +67,12 @@ export class AlcoholLevelsComponent implements OnInit {
     localStorage.setItem(this.getThemeKey(), this.theme);
   }
 
+  handleKeyup(event: { key: string }, state: string) {
+    if (event.key === 'Enter') {
+      this.navigateToTarget(state);
+    }
+  }
+
   private loadScript(scriptUrl: string): Promise<void> {
     return new Promise((resolve, reject) => {
       const body = document.body as HTMLDivElement;

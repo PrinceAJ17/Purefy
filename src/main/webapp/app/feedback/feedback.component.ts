@@ -47,6 +47,19 @@ export class FeedbackComponent implements OnInit {
         }
       }
     });
+    this.loadScript('vendor/jquery/jquery.min.js')
+      .then(() => this.loadScript('vendor/bootstrap/js/bootstrap.min.js'))
+      .then(() => this.loadScript('assets/js/isotope.min.js'))
+      .then(() => this.loadScript('assets/js/owl-carousel.js'))
+      .then(() => this.loadScript('assets/js/tabs.js'))
+      .then(() => this.loadScript('assets/js/popup.js'))
+      .then(() => this.loadScript('assets/js/custom.js'))
+      .then(() => {
+        console.log('All scripts loaded successfully');
+      })
+      .catch(error => {
+        console.error('Script loading error:', error);
+      });
   }
 
   getFontSizeKey(): string {
