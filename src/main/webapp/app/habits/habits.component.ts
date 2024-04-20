@@ -83,13 +83,23 @@ export class HabitsComponent implements OnInit {
     this.loadAllHabits();
     this.loadSummary();
     this.loadAllHabitsForWeek(this.week);
+    this.getStartOfWeekMondayFirstAsString(this.week);
   }
 
   getCurrentWeekNumber(): number {
     const now = new Date();
+    now.setHours(0, 0, 0, 0); // Normalize the time part.
     const startOfYear = new Date(now.getFullYear(), 0, 1);
-    const pastDaysOfYear = (now.valueOf() - startOfYear.valueOf()) / 86400000;
-    return Math.ceil((pastDaysOfYear + startOfYear.getDay() + 1) / 7);
+    let dayOfWeek = startOfYear.getDay() || 7; // Treat Sunday as 7 (ISO 8601)
+
+    // Adjust start of the year to the first Monday
+    if (dayOfWeek !== 1) {
+      startOfYear.setDate(startOfYear.getDate() + (dayOfWeek === 7 ? 1 : 8 - dayOfWeek));
+    }
+
+    // Use getTime() to convert date objects to timestamps for subtraction
+    const pastDaysOfYear = (now.getTime() - startOfYear.getTime()) / 86400000; // milliseconds per day
+    return Math.ceil((pastDaysOfYear + 1) / 7); // +1 because day count starts at 0
   }
 
   getFontSizeKey(): string {
@@ -111,35 +121,34 @@ export class HabitsComponent implements OnInit {
     localStorage.setItem(this.getThemeKey(), this.theme);
   }
 
-  getStartOfCurrentWeekMondayFirstAsString(): void {
-    const now = new Date();
-    now.setHours(0, 0, 0, 0);
-    const dayOfWeek = now.getDay();
-    const daysSinceMonday = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
-    const startOfCurrentWeek = new Date(now);
-    startOfCurrentWeek.setDate(now.getDate() - daysSinceMonday);
-    const year = startOfCurrentWeek.getFullYear();
-    const month = startOfCurrentWeek.getMonth() + 1;
-    const day = startOfCurrentWeek.getDate();
-    const monthPadded = month.toString().padStart(2, '0');
-    const dayPadded = day.toString().padStart(2, '0');
-
-    this.date = `${year}-${monthPadded}-${dayPadded}`;
-  }
-
   getStartOfWeekMondayFirstAsString(weekNumber: number): void {
+    // Start of the year
     const startOfYear = new Date(new Date().getFullYear(), 0, 1);
-    // Adjust if the start of the year is not a Monday
+    // Find out what day of the week the 1st January is (0 is Sunday, 1 is Monday, etc.)
+    let dayOfWeek = startOfYear.getDay();
+
+    // If Jan 1 is not a Monday (1), adjust to the previous Monday
+    if (dayOfWeek !== 1) {
+      // If Jan 1 is Sunday (0), go back 6 days, otherwise go back dayOfWeek - 1 days
+      startOfYear.setDate(startOfYear.getDate() - (dayOfWeek === 0 ? 6 : dayOfWeek - 1));
+    }
 
     // Calculate the Monday of the given week number
     const daysToAdd = (weekNumber - 1) * 7;
     startOfYear.setDate(startOfYear.getDate() + daysToAdd);
 
-    const year = startOfYear.getFullYear();
-    const month = startOfYear.getMonth() + 1;
-    const day = startOfYear.getDate();
+    // Format the date in a more readable form
+    this.date = this.formatDate(startOfYear);
+  }
 
-    this.date = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+  // Utility to format dates in a friendly string
+  formatDate(date: Date): string {
+    return new Intl.DateTimeFormat('en-US', {
+      weekday: 'long', // "Monday"
+      year: 'numeric', // "2024"
+      month: 'long', // "January"
+      day: '2-digit', // "01"
+    }).format(date);
   }
 
   user(): void {
@@ -366,8 +375,5 @@ export class HabitsComponent implements OnInit {
         this.summaryInput.nativeElement.value = summaryText;
       }
     });
-  }
-  formatDate(date: Date): string {
-    return new Intl.DateTimeFormat('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }).format(date);
   }
 }
