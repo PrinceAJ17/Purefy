@@ -42,7 +42,7 @@ export class PasswordResetInitComponent implements AfterViewInit {
       activationKey => {
         if (activationKey) {
           console.log('Activation Key:', activationKey);
-          // Additional logic to handle the activation key
+          this.success = true;
           this.resetUrl = 'http://team13.bham.team/account/reset/finish?key=' + activationKey;
         } else {
           console.error('No activation key returned.');

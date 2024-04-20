@@ -158,7 +158,7 @@ public class AccountResource {
         Optional<User> user = userService.requestPasswordReset(mail);
         if (user.isPresent()) {
             mailService.sendPasswordResetMail(user.get());
-            return user.get().getActivationKey();
+            return user.get().getResetKey();
         } else {
             // Pretend the request has been successful to prevent checking which emails really exist
             // but log that an invalid attempt has been made
