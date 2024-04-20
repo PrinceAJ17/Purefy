@@ -98,6 +98,21 @@ public class UserService {
             });
     }
 
+    public Optional<String> requestPasswordResetNew(String mail) {
+        return userRepository
+            .findOneByEmailIgnoreCase(mail)
+            .filter(User::isActivated)
+            .map(user -> {
+                String resetKey = RandomUtil.generateResetKey();
+                user.setResetKey(resetKey);
+                user.setResetDate(Instant.now());
+                this.clearUserCaches(user);
+                userRepository.save(user);
+                // Assuming your frontend reset password page is at /reset-password?key=
+                return "https://team13.bham.team/reset/finish?key=" + resetKey;
+            });
+    }
+
     public User registerUser(AdminUserDTO userDTO, String password) {
         userRepository
             .findOneByLogin(userDTO.getLogin().toLowerCase())

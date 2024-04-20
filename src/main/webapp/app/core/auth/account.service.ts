@@ -25,6 +25,10 @@ export class AccountService {
     return this.http.post(this.applicationConfigService.getEndpointFor('api/account'), account);
   }
 
+  requestPasswordReset(initEmail: string): Observable<string> {
+    return this.http.post<string>('api/account/reset-password/init', { mail: initEmail });
+  }
+
   public getAccount(): Observable<Account> {
     // Potentially perform other logic here
     return this.fetch();

@@ -209,4 +209,12 @@ public class UserResource {
             .headers(HeaderUtil.createAlert(applicationName, "A user is deleted with identifier " + login, login))
             .build();
     }
+
+    @PostMapping("/reset-password/init")
+    public ResponseEntity<?> requestPasswordReset(@RequestBody String mail) {
+        return userService
+            .requestPasswordResetNew(mail)
+            .map(resetUrl -> ResponseEntity.ok().body(resetUrl))
+            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
 }
