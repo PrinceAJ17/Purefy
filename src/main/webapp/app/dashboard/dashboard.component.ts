@@ -80,7 +80,7 @@ export class DashboardComponent implements OnInit {
       tips: [
         'Try setting aside 10 minutes for meditation',
         "Make sure to stand up and walk around if you're sat for long periods of time",
-        'Remember to stay hydrated!',
+        'Keep up with the habits and activities that have contributed to your contentment',
       ],
     },
     {
@@ -88,6 +88,7 @@ export class DashboardComponent implements OnInit {
       tips: [
         'Try to step outside of your comfort zone and get into a new hobby',
         'Use your motivation to better yourself further, think of what else you could detox from in your lifestyle',
+        'Remember to acknowledge and celebrate your achievements, no matter how small!',
       ],
     },
     {
@@ -95,6 +96,7 @@ export class DashboardComponent implements OnInit {
       tips: [
         'Set yourself some goals for the future, so you can hold your future-self accountable',
         'Note down what makes you feel this way, no matter how small!',
+        "Take time to reflect on how far you've come since starting your dopamine detox",
       ],
     },
     {
@@ -102,6 +104,7 @@ export class DashboardComponent implements OnInit {
       tips: [
         'Meet up with friends or family, having someone to bounce energy off of can help',
         "Try something new, whether that'd be taking up a new hobby or exploring a new part of town",
+        'Look into doing some sort of regular exercise to get your body moving and stimulate your senses.',
       ],
     },
     {
@@ -115,6 +118,7 @@ export class DashboardComponent implements OnInit {
     {
       Md: 'Unmotivated',
       tips: [
+        'Remind yourself why you undertook this journey in the first place, it can help to reinforce your commitment',
         'Spend some time outdoors connecting with nature, even something like taking a stroll in the park can help inspire you',
         'Set small and achievable goals, and take pride in yourself when you completed them',
       ],
@@ -260,9 +264,9 @@ export class DashboardComponent implements OnInit {
       return 'Welcome,';
     } else if (currentHour >= 5 && currentHour <= 11) {
       return 'Good morning,';
-    } else if (currentHour >= 12 && currentHour <= 16) {
+    } else if (currentHour >= 12 && currentHour <= 17) {
       return 'Good afternoon,';
-    } else if (currentHour >= 17 && currentHour <= 23) {
+    } else if (currentHour >= 18 && currentHour <= 23) {
       return 'Good evening,';
     } else {
       return 'Welcome,';
