@@ -174,7 +174,7 @@ export class DashboardComponent implements OnInit {
         };
 
         this.moodpickerService.partialUpdate(tempMood).subscribe(newMood => {
-          console.log('Updated newMoodPicker successfully:', newMood.body);
+          console.log('Updated newMoodPicker successfully');
         });
 
         this.userMoodData.mood = mood;
@@ -297,9 +297,6 @@ export class DashboardComponent implements OnInit {
               this.userID = 0;
             }
           }
-          console.log('Request ran:', users.body);
-
-          console.log(this.userID);
 
           this.moodpickerService.query().subscribe(response => {
             this.moodData = response.body;
@@ -330,17 +327,13 @@ export class DashboardComponent implements OnInit {
                 this.moodpickerService.create(this.tempMoodPicker).subscribe(newMood => {
                   this.userMoodData = newMood.body;
 
-                  console.log('Created new newMoodPicker successfully:', this.userMoodData);
+                  console.log('Created new newMoodPicker successfully');
                 });
 
                 this.currentView = 'None';
                 this.chosenMood = 'None';
               }
-
-              console.log(this.moodData[0].username);
-              console.log(this.moodData[0].mood);
             }
-            console.log(response.body);
           });
 
           this.pointsService.query().subscribe(response => {
@@ -358,9 +351,6 @@ export class DashboardComponent implements OnInit {
                 this.userCurrentPoints = 0;
               }
             }
-            console.log(this.pointsData);
-            console.log(this.userPointsData);
-            console.log(response.body);
           });
 
           this.habittrackingService.query().subscribe(response => {
@@ -370,8 +360,6 @@ export class DashboardComponent implements OnInit {
                 item =>
                   item['usernameHabit'] === username && item['weekOfHabit'] === this.week && item['dayOfHabit'] === this.getCurrentDay()
               );
-
-              console.log(result);
 
               if (result.length !== 0) {
                 this.habitsfound = 'true';
@@ -385,9 +373,6 @@ export class DashboardComponent implements OnInit {
                 this.habitsfound = 'false';
               }
             }
-            console.log(response.body);
-
-            console.log(this.userHabits);
           });
         });
       } else {
